@@ -39,13 +39,17 @@
             panel3 = new Panel();
             pictureBox3 = new PictureBox();
             contextMenuStrip1 = new ContextMenuStrip(components);
-            axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
+            pictureBox4 = new PictureBox();
+            label3 = new Label();
+            label4 = new Label();
+            label5 = new Label();
+            label6 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)axWindowsMediaPlayer1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -84,11 +88,12 @@
             label2.BackColor = Color.FromArgb(33, 44, 66);
             label2.Font = new Font("Ubuntu Mono", 11.999999F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.White;
-            label2.Location = new Point(46, 185);
+            label2.Location = new Point(45, 219);
             label2.Name = "label2";
             label2.Size = new Size(428, 48);
             label2.TabIndex = 6;
             label2.Text = "Hands-on accounting through real world\r\nscenario";
+            label2.Click += label2_Click;
             // 
             // label1
             // 
@@ -96,7 +101,7 @@
             label1.BackColor = Color.FromArgb(33, 44, 66);
             label1.Font = new Font("Ubuntu Mono", 28.1999989F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.LightYellow;
-            label1.Location = new Point(36, 53);
+            label1.Location = new Point(32, 87);
             label1.Name = "label1";
             label1.Size = new Size(493, 116);
             label1.TabIndex = 5;
@@ -140,22 +145,77 @@
             contextMenuStrip1.Name = "contextMenuStrip1";
             contextMenuStrip1.Size = new Size(61, 4);
             // 
-            // axWindowsMediaPlayer1
+            // pictureBox4
             // 
-            axWindowsMediaPlayer1.Enabled = true;
-            axWindowsMediaPlayer1.Location = new Point(684, 293);
-            axWindowsMediaPlayer1.Name = "axWindowsMediaPlayer1";
-            axWindowsMediaPlayer1.OcxState = (AxHost.State)resources.GetObject("axWindowsMediaPlayer1.OcxState");
-            axWindowsMediaPlayer1.Size = new Size(299, 258);
-            axWindowsMediaPlayer1.TabIndex = 0;
-            axWindowsMediaPlayer1.Enter += axWindowsMediaPlayer1_Enter;
+            pictureBox4.BackColor = Color.FromArgb(33, 44, 66);
+            pictureBox4.Image = (Image)resources.GetObject("pictureBox4.Image");
+            pictureBox4.Location = new Point(706, 257);
+            pictureBox4.Name = "pictureBox4";
+            pictureBox4.Size = new Size(260, 233);
+            pictureBox4.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox4.TabIndex = 5;
+            pictureBox4.TabStop = false;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.BackColor = Color.FromArgb(33, 44, 66);
+            label3.Font = new Font("Ubuntu Mono", 11.999999F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.ForeColor = Color.Lime;
+            label3.Location = new Point(680, 506);
+            label3.Name = "label3";
+            label3.Size = new Size(23, 24);
+            label3.TabIndex = 7;
+            label3.Text = "✓";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.BackColor = Color.FromArgb(33, 44, 66);
+            label4.Font = new Font("Ubuntu Mono", 11.999999F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label4.ForeColor = Color.Lime;
+            label4.Location = new Point(680, 545);
+            label4.Name = "label4";
+            label4.Size = new Size(23, 24);
+            label4.TabIndex = 8;
+            label4.Text = "✓";
+            label4.Click += label4_Click;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.BackColor = Color.FromArgb(33, 44, 66);
+            label5.Font = new Font("Ubuntu Mono", 11.999999F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label5.ForeColor = Color.White;
+            label5.Location = new Point(713, 545);
+            label5.Name = "label5";
+            label5.Size = new Size(175, 24);
+            label5.TabIndex = 7;
+            label5.Text = "Improved Growth";
+            label5.Click += label5_Click_1;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.BackColor = Color.FromArgb(33, 44, 66);
+            label6.Font = new Font("Ubuntu Mono", 11.999999F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label6.ForeColor = Color.White;
+            label6.Location = new Point(713, 506);
+            label6.Name = "label6";
+            label6.Size = new Size(197, 24);
+            label6.TabIndex = 9;
+            label6.Text = "Beginner Friendly";
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1071, 645);
-            Controls.Add(axWindowsMediaPlayer1);
+            Controls.Add(label6);
+            Controls.Add(label5);
+            Controls.Add(label4);
+            Controls.Add(label3);
+            Controls.Add(pictureBox4);
             Controls.Add(panel3);
             Controls.Add(panel2);
             Controls.Add(panel1);
@@ -169,8 +229,9 @@
             panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
-            ((System.ComponentModel.ISupportInitialize)axWindowsMediaPlayer1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -184,6 +245,10 @@
         private Label label1;
         private ContextMenuStrip contextMenuStrip1;
         private Label label2;
-        private AxWMPLib.AxWindowsMediaPlayer axWindowsMediaPlayer1;
+        private PictureBox pictureBox4;
+        private Label label3;
+        private Label label4;
+        private Label label5;
+        private Label label6;
     }
 }

@@ -73,6 +73,16 @@ namespace lighPayroll.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ño {
+            get {
+                object obj = ResourceManager.GetObject("ño", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap smart_idea {
             get {
                 object obj = ResourceManager.GetObject("smart idea", resourceCulture);
