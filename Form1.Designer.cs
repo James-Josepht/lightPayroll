@@ -149,9 +149,9 @@
             // 
             pictureBox4.BackColor = Color.FromArgb(33, 44, 66);
             pictureBox4.Image = (Image)resources.GetObject("pictureBox4.Image");
-            pictureBox4.Location = new Point(706, 257);
+            pictureBox4.Location = new Point(725, 269);
             pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(260, 233);
+            pictureBox4.Size = new Size(224, 178);
             pictureBox4.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox4.TabIndex = 5;
             pictureBox4.TabStop = false;
@@ -160,11 +160,11 @@
             // 
             label3.AutoSize = true;
             label3.BackColor = Color.FromArgb(33, 44, 66);
-            label3.Font = new Font("Ubuntu Mono", 11.999999F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.Font = new Font("Ubuntu Mono", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.Lime;
-            label3.Location = new Point(680, 506);
+            label3.Location = new Point(680, 487);
             label3.Name = "label3";
-            label3.Size = new Size(23, 24);
+            label3.Size = new Size(28, 28);
             label3.TabIndex = 7;
             label3.Text = "✓";
             // 
@@ -172,11 +172,11 @@
             // 
             label4.AutoSize = true;
             label4.BackColor = Color.FromArgb(33, 44, 66);
-            label4.Font = new Font("Ubuntu Mono", 11.999999F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label4.Font = new Font("Ubuntu Mono", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.Lime;
-            label4.Location = new Point(680, 545);
+            label4.Location = new Point(680, 537);
             label4.Name = "label4";
-            label4.Size = new Size(23, 24);
+            label4.Size = new Size(28, 28);
             label4.TabIndex = 8;
             label4.Text = "✓";
             label4.Click += label4_Click;
@@ -185,11 +185,11 @@
             // 
             label5.AutoSize = true;
             label5.BackColor = Color.FromArgb(33, 44, 66);
-            label5.Font = new Font("Ubuntu Mono", 11.999999F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label5.Font = new Font("Ubuntu Mono", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.White;
-            label5.Location = new Point(713, 545);
+            label5.Location = new Point(709, 537);
             label5.Name = "label5";
-            label5.Size = new Size(175, 24);
+            label5.Size = new Size(207, 28);
             label5.TabIndex = 7;
             label5.Text = "Improved Growth";
             label5.Click += label5_Click_1;
@@ -198,11 +198,11 @@
             // 
             label6.AutoSize = true;
             label6.BackColor = Color.FromArgb(33, 44, 66);
-            label6.Font = new Font("Ubuntu Mono", 11.999999F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label6.Font = new Font("Ubuntu Mono", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label6.ForeColor = Color.White;
-            label6.Location = new Point(713, 506);
+            label6.Location = new Point(709, 487);
             label6.Name = "label6";
-            label6.Size = new Size(197, 24);
+            label6.Size = new Size(233, 28);
             label6.TabIndex = 9;
             label6.Text = "Beginner Friendly";
             // 
@@ -221,6 +221,7 @@
             Controls.Add(panel1);
             Controls.Add(pictureBox3);
             Name = "Form1";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
             Load += Form1_Load;
             panel1.ResumeLayout(false);
