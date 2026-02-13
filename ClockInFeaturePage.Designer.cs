@@ -1,14 +1,14 @@
 ﻿namespace lighPayroll
 {
-    partial class Form1
+    partial class ClockInFeaturePage
     {
         /// <summary>
-        ///  Required designer variable.
+        /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>
-        ///  Clean up any resources being used.
+        /// Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
@@ -23,27 +23,27 @@
         #region Windows Form Designer generated code
 
         /// <summary>
-        ///  Required method for Designer support - do not modify
-        ///  the contents of this method with the code editor.
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ClockInFeaturePage));
             panel1 = new Panel();
             panel6 = new Panel();
-            joinHomeBut = new Button();
-            loginHomeBut = new Button();
+            button2 = new Button();
+            button1 = new Button();
             panel5 = new Panel();
             menuStrip2 = new MenuStrip();
-            searchMS = new ToolStripMenuItem();
-            searchBox = new ToolStripComboBox();
+            toolStripMenuItem8 = new ToolStripMenuItem();
+            toolStripComboBox1 = new ToolStripComboBox();
             toolStripSeparator5 = new ToolStripSeparator();
             recentSearches = new ToolStripTextBox();
-            featureStrip1 = new ToolStripMenuItem();
+            toolStripMenuItem9 = new ToolStripMenuItem();
             toolStripSeparator1 = new ToolStripSeparator();
-            featureStrip2 = new ToolStripMenuItem();
+            toolStripMenuItem10 = new ToolStripMenuItem();
             toolStripSeparator2 = new ToolStripSeparator();
-            featureStrip3 = new ToolStripMenuItem();
+            toolStripMenuItem11 = new ToolStripMenuItem();
             toolStripMenuItem12 = new ToolStripMenuItem();
             toolStripMenuItem13 = new ToolStripMenuItem();
             toolStripMenuItem14 = new ToolStripMenuItem();
@@ -56,7 +56,7 @@
             label7 = new Label();
             panel4 = new Panel();
             menuStrip1 = new MenuStrip();
-            featuresMS = new ToolStripMenuItem();
+            toolStripMenuItem1 = new ToolStripMenuItem();
             clockInFeatureTab = new ToolStripMenuItem();
             toolStripSeparator4 = new ToolStripSeparator();
             attendanceFeatureTab = new ToolStripMenuItem();
@@ -70,20 +70,15 @@
             toolStripMenuItem7 = new ToolStripMenuItem();
             toolStripMenuItem18 = new ToolStripMenuItem();
             toolStripMenuItem20 = new ToolStripMenuItem();
-            toolStripMenuItem9 = new ToolStripMenuItem();
+            toolStripMenuItem23 = new ToolStripMenuItem();
+            toolStripMenuItem24 = new ToolStripMenuItem();
             pictureBox1 = new PictureBox();
             panel2 = new Panel();
-            label2 = new Label();
             label1 = new Label();
-            pictureBox2 = new PictureBox();
             panel3 = new Panel();
-            pictureBox3 = new PictureBox();
-            pictureBox4 = new PictureBox();
-            label3 = new Label();
-            label4 = new Label();
-            label5 = new Label();
-            label6 = new Label();
-            toolStripMenuItem1 = new ToolStripMenuItem();
+            clockInIntroLabel = new Label();
+            flowLayoutPanel1 = new FlowLayoutPanel();
+            pictureBox2 = new PictureBox();
             panel1.SuspendLayout();
             panel6.SuspendLayout();
             panel5.SuspendLayout();
@@ -92,9 +87,8 @@
             menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel2.SuspendLayout();
+            flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -109,53 +103,51 @@
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
             panel1.Size = new Size(1071, 128);
-            panel1.TabIndex = 0;
+            panel1.TabIndex = 1;
             // 
             // panel6
             // 
             panel6.BackgroundImage = (Image)resources.GetObject("panel6.BackgroundImage");
-            panel6.Controls.Add(joinHomeBut);
-            panel6.Controls.Add(loginHomeBut);
+            panel6.Controls.Add(button2);
+            panel6.Controls.Add(button1);
             panel6.Font = new Font("Segoe UI", 7.20000029F, FontStyle.Regular, GraphicsUnit.Point, 0);
             panel6.Location = new Point(762, 21);
             panel6.Name = "panel6";
             panel6.Size = new Size(297, 84);
             panel6.TabIndex = 3;
             // 
-            // joinHomeBut
+            // button2
             // 
-            joinHomeBut.BackColor = Color.Beige;
-            joinHomeBut.BackgroundImage = (Image)resources.GetObject("joinHomeBut.BackgroundImage");
-            joinHomeBut.BackgroundImageLayout = ImageLayout.Stretch;
-            joinHomeBut.Cursor = Cursors.Hand;
-            joinHomeBut.FlatAppearance.BorderSize = 0;
-            joinHomeBut.FlatStyle = FlatStyle.Flat;
-            joinHomeBut.Font = new Font("Ubuntu Mono", 7.20000029F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            joinHomeBut.Location = new Point(150, 3);
-            joinHomeBut.Name = "joinHomeBut";
-            joinHomeBut.Size = new Size(144, 75);
-            joinHomeBut.TabIndex = 2;
-            joinHomeBut.Text = "Join for FREE";
-            joinHomeBut.UseVisualStyleBackColor = false;
-            joinHomeBut.Click += joinHomeBut_Click;
+            button2.BackColor = Color.Beige;
+            button2.BackgroundImage = (Image)resources.GetObject("button2.BackgroundImage");
+            button2.BackgroundImageLayout = ImageLayout.Stretch;
+            button2.Cursor = Cursors.Hand;
+            button2.FlatAppearance.BorderSize = 0;
+            button2.FlatStyle = FlatStyle.Flat;
+            button2.Font = new Font("Ubuntu Mono", 7.20000029F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button2.Location = new Point(150, 3);
+            button2.Name = "button2";
+            button2.Size = new Size(144, 75);
+            button2.TabIndex = 2;
+            button2.Text = "Join for FREE";
+            button2.UseVisualStyleBackColor = false;
             // 
-            // loginHomeBut
+            // button1
             // 
-            loginHomeBut.BackColor = Color.Beige;
-            loginHomeBut.BackgroundImage = (Image)resources.GetObject("loginHomeBut.BackgroundImage");
-            loginHomeBut.BackgroundImageLayout = ImageLayout.Stretch;
-            loginHomeBut.Cursor = Cursors.Hand;
-            loginHomeBut.FlatAppearance.BorderSize = 0;
-            loginHomeBut.FlatStyle = FlatStyle.Flat;
-            loginHomeBut.Font = new Font("Ubuntu Mono", 7.20000029F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            loginHomeBut.ForeColor = Color.White;
-            loginHomeBut.Location = new Point(0, 3);
-            loginHomeBut.Name = "loginHomeBut";
-            loginHomeBut.Size = new Size(148, 75);
-            loginHomeBut.TabIndex = 1;
-            loginHomeBut.Text = "Log In";
-            loginHomeBut.UseVisualStyleBackColor = false;
-            loginHomeBut.Click += loginHomeBut_Click;
+            button1.BackColor = Color.Beige;
+            button1.BackgroundImage = (Image)resources.GetObject("button1.BackgroundImage");
+            button1.BackgroundImageLayout = ImageLayout.Stretch;
+            button1.Cursor = Cursors.Hand;
+            button1.FlatAppearance.BorderSize = 0;
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.Font = new Font("Ubuntu Mono", 7.20000029F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button1.ForeColor = Color.White;
+            button1.Location = new Point(0, 3);
+            button1.Name = "button1";
+            button1.Size = new Size(148, 75);
+            button1.TabIndex = 1;
+            button1.Text = "Log In";
+            button1.UseVisualStyleBackColor = false;
             // 
             // panel5
             // 
@@ -175,7 +167,7 @@
             menuStrip2.BackgroundImageLayout = ImageLayout.None;
             menuStrip2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             menuStrip2.ImageScalingSize = new Size(20, 20);
-            menuStrip2.Items.AddRange(new ToolStripItem[] { searchMS, toolStripMenuItem12, toolStripMenuItem13, toolStripMenuItem14, toolStripMenuItem15, toolStripMenuItem16, toolStripMenuItem17, toolStripMenuItem19, toolStripMenuItem21, toolStripMenuItem22 });
+            menuStrip2.Items.AddRange(new ToolStripItem[] { toolStripMenuItem8, toolStripMenuItem12, toolStripMenuItem13, toolStripMenuItem14, toolStripMenuItem15, toolStripMenuItem16, toolStripMenuItem17, toolStripMenuItem19, toolStripMenuItem21, toolStripMenuItem22 });
             menuStrip2.Location = new Point(0, 0);
             menuStrip2.Name = "menuStrip2";
             menuStrip2.RightToLeft = RightToLeft.Yes;
@@ -183,26 +175,25 @@
             menuStrip2.TabIndex = 0;
             menuStrip2.Text = "menuStrip2";
             // 
-            // searchMS
+            // toolStripMenuItem8
             // 
-            searchMS.BackColor = Color.Beige;
-            searchMS.BackgroundImage = (Image)resources.GetObject("searchMS.BackgroundImage");
-            searchMS.BackgroundImageLayout = ImageLayout.Stretch;
-            searchMS.DropDownItems.AddRange(new ToolStripItem[] { searchBox, toolStripSeparator5, recentSearches, featureStrip1, toolStripSeparator1, featureStrip2, toolStripSeparator2, featureStrip3 });
-            searchMS.Font = new Font("Sans Serif Collection", 4.20000029F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            searchMS.Name = "searchMS";
-            searchMS.Size = new Size(55, 31);
-            searchMS.Text = "                             ";
+            toolStripMenuItem8.BackColor = Color.Beige;
+            toolStripMenuItem8.BackgroundImage = (Image)resources.GetObject("toolStripMenuItem8.BackgroundImage");
+            toolStripMenuItem8.BackgroundImageLayout = ImageLayout.Stretch;
+            toolStripMenuItem8.DropDownItems.AddRange(new ToolStripItem[] { toolStripComboBox1, toolStripSeparator5, recentSearches, toolStripMenuItem9, toolStripSeparator1, toolStripMenuItem10, toolStripSeparator2, toolStripMenuItem11 });
+            toolStripMenuItem8.Font = new Font("Sans Serif Collection", 4.20000029F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            toolStripMenuItem8.Name = "toolStripMenuItem8";
+            toolStripMenuItem8.Size = new Size(55, 31);
+            toolStripMenuItem8.Text = "                             ";
             // 
-            // searchBox
+            // toolStripComboBox1
             // 
-            searchBox.AutoSize = false;
-            searchBox.BackColor = Color.White;
-            searchBox.FlatStyle = FlatStyle.Standard;
-            searchBox.Font = new Font("Ubuntu Mono", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            searchBox.Name = "searchBox";
-            searchBox.Size = new Size(121, 26);
-            searchBox.Click += searchBox_Click;
+            toolStripComboBox1.AutoSize = false;
+            toolStripComboBox1.BackColor = Color.White;
+            toolStripComboBox1.FlatStyle = FlatStyle.Standard;
+            toolStripComboBox1.Font = new Font("Ubuntu Mono", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            toolStripComboBox1.Name = "toolStripComboBox1";
+            toolStripComboBox1.Size = new Size(121, 26);
             // 
             // toolStripSeparator5
             // 
@@ -221,15 +212,14 @@
             recentSearches.Size = new Size(100, 16);
             recentSearches.Text = "Recent Features";
             // 
-            // featureStrip1
+            // toolStripMenuItem9
             // 
-            featureStrip1.BackColor = Color.Beige;
-            featureStrip1.BackgroundImage = (Image)resources.GetObject("featureStrip1.BackgroundImage");
-            featureStrip1.Font = new Font("Ubuntu Mono Medium", 7.20000029F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            featureStrip1.Name = "featureStrip1";
-            featureStrip1.Size = new Size(195, 26);
-            featureStrip1.Text = "Feature 1";
-            featureStrip1.Click += featureStrip1_Click;
+            toolStripMenuItem9.BackColor = Color.Beige;
+            toolStripMenuItem9.BackgroundImage = (Image)resources.GetObject("toolStripMenuItem9.BackgroundImage");
+            toolStripMenuItem9.Font = new Font("Ubuntu Mono Medium", 7.20000029F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            toolStripMenuItem9.Name = "toolStripMenuItem9";
+            toolStripMenuItem9.Size = new Size(195, 26);
+            toolStripMenuItem9.Text = "Feature 1";
             // 
             // toolStripSeparator1
             // 
@@ -238,14 +228,13 @@
             toolStripSeparator1.Name = "toolStripSeparator1";
             toolStripSeparator1.Size = new Size(192, 6);
             // 
-            // featureStrip2
+            // toolStripMenuItem10
             // 
-            featureStrip2.BackColor = Color.Beige;
-            featureStrip2.Font = new Font("Ubuntu Mono Medium", 7.20000029F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            featureStrip2.Name = "featureStrip2";
-            featureStrip2.Size = new Size(195, 26);
-            featureStrip2.Text = "Feature 2";
-            featureStrip2.Click += featureStrip2_Click;
+            toolStripMenuItem10.BackColor = Color.Beige;
+            toolStripMenuItem10.Font = new Font("Ubuntu Mono Medium", 7.20000029F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            toolStripMenuItem10.Name = "toolStripMenuItem10";
+            toolStripMenuItem10.Size = new Size(195, 26);
+            toolStripMenuItem10.Text = "Feature 2";
             // 
             // toolStripSeparator2
             // 
@@ -254,13 +243,13 @@
             toolStripSeparator2.Name = "toolStripSeparator2";
             toolStripSeparator2.Size = new Size(192, 6);
             // 
-            // featureStrip3
+            // toolStripMenuItem11
             // 
-            featureStrip3.BackColor = Color.Beige;
-            featureStrip3.Font = new Font("Ubuntu Mono Medium", 7.20000029F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            featureStrip3.Name = "featureStrip3";
-            featureStrip3.Size = new Size(195, 26);
-            featureStrip3.Text = "Feature 3";
+            toolStripMenuItem11.BackColor = Color.Beige;
+            toolStripMenuItem11.Font = new Font("Ubuntu Mono Medium", 7.20000029F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            toolStripMenuItem11.Name = "toolStripMenuItem11";
+            toolStripMenuItem11.Size = new Size(195, 26);
+            toolStripMenuItem11.Text = "Feature 3";
             // 
             // toolStripMenuItem12
             // 
@@ -335,24 +324,25 @@
             menuStrip1.BackgroundImageLayout = ImageLayout.Stretch;
             menuStrip1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             menuStrip1.ImageScalingSize = new Size(20, 20);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { featuresMS, toolStripMenuItem2, toolStripMenuItem3, toolStripMenuItem4, toolStripMenuItem5, toolStripMenuItem6, toolStripMenuItem7, toolStripMenuItem18, toolStripMenuItem20, toolStripMenuItem9, toolStripMenuItem1 });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { toolStripMenuItem1, toolStripMenuItem2, toolStripMenuItem3, toolStripMenuItem4, toolStripMenuItem5, toolStripMenuItem6, toolStripMenuItem7, toolStripMenuItem18, toolStripMenuItem20, toolStripMenuItem23, toolStripMenuItem24 });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(107, 59);
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
             // 
-            // featuresMS
+            // toolStripMenuItem1
             // 
-            featuresMS.BackColor = Color.Beige;
-            featuresMS.BackgroundImage = (Image)resources.GetObject("featuresMS.BackgroundImage");
-            featuresMS.BackgroundImageLayout = ImageLayout.Stretch;
-            featuresMS.DropDownItems.AddRange(new ToolStripItem[] { clockInFeatureTab, toolStripSeparator4, attendanceFeatureTab, toolStripSeparator3, payrollFeatureTab });
-            featuresMS.Font = new Font("Sans Serif Collection", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            featuresMS.ImageTransparentColor = Color.Transparent;
-            featuresMS.Name = "featuresMS";
-            featuresMS.Size = new Size(94, 55);
-            featuresMS.Text = "                             ";
+            toolStripMenuItem1.BackColor = Color.Beige;
+            toolStripMenuItem1.BackgroundImage = (Image)resources.GetObject("toolStripMenuItem1.BackgroundImage");
+            toolStripMenuItem1.BackgroundImageLayout = ImageLayout.Stretch;
+            toolStripMenuItem1.DropDownItems.AddRange(new ToolStripItem[] { clockInFeatureTab, toolStripSeparator4, attendanceFeatureTab, toolStripSeparator3, payrollFeatureTab });
+            toolStripMenuItem1.Font = new Font("Sans Serif Collection", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            toolStripMenuItem1.ImageTransparentColor = Color.Transparent;
+            toolStripMenuItem1.Name = "toolStripMenuItem1";
+            toolStripMenuItem1.Size = new Size(94, 55);
+            toolStripMenuItem1.Text = "                             ";
+            toolStripMenuItem1.Click += toolStripMenuItem1_Click;
             // 
             // clockInFeatureTab
             // 
@@ -361,7 +351,7 @@
             clockInFeatureTab.Name = "clockInFeatureTab";
             clockInFeatureTab.Size = new Size(224, 26);
             clockInFeatureTab.Text = "Clock In";
-            clockInFeatureTab.Click += clockInFeatureTab_Click;
+            clockInFeatureTab.Click += clockInFeatureTab_Click_1;
             // 
             // toolStripSeparator4
             // 
@@ -433,10 +423,15 @@
             toolStripMenuItem20.Name = "toolStripMenuItem20";
             toolStripMenuItem20.Size = new Size(14, 55);
             // 
-            // toolStripMenuItem9
+            // toolStripMenuItem23
             // 
-            toolStripMenuItem9.Name = "toolStripMenuItem9";
-            toolStripMenuItem9.Size = new Size(14, 55);
+            toolStripMenuItem23.Name = "toolStripMenuItem23";
+            toolStripMenuItem23.Size = new Size(14, 55);
+            // 
+            // toolStripMenuItem24
+            // 
+            toolStripMenuItem24.Name = "toolStripMenuItem24";
+            toolStripMenuItem24.Size = new Size(14, 55);
             // 
             // pictureBox1
             // 
@@ -452,150 +447,82 @@
             // 
             // panel2
             // 
-            panel2.BackgroundImageLayout = ImageLayout.Stretch;
-            panel2.Controls.Add(label2);
+            panel2.AutoScroll = true;
             panel2.Controls.Add(label1);
-            panel2.Controls.Add(pictureBox2);
-            panel2.Location = new Point(49, 232);
+            panel2.Controls.Add(panel3);
+            panel2.Controls.Add(clockInIntroLabel);
+            panel2.Controls.Add(flowLayoutPanel1);
+            panel2.Dock = DockStyle.Fill;
+            panel2.Location = new Point(0, 128);
             panel2.Name = "panel2";
-            panel2.Size = new Size(579, 386);
-            panel2.TabIndex = 1;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.BackColor = Color.FromArgb(33, 44, 66);
-            label2.Font = new Font("Ubuntu Mono", 11.999999F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.ForeColor = Color.White;
-            label2.Location = new Point(45, 219);
-            label2.Name = "label2";
-            label2.Size = new Size(428, 48);
-            label2.TabIndex = 6;
-            label2.Text = "Hands-on accounting through real world\r\nscenario";
+            panel2.Size = new Size(1071, 517);
+            panel2.TabIndex = 2;
+            panel2.Paint += panel2_Paint_1;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.BackColor = Color.FromArgb(33, 44, 66);
-            label1.Font = new Font("Ubuntu Mono", 28.1999989F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.LightYellow;
-            label1.Location = new Point(32, 87);
+            label1.Font = new Font("Ubuntu Mono", 16.1999989F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.Beige;
+            label1.Location = new Point(86, 47);
             label1.Name = "label1";
-            label1.Size = new Size(493, 116);
-            label1.TabIndex = 5;
-            label1.Text = "Experience growth \r\nwith Ligh♱Payroll\r\n";
-            // 
-            // pictureBox2
-            // 
-            pictureBox2.BackColor = SystemColors.ActiveCaption;
-            pictureBox2.BackgroundImage = Properties.Resources.background;
-            pictureBox2.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox2.Location = new Point(-135, -23);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(851, 406);
-            pictureBox2.TabIndex = 3;
-            pictureBox2.TabStop = false;
+            label1.Size = new Size(135, 34);
+            label1.TabIndex = 3;
+            label1.Text = "FEATURES";
             // 
             // panel3
             // 
-            panel3.Location = new Point(46, 134);
+            panel3.Location = new Point(53, 980);
             panel3.Name = "panel3";
-            panel3.Size = new Size(968, 69);
-            panel3.TabIndex = 2;
+            panel3.Size = new Size(959, 67);
+            panel3.TabIndex = 4;
             // 
-            // pictureBox3
+            // clockInIntroLabel
             // 
-            pictureBox3.BackColor = Color.Transparent;
-            pictureBox3.BackgroundImage = Properties.Resources.background;
-            pictureBox3.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox3.Location = new Point(560, 212);
-            pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(562, 406);
-            pictureBox3.TabIndex = 4;
-            pictureBox3.TabStop = false;
+            clockInIntroLabel.AutoSize = true;
+            clockInIntroLabel.BackColor = Color.FromArgb(33, 44, 66);
+            clockInIntroLabel.Font = new Font("Ubuntu Mono", 25.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            clockInIntroLabel.ForeColor = Color.Beige;
+            clockInIntroLabel.Location = new Point(79, 77);
+            clockInIntroLabel.Name = "clockInIntroLabel";
+            clockInIntroLabel.Size = new Size(224, 55);
+            clockInIntroLabel.TabIndex = 0;
+            clockInIntroLabel.Text = "Clock In";
+            clockInIntroLabel.Click += clockInIntroLabel_Click;
             // 
-            // pictureBox4
+            // flowLayoutPanel1
             // 
-            pictureBox4.BackColor = Color.FromArgb(33, 44, 66);
-            pictureBox4.Image = (Image)resources.GetObject("pictureBox4.Image");
-            pictureBox4.Location = new Point(725, 269);
-            pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(224, 178);
-            pictureBox4.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox4.TabIndex = 5;
-            pictureBox4.TabStop = false;
+            flowLayoutPanel1.Controls.Add(pictureBox2);
+            flowLayoutPanel1.Location = new Point(53, 25);
+            flowLayoutPanel1.Name = "flowLayoutPanel1";
+            flowLayoutPanel1.Size = new Size(959, 943);
+            flowLayoutPanel1.TabIndex = 2;
+            flowLayoutPanel1.Paint += flowLayoutPanel1_Paint;
             // 
-            // label3
+            // pictureBox2
             // 
-            label3.AutoSize = true;
-            label3.BackColor = Color.FromArgb(33, 44, 66);
-            label3.Font = new Font("Ubuntu Mono", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.ForeColor = Color.Lime;
-            label3.Location = new Point(680, 487);
-            label3.Name = "label3";
-            label3.Size = new Size(28, 28);
-            label3.TabIndex = 7;
-            label3.Text = "✓";
+            pictureBox2.BackColor = Color.FromArgb(33, 44, 66);
+            pictureBox2.BackgroundImageLayout = ImageLayout.Stretch;
+            pictureBox2.Location = new Point(7, 7);
+            pictureBox2.Margin = new Padding(7);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(962, 942);
+            pictureBox2.TabIndex = 1;
+            pictureBox2.TabStop = false;
+            pictureBox2.Click += pictureBox2_Click;
             // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.BackColor = Color.FromArgb(33, 44, 66);
-            label4.Font = new Font("Ubuntu Mono", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.ForeColor = Color.Lime;
-            label4.Location = new Point(680, 537);
-            label4.Name = "label4";
-            label4.Size = new Size(28, 28);
-            label4.TabIndex = 8;
-            label4.Text = "✓";
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.BackColor = Color.FromArgb(33, 44, 66);
-            label5.Font = new Font("Ubuntu Mono", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label5.ForeColor = Color.White;
-            label5.Location = new Point(709, 537);
-            label5.Name = "label5";
-            label5.Size = new Size(207, 28);
-            label5.TabIndex = 7;
-            label5.Text = "Improved Growth";
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.BackColor = Color.FromArgb(33, 44, 66);
-            label6.Font = new Font("Ubuntu Mono", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label6.ForeColor = Color.White;
-            label6.Location = new Point(709, 487);
-            label6.Name = "label6";
-            label6.Size = new Size(233, 28);
-            label6.TabIndex = 9;
-            label6.Text = "Beginner Friendly";
-            // 
-            // toolStripMenuItem1
-            // 
-            toolStripMenuItem1.Name = "toolStripMenuItem1";
-            toolStripMenuItem1.Size = new Size(14, 55);
-            // 
-            // Form1
+            // ClockInFeaturePage
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(1071, 645);
-            Controls.Add(label6);
-            Controls.Add(label5);
-            Controls.Add(label4);
-            Controls.Add(label3);
-            Controls.Add(pictureBox4);
-            Controls.Add(panel3);
             Controls.Add(panel2);
             Controls.Add(panel1);
-            Controls.Add(pictureBox3);
-            Name = "Form1";
+            Name = "ClockInFeaturePage";
             StartPosition = FormStartPosition.CenterScreen;
-            Load += Form1_Load;
+            Load += ClockInFeaturePage_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel6.ResumeLayout(false);
@@ -610,55 +537,29 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
+            flowLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
 
         private Panel panel1;
-        private PictureBox pictureBox1;
-        private Panel panel2;
-        private Panel panel3;
-        private PictureBox pictureBox2;
-        private PictureBox pictureBox3;
-        private Label label1;
-        private Label label2;
-        private PictureBox pictureBox4;
-        private Label label3;
-        private Label label4;
-        private Label label5;
-        private Label label6;
-        private Label label7;
-        private Panel panel4;
-        private MenuStrip menuStrip1;
-        private ToolStripMenuItem featuresMS;
-        private ToolStripMenuItem clockInFeatureTab;
-        private ToolStripMenuItem attendanceFeatureTab;
-        private ToolStripMenuItem payrollFeatureTab;
-        private ToolStripMenuItem toolStripMenuItem2;
-        private ToolStripMenuItem toolStripMenuItem3;
-        private ToolStripMenuItem toolStripMenuItem4;
-        private ToolStripMenuItem toolStripMenuItem5;
-        private ToolStripMenuItem toolStripMenuItem6;
-        private ToolStripMenuItem toolStripMenuItem7;
+        private Panel panel6;
+        private Button button2;
+        private Button button1;
         private Panel panel5;
         private MenuStrip menuStrip2;
-        private ToolStripMenuItem searchMS;
-        private ToolStripMenuItem featureStrip1;
-        private ToolStripMenuItem featureStrip2;
-        private ToolStripMenuItem featureStrip3;
-        private ToolStripMenuItem toolStripMenuItem12;
-        private Panel panel6;
-        private Button joinHomeBut;
-        private Button loginHomeBut;
-        private ToolStripMenuItem toolStripMenuItem18;
-        private ToolStripMenuItem toolStripMenuItem20;
+        private ToolStripMenuItem toolStripMenuItem8;
+        private ToolStripComboBox toolStripComboBox1;
+        private ToolStripSeparator toolStripSeparator5;
+        private ToolStripTextBox recentSearches;
+        private ToolStripMenuItem toolStripMenuItem9;
         private ToolStripSeparator toolStripSeparator1;
+        private ToolStripMenuItem toolStripMenuItem10;
         private ToolStripSeparator toolStripSeparator2;
+        private ToolStripMenuItem toolStripMenuItem11;
+        private ToolStripMenuItem toolStripMenuItem12;
         private ToolStripMenuItem toolStripMenuItem13;
         private ToolStripMenuItem toolStripMenuItem14;
         private ToolStripMenuItem toolStripMenuItem15;
@@ -666,13 +567,34 @@
         private ToolStripMenuItem toolStripMenuItem17;
         private ToolStripMenuItem toolStripMenuItem19;
         private ToolStripMenuItem toolStripMenuItem21;
-        private ToolStripSeparator toolStripSeparator4;
-        private ToolStripSeparator toolStripSeparator3;
-        private ToolStripComboBox searchBox;
-        private ToolStripTextBox recentSearches;
         private ToolStripMenuItem toolStripMenuItem22;
-        private ToolStripSeparator toolStripSeparator5;
-        private ToolStripMenuItem toolStripMenuItem9;
+        private Label label7;
+        private Panel panel4;
+        private MenuStrip menuStrip1;
         private ToolStripMenuItem toolStripMenuItem1;
+        private ToolStripMenuItem clockInFeatureTab;
+        private ToolStripSeparator toolStripSeparator4;
+        private ToolStripMenuItem attendanceFeatureTab;
+        private ToolStripSeparator toolStripSeparator3;
+        private ToolStripMenuItem payrollFeatureTab;
+        private ToolStripMenuItem toolStripMenuItem2;
+        private ToolStripMenuItem toolStripMenuItem3;
+        private ToolStripMenuItem toolStripMenuItem4;
+        private ToolStripMenuItem toolStripMenuItem5;
+        private ToolStripMenuItem toolStripMenuItem6;
+        private ToolStripMenuItem toolStripMenuItem7;
+        private ToolStripMenuItem toolStripMenuItem18;
+        private ToolStripMenuItem toolStripMenuItem20;
+        private PictureBox pictureBox1;
+        private ToolStripMenuItem toolStripMenuItem23;
+        private ToolStripMenuItem toolStripMenuItem24;
+        private Panel panel2;
+        private Label clockInIntroLabel;
+        private PictureBox pictureBox2;
+        private FlowLayoutPanel flowLayoutPanel1;
+        private Label label2;
+        private Label label1;
+        private Panel panel3;
+        private PictureBox pictureBox3;
     }
 }

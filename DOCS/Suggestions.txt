@@ -1,0 +1,27 @@
+       
+       
+       
+       
+//experimental feature nako where the menustrip2 copies other menu strip or it keeps updating
+ private ToolStripMenuItem CloneMenuItem(ToolStripItem original)
+ {
+     ToolStripMenuItem source = (ToolStripMenuItem)original;
+
+     ToolStripMenuItem copy = new ToolStripMenuItem
+     {
+         Text = source.Text,
+         Size = source.Size,
+         Font = source.Font,
+         BackColor = source.BackColor,
+         BackgroundImage = source.BackgroundImage,
+         BackgroundImageLayout = source.BackgroundImageLayout
+     };
+
+     // Copy click event if needed
+     //copy.Click += source.Click;
+
+     return copy;
+ }
+
+
+
