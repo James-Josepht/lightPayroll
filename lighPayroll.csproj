@@ -29,6 +29,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="GemBox.Spreadsheet" Version="2026.2.100" />
+    <PackageReference Include="GemBox.Spreadsheet.WinFormsUtilities" Version="47.0.1398" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Update="Properties\Resources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>

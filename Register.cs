@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using GemBox.Spreadsheet;
 
 namespace lighPayroll
 {
@@ -16,32 +17,29 @@ namespace lighPayroll
         {
             InitializeComponent();
         }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox2_Click(object sender, EventArgs e)
+        private void backHomeButtonClick(object sender, EventArgs e)
         {
             Form1 home = new Form1();
             home.Show();
             this.Hide();
+        }
+
+        private void registerAccountTextChange(object sender, EventArgs e)
+        {
+            string account = registerAccountBox.Text;
+        }
+        private void registerPassTextChange(object sender, EventArgs e)
+        {
+            string password = registerPassBox.Text;
+        }
+
+        private void registerButtonClick(object sender, EventArgs e)
+        {
+
+        }
+        private void showPassBoxClick(object sender, EventArgs e)
+        {
+
         }
     }
 }

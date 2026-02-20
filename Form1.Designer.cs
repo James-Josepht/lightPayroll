@@ -71,6 +71,7 @@
             toolStripMenuItem18 = new ToolStripMenuItem();
             toolStripMenuItem20 = new ToolStripMenuItem();
             toolStripMenuItem9 = new ToolStripMenuItem();
+            toolStripMenuItem1 = new ToolStripMenuItem();
             pictureBox1 = new PictureBox();
             panel2 = new Panel();
             label2 = new Label();
@@ -83,7 +84,6 @@
             label4 = new Label();
             label5 = new Label();
             label6 = new Label();
-            toolStripMenuItem1 = new ToolStripMenuItem();
             panel1.SuspendLayout();
             panel6.SuspendLayout();
             panel5.SuspendLayout();
@@ -193,6 +193,7 @@
             searchMS.Name = "searchMS";
             searchMS.Size = new Size(55, 31);
             searchMS.Text = "                             ";
+         
             // 
             // searchBox
             // 
@@ -207,7 +208,7 @@
             // toolStripSeparator5
             // 
             toolStripSeparator5.Name = "toolStripSeparator5";
-            toolStripSeparator5.Size = new Size(192, 6);
+            toolStripSeparator5.Size = new Size(221, 6);
             // 
             // recentSearches
             // 
@@ -227,7 +228,7 @@
             featureStrip1.BackgroundImage = (Image)resources.GetObject("featureStrip1.BackgroundImage");
             featureStrip1.Font = new Font("Ubuntu Mono Medium", 7.20000029F, FontStyle.Bold, GraphicsUnit.Point, 0);
             featureStrip1.Name = "featureStrip1";
-            featureStrip1.Size = new Size(195, 26);
+            featureStrip1.Size = new Size(224, 26);
             featureStrip1.Text = "Feature 1";
             featureStrip1.Click += featureStrip1_Click;
             // 
@@ -236,14 +237,14 @@
             toolStripSeparator1.BackColor = SystemColors.Info;
             toolStripSeparator1.ForeColor = SystemColors.ActiveCaption;
             toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(192, 6);
+            toolStripSeparator1.Size = new Size(221, 6);
             // 
             // featureStrip2
             // 
             featureStrip2.BackColor = Color.Beige;
             featureStrip2.Font = new Font("Ubuntu Mono Medium", 7.20000029F, FontStyle.Bold, GraphicsUnit.Point, 0);
             featureStrip2.Name = "featureStrip2";
-            featureStrip2.Size = new Size(195, 26);
+            featureStrip2.Size = new Size(224, 26);
             featureStrip2.Text = "Feature 2";
             featureStrip2.Click += featureStrip2_Click;
             // 
@@ -252,14 +253,14 @@
             toolStripSeparator2.BackColor = SystemColors.Info;
             toolStripSeparator2.ForeColor = SystemColors.ActiveCaption;
             toolStripSeparator2.Name = "toolStripSeparator2";
-            toolStripSeparator2.Size = new Size(192, 6);
+            toolStripSeparator2.Size = new Size(221, 6);
             // 
             // featureStrip3
             // 
             featureStrip3.BackColor = Color.Beige;
             featureStrip3.Font = new Font("Ubuntu Mono Medium", 7.20000029F, FontStyle.Bold, GraphicsUnit.Point, 0);
             featureStrip3.Name = "featureStrip3";
-            featureStrip3.Size = new Size(195, 26);
+            featureStrip3.Size = new Size(224, 26);
             featureStrip3.Text = "Feature 3";
             // 
             // toolStripMenuItem12
@@ -359,7 +360,7 @@
             clockInFeatureTab.BackgroundImage = (Image)resources.GetObject("clockInFeatureTab.BackgroundImage");
             clockInFeatureTab.Font = new Font("Ubuntu Mono Medium", 7.20000029F, FontStyle.Bold, GraphicsUnit.Point, 0);
             clockInFeatureTab.Name = "clockInFeatureTab";
-            clockInFeatureTab.Size = new Size(224, 26);
+            clockInFeatureTab.Size = new Size(173, 26);
             clockInFeatureTab.Text = "Clock In";
             clockInFeatureTab.Click += clockInFeatureTab_Click;
             // 
@@ -367,14 +368,14 @@
             // 
             toolStripSeparator4.ForeColor = Color.FromArgb(33, 44, 66);
             toolStripSeparator4.Name = "toolStripSeparator4";
-            toolStripSeparator4.Size = new Size(221, 6);
+            toolStripSeparator4.Size = new Size(170, 6);
             // 
             // attendanceFeatureTab
             // 
             attendanceFeatureTab.BackgroundImage = (Image)resources.GetObject("attendanceFeatureTab.BackgroundImage");
             attendanceFeatureTab.Font = new Font("Ubuntu Mono Medium", 7.20000029F, FontStyle.Bold, GraphicsUnit.Point, 0);
             attendanceFeatureTab.Name = "attendanceFeatureTab";
-            attendanceFeatureTab.Size = new Size(224, 26);
+            attendanceFeatureTab.Size = new Size(173, 26);
             attendanceFeatureTab.Text = "Attendance";
             attendanceFeatureTab.Click += attendanceFeatureTab_Click;
             // 
@@ -382,14 +383,14 @@
             // 
             toolStripSeparator3.BackColor = SystemColors.ActiveCaption;
             toolStripSeparator3.Name = "toolStripSeparator3";
-            toolStripSeparator3.Size = new Size(221, 6);
+            toolStripSeparator3.Size = new Size(170, 6);
             // 
             // payrollFeatureTab
             // 
             payrollFeatureTab.BackColor = Color.Beige;
             payrollFeatureTab.Font = new Font("Ubuntu Mono Medium", 7.20000029F, FontStyle.Bold, GraphicsUnit.Point, 0);
             payrollFeatureTab.Name = "payrollFeatureTab";
-            payrollFeatureTab.Size = new Size(224, 26);
+            payrollFeatureTab.Size = new Size(173, 26);
             payrollFeatureTab.Text = "Payroll";
             payrollFeatureTab.Click += payrollFeatureTab_Click;
             // 
@@ -437,6 +438,11 @@
             // 
             toolStripMenuItem9.Name = "toolStripMenuItem9";
             toolStripMenuItem9.Size = new Size(14, 55);
+            // 
+            // toolStripMenuItem1
+            // 
+            toolStripMenuItem1.Name = "toolStripMenuItem1";
+            toolStripMenuItem1.Size = new Size(14, 55);
             // 
             // pictureBox1
             // 
@@ -572,11 +578,6 @@
             label6.Size = new Size(233, 28);
             label6.TabIndex = 9;
             label6.Text = "Beginner Friendly";
-            // 
-            // toolStripMenuItem1
-            // 
-            toolStripMenuItem1.Name = "toolStripMenuItem1";
-            toolStripMenuItem1.Size = new Size(14, 55);
             // 
             // Form1
             // 

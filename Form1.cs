@@ -6,8 +6,6 @@ using System.Windows.Forms;
 namespace lighPayroll
 {
 
-
-
     public partial class Form1 : Form
     {
         public Form1()
@@ -35,9 +33,16 @@ namespace lighPayroll
 
         private void joinHomeBut_Click(object sender, EventArgs e)
         {
+            Register register = new Register();
+            register.Show();
+            this.Hide();
         }
         private void loginHomeBut_Click(object sender, EventArgs e)
         {
+
+            LogIn login = new LogIn();
+            login.Show();
+            this.Hide();
         }
 
 
@@ -85,8 +90,9 @@ namespace lighPayroll
             payroll.Show();
             this.Hide();
         }
+
     }
-    class MyRenderer : ToolStripProfessionalRenderer
+    public class MyRenderer : ToolStripProfessionalRenderer
     {
         protected override void OnRenderMenuItemBackground(ToolStripItemRenderEventArgs e)
         {

@@ -71,15 +71,6 @@ namespace lighPayroll
 
         }
 
-        private void panel2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void pictureBox3_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void panel2_Paint_1(object sender, PaintEventArgs e)
         {
