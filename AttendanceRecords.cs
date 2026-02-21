@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,9 +28,8 @@ namespace lighPayroll
                 attendanceGrid.Rows.Add(att.UserID, att.Username, att.Email, att.ClockInDate, att.ClockOutDate);
             }
 
-
-
             attendanceGrid.AutoGenerateColumns = false;
+            panelDesign();
 
         }
 
@@ -55,13 +55,66 @@ namespace lighPayroll
             var clickedColumn = attendanceGrid.Columns[e.ColumnIndex];
 
             // Identify the button column correctly (use the designer field or the actual column name)
-            if (clickedColumn == decisionColumn || clickedColumn.Name == "decisionColumn" || clickedColumn is DataGridViewButtonColumn)
-            {
-                // Map row index to your stored list (ensure rows aren't sorted/filtered)
-                StoredAttendance selectedUser = storedUsers[e.RowIndex];
+            /* if (clickedColumn == decisionColumn || clickedColumn.Name == "decisionColumn" || clickedColumn is DataGridViewButtonColumn)
+             {
+                 // Map row index to your stored list (ensure rows aren't sorted/filtered)
+                 StoredAttendance selectedUser = storedUsers[e.RowIndex];
 
-                MessageBox.Show($"User {selectedUser.Username} clocked in at {selectedUser.ClockInDate}");
+                 MessageBox.Show($"User {selectedUser.Username} clocked in at {selectedUser.ClockInDate}");
+             }*/
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void bodyPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+        private void panelDesign()
+        {
+            int radius = 30;
+
+            GraphicsPath greetingsPath = new GraphicsPath();
+            greetingsPath.AddArc(0, 0, radius, radius, 180, 90);
+            greetingsPath.AddArc(bodyPanel.Width - radius, 0, radius, radius, 270, 90);
+            greetingsPath.AddArc(bodyPanel.Width - radius, bodyPanel.Height - radius, radius, radius, 0, 90);
+            greetingsPath.AddArc(0, bodyPanel.Height - radius, radius, radius, 90, 90);
+            greetingsPath.CloseAllFigures();
+
+            GraphicsPath bodyPath = new GraphicsPath();
+            bodyPath.AddArc(0, 0, radius, radius, 180, 90);
+            bodyPath.AddArc(bodyPanel.Width - radius, 0, radius, radius, 270, 90);
+            bodyPath.AddArc(bodyPanel.Width - radius, bodyPanel.Height - radius, radius, radius, 0, 90);
+            bodyPath.AddArc(0, bodyPanel.Height - radius, radius, radius, 90, 90);
+            bodyPath.CloseAllFigures();
+
+            bodyPanel.Region = new Region(greetingsPath);
+            bodyPanel.Region = new Region(bodyPath);
+
+
+
+            var dd = searchMS.DropDown as ToolStripDropDownMenu; //removing empty whitespace
+
+            if (dd != null)
+            {
+                dd.ShowImageMargin = false;
+                dd.ShowCheckMargin = false;
+                dd.Padding = Padding.Empty;
             }
+
+        }
+
+        private void decisionLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 

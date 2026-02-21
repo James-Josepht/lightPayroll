@@ -26,7 +26,6 @@ namespace lighPayroll
         {
             panelDesign();
 
-
         }
 
 
@@ -120,11 +119,16 @@ namespace lighPayroll
         }
 
 
-        private void panel3_Paint(object sender, EventArgs e)
+        private void attendanceToolClick(object sender, EventArgs e)
         {
             AttendanceRecords home = new AttendanceRecords();
             home.Show();
             this.Hide();
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 

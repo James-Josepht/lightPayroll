@@ -120,9 +120,6 @@
   <metadata name="searchMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <metadata name="searchMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="searchMenuStrip.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -667,7 +664,7 @@
   <data name="pictureBox4.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAYAAAD0eNT6AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wQAADsEBuJFr7QAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAFp+SURBVHhe7d0J
+        vgAADr4B6kKxwAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAFp+SURBVHhe7d0J
         fFTluT9wUCtYrbZWW1u9va29t7ttXZmwyCIK2L/t7WJ7ty5AaxJWEVDABUQWsVa73laWJIR933dIMkMg
         ELZASMKqgAoayYRFBBqS5/95JkQyzztJZjLnvOe85/x+n8/30///qjDJzHmed855lxYtEARBEARBEARB
         EARBEARBEARBEARBEARBEARBEARBEARBEARBEARBEARBEARBEARBEARBEARBEARBEARBEARBEARBEARB
@@ -1060,7 +1057,7 @@
   <data name="pictureBox3.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAYAAAD0eNT6AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        DgAACw4BQL7hQQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAD4bSURBVHhe7d0J
+        DAAACwwBP0AiyAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAD4bSURBVHhe7d0J
         nBxlnfDxhEMUD/ACFYTMwIqCq2A81jsqwiZd1VUdHK/VZOKB566vq6urZMKgrkAmAkJmQrxwd3X1HZmu
         moRDRMSD13s9dkVBQU4xTB/V1T3hTNLv5xmG6PzrSTJHVfdTVb/f5/P9vO/HlzfT/XQ9Tz3T0121aBEZ
         Vf/g+qesWbfhTf0DQ8P9A0PXrB4YuqN/YKjePzDU7h8YmuwfGLp79bqhn/WvXf+V1QND//T2waFnL1rU

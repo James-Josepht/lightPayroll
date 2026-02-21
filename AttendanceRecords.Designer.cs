@@ -30,18 +30,23 @@
         {
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AttendanceRecords));
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             toolStripMenuItem22 = new ToolStripMenuItem();
             label2 = new Label();
             bodyPanel = new Panel();
+            label1 = new Label();
+            panel3 = new Panel();
+            addUserButton = new Button();
+            modifyRowButton = new Button();
+            deleteRowButton = new Button();
             attendanceGrid = new DataGridView();
             userIDColumn = new DataGridViewTextBoxColumn();
             userNameColumn = new DataGridViewTextBoxColumn();
             emailAccontColumn = new DataGridViewTextBoxColumn();
             indateColumn = new DataGridViewTextBoxColumn();
             outdateColumn = new DataGridViewTextBoxColumn();
-            decisionColumn = new DataGridViewButtonColumn();
-            delORmod = new ContextMenuStrip(components);
             taskLabel = new Label();
+            delORmod = new ContextMenuStrip(components);
             panel4 = new Panel();
             panel2 = new Panel();
             toolStripMenuItem21 = new ToolStripMenuItem();
@@ -67,6 +72,7 @@
             toolStripMenuItem19 = new ToolStripMenuItem();
             panel1 = new Panel();
             bodyPanel.SuspendLayout();
+            panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)attendanceGrid).BeginInit();
             headPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -96,6 +102,8 @@
             // bodyPanel
             // 
             bodyPanel.BackColor = Color.FromArgb(33, 44, 66);
+            bodyPanel.Controls.Add(label1);
+            bodyPanel.Controls.Add(panel3);
             bodyPanel.Controls.Add(attendanceGrid);
             bodyPanel.Controls.Add(label2);
             bodyPanel.Controls.Add(taskLabel);
@@ -103,13 +111,80 @@
             bodyPanel.Name = "bodyPanel";
             bodyPanel.Size = new Size(908, 466);
             bodyPanel.TabIndex = 2;
+            bodyPanel.Paint += bodyPanel_Paint;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.BackColor = Color.FromArgb(33, 44, 66);
+            label1.Cursor = Cursors.Hand;
+            label1.Font = new Font("Ubuntu Mono", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.Beige;
+            label1.Location = new Point(258, 419);
+            label1.Name = "label1";
+            label1.Size = new Size(390, 21);
+            label1.TabIndex = 13;
+            label1.Text = "NOTE: SELECT A ROW TO DELETE OR MODIFY";
+            label1.Click += label1_Click;
+            // 
+            // panel3
+            // 
+            panel3.Controls.Add(addUserButton);
+            panel3.Controls.Add(modifyRowButton);
+            panel3.Controls.Add(deleteRowButton);
+            panel3.Location = new Point(518, 78);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(366, 64);
+            panel3.TabIndex = 12;
+            // 
+            // addUserButton
+            // 
+            addUserButton.BackColor = Color.FromArgb(33, 44, 66);
+            addUserButton.BackgroundImage = (Image)resources.GetObject("addUserButton.BackgroundImage");
+            addUserButton.BackgroundImageLayout = ImageLayout.Stretch;
+            addUserButton.Cursor = Cursors.Hand;
+            addUserButton.FlatStyle = FlatStyle.Flat;
+            addUserButton.ForeColor = Color.FromArgb(33, 44, 66);
+            addUserButton.Location = new Point(284, 23);
+            addUserButton.Name = "addUserButton";
+            addUserButton.Size = new Size(49, 29);
+            addUserButton.TabIndex = 2;
+            addUserButton.UseVisualStyleBackColor = false;
+            // 
+            // modifyRowButton
+            // 
+            modifyRowButton.BackColor = Color.FromArgb(33, 44, 66);
+            modifyRowButton.BackgroundImage = (Image)resources.GetObject("modifyRowButton.BackgroundImage");
+            modifyRowButton.BackgroundImageLayout = ImageLayout.Stretch;
+            modifyRowButton.Cursor = Cursors.Hand;
+            modifyRowButton.FlatStyle = FlatStyle.Flat;
+            modifyRowButton.ForeColor = Color.FromArgb(33, 44, 66);
+            modifyRowButton.Location = new Point(214, 23);
+            modifyRowButton.Name = "modifyRowButton";
+            modifyRowButton.Size = new Size(49, 29);
+            modifyRowButton.TabIndex = 1;
+            modifyRowButton.UseVisualStyleBackColor = false;
+            // 
+            // deleteRowButton
+            // 
+            deleteRowButton.BackColor = Color.FromArgb(33, 44, 66);
+            deleteRowButton.BackgroundImage = (Image)resources.GetObject("deleteRowButton.BackgroundImage");
+            deleteRowButton.BackgroundImageLayout = ImageLayout.Stretch;
+            deleteRowButton.Cursor = Cursors.Hand;
+            deleteRowButton.FlatStyle = FlatStyle.Flat;
+            deleteRowButton.ForeColor = Color.FromArgb(33, 44, 66);
+            deleteRowButton.Location = new Point(146, 23);
+            deleteRowButton.Name = "deleteRowButton";
+            deleteRowButton.Size = new Size(49, 29);
+            deleteRowButton.TabIndex = 0;
+            deleteRowButton.UseVisualStyleBackColor = false;
             // 
             // attendanceGrid
             // 
             attendanceGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             attendanceGrid.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             attendanceGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            attendanceGrid.Columns.AddRange(new DataGridViewColumn[] { userIDColumn, userNameColumn, emailAccontColumn, indateColumn, outdateColumn, decisionColumn });
+            attendanceGrid.Columns.AddRange(new DataGridViewColumn[] { userIDColumn, userNameColumn, emailAccontColumn, indateColumn, outdateColumn });
             attendanceGrid.Location = new Point(18, 148);
             attendanceGrid.Name = "attendanceGrid";
             attendanceGrid.RowHeadersWidth = 51;
@@ -119,6 +194,8 @@
             // 
             // userIDColumn
             // 
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            userIDColumn.DefaultCellStyle = dataGridViewCellStyle2;
             userIDColumn.HeaderText = "User ID";
             userIDColumn.MinimumWidth = 6;
             userIDColumn.Name = "userIDColumn";
@@ -152,21 +229,6 @@
             outdateColumn.Name = "outdateColumn";
             outdateColumn.ReadOnly = true;
             // 
-            // decisionColumn
-            // 
-            decisionColumn.ContextMenuStrip = delORmod;
-            decisionColumn.HeaderText = "Decision";
-            decisionColumn.MinimumWidth = 6;
-            decisionColumn.Name = "decisionColumn";
-            decisionColumn.ReadOnly = true;
-            // 
-            // delORmod
-            // 
-            delORmod.ImageScalingSize = new Size(20, 20);
-            delORmod.Name = "delORmod";
-            delORmod.Size = new Size(61, 4);
-            delORmod.Opening += delORmod_Opening;
-            // 
             // taskLabel
             // 
             taskLabel.AutoSize = true;
@@ -178,6 +240,13 @@
             taskLabel.Size = new Size(165, 34);
             taskLabel.TabIndex = 9;
             taskLabel.Text = "Attendance";
+            // 
+            // delORmod
+            // 
+            delORmod.ImageScalingSize = new Size(20, 20);
+            delORmod.Name = "delORmod";
+            delORmod.Size = new Size(61, 4);
+            delORmod.Opening += delORmod_Opening;
             // 
             // panel4
             // 
@@ -367,6 +436,7 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(1071, 587);
             panel1.TabIndex = 8;
+            panel1.Paint += panel1_Paint;
             // 
             // AttendanceRecords
             // 
@@ -381,6 +451,7 @@
             Load += AttendanceRecords_Load;
             bodyPanel.ResumeLayout(false);
             bodyPanel.PerformLayout();
+            panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)attendanceGrid).EndInit();
             headPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
@@ -423,12 +494,16 @@
         private ToolStripMenuItem toolStripMenuItem19;
         private Panel panel1;
         private DataGridView attendanceGrid;
+        private ContextMenuStrip delORmod;
         private DataGridViewTextBoxColumn userIDColumn;
         private DataGridViewTextBoxColumn userNameColumn;
         private DataGridViewTextBoxColumn emailAccontColumn;
         private DataGridViewTextBoxColumn indateColumn;
         private DataGridViewTextBoxColumn outdateColumn;
-        private DataGridViewButtonColumn decisionColumn;
-        private ContextMenuStrip delORmod;
+        private Panel panel3;
+        private Button addUserButton;
+        private Button modifyRowButton;
+        private Button deleteRowButton;
+        private Label label1;
     }
 }

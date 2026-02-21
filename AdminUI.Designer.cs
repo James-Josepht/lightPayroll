@@ -62,9 +62,9 @@
             pictureBox4 = new PictureBox();
             pictureBox3 = new PictureBox();
             taskLabel = new Label();
-            panel3 = new Panel();
-            panel7 = new Panel();
-            panel6 = new Panel();
+            attendanceTool = new Panel();
+            userRmTool = new Panel();
+            payrollTool = new Panel();
             greetingPanel = new Panel();
             pictureBox1 = new PictureBox();
             label1 = new Label();
@@ -266,14 +266,13 @@
             bodyPanel.Controls.Add(pictureBox4);
             bodyPanel.Controls.Add(pictureBox3);
             bodyPanel.Controls.Add(taskLabel);
-            bodyPanel.Controls.Add(panel3);
-            bodyPanel.Controls.Add(panel7);
-            bodyPanel.Controls.Add(panel6);
+            bodyPanel.Controls.Add(attendanceTool);
+            bodyPanel.Controls.Add(userRmTool);
+            bodyPanel.Controls.Add(payrollTool);
             bodyPanel.Location = new Point(83, 184);
             bodyPanel.Name = "bodyPanel";
             bodyPanel.Size = new Size(895, 362);
             bodyPanel.TabIndex = 2;
-
             // 
             // label6
             // 
@@ -339,6 +338,7 @@
             label3.Size = new Size(165, 34);
             label3.TabIndex = 9;
             label3.Text = "Attendance";
+            label3.Click += attendanceToolClick;
             // 
             // label2
             // 
@@ -352,6 +352,7 @@
             label2.Size = new Size(360, 21);
             label2.TabIndex = 10;
             label2.Text = "Verify and modify attedance records";
+            label2.Click += attendanceToolClick;
             // 
             // pictureBox5
             // 
@@ -385,6 +386,7 @@
             pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox3.TabIndex = 9;
             pictureBox3.TabStop = false;
+            pictureBox3.Click += attendanceToolClick;
             // 
             // taskLabel
             // 
@@ -398,30 +400,30 @@
             taskLabel.TabIndex = 9;
             taskLabel.Text = "My Tools";
             // 
-            // panel3
+            // attendanceTool
             // 
-            panel3.Cursor = Cursors.Hand;
-            panel3.Location = new Point(41, 92);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(816, 66);
-            panel3.TabIndex = 16;
-            panel3.Click += panel3_Paint;
+            attendanceTool.Cursor = Cursors.Hand;
+            attendanceTool.Location = new Point(41, 92);
+            attendanceTool.Name = "attendanceTool";
+            attendanceTool.Size = new Size(816, 66);
+            attendanceTool.TabIndex = 16;
+            attendanceTool.Click += attendanceToolClick;
             // 
-            // panel7
+            // userRmTool
             // 
-            panel7.Cursor = Cursors.Hand;
-            panel7.Location = new Point(37, 179);
-            panel7.Name = "panel7";
-            panel7.Size = new Size(816, 66);
-            panel7.TabIndex = 17;
+            userRmTool.Cursor = Cursors.Hand;
+            userRmTool.Location = new Point(37, 179);
+            userRmTool.Name = "userRmTool";
+            userRmTool.Size = new Size(816, 66);
+            userRmTool.TabIndex = 17;
             // 
-            // panel6
+            // payrollTool
             // 
-            panel6.Cursor = Cursors.Hand;
-            panel6.Location = new Point(37, 274);
-            panel6.Name = "panel6";
-            panel6.Size = new Size(816, 66);
-            panel6.TabIndex = 17;
+            payrollTool.Cursor = Cursors.Hand;
+            payrollTool.Location = new Point(37, 274);
+            payrollTool.Name = "payrollTool";
+            payrollTool.Size = new Size(816, 66);
+            payrollTool.TabIndex = 17;
             // 
             // greetingPanel
             // 
@@ -486,6 +488,7 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(1071, 520);
             panel1.TabIndex = 5;
+            panel1.Paint += panel1_Paint;
             // 
             // panel2
             // 
@@ -495,7 +498,7 @@
             panel2.Size = new Size(895, 25);
             panel2.TabIndex = 4;
             // 
-            // StoredCredentials
+            // AdminUI
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -504,7 +507,7 @@
             Controls.Add(panel4);
             Controls.Add(headPanel);
             Controls.Add(panel1);
-            Name = "StoredCredentials";
+            Name = "AdminUI";
             StartPosition = FormStartPosition.CenterScreen;
             Load += AdminUI_Load;
             headPanel.ResumeLayout(false);
@@ -566,8 +569,8 @@
         private Label label5;
         private Label label3;
         private Label label2;
-        private Panel panel3;
-        private Panel panel7;
-        private Panel panel6;
+        private Panel attendanceTool;
+        private Panel userRmTool;
+        private Panel payrollTool;
     }
 }
