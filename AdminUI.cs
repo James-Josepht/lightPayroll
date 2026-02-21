@@ -12,22 +12,17 @@ using System.Windows.Forms;
 
 namespace lighPayroll
 {
-    public partial class StoredCredentials : Form
+    public partial class AdminUI : Form
     {
-        public StoredCredentials()
+        public AdminUI()
         {
             InitializeComponent();
             searchMenuStrip.Renderer = new MyRendererBackground();
         }
 
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
 
-        }
-
-
-        private void StoredCredentials_Load(object sender, EventArgs e)
+        private void AdminUI_Load(object sender, EventArgs e)
         {
             panelDesign();
 
@@ -35,7 +30,7 @@ namespace lighPayroll
         }
 
 
-        private void searchBox_Click(object sender, KeyEventArgs e)
+        private void searchBox_Click(object sender, KeyEventArgs e) //incase user want to search for a feature
         {
             List<string> storedFeatures = new List<string>
             {
@@ -45,11 +40,11 @@ namespace lighPayroll
                 "Reports"
             };
 
-            if (e.KeyCode == Keys.Enter && storedFeatures.Any(feature => searchBox.Text.Contains(feature)))
+            if (e.KeyCode == Keys.Enter && storedFeatures.Any(feature => searchBox.Text.Contains("Attendance")))
             {
                 e.SuppressKeyPress = true;
-                Form1 form2 = new Form1();
-                form2.Show();
+                AttendanceRecords attRecords = new AttendanceRecords();
+                attRecords.Show();
                 this.Hide();
             }
             else if (e.KeyCode == Keys.Enter && !storedFeatures.Any(feature => searchBox.Text.Contains(feature)))

@@ -36,11 +36,11 @@ namespace lighPayroll
             string username = userLogBox.Text;
             string password = passLogBox.Text;
 
-            StoredCredentials storedCredentials = new StoredCredentials();
+            AdminUI storedCredentials = new AdminUI();
 
             if (username == "admin" && password == "admin")
             {
-         
+
                 showCustomMessage("Login successful!");
                 storedCredentials.Show();
                 this.Hide();
@@ -83,6 +83,11 @@ namespace lighPayroll
             customMsg.Controls.Add(okButton);
 
             customMsg.ShowDialog();
+        }
+
+        private void LogIn_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -28,16 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AttendanceRecords));
             toolStripMenuItem22 = new ToolStripMenuItem();
             label2 = new Label();
             bodyPanel = new Panel();
-            dataGridView1 = new DataGridView();
+            attendanceGrid = new DataGridView();
             userIDColumn = new DataGridViewTextBoxColumn();
             userNameColumn = new DataGridViewTextBoxColumn();
             emailAccontColumn = new DataGridViewTextBoxColumn();
-            dateColumn = new DataGridViewTextBoxColumn();
+            indateColumn = new DataGridViewTextBoxColumn();
+            outdateColumn = new DataGridViewTextBoxColumn();
             decisionColumn = new DataGridViewButtonColumn();
+            delORmod = new ContextMenuStrip(components);
             taskLabel = new Label();
             panel4 = new Panel();
             panel2 = new Panel();
@@ -64,7 +67,7 @@
             toolStripMenuItem19 = new ToolStripMenuItem();
             panel1 = new Panel();
             bodyPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)attendanceGrid).BeginInit();
             headPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             panel5.SuspendLayout();
@@ -93,7 +96,7 @@
             // bodyPanel
             // 
             bodyPanel.BackColor = Color.FromArgb(33, 44, 66);
-            bodyPanel.Controls.Add(dataGridView1);
+            bodyPanel.Controls.Add(attendanceGrid);
             bodyPanel.Controls.Add(label2);
             bodyPanel.Controls.Add(taskLabel);
             bodyPanel.Location = new Point(80, 104);
@@ -101,23 +104,25 @@
             bodyPanel.Size = new Size(908, 466);
             bodyPanel.TabIndex = 2;
             // 
-            // dataGridView1
+            // attendanceGrid
             // 
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { userIDColumn, userNameColumn, emailAccontColumn, dateColumn, decisionColumn });
-            dataGridView1.Location = new Point(41, 148);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(829, 247);
-            dataGridView1.TabIndex = 11;
+            attendanceGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            attendanceGrid.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            attendanceGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            attendanceGrid.Columns.AddRange(new DataGridViewColumn[] { userIDColumn, userNameColumn, emailAccontColumn, indateColumn, outdateColumn, decisionColumn });
+            attendanceGrid.Location = new Point(18, 148);
+            attendanceGrid.Name = "attendanceGrid";
+            attendanceGrid.RowHeadersWidth = 51;
+            attendanceGrid.Size = new Size(866, 247);
+            attendanceGrid.TabIndex = 11;
+            attendanceGrid.CellContentClick += attendanceGrid_CellContentClick;
             // 
             // userIDColumn
             // 
             userIDColumn.HeaderText = "User ID";
             userIDColumn.MinimumWidth = 6;
             userIDColumn.Name = "userIDColumn";
+            userIDColumn.ReadOnly = true;
             // 
             // userNameColumn
             // 
@@ -133,19 +138,34 @@
             emailAccontColumn.Name = "emailAccontColumn";
             emailAccontColumn.ReadOnly = true;
             // 
-            // dateColumn
+            // indateColumn
             // 
-            dateColumn.HeaderText = "Date";
-            dateColumn.MinimumWidth = 6;
-            dateColumn.Name = "dateColumn";
-            dateColumn.ReadOnly = true;
+            indateColumn.HeaderText = "Clock In";
+            indateColumn.MinimumWidth = 6;
+            indateColumn.Name = "indateColumn";
+            indateColumn.ReadOnly = true;
+            // 
+            // outdateColumn
+            // 
+            outdateColumn.HeaderText = "Clock Out";
+            outdateColumn.MinimumWidth = 6;
+            outdateColumn.Name = "outdateColumn";
+            outdateColumn.ReadOnly = true;
             // 
             // decisionColumn
             // 
+            decisionColumn.ContextMenuStrip = delORmod;
             decisionColumn.HeaderText = "Decision";
             decisionColumn.MinimumWidth = 6;
             decisionColumn.Name = "decisionColumn";
             decisionColumn.ReadOnly = true;
+            // 
+            // delORmod
+            // 
+            delORmod.ImageScalingSize = new Size(20, 20);
+            delORmod.Name = "delORmod";
+            delORmod.Size = new Size(61, 4);
+            delORmod.Opening += delORmod_Opening;
             // 
             // taskLabel
             // 
@@ -358,9 +378,10 @@
             Controls.Add(panel1);
             Name = "AttendanceRecords";
             StartPosition = FormStartPosition.CenterScreen;
+            Load += AttendanceRecords_Load;
             bodyPanel.ResumeLayout(false);
             bodyPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)attendanceGrid).EndInit();
             headPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             panel5.ResumeLayout(false);
@@ -401,11 +422,13 @@
         private ToolStripMenuItem toolStripMenuItem17;
         private ToolStripMenuItem toolStripMenuItem19;
         private Panel panel1;
-        private DataGridView dataGridView1;
+        private DataGridView attendanceGrid;
         private DataGridViewTextBoxColumn userIDColumn;
         private DataGridViewTextBoxColumn userNameColumn;
         private DataGridViewTextBoxColumn emailAccontColumn;
-        private DataGridViewTextBoxColumn dateColumn;
+        private DataGridViewTextBoxColumn indateColumn;
+        private DataGridViewTextBoxColumn outdateColumn;
         private DataGridViewButtonColumn decisionColumn;
+        private ContextMenuStrip delORmod;
     }
 }

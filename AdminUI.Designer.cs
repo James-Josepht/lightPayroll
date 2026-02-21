@@ -1,6 +1,6 @@
 ﻿namespace lighPayroll
 {
-    partial class StoredCredentials
+    partial class AdminUI
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StoredCredentials));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminUI));
             headPanel = new Panel();
             pictureBox2 = new PictureBox();
             panel5 = new Panel();
@@ -506,7 +506,7 @@
             Controls.Add(panel1);
             Name = "StoredCredentials";
             StartPosition = FormStartPosition.CenterScreen;
-            Load += StoredCredentials_Load;
+            Load += AdminUI_Load;
             headPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             panel5.ResumeLayout(false);
