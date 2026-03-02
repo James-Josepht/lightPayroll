@@ -30,7 +30,7 @@
         {
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AttendanceRecords));
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             toolStripMenuItem22 = new ToolStripMenuItem();
             label2 = new Label();
             bodyPanel = new Panel();
@@ -107,9 +107,9 @@
             bodyPanel.Controls.Add(attendanceGrid);
             bodyPanel.Controls.Add(label2);
             bodyPanel.Controls.Add(taskLabel);
-            bodyPanel.Location = new Point(80, 104);
+            bodyPanel.Location = new Point(0, 60);
             bodyPanel.Name = "bodyPanel";
-            bodyPanel.Size = new Size(908, 466);
+            bodyPanel.Size = new Size(1050, 584);
             bodyPanel.TabIndex = 2;
             bodyPanel.Paint += bodyPanel_Paint;
             // 
@@ -120,7 +120,7 @@
             label1.Cursor = Cursors.Hand;
             label1.Font = new Font("Ubuntu Mono", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Beige;
-            label1.Location = new Point(258, 419);
+            label1.Location = new Point(302, 437);
             label1.Name = "label1";
             label1.Size = new Size(390, 21);
             label1.TabIndex = 13;
@@ -132,7 +132,7 @@
             panel3.Controls.Add(addUserButton);
             panel3.Controls.Add(modifyRowButton);
             panel3.Controls.Add(deleteRowButton);
-            panel3.Location = new Point(518, 78);
+            panel3.Location = new Point(583, 99);
             panel3.Name = "panel3";
             panel3.Size = new Size(366, 64);
             panel3.TabIndex = 12;
@@ -185,17 +185,16 @@
             attendanceGrid.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             attendanceGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             attendanceGrid.Columns.AddRange(new DataGridViewColumn[] { userIDColumn, userNameColumn, emailAccontColumn, indateColumn, outdateColumn });
-            attendanceGrid.Location = new Point(18, 148);
+            attendanceGrid.Location = new Point(83, 169);
             attendanceGrid.Name = "attendanceGrid";
             attendanceGrid.RowHeadersWidth = 51;
             attendanceGrid.Size = new Size(866, 247);
             attendanceGrid.TabIndex = 11;
-            attendanceGrid.CellContentClick += attendanceGrid_CellContentClick;
             // 
             // userIDColumn
             // 
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            userIDColumn.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            userIDColumn.DefaultCellStyle = dataGridViewCellStyle1;
             userIDColumn.HeaderText = "User ID";
             userIDColumn.MinimumWidth = 6;
             userIDColumn.Name = "userIDColumn";
@@ -246,7 +245,6 @@
             delORmod.ImageScalingSize = new Size(20, 20);
             delORmod.Name = "delORmod";
             delORmod.Size = new Size(61, 4);
-            delORmod.Opening += delORmod_Opening;
             // 
             // panel4
             // 

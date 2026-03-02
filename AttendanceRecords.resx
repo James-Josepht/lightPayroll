@@ -121,7 +121,7 @@
   <data name="addUserButton.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAYAAAD0eNT6AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wgAADsIBFShKgAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAADHGSURBVHhe7d15
+        vgAADr4B6kKxwAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAADHGSURBVHhe7d15
         mBxXeajxkfcNGxMIwQFsIECC2RV2cAYiZHWdqvPVjGlM4gVsQAECmJgkTgIxY1Yn9yZcY5YoJBG2WZLO
         1KkZSQwIsAXGsjEIzOINg22M90WSF2xto+n7nNEgxFclaZaunq6q932e3z+eUU9vdc7nme7qvj4i6un6
         1/Tvd3wy+AQ7bJ8bOPta42zTpPHSMI3/Nkjij5rEfto4+0XjZNSk8nXj5HLjZJ1J5GcmkZuMkw3KVuOk
@@ -340,7 +340,7 @@
   <data name="modifyRowButton.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAYAAAD0eNT6AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wQAADsEBuJFr7QAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAD3QSURBVHhe7d15
+        vQAADr0BR/uQrQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAD3QSURBVHhe7d15
         mB1VnfDxBlTcFXRGRec1wL2nOjZBFkfHPTrgjorjNiM6CgjO6KjjOLiNGhUVdeadV9Rx4gBdpzqJ0CAg
         qIAGAkIAMcMi+75FlgSSdNep23uf9zk36Qi/qpDuzl3Oqfp+n+fzT7rTffsu9Tt3qaqeHiLyugOX2sdH
         J2Z71PvNfrXYvCGK0/eqODsq0uZzSptv1+P0x0qbFXWd/lxp85tIp5cqbdYond2qtLlTabNBGFfaWMH9
@@ -610,7 +610,7 @@
   <data name="deleteRowButton.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAYAAAD0eNT6AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wgAADsIBFShKgAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAACv3SURBVHhe7d15
+        vgAADr4B6kKxwAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAACv3SURBVHhe7d15
         mBxXeajx9r7bmEAIjsEGBCQMCIuur1pjSU7XqdaYAeuyhMFsNpjFAQKYkJs4YYvA2DFJ7r0xZodcYkMg
         OPgazL6DwZjFCRhsvGEbr8iSJc3UqZ7RSDOq+5zRoJivjqRZe2p53+f5/eMe9fR0V52vPVNd1WgQUaHL
         2u0Du2uaj0zj1vI0DtZaEw7ZSM5O4vCv01gusEbeb03wSWvkczaSr1sjP7BGrrUmvDWN5HZrZIuy3RrJ
@@ -816,26 +816,8 @@
   <metadata name="outdateColumn.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <metadata name="userIDColumn.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="userNameColumn.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="emailAccontColumn.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="indateColumn.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="outdateColumn.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
   <metadata name="delORmod.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>187, 17</value>
-  </metadata>
-  <metadata name="searchMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
   </metadata>
   <metadata name="searchMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
