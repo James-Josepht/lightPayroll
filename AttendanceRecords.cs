@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.VisualBasic;
+using System.Data.OleDb;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
@@ -16,12 +17,16 @@ namespace lighPayroll
 {
     public partial class AttendanceRecords : Form
     {
-        List<StoredAttendance> storedUsers = new List<StoredAttendance>
-        {
-            new StoredAttendance("23-3815-938", "shalomsavedbychrist", "shalom.saved@company.org", "02-03-26, 7:30 AM", "02-03-26, 3:30 PM"),
-            new StoredAttendance("25-3000-123", "itisnotyouitisme", "itisnotyou.me@company.org", "02-04-26, 8:00 AM", "02-04-26, 8:30 PM"),
-            new StoredAttendance("24-1234-456", "jamesneedjesus", "james.jesus@company.org", "02-05-26, 10:00 AM", "02-05-26, 10:30 AM")
-        };
+        OleDbConnection? dataConnection;
+        OleDbDataAdapter? dataAdapter;
+        OleDbCommand? dataCommand;
+        DataSet? dataSet;
+
+        int index = 0;
+
+
+
+
 
         // remembers the row the context menu is opened for (still used by context menu flows)
         private int selectedRowIndex = -1;
@@ -51,121 +56,29 @@ namespace lighPayroll
 
         private void AttendanceRecords_Load(object sender, EventArgs e)
         {
-            foreach (var att in storedUsers)
-            {
-                attendanceGrid.Rows.Add(att.UserID, att.Username, att.Email, att.ClockInDate, att.ClockOutDate);
-            }
 
-            attendanceGrid.AutoGenerateColumns = false;
+            //attendanceGrid.AutoGenerateColumns = false;
             panelDesign();
+            dropDownDesign();
         }
 
 
-
-
-
-        private int GetSelectedRowIndex()
-        {
-            if (attendanceGrid.SelectedRows != null && attendanceGrid.SelectedRows.Count > 0)
-                return attendanceGrid.SelectedRows[0].Index;
-
-            if (attendanceGrid.CurrentCell != null)
-                return attendanceGrid.CurrentCell.RowIndex;
-
-            return -1;
-        }
 
         private void userRMbutton_Click(object? sender, EventArgs e)
         {
-            // prefer the index stored from context menu; fall back to current selection
-            int idx = selectedRowIndex >= 0 ? selectedRowIndex : GetSelectedRowIndex();
-            if (idx < 0 || idx >= attendanceGrid.Rows.Count)
-            {
-                MessageBox.Show("Select a row to delete.", "No selection", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                selectedRowIndex = -1;
-                return;
-            }
 
-            var idCell = attendanceGrid.Rows[idx].Cells["userIDColumn"].Value;
-            string id = idCell?.ToString() ?? string.Empty;
-
-            if (MessageBox.Show($"Remove user with ID '{id}'?", "Confirm remove", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
-            {
-                selectedRowIndex = -1;
-                return;
-            }
-
-            // Remove from backing list using the user id (safer when sorting/filtering may be added)
-            var stored = storedUsers.FirstOrDefault(s => s.UserID == id);
-            if (stored != null)
-            {
-                storedUsers.Remove(stored);
-            }
-
-            // Remove the row from grid (if the row still exists)
-            if (idx >= 0 && idx < attendanceGrid.Rows.Count)
-            {
-                if (idx < 0 || attendanceGrid.Rows[idx].IsNewRow)
-                    return;
-                attendanceGrid.Rows.RemoveAt(idx);
-            }
-
-            selectedRowIndex = -1;
         }
 
         private void modifyButton_Click(object? sender, EventArgs e)
         {
-            int idx = selectedRowIndex >= 0 ? selectedRowIndex : GetSelectedRowIndex();
-            if (idx < 0 || idx >= attendanceGrid.Rows.Count)
-            {
-                MessageBox.Show("Select a row to modify.", "No selection", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                selectedRowIndex = -1;
-                return;
-            }
 
-            var idCell = attendanceGrid.Rows[idx].Cells["userIDColumn"].Value;
-            string id = idCell?.ToString() ?? string.Empty;
 
-            var stored = storedUsers.FirstOrDefault(s => s.UserID == id);
-            if (stored == null)
-            {
-                MessageBox.Show("Selected user not found in stored list.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                selectedRowIndex = -1;
-                return;
-            }
 
-            if (!PromptForAttendance(stored, out StoredAttendance? updated))
-            {
-                selectedRowIndex = -1;
-                return;
-            }
-
-            // Update stored item
-            stored.UserID = updated.UserID;
-            stored.Username = updated.Username;
-            stored.Email = updated.Email;
-            stored.ClockInDate = updated.ClockInDate;
-            stored.ClockOutDate = updated.ClockOutDate;
-
-            // Update grid row cells
-            var row = attendanceGrid.Rows[idx];
-            row.Cells["userIDColumn"].Value = stored.UserID;
-            row.Cells["userNameColumn"].Value = stored.Username;
-            row.Cells["emailAccontColumn"].Value = stored.Email;
-            row.Cells["indateColumn"].Value = stored.ClockInDate;
-            row.Cells["outdateColumn"].Value = stored.ClockOutDate;
-
-            selectedRowIndex = -1;
         }
 
         private void addButton_Click(object? sender, EventArgs e)
         {
-
-            if (!PromptForAttendance(null, out StoredAttendance? created))
-                return;
-
-            storedUsers.Add(created);
-            attendanceGrid.Rows.Add(created.UserID, created.Username, created.Email, created.ClockInDate, created.ClockOutDate);
+            string query = @"INSERT into tblHRData (EmployeeID)";
         }
 
         // Simple prompt that uses InputBox for five fields. Returns false if user cancels/enters nothing for ID.
@@ -204,37 +117,32 @@ namespace lighPayroll
             return true;
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void bodyPanel_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
+        //future usage for rounded panel borders and it is not related to drop down
         private void panelDesign()
         {
             int radius = 30;
 
             GraphicsPath greetingsPath = new GraphicsPath();
             greetingsPath.AddArc(0, 0, radius, radius, 180, 90);
-            greetingsPath.AddArc(bodyPanel.Width - radius, 0, radius, radius, 270, 90);
-            greetingsPath.AddArc(bodyPanel.Width - radius, bodyPanel.Height - radius, radius, radius, 0, 90);
-            greetingsPath.AddArc(0, bodyPanel.Height - radius, radius, radius, 90, 90);
+            greetingsPath.AddArc(loadButton.Width - radius, 0, radius, radius, 270, 90);
+            greetingsPath.AddArc(loadButton.Width - radius, loadButton.Height - radius, radius, radius, 0, 90);
+            greetingsPath.AddArc(0, loadButton.Height - radius, radius, radius, 90, 90);
             greetingsPath.CloseAllFigures();
 
             GraphicsPath bodyPath = new GraphicsPath();
             bodyPath.AddArc(0, 0, radius, radius, 180, 90);
-            bodyPath.AddArc(bodyPanel.Width - radius, 0, radius, radius, 270, 90);
-            bodyPath.AddArc(bodyPanel.Width - radius, bodyPanel.Height - radius, radius, radius, 0, 90);
-            bodyPath.AddArc(0, bodyPanel.Height - radius, radius, radius, 90, 90);
+            bodyPath.AddArc(loadButton.Width - radius, 0, radius, radius, 270, 90);
+            bodyPath.AddArc(loadButton.Width - radius, loadButton.Height - radius, radius, radius, 0, 90); //lower right
+            bodyPath.AddArc(0, loadButton.Height - radius, radius, radius, 90, 90);
             bodyPath.CloseAllFigures();
 
-            bodyPanel.Region = new Region(greetingsPath);
-            bodyPanel.Region = new Region(bodyPath);
+            loadButton.Region = new Region(greetingsPath);
+            loadButton.Region = new Region(bodyPath);
 
+        }
 
+        private void dropDownDesign()
+        {
 
             var dd = searchMS.DropDown as ToolStripDropDownMenu; //removing empty whitespace
 
@@ -247,7 +155,54 @@ namespace lighPayroll
 
         }
 
-        private void label1_Click(object sender, EventArgs e)
+
+        private void loadButton_Click(object sender, EventArgs e)
+        {
+            string connString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\James\Documents\Learning\Trial Database\CompanyADatabase.accdb";
+
+            using (OleDbConnection connection = new OleDbConnection(connString))
+            {
+                connection.Open();
+
+                // Check if table exists
+                DataTable schemaTable = connection.GetSchema("Tables");
+                bool tableExists = false;
+
+                foreach (DataRow row in schemaTable.Rows)
+                {
+                    string tableName = row["TABLE_NAME"].ToString();
+                    string tableType = row["TABLE_TYPE"].ToString();
+
+                    if ((tableType == "TABLE" || tableType == "VIEW") && tableName == "salariesQuery")
+                    {
+                        tableExists = true;
+                        break;
+                    }
+                }
+
+                if (tableExists)
+                {
+                    dataAdapter = new OleDbDataAdapter("SELECT * FROM salariesQuery", connString );
+                    dataSet = new DataSet();
+
+                    dataAdapter.Fill(dataSet, "salariesQuery");
+                    attendanceGrid.DataSource = dataSet.Tables["salariesQuery"];
+
+                }
+                else
+                {
+                    MessageBox.Show("Error. Table NOT found!");
+                }
+            }
+
+        }
+
+        private void searchMS_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void attendanceGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }

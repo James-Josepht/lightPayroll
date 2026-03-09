@@ -130,6 +130,16 @@ namespace lighPayroll
         {
 
         }
+
+        private void searchMenuStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void searchMS_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 
 }
