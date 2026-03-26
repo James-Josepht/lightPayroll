@@ -1,4 +1,6 @@
-﻿namespace lighPayroll
+﻿using lighPayrollUI.Properties;
+
+namespace lighPayroll
 {
     partial class Register
     {
@@ -59,7 +61,7 @@
             // pictureBox1
             // 
             pictureBox1.Cursor = Cursors.Hand;
-            pictureBox1.Image = Properties.Resources.smart_idea;
+            pictureBox1.Image = lighPayrollUI.Properties.Resources.smart_idea;
             pictureBox1.Location = new Point(370, -17);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(330, 145);
@@ -70,7 +72,7 @@
             // panel2
             // 
             panel2.BackColor = SystemColors.ActiveCaption;
-            panel2.BackgroundImage = Properties.Resources.background;
+            panel2.BackgroundImage = lighPayrollUI.Properties.Resources.background;
             panel2.BackgroundImageLayout = ImageLayout.Stretch;
             panel2.Controls.Add(label3);
             panel2.Controls.Add(showPassBox);

@@ -1,9 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.14.36915.13 d17.14
+# Visual Studio Version 18
+VisualStudioVersion = 18.3.11520.95
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lighPayroll", "lighPayroll.csproj", "{9938CC98-F8C2-4227-BDA2-7515F1908EFF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lighPayrollUI", "lighPayrollUI.csproj", "{9938CC98-F8C2-4227-BDA2-7515F1908EFF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lightPayrollDatabase", "..\lightPayrollDatabase\lightPayrollDatabase.csproj", "{5BF473B2-08BE-48C3-BC95-5BB5D2D68CE7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lightPayrollServices", "..\lightPayrollServices\lightPayrollServices.csproj", "{B51B893A-B3A6-41D1-A962-2DDDEBB8A369}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{9938CC98-F8C2-4227-BDA2-7515F1908EFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9938CC98-F8C2-4227-BDA2-7515F1908EFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9938CC98-F8C2-4227-BDA2-7515F1908EFF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5BF473B2-08BE-48C3-BC95-5BB5D2D68CE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5BF473B2-08BE-48C3-BC95-5BB5D2D68CE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5BF473B2-08BE-48C3-BC95-5BB5D2D68CE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5BF473B2-08BE-48C3-BC95-5BB5D2D68CE7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B51B893A-B3A6-41D1-A962-2DDDEBB8A369}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B51B893A-B3A6-41D1-A962-2DDDEBB8A369}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B51B893A-B3A6-41D1-A962-2DDDEBB8A369}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B51B893A-B3A6-41D1-A962-2DDDEBB8A369}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

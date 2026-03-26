@@ -1,4 +1,6 @@
-﻿namespace lighPayroll
+﻿using lighPayrollUI.Properties;
+
+namespace lighPayroll
 {
     partial class PayrollFeaturePage
     {
@@ -220,7 +222,7 @@
             // pictureBox1
             // 
             pictureBox1.Cursor = Cursors.Hand;
-            pictureBox1.Image = Properties.Resources.smart_idea;
+            pictureBox1.Image = lighPayrollUI.Properties.Resources.smart_idea;
             pictureBox1.Location = new Point(12, -8);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(232, 145);

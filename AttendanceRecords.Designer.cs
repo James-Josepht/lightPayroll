@@ -1,4 +1,6 @@
-﻿namespace lighPayroll
+﻿using lighPayrollUI.Properties;
+
+namespace lighPayroll
 {
     partial class AttendanceRecords
     {
@@ -32,6 +34,12 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AttendanceRecords));
             label2 = new Label();
             bodyPanel = new Panel();
+            lastNameLabel = new Label();
+            fNameTxtBox = new TextBox();
+            label4 = new Label();
+            nameLabel = new Label();
+            nameTxtBox = new TextBox();
+            idTxtBox = new TextBox();
             loadButton = new Button();
             label1 = new Label();
             panel3 = new Panel();
@@ -66,10 +74,6 @@
             toolStripMenuItem22 = new ToolStripMenuItem();
             pictureBox2 = new PictureBox();
             panel1 = new Panel();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
-            label3 = new Label();
-            label4 = new Label();
             bodyPanel.SuspendLayout();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)attendanceGrid).BeginInit();
@@ -96,10 +100,12 @@
             // bodyPanel
             // 
             bodyPanel.BackColor = Color.FromArgb(33, 44, 66);
+            bodyPanel.Controls.Add(lastNameLabel);
+            bodyPanel.Controls.Add(fNameTxtBox);
             bodyPanel.Controls.Add(label4);
-            bodyPanel.Controls.Add(label3);
-            bodyPanel.Controls.Add(textBox2);
-            bodyPanel.Controls.Add(textBox1);
+            bodyPanel.Controls.Add(nameLabel);
+            bodyPanel.Controls.Add(nameTxtBox);
+            bodyPanel.Controls.Add(idTxtBox);
             bodyPanel.Controls.Add(loadButton);
             bodyPanel.Controls.Add(label1);
             bodyPanel.Controls.Add(panel3);
@@ -110,6 +116,67 @@
             bodyPanel.Name = "bodyPanel";
             bodyPanel.Size = new Size(937, 495);
             bodyPanel.TabIndex = 2;
+            // 
+            // lastNameLabel
+            // 
+            lastNameLabel.AutoSize = true;
+            lastNameLabel.BackColor = Color.FromArgb(33, 44, 66);
+            lastNameLabel.Cursor = Cursors.Hand;
+            lastNameLabel.Font = new Font("Ubuntu Mono", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lastNameLabel.ForeColor = Color.Beige;
+            lastNameLabel.Location = new Point(649, 78);
+            lastNameLabel.Name = "lastNameLabel";
+            lastNameLabel.Size = new Size(88, 17);
+            lastNameLabel.TabIndex = 20;
+            lastNameLabel.Text = "Last Name:";
+            // 
+            // fNameTxtBox
+            // 
+            fNameTxtBox.Location = new Point(748, 76);
+            fNameTxtBox.Name = "fNameTxtBox";
+            fNameTxtBox.Size = new Size(100, 25);
+            fNameTxtBox.TabIndex = 19;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.BackColor = Color.FromArgb(33, 44, 66);
+            label4.Cursor = Cursors.Hand;
+            label4.Font = new Font("Ubuntu Mono", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label4.ForeColor = Color.Beige;
+            label4.Location = new Point(641, 24);
+            label4.Name = "label4";
+            label4.Size = new Size(96, 17);
+            label4.TabIndex = 18;
+            label4.Text = "Student ID:";
+            // 
+            // nameLabel
+            // 
+            nameLabel.AutoSize = true;
+            nameLabel.BackColor = Color.FromArgb(33, 44, 66);
+            nameLabel.Cursor = Cursors.Hand;
+            nameLabel.Font = new Font("Ubuntu Mono", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            nameLabel.ForeColor = Color.Beige;
+            nameLabel.Location = new Point(689, 49);
+            nameLabel.Name = "nameLabel";
+            nameLabel.Size = new Size(48, 17);
+            nameLabel.TabIndex = 17;
+            nameLabel.Text = "Name:";
+            // 
+            // nameTxtBox
+            // 
+            nameTxtBox.Location = new Point(748, 46);
+            nameTxtBox.Name = "nameTxtBox";
+            nameTxtBox.Size = new Size(100, 25);
+            nameTxtBox.TabIndex = 16;
+            nameTxtBox.TextChanged += nameTxtBox_TextChanged;
+            // 
+            // idTxtBox
+            // 
+            idTxtBox.Location = new Point(748, 16);
+            idTxtBox.Name = "idTxtBox";
+            idTxtBox.Size = new Size(100, 25);
+            idTxtBox.TabIndex = 15;
             // 
             // loadButton
             // 
@@ -262,7 +329,7 @@
             // 
             // searchMenuStrip
             // 
-            searchMenuStrip.BackgroundImage = Properties.Resources.search_interface_symbol;
+            searchMenuStrip.BackgroundImage = lighPayrollUI.Properties.Resources.search_interface_symbol;
             searchMenuStrip.BackgroundImageLayout = ImageLayout.Stretch;
             searchMenuStrip.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             searchMenuStrip.ImageScalingSize = new Size(20, 20);
@@ -397,7 +464,7 @@
             // pictureBox2
             // 
             pictureBox2.Cursor = Cursors.Hand;
-            pictureBox2.Image = Properties.Resources.smart_idea;
+            pictureBox2.Image = lighPayrollUI.Properties.Resources.smart_idea;
             pictureBox2.Location = new Point(10, -7);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(203, 123);
@@ -414,46 +481,6 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(937, 499);
             panel1.TabIndex = 8;
-            // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(748, 39);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(100, 25);
-            textBox1.TabIndex = 15;
-            // 
-            // textBox2
-            // 
-            textBox2.Location = new Point(748, 69);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(100, 25);
-            textBox2.TabIndex = 16;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.BackColor = Color.FromArgb(33, 44, 66);
-            label3.Cursor = Cursors.Hand;
-            label3.Font = new Font("Ubuntu Mono", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.ForeColor = Color.Beige;
-            label3.Location = new Point(689, 72);
-            label3.Name = "label3";
-            label3.Size = new Size(48, 17);
-            label3.TabIndex = 17;
-            label3.Text = "Name:";
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.BackColor = Color.FromArgb(33, 44, 66);
-            label4.Cursor = Cursors.Hand;
-            label4.Font = new Font("Ubuntu Mono", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label4.ForeColor = Color.Beige;
-            label4.Location = new Point(641, 47);
-            label4.Name = "label4";
-            label4.Size = new Size(96, 17);
-            label4.TabIndex = 18;
-            label4.Text = "Student ID:";
             // 
             // AttendanceRecords
             // 
@@ -518,8 +545,10 @@
         private ToolStripMenuItem toolStripMenuItem21;
         private ToolStripMenuItem toolStripMenuItem22;
         private Label label4;
-        private Label label3;
-        private TextBox textBox2;
-        private TextBox textBox1;
+        private Label nameLabel;
+        private TextBox nameTxtBox;
+        private TextBox idTxtBox;
+        private Label lastNameLabel;
+        private TextBox fNameTxtBox;
     }
 }

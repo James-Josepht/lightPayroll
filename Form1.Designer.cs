@@ -444,7 +444,7 @@
             // pictureBox1
             // 
             pictureBox1.Cursor = Cursors.Hand;
-            pictureBox1.Image = Properties.Resources.smart_idea;
+            pictureBox1.Image = lighPayrollUI.Properties.Resources.smart_idea;
             pictureBox1.Location = new Point(10, -7);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(203, 123);
@@ -491,7 +491,7 @@
             // pictureBox2
             // 
             pictureBox2.BackColor = SystemColors.ActiveCaption;
-            pictureBox2.BackgroundImage = Properties.Resources.background;
+            pictureBox2.BackgroundImage = lighPayrollUI.Properties.Resources.background;
             pictureBox2.BackgroundImageLayout = ImageLayout.Stretch;
             pictureBox2.Location = new Point(-118, -20);
             pictureBox2.Name = "pictureBox2";
@@ -509,7 +509,7 @@
             // pictureBox3
             // 
             pictureBox3.BackColor = Color.Transparent;
-            pictureBox3.BackgroundImage = Properties.Resources.background;
+            pictureBox3.BackgroundImage = lighPayrollUI.Properties.Resources.background;
             pictureBox3.BackgroundImageLayout = ImageLayout.Stretch;
             pictureBox3.Location = new Point(490, 180);
             pictureBox3.Name = "pictureBox3";

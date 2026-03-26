@@ -1,4 +1,6 @@
-﻿namespace lighPayroll
+﻿using lighPayrollUI.Properties;
+
+namespace lighPayroll
 {
     partial class AdminUI
     {
@@ -99,7 +101,7 @@
             // pictureBox2
             // 
             pictureBox2.Cursor = Cursors.Hand;
-            pictureBox2.Image = Properties.Resources.smart_idea;
+            pictureBox2.Image = lighPayrollUI.Properties.Resources.smart_idea;
             pictureBox2.Location = new Point(10, -7);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(203, 123);
@@ -121,7 +123,7 @@
             // 
             // searchMenuStrip
             // 
-            searchMenuStrip.BackgroundImage = Properties.Resources.search_interface_symbol;
+            searchMenuStrip.BackgroundImage =   lighPayrollUI.Properties.Resources.search_interface_symbol;
             searchMenuStrip.BackgroundImageLayout = ImageLayout.Stretch;
             searchMenuStrip.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             searchMenuStrip.ImageScalingSize = new Size(20, 20);
@@ -440,7 +442,7 @@
             // 
             // pictureBox1
             // 
-            pictureBox1.Image = Properties.Resources.good_evening_get_greeting;
+            pictureBox1.Image = lighPayrollUI.Properties.Resources.good_evening_get_greeting;
             pictureBox1.Location = new Point(17, 19);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(83, 63);

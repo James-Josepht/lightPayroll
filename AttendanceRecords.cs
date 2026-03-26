@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.VisualBasic;
 using System.Data.OleDb;
+using lighPayrollUI.Properties;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
@@ -78,7 +79,70 @@ namespace lighPayroll
 
         private void addButton_Click(object? sender, EventArgs e)
         {
-            string query = @"INSERT into tblHRData (EmployeeID)";
+            dataConnection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\James\Documents\Learning\Trial Database\CompanyADatabase.accdb");
+  
+            string query = "Insert into salariesQuery (LastName, FirstName) values (@LName, @FName)";
+            dataCommand = new OleDbCommand(query, dataConnection);
+            dataCommand.Parameters.AddWithValue("@LName", fNameTxtBox.Text);
+            dataCommand.Parameters.AddWithValue("@FName", nameTxtBox.Text);
+
+            try
+            {
+                dataConnection.Open();
+                dataCommand.ExecuteNonQuery();
+                MessageBox.Show("Record added successfully!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+            finally
+            {
+                dataConnection.Close();
+            }
+        }
+        private void loadButton_Click(object sender, EventArgs e)
+        {
+           string connect = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\James\Documents\Learning\Trial Database\CompanyADatabase.accdb";
+
+            using (OleDbConnection connection = new OleDbConnection(connect))
+            {
+
+                connection.Open();
+
+                // Check if table exists
+                DataTable schemaTable = connection.GetSchema("Tables");
+                bool tableExists = false;
+
+                foreach (DataRow row in schemaTable.Rows)
+                {
+                    string tableName = row["TABLE_NAME"].ToString();
+                    string tableType = row["TABLE_TYPE"].ToString();
+
+                    if ((tableType == "TABLE" || tableType == "VIEW") && tableName == "salariesQuery")
+                    {
+                        tableExists = true;
+                        break;
+                    }
+                }
+
+                if (tableExists)
+                {
+                  
+                    dataAdapter = new OleDbDataAdapter("SELECT * FROM salariesQuery", connection);
+                    dataSet = new DataSet();
+
+                    dataAdapter.Fill(dataSet, "salariesQuery");
+                    attendanceGrid.DataSource = dataSet.Tables["salariesQuery"];
+                    connection.Close();
+
+                }
+                else
+                {
+                    MessageBox.Show("Error. Table not found!");
+                }
+            }
+
         }
 
         // Simple prompt that uses InputBox for five fields. Returns false if user cancels/enters nothing for ID.
@@ -156,46 +220,7 @@ namespace lighPayroll
         }
 
 
-        private void loadButton_Click(object sender, EventArgs e)
-        {
-            string connString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\James\Documents\Learning\Trial Database\CompanyADatabase.accdb";
 
-            using (OleDbConnection connection = new OleDbConnection(connString))
-            {
-                connection.Open();
-
-                // Check if table exists
-                DataTable schemaTable = connection.GetSchema("Tables");
-                bool tableExists = false;
-
-                foreach (DataRow row in schemaTable.Rows)
-                {
-                    string tableName = row["TABLE_NAME"].ToString();
-                    string tableType = row["TABLE_TYPE"].ToString();
-
-                    if ((tableType == "TABLE" || tableType == "VIEW") && tableName == "salariesQuery")
-                    {
-                        tableExists = true;
-                        break;
-                    }
-                }
-
-                if (tableExists)
-                {
-                    dataAdapter = new OleDbDataAdapter("SELECT * FROM salariesQuery", connString );
-                    dataSet = new DataSet();
-
-                    dataAdapter.Fill(dataSet, "salariesQuery");
-                    attendanceGrid.DataSource = dataSet.Tables["salariesQuery"];
-
-                }
-                else
-                {
-                    MessageBox.Show("Error. Table NOT found!");
-                }
-            }
-
-        }
 
         private void searchMS_Click(object sender, EventArgs e)
         {
@@ -203,6 +228,16 @@ namespace lighPayroll
         }
 
         private void attendanceGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void nameTxtBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
         {
 
         }
