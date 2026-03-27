@@ -35,6 +35,7 @@
     <PackageReference Include="Microsoft.Data.Sqlite" Version="10.0.5" />
     <PackageReference Include="SQLite" Version="3.13.0" />
     <PackageReference Include="System.Data.OleDb" Version="10.0.3" />
+    <PackageReference Include="System.Data.SQLite.Core" Version="1.0.119" />
   </ItemGroup>
 
   <ItemGroup>
