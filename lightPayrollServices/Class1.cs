@@ -1,4 +1,4 @@
-﻿using lightPayrollDatabase;
+﻿using lightPayrollModel;
 
 namespace lightPayrollServices
 {

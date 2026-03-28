@@ -11,12 +11,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="lightPayrollDB.db">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Dapper" Version="2.1.72" />
     <PackageReference Include="Microsoft.Data.Sqlite" Version="10.0.5" />
     <PackageReference Include="SQLite" Version="3.13.0" />

@@ -1,7 +1,7 @@
 ﻿using System;
 
 
-namespace lightPayrollDatabase
+namespace lightPayrollModel
 {
     public class Model
     {

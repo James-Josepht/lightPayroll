@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "uFK3ZWzYlOc=",
+  "dgSpecHash": "OHXXi/6G+74=",
   "success": true,
-  "projectFilePath": "C:\\Users\\James\\source\\repos\\lightPayrollServices\\lightPayrollServices.csproj",
+  "projectFilePath": "C:\\Users\\James\\source\\repos\\lightPayrollModel\\lightPayrollModel.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\James\\.nuget\\packages\\dapper\\2.1.72\\dapper.2.1.72.nupkg.sha512",
     "C:\\Users\\James\\.nuget\\packages\\microsoft.data.sqlite\\10.0.5\\microsoft.data.sqlite.10.0.5.nupkg.sha512",

@@ -223,21 +223,6 @@
         "runtime": {
           "lib/netcoreapp2.1/_._": {}
         }
-      },
-      "lightPayrollModel/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v8.0",
-        "dependencies": {
-          "Dapper": "2.1.72",
-          "Microsoft.Data.Sqlite": "10.0.5",
-          "SQLite": "3.13.0"
-        },
-        "compile": {
-          "bin/placeholder/lightPayrollModel.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/lightPayrollModel.dll": {}
-        }
       }
     }
   },
@@ -429,19 +414,13 @@
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
-    },
-    "lightPayrollModel/1.0.0": {
-      "type": "project",
-      "path": "../lightPayrollModel/lightPayrollModel.csproj",
-      "msbuildProject": "../lightPayrollModel/lightPayrollModel.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net8.0": [
+      "Dapper >= 2.1.72",
       "Microsoft.Data.Sqlite >= 10.0.5",
-      "Microsoft.Data.Sqlite.Core >= 10.0.5",
-      "SQLite >= 3.13.0",
-      "lightPayrollModel >= 1.0.0"
+      "SQLite >= 3.13.0"
     ]
   },
   "packageFolders": {
@@ -450,11 +429,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\James\\source\\repos\\lightPayrollServices\\lightPayrollServices.csproj",
-      "projectName": "lightPayrollServices",
-      "projectPath": "C:\\Users\\James\\source\\repos\\lightPayrollServices\\lightPayrollServices.csproj",
+      "projectUniqueName": "C:\\Users\\James\\source\\repos\\lightPayrollModel\\lightPayrollModel.csproj",
+      "projectName": "lightPayrollModel",
+      "projectPath": "C:\\Users\\James\\source\\repos\\lightPayrollModel\\lightPayrollModel.csproj",
       "packagesPath": "C:\\Users\\James\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\James\\source\\repos\\lightPayrollServices\\obj\\",
+      "outputPath": "C:\\Users\\James\\source\\repos\\lightPayrollModel\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\James\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -470,11 +449,7 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
-          "projectReferences": {
-            "C:\\Users\\James\\source\\repos\\lightPayrollModel\\lightPayrollModel.csproj": {
-              "projectPath": "C:\\Users\\James\\source\\repos\\lightPayrollModel\\lightPayrollModel.csproj"
-            }
-          }
+          "projectReferences": {}
         }
       },
       "warningProperties": {
@@ -493,11 +468,11 @@
       "net8.0": {
         "targetAlias": "net8.0",
         "dependencies": {
-          "Microsoft.Data.Sqlite": {
+          "Dapper": {
             "target": "Package",
-            "version": "[10.0.5, )"
+            "version": "[2.1.72, )"
           },
-          "Microsoft.Data.Sqlite.Core": {
+          "Microsoft.Data.Sqlite": {
             "target": "Package",
             "version": "[10.0.5, )"
           },
