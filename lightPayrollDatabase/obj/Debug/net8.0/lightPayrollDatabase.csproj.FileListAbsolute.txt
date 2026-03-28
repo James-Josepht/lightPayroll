@@ -1,0 +1,13 @@
+C:\Users\James\source\repos\lightPayrollDatabase\bin\Debug\net8.0\lightPayrollDatabase.deps.json
+C:\Users\James\source\repos\lightPayrollDatabase\bin\Debug\net8.0\lightPayrollDatabase.dll
+C:\Users\James\source\repos\lightPayrollDatabase\bin\Debug\net8.0\lightPayrollDatabase.pdb
+C:\Users\James\source\repos\lightPayrollDatabase\obj\Debug\net8.0\lightPayrollDatabase.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\James\source\repos\lightPayrollDatabase\obj\Debug\net8.0\lightPayrollDatabase.AssemblyInfoInputs.cache
+C:\Users\James\source\repos\lightPayrollDatabase\obj\Debug\net8.0\lightPayrollDatabase.AssemblyInfo.cs
+C:\Users\James\source\repos\lightPayrollDatabase\obj\Debug\net8.0\lightPayrollDatabase.csproj.CoreCompileInputs.cache
+C:\Users\James\source\repos\lightPayrollDatabase\obj\Debug\net8.0\lightPayrollDatabase.dll
+C:\Users\James\source\repos\lightPayrollDatabase\obj\Debug\net8.0\refint\lightPayrollDatabase.dll
+C:\Users\James\source\repos\lightPayrollDatabase\obj\Debug\net8.0\lightPayrollDatabase.pdb
+C:\Users\James\source\repos\lightPayrollDatabase\obj\Debug\net8.0\ref\lightPayrollDatabase.dll
+C:\Users\James\source\repos\lightPayrollDatabase\obj\Debug\net8.0\lightPayrollDatabase.csproj.AssemblyReference.cache
+C:\Users\James\source\repos\lightPayrollDatabase\bin\Debug\net8.0\lightPayrollDB.db
