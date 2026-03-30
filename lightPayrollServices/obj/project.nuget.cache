@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "uFK3ZWzYlOc=",
+  "dgSpecHash": "ZGEfVf0aDak=",
   "success": true,
   "projectFilePath": "C:\\Users\\James\\source\\repos\\lightPayrollServices\\lightPayrollServices.csproj",
   "expectedPackageFiles": [
@@ -12,7 +12,12 @@
     "C:\\Users\\James\\.nuget\\packages\\sqlitepclraw.core\\2.1.11\\sqlitepclraw.core.2.1.11.nupkg.sha512",
     "C:\\Users\\James\\.nuget\\packages\\sqlitepclraw.lib.e_sqlite3\\2.1.11\\sqlitepclraw.lib.e_sqlite3.2.1.11.nupkg.sha512",
     "C:\\Users\\James\\.nuget\\packages\\sqlitepclraw.provider.e_sqlite3\\2.1.11\\sqlitepclraw.provider.e_sqlite3.2.1.11.nupkg.sha512",
-    "C:\\Users\\James\\.nuget\\packages\\system.memory\\4.5.3\\system.memory.4.5.3.nupkg.sha512"
+    "C:\\Users\\James\\.nuget\\packages\\stub.system.data.sqlite.core.netstandard\\1.0.119\\stub.system.data.sqlite.core.netstandard.1.0.119.nupkg.sha512",
+    "C:\\Users\\James\\.nuget\\packages\\system.configuration.configurationmanager\\10.0.5\\system.configuration.configurationmanager.10.0.5.nupkg.sha512",
+    "C:\\Users\\James\\.nuget\\packages\\system.data.sqlite.core\\1.0.119\\system.data.sqlite.core.1.0.119.nupkg.sha512",
+    "C:\\Users\\James\\.nuget\\packages\\system.diagnostics.eventlog\\10.0.5\\system.diagnostics.eventlog.10.0.5.nupkg.sha512",
+    "C:\\Users\\James\\.nuget\\packages\\system.memory\\4.5.3\\system.memory.4.5.3.nupkg.sha512",
+    "C:\\Users\\James\\.nuget\\packages\\system.security.cryptography.protecteddata\\10.0.5\\system.security.cryptography.protecteddata.10.0.5.nupkg.sha512"
   ],
   "logs": []
 }

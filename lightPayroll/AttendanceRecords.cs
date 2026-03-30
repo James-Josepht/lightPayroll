@@ -13,24 +13,16 @@ using System.Data.OleDb;
 using lighPayrollUI.Properties;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+using lightPayrollModel;
+using lightPayrollServices;
+
 
 namespace lighPayroll
 {
     public partial class AttendanceRecords : Form
     {
-        OleDbConnection? dataConnection;
-        OleDbDataAdapter? dataAdapter;
-        OleDbCommand? dataCommand;
-        DataSet? dataSet;
+        List<Model> users = new List<Model>();
 
-        int index = 0;
-
-
-
-
-
-        // remembers the row the context menu is opened for (still used by context menu flows)
-        private int selectedRowIndex = -1;
 
         public AttendanceRecords()
         {
@@ -61,8 +53,15 @@ namespace lighPayroll
             //attendanceGrid.AutoGenerateColumns = false;
             panelDesign();
             dropDownDesign();
+
         }
 
+        private void loadButton_Click(object sender, EventArgs e)
+        {
+
+            users = SQLiteDataAccess.LoadPeople(); //from lightPayrollServices
+
+        }
 
 
         private void userRMbutton_Click(object? sender, EventArgs e)
@@ -79,107 +78,9 @@ namespace lighPayroll
 
         private void addButton_Click(object? sender, EventArgs e)
         {
-            dataConnection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\James\Documents\Learning\Trial Database\CompanyADatabase.accdb");
-  
-            string query = "Insert into salariesQuery (LastName, FirstName) values (@LName, @FName)";
-            dataCommand = new OleDbCommand(query, dataConnection);
-            dataCommand.Parameters.AddWithValue("@LName", fNameTxtBox.Text);
-            dataCommand.Parameters.AddWithValue("@FName", nameTxtBox.Text);
-
-            try
-            {
-                dataConnection.Open();
-                dataCommand.ExecuteNonQuery();
-                MessageBox.Show("Record added successfully!");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error: " + ex.Message);
-            }
-            finally
-            {
-                dataConnection.Close();
-            }
-        }
-        private void loadButton_Click(object sender, EventArgs e)
-        {
-           string connect = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\James\Documents\Learning\Trial Database\CompanyADatabase.accdb";
-
-            using (OleDbConnection connection = new OleDbConnection(connect))
-            {
-
-                connection.Open();
-
-                // Check if table exists
-                DataTable schemaTable = connection.GetSchema("Tables");
-                bool tableExists = false;
-
-                foreach (DataRow row in schemaTable.Rows)
-                {
-                    string tableName = row["TABLE_NAME"].ToString();
-                    string tableType = row["TABLE_TYPE"].ToString();
-
-                    if ((tableType == "TABLE" || tableType == "VIEW") && tableName == "salariesQuery")
-                    {
-                        tableExists = true;
-                        break;
-                    }
-                }
-
-                if (tableExists)
-                {
-                  
-                    dataAdapter = new OleDbDataAdapter("SELECT * FROM salariesQuery", connection);
-                    dataSet = new DataSet();
-
-                    dataAdapter.Fill(dataSet, "salariesQuery");
-                    attendanceGrid.DataSource = dataSet.Tables["salariesQuery"];
-                    connection.Close();
-
-                }
-                else
-                {
-                    MessageBox.Show("Error. Table not found!");
-                }
-            }
-
+            
         }
 
-        // Simple prompt that uses InputBox for five fields. Returns false if user cancels/enters nothing for ID.
-        private bool PromptForAttendance(StoredAttendance? existing, out StoredAttendance? result)
-        {
-            result = null;
-
-            string defaultId = existing?.UserID ?? "";
-            string defaultUser = existing?.Username ?? "";
-            string defaultEmail = existing?.Email ?? "";
-            string defaultIn = existing?.ClockInDate ?? "";
-            string defaultOut = existing?.ClockOutDate ?? "";
-
-            // Using Microsoft.VisualBasic.Interaction.InputBox for quick prompts
-            string id = Interaction.InputBox("User ID:", existing == null ? "Add new attendance" : "Modify attendance", defaultId);
-            if (string.IsNullOrWhiteSpace(id))
-                return false;
-
-            string username = Interaction.InputBox("Username:", "Add / Modify", defaultUser);
-            if (string.IsNullOrWhiteSpace(username))
-                username = defaultUser;
-
-            string email = Interaction.InputBox("Email:", "Add / Modify", defaultEmail);
-            if (string.IsNullOrWhiteSpace(email))
-                email = defaultEmail;
-
-            string clockIn = Interaction.InputBox("Clock In (string):", "Add / Modify", defaultIn);
-            if (string.IsNullOrWhiteSpace(clockIn))
-                clockIn = defaultIn;
-
-            string clockOut = Interaction.InputBox("Clock Out (string):", "Add / Modify", defaultOut);
-            if (string.IsNullOrWhiteSpace(clockOut))
-                clockOut = defaultOut;
-
-            result = new StoredAttendance(id, username, email, clockIn, clockOut);
-            return true;
-        }
 
         //future usage for rounded panel borders and it is not related to drop down
         private void panelDesign()
@@ -220,8 +121,6 @@ namespace lighPayroll
         }
 
 
-
-
         private void searchMS_Click(object sender, EventArgs e)
         {
 
@@ -243,49 +142,5 @@ namespace lighPayroll
         }
     }
 
-    internal class StoredAttendance
-    {
-        private string username;
-        private string userID;
-        private string email;
-        private string clockInDate;
-        private string clockOutDate;
-
-
-        public StoredAttendance(string userID, string username, string email, string clockIn, string clockOut)
-        {
-            this.Username = username;
-            this.UserID = userID;
-            this.Email = email;
-            this.ClockInDate = clockIn;
-            this.ClockOutDate = clockOut;
-        }
-
-        public string Username
-        {
-            get { return username; }
-            set { username = value; }
-        }
-
-        public string UserID
-        {
-            get { return userID; }
-            set { userID = value; }
-        }
-        public string Email
-        {
-            get { return email; }
-            set { email = value; }
-        }
-        public string ClockInDate
-        {
-            get { return clockInDate; }
-            set { clockInDate = value; }
-        }
-        public string ClockOutDate
-        {
-            get { return clockOutDate; }
-            set { clockOutDate = value; }
-        }
-    }
+ 
 }
