@@ -17,7 +17,7 @@ namespace lightPayrollServices
 {
     public class SQLiteDataAccess
     {
-        public static List<Model> LoadPeople()
+        public static List<Users> LoadUsers()
         {
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
             {
@@ -25,22 +25,22 @@ namespace lightPayrollServices
 
                 // Step 1: Ensure the table exists
                 string createTableSql = @"
-        CREATE TABLE IF NOT EXISTS UsersTable (
-            Id INTEGER PRIMARY KEY AUTOINCREMENT,
-            Username TEXT,
-            Password TEXT
-        );";
+                CREATE TABLE IF NOT EXISTS UsersTable (
+                    UserID INTEGER PRIMARY KEY AUTOINCREMENT,
+                    Username TEXT,
+                    Password TEXT
+                );";
 
                 conn.Execute(createTableSql);  // Dapper extension method for non-query commands
 
                 // Step 2: Query the table
-                var output = conn.Query<Model>("SELECT * FROM UsersTable", new DynamicParameters());
+                var output = conn.Query<Users>("SELECT * FROM UsersTable", new DynamicParameters());
 
                 return output.ToList();
             }
         }
 
-        public static void SavePeople(Model people)
+        public static void SaveUsers(Users people)
         {
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
             {

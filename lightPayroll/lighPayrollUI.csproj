@@ -10,6 +10,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="lightPayrollDB.db" />
+  </ItemGroup>
+
+  <ItemGroup>
     <COMReference Include="WMPLib">
       <WrapperTool>tlbimp</WrapperTool>
       <VersionMinor>0</VersionMinor>
@@ -27,6 +31,12 @@
       <Lcid>0</Lcid>
       <Isolated>false</Isolated>
     </COMReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="lightPayrollDB.db">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>

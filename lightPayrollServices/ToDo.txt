@@ -1,1 +1,2 @@
 ﻿[]Finish Setting Up database
+[]Fix issue in findining errors in database in files, wy changes only occurs in the Bin 

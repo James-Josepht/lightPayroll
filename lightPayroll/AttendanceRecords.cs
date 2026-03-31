@@ -15,13 +15,14 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using lightPayrollModel;
 using lightPayrollServices;
+using System.Security.AccessControl;
 
 
 namespace lighPayroll
 {
     public partial class AttendanceRecords : Form
     {
-        List<Model> users = new List<Model>();
+        List<Users> users = new List<Users>();
 
 
         public AttendanceRecords()
@@ -47,6 +48,8 @@ namespace lighPayroll
 
         }
 
+
+
         private void AttendanceRecords_Load(object sender, EventArgs e)
         {
 
@@ -56,11 +59,22 @@ namespace lighPayroll
 
         }
 
+        private void LoadUsersList()
+        {
+            users = SQLiteDataAccess.LoadUsers(); //from lightPayrollServices
+            WireUpUsersList();
+        }
+
+        private void WireUpUsersList()
+        {
+            attendanceGrid.DataSource = null;
+            attendanceGrid.DataSource = users;
+        }
+
         private void loadButton_Click(object sender, EventArgs e)
         {
 
-            users = SQLiteDataAccess.LoadPeople(); //from lightPayrollServices
-
+            LoadUsersList();
         }
 
 
