@@ -73,6 +73,16 @@ namespace lighPayrollUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap background_darker {
+            get {
+                object obj = ResourceManager.GetObject("background darker", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap good_evening_get_greeting {
             get {
                 object obj = ResourceManager.GetObject("good-evening-get-greeting", resourceCulture);

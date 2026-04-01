@@ -8,6 +8,12 @@ namespace lighPayroll
 
     public partial class Form1 : Form
     {
+        //used for manual sizing just in case
+        private Rectangle textBox1OriginalRect;
+        private Rectangle panel7riginalRect;
+
+        private Size formOriginalSize;
+
         public Form1()
         {
             InitializeComponent();
@@ -28,6 +34,9 @@ namespace lighPayroll
 
             recentSearches.Margin = new Padding(40, 0, 0, 0); // increase 40 to go left and decrease to put it right
             toolStripSeparator4.Margin = Padding.Empty;
+
+            //starting in here, I am saving the original size and location of the controls to be used in resizing the form
+            panel7riginalRect = new Rectangle(panel7.Location.X, panel7.Location.Y, panel7.Width, panel7.Height);
         }
 
 
@@ -91,25 +100,12 @@ namespace lighPayroll
             this.Hide();
         }
 
-
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
     }
+
+    //used for changing the hover color in features
     public class MyRenderer : ToolStripProfessionalRenderer
     {
+       
         protected override void OnRenderMenuItemBackground(ToolStripItemRenderEventArgs e)
         {
             var item = e.Item;
@@ -134,10 +130,9 @@ namespace lighPayroll
         }
 
         
-
-
     }
 
+    //used for changing search button not changing when clicked
     class MyRendererBackground : ToolStripProfessionalRenderer
     {
         protected override void OnRenderMenuItemBackground(ToolStripItemRenderEventArgs e)
@@ -168,6 +163,7 @@ namespace lighPayroll
             }
 
         }
+
         //this is for allowing drop down to have right color instead of empty filled white
         protected override void OnRenderToolStripBackground(ToolStripRenderEventArgs e)
         {

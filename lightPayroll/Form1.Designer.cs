@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             panel1 = new Panel();
-            panel6 = new Panel();
+            logPanel = new Panel();
             joinHomeBut = new Button();
             loginHomeBut = new Button();
             panel5 = new Panel();
@@ -53,7 +53,6 @@
             toolStripMenuItem19 = new ToolStripMenuItem();
             toolStripMenuItem21 = new ToolStripMenuItem();
             toolStripMenuItem22 = new ToolStripMenuItem();
-            label7 = new Label();
             panel4 = new Panel();
             menuStrip1 = new MenuStrip();
             featuresMS = new ToolStripMenuItem();
@@ -72,13 +71,12 @@
             toolStripMenuItem20 = new ToolStripMenuItem();
             toolStripMenuItem9 = new ToolStripMenuItem();
             toolStripMenuItem1 = new ToolStripMenuItem();
+            label7 = new Label();
             pictureBox1 = new PictureBox();
             panel2 = new Panel();
-            label2 = new Label();
             label1 = new Label();
+            label2 = new Label();
             pictureBox2 = new PictureBox();
-            panel3 = new Panel();
-            tableLayoutPanel1 = new TableLayoutPanel();
             pictureBox3 = new PictureBox();
             pictureBox4 = new PictureBox();
             label3 = new Label();
@@ -86,8 +84,9 @@
             label5 = new Label();
             label6 = new Label();
             panel7 = new Panel();
+            tableLayoutPanel1 = new TableLayoutPanel();
             panel1.SuspendLayout();
-            panel6.SuspendLayout();
+            logPanel.SuspendLayout();
             panel5.SuspendLayout();
             menuStrip2.SuspendLayout();
             panel4.SuspendLayout();
@@ -95,7 +94,6 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
-            panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             panel7.SuspendLayout();
@@ -104,9 +102,8 @@
             // panel1
             // 
             panel1.BackColor = Color.Beige;
-            panel1.Controls.Add(panel6);
+            panel1.Controls.Add(logPanel);
             panel1.Controls.Add(panel5);
-            panel1.Controls.Add(label7);
             panel1.Controls.Add(panel4);
             panel1.Controls.Add(pictureBox1);
             panel1.Dock = DockStyle.Top;
@@ -114,19 +111,18 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(937, 109);
             panel1.TabIndex = 0;
-            panel1.Paint += panel1_Paint;
             // 
-            // panel6
+            // logPanel
             // 
-            panel6.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            panel6.BackgroundImage = (Image)resources.GetObject("panel6.BackgroundImage");
-            panel6.Controls.Add(joinHomeBut);
-            panel6.Controls.Add(loginHomeBut);
-            panel6.Font = new Font("Segoe UI", 7.20000029F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            panel6.Location = new Point(667, 18);
-            panel6.Name = "panel6";
-            panel6.Size = new Size(260, 71);
-            panel6.TabIndex = 3;
+            logPanel.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            logPanel.BackgroundImage = (Image)resources.GetObject("logPanel.BackgroundImage");
+            logPanel.Controls.Add(joinHomeBut);
+            logPanel.Controls.Add(loginHomeBut);
+            logPanel.Font = new Font("Segoe UI", 7.20000029F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            logPanel.Location = new Point(667, 18);
+            logPanel.Name = "logPanel";
+            logPanel.Size = new Size(260, 71);
+            logPanel.TabIndex = 3;
             // 
             // joinHomeBut
             // 
@@ -310,22 +306,11 @@
             toolStripMenuItem22.Name = "toolStripMenuItem22";
             toolStripMenuItem22.Size = new Size(12, 25);
             // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.BackColor = Color.Beige;
-            label7.Font = new Font("Ubuntu Mono", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label7.ForeColor = Color.FromArgb(33, 44, 66);
-            label7.Location = new Point(298, 72);
-            label7.Name = "label7";
-            label7.Size = new Size(72, 18);
-            label7.TabIndex = 10;
-            label7.Text = "Features";
-            // 
             // panel4
             // 
             panel4.BackgroundImage = (Image)resources.GetObject("panel4.BackgroundImage");
             panel4.Controls.Add(menuStrip1);
+            panel4.Controls.Add(label7);
             panel4.Cursor = Cursors.Hand;
             panel4.Location = new Point(293, 21);
             panel4.Name = "panel4";
@@ -447,6 +432,18 @@
             toolStripMenuItem1.Name = "toolStripMenuItem1";
             toolStripMenuItem1.Size = new Size(12, 45);
             // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.BackColor = Color.Beige;
+            label7.Font = new Font("Ubuntu Mono", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label7.ForeColor = Color.FromArgb(33, 44, 66);
+            label7.Location = new Point(11, 47);
+            label7.Name = "label7";
+            label7.Size = new Size(72, 18);
+            label7.TabIndex = 10;
+            label7.Text = "Features";
+            // 
             // pictureBox1
             // 
             pictureBox1.Cursor = Cursors.Hand;
@@ -465,22 +462,10 @@
             panel2.Controls.Add(label1);
             panel2.Controls.Add(label2);
             panel2.Controls.Add(pictureBox2);
-            panel2.Location = new Point(43, 197);
+            panel2.Location = new Point(12, 180);
             panel2.Name = "panel2";
-            panel2.Size = new Size(507, 328);
+            panel2.Size = new Size(525, 345);
             panel2.TabIndex = 1;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.BackColor = Color.FromArgb(33, 44, 66);
-            label2.Font = new Font("Ubuntu Mono", 11.999999F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.ForeColor = Color.White;
-            label2.Location = new Point(39, 186);
-            label2.Name = "label2";
-            label2.Size = new Size(351, 40);
-            label2.TabIndex = 6;
-            label2.Text = "Hands-on accounting through real world\r\nscenario";
             // 
             // label1
             // 
@@ -488,62 +473,53 @@
             label1.BackColor = Color.FromArgb(33, 44, 66);
             label1.Font = new Font("Ubuntu Mono", 28.1999989F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.LightYellow;
-            label1.Location = new Point(28, 74);
+            label1.Location = new Point(54, 71);
             label1.Name = "label1";
             label1.Size = new Size(398, 94);
             label1.TabIndex = 5;
             label1.Text = "Experience growth \r\nwith Ligh♱Payroll\r\n";
             // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.BackColor = Color.FromArgb(33, 44, 66);
+            label2.Font = new Font("Ubuntu Mono", 11.999999F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.ForeColor = Color.White;
+            label2.Location = new Point(58, 187);
+            label2.Name = "label2";
+            label2.Size = new Size(351, 40);
+            label2.TabIndex = 6;
+            label2.Text = "Hands-on accounting through real world\r\nscenario";
+            // 
             // pictureBox2
             // 
             pictureBox2.BackColor = SystemColors.ActiveCaption;
-            pictureBox2.BackgroundImage = lighPayrollUI.Properties.Resources.background;
+            pictureBox2.BackgroundImage = lighPayrollUI.Properties.Resources.background_darker;
             pictureBox2.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox2.Location = new Point(-118, -20);
+            pictureBox2.Location = new Point(15, 3);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(745, 345);
+            pictureBox2.Size = new Size(507, 339);
             pictureBox2.TabIndex = 3;
             pictureBox2.TabStop = false;
             // 
-            // panel3
-            // 
-            panel3.Controls.Add(tableLayoutPanel1);
-            panel3.Location = new Point(40, 114);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(847, 59);
-            panel3.TabIndex = 2;
-            // 
-            // tableLayoutPanel1
-            // 
-            tableLayoutPanel1.ColumnCount = 2;
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel1.Location = new Point(-40, 0);
-            tableLayoutPanel1.Name = "tableLayoutPanel1";
-            tableLayoutPanel1.RowCount = 2;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 40.6779671F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 59.3220329F));
-            tableLayoutPanel1.Size = new Size(937, 439);
-            tableLayoutPanel1.TabIndex = 9;
-            tableLayoutPanel1.Paint += tableLayoutPanel1_Paint;
-            // 
             // pictureBox3
             // 
+            pictureBox3.Anchor = AnchorStyles.None;
             pictureBox3.BackColor = Color.Transparent;
-            pictureBox3.BackgroundImage = lighPayrollUI.Properties.Resources.background;
+            pictureBox3.BackgroundImage = lighPayrollUI.Properties.Resources.background_darker;
             pictureBox3.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox3.Location = new Point(0, 0);
+            pictureBox3.Location = new Point(3, 3);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(446, 342);
+            pictureBox3.Size = new Size(338, 339);
             pictureBox3.TabIndex = 4;
             pictureBox3.TabStop = false;
             // 
             // pictureBox4
             // 
-            pictureBox4.Anchor = AnchorStyles.Right;
+            pictureBox4.Anchor = AnchorStyles.None;
             pictureBox4.BackColor = Color.FromArgb(33, 44, 66);
             pictureBox4.Image = (Image)resources.GetObject("pictureBox4.Image");
-            pictureBox4.Location = new Point(634, 229);
+            pictureBox4.Location = new Point(81, 49);
             pictureBox4.Name = "pictureBox4";
             pictureBox4.Size = new Size(196, 151);
             pictureBox4.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -557,21 +533,20 @@
             label3.BackColor = Color.FromArgb(33, 44, 66);
             label3.Font = new Font("Ubuntu Mono", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.Lime;
-            label3.Location = new Point(100, 234);
+            label3.Location = new Point(64, 240);
             label3.Name = "label3";
             label3.Size = new Size(24, 23);
             label3.TabIndex = 7;
             label3.Text = "✓";
-            label3.Click += label3_Click;
             // 
             // label4
             // 
-            label4.Anchor = AnchorStyles.Right;
+            label4.Anchor = AnchorStyles.None;
             label4.AutoSize = true;
             label4.BackColor = Color.FromArgb(33, 44, 66);
             label4.Font = new Font("Ubuntu Mono", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.Lime;
-            label4.Location = new Point(607, 457);
+            label4.Location = new Point(64, 282);
             label4.Name = "label4";
             label4.Size = new Size(24, 23);
             label4.TabIndex = 8;
@@ -584,7 +559,7 @@
             label5.BackColor = Color.FromArgb(33, 44, 66);
             label5.Font = new Font("Ubuntu Mono", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.White;
-            label5.Location = new Point(127, 276);
+            label5.Location = new Point(91, 282);
             label5.Name = "label5";
             label5.Size = new Size(175, 23);
             label5.TabIndex = 7;
@@ -597,7 +572,7 @@
             label6.BackColor = Color.FromArgb(33, 44, 66);
             label6.Font = new Font("Ubuntu Mono", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label6.ForeColor = Color.White;
-            label6.Location = new Point(126, 234);
+            label6.Location = new Point(90, 240);
             label6.Name = "label6";
             label6.Size = new Size(197, 23);
             label6.TabIndex = 9;
@@ -605,15 +580,31 @@
             // 
             // panel7
             // 
-            panel7.Anchor = AnchorStyles.Right;
+            panel7.Anchor = AnchorStyles.None;
             panel7.Controls.Add(label3);
             panel7.Controls.Add(label5);
+            panel7.Controls.Add(pictureBox4);
+            panel7.Controls.Add(label4);
             panel7.Controls.Add(label6);
             panel7.Controls.Add(pictureBox3);
-            panel7.Location = new Point(507, 180);
+            panel7.Location = new Point(552, 180);
             panel7.Name = "panel7";
-            panel7.Size = new Size(446, 356);
+            panel7.Size = new Size(375, 368);
             panel7.TabIndex = 0;
+            // 
+            // tableLayoutPanel1
+            // 
+            tableLayoutPanel1.ColumnCount = 2;
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 58.3778F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 41.6222F));
+            tableLayoutPanel1.Dock = DockStyle.Fill;
+            tableLayoutPanel1.Location = new Point(0, 0);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.RowCount = 2;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 22.9927F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 77.0073F));
+            tableLayoutPanel1.Size = new Size(937, 548);
+            tableLayoutPanel1.TabIndex = 9;
             // 
             // Form1
             // 
@@ -621,18 +612,16 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(937, 548);
-            Controls.Add(label4);
-            Controls.Add(panel3);
-            Controls.Add(panel2);
             Controls.Add(panel1);
-            Controls.Add(pictureBox4);
+            Controls.Add(panel2);
             Controls.Add(panel7);
+            Controls.Add(tableLayoutPanel1);
+            MinimumSize = new Size(477, 333);
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
             Load += Form1_Load;
             panel1.ResumeLayout(false);
-            panel1.PerformLayout();
-            panel6.ResumeLayout(false);
+            logPanel.ResumeLayout(false);
             panel5.ResumeLayout(false);
             panel5.PerformLayout();
             menuStrip2.ResumeLayout(false);
@@ -645,13 +634,11 @@
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
-            panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             panel7.ResumeLayout(false);
             panel7.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -659,7 +646,6 @@
         private Panel panel1;
         private PictureBox pictureBox1;
         private Panel panel2;
-        private Panel panel3;
         private PictureBox pictureBox2;
         private PictureBox pictureBox3;
         private Label label1;
@@ -689,7 +675,7 @@
         private ToolStripMenuItem featureStrip2;
         private ToolStripMenuItem featureStrip3;
         private ToolStripMenuItem toolStripMenuItem12;
-        private Panel panel6;
+        private Panel logPanel;
         private Button joinHomeBut;
         private Button loginHomeBut;
         private ToolStripMenuItem toolStripMenuItem18;
