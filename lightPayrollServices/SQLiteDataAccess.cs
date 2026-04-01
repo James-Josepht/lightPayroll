@@ -17,6 +17,13 @@ namespace lightPayrollServices
 {
     public class SQLiteDataAccess
     {
+        /*  
+        all these changes in the database is shown in
+        lightPayroll\bin\Debug\net8.0-windows\lightPayrollDB.db
+        not the one in
+        lightPayroll\lightPayrollDB.db
+         */
+
         public static List<Users> LoadUsers()
         {
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
@@ -61,15 +68,5 @@ namespace lightPayrollServices
             return settings;
         }
     }
-
-    public class MessageDesign
-    {
-        
-
-
-
-    }
-
-
 
 }

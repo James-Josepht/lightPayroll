@@ -77,6 +77,18 @@ namespace lighPayroll
             LoadUsersList();
         }
 
+        private void addButton_Click(object? sender, EventArgs e)
+        {
+            Users user = new Users
+            {
+                Username = nameTxtBox.Text,
+                Password = fNameTxtBox.Text,
+            };
+
+            SQLiteDataAccess.SaveUsers(user);
+            nameTxtBox.Text = "";
+            fNameTxtBox.Text = "";
+        }
 
         private void userRMbutton_Click(object? sender, EventArgs e)
         {
@@ -90,10 +102,6 @@ namespace lighPayroll
 
         }
 
-        private void addButton_Click(object? sender, EventArgs e)
-        {
-            
-        }
 
 
         //future usage for rounded panel borders and it is not related to drop down

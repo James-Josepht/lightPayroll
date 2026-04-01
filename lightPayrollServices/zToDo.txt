@@ -1,0 +1,5 @@
+﻿[x]Finish Setting Up database
+[x]Fix issue in findining errors in database in files, wy changes only occurs in the Bin 
+
+[]Create log in for users    
+[]When user create account, use this "This username is not allowed" if it is an admin

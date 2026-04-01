@@ -3,20 +3,28 @@
 
 namespace lightPayrollModel
 {
+    /*  
+        all these changes in the database is shown in
+        lightPayroll\bin\Debug\net8.0-windows\lightPayrollDB.db
+        not the one in
+        lightPayroll\lightPayrollDB.db
+    */
+
     public class Users
     {
-        private int userID;
+        private int usersID;
         private string? userName;
         private string? passWord;
         private string? role;
         private string? accountStatus;
         private string? dateCreated;
-        
+        //these variable must have the same name in Database
+        //else it would not show in the UI
 
-        public int UserID
+        public int UsersID
         {
-            get { return this.userID; }
-            set { this.userID = value; }
+            get { return this.usersID; }
+            set { this.usersID = value; }
         }
         public string? Username
         {
@@ -111,10 +119,10 @@ namespace lightPayrollModel
     {
         private int payrollID;
         private int employeeID;
-        private float? basicSalary;
-        private float? overtimePay;
-        private float? deductions;
-        private float? netSalary;
+        private decimal? basicSalary;
+        private decimal? overtimePay;
+        private decimal? deductions;
+        private decimal? netSalary;
         private DateTime? payrollDate;
         private int processedBy;
 
@@ -130,25 +138,25 @@ namespace lightPayrollModel
             set { this.employeeID = value; }
         }
 
-        public float? BasicSalary
+        public decimal? BasicSalary
         {
             get { return this.basicSalary; }
             set { this.basicSalary = value; }
         }
 
-        public float? OvertimePay
+        public decimal? OvertimePay
         {
             get { return this.overtimePay; }
             set { this.overtimePay = value; }
         }
 
-        public float? Deductions
+        public decimal? Deductions
         {
             get { return this.deductions; }
             set { this.deductions = value; }
         }
 
-        public float? NetSalary
+        public decimal? NetSalary
         {
             get { return this.netSalary; }
             set { this.netSalary = value; }

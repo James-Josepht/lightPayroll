@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using lightPayrollServices;
 
 namespace lighPayroll
 {
@@ -33,18 +34,17 @@ namespace lighPayroll
         private void loginButtonClick(object sender, EventArgs e)
         {
 
-            string username = userLogBox.Text;
-            string password = passLogBox.Text;
+            string username = userLogBox.Text.Trim();
+            string password = passLogBox.Text.Trim();
 
             AdminUI storedCredentials = new AdminUI();
+            AuthService validator = new AuthService();
 
-            if (username == "admin" && password == "admin")
+            if (validator.ValidateCredentials(username, password))
             {
-
                 showCustomMessage("Login successful!");
                 storedCredentials.Show();
                 this.Hide();
-
             }
             else
             {

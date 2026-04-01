@@ -20,8 +20,6 @@ namespace lighPayroll
             searchMenuStrip.Renderer = new MyRendererBackground();
         }
 
-
-
         private void AdminUI_Load(object sender, EventArgs e)
         {
             panelDesign();
