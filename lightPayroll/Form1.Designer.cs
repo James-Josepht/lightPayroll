@@ -74,8 +74,8 @@
             label7 = new Label();
             pictureBox1 = new PictureBox();
             panel2 = new Panel();
-            label1 = new Label();
             label2 = new Label();
+            label1 = new Label();
             pictureBox2 = new PictureBox();
             pictureBox3 = new PictureBox();
             pictureBox4 = new PictureBox();
@@ -97,6 +97,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             panel7.SuspendLayout();
+            tableLayoutPanel1.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -458,82 +459,88 @@
             // 
             // panel2
             // 
-            panel2.BackgroundImageLayout = ImageLayout.Stretch;
-            panel2.Controls.Add(label1);
             panel2.Controls.Add(label2);
+            panel2.Controls.Add(label1);
             panel2.Controls.Add(pictureBox2);
-            panel2.Location = new Point(12, 180);
+            panel2.Dock = DockStyle.Fill;
+            panel2.Location = new Point(3, 129);
             panel2.Name = "panel2";
-            panel2.Size = new Size(525, 345);
+            panel2.Size = new Size(552, 416);
             panel2.TabIndex = 1;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.BackColor = Color.FromArgb(33, 44, 66);
-            label1.Font = new Font("Ubuntu Mono", 28.1999989F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.LightYellow;
-            label1.Location = new Point(54, 71);
-            label1.Name = "label1";
-            label1.Size = new Size(398, 94);
-            label1.TabIndex = 5;
-            label1.Text = "Experience growth \r\nwith Ligh♱Payroll\r\n";
             // 
             // label2
             // 
+            label2.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             label2.AutoSize = true;
             label2.BackColor = Color.FromArgb(33, 44, 66);
             label2.Font = new Font("Ubuntu Mono", 11.999999F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.White;
-            label2.Location = new Point(58, 187);
+            label2.Location = new Point(54, 218);
             label2.Name = "label2";
             label2.Size = new Size(351, 40);
             label2.TabIndex = 6;
             label2.Text = "Hands-on accounting through real world\r\nscenario";
             // 
+            // label1
+            // 
+            label1.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            label1.AutoSize = true;
+            label1.BackColor = Color.FromArgb(33, 44, 66);
+            label1.Font = new Font("Ubuntu Mono", 28.1999989F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.LightYellow;
+            label1.Location = new Point(54, 114);
+            label1.Name = "label1";
+            label1.Size = new Size(398, 94);
+            label1.TabIndex = 5;
+            label1.Text = "Experience growth \r\nwith Ligh♱Payroll\r\n";
+            // 
             // pictureBox2
             // 
+            pictureBox2.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             pictureBox2.BackColor = SystemColors.ActiveCaption;
-            pictureBox2.BackgroundImage = lighPayrollUI.Properties.Resources.background_darker;
             pictureBox2.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox2.Location = new Point(15, 3);
+            pictureBox2.Image = lighPayrollUI.Properties.Resources.background_darker;
+            pictureBox2.Location = new Point(9, 54);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(507, 339);
+            pictureBox2.Size = new Size(528, 339);
+            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox2.TabIndex = 3;
             pictureBox2.TabStop = false;
             // 
             // pictureBox3
             // 
-            pictureBox3.Anchor = AnchorStyles.None;
+            pictureBox3.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             pictureBox3.BackColor = Color.Transparent;
-            pictureBox3.BackgroundImage = lighPayrollUI.Properties.Resources.background_darker;
             pictureBox3.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox3.Location = new Point(3, 3);
+            pictureBox3.Image = lighPayrollUI.Properties.Resources.background_darker;
+            pictureBox3.Location = new Point(0, 54);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(338, 339);
+            pictureBox3.Size = new Size(349, 339);
+            pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox3.TabIndex = 4;
             pictureBox3.TabStop = false;
             // 
             // pictureBox4
             // 
-            pictureBox4.Anchor = AnchorStyles.None;
+            pictureBox4.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             pictureBox4.BackColor = Color.FromArgb(33, 44, 66);
+            pictureBox4.BackgroundImageLayout = ImageLayout.Stretch;
             pictureBox4.Image = (Image)resources.GetObject("pictureBox4.Image");
-            pictureBox4.Location = new Point(81, 49);
+            pictureBox4.Location = new Point(91, 73);
             pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(196, 151);
-            pictureBox4.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox4.Size = new Size(175, 151);
+            pictureBox4.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox4.TabIndex = 5;
             pictureBox4.TabStop = false;
             // 
             // label3
             // 
-            label3.Anchor = AnchorStyles.None;
+            label3.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             label3.AutoSize = true;
             label3.BackColor = Color.FromArgb(33, 44, 66);
             label3.Font = new Font("Ubuntu Mono", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.Lime;
-            label3.Location = new Point(64, 240);
+            label3.Location = new Point(64, 264);
             label3.Name = "label3";
             label3.Size = new Size(24, 23);
             label3.TabIndex = 7;
@@ -541,12 +548,12 @@
             // 
             // label4
             // 
-            label4.Anchor = AnchorStyles.None;
+            label4.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             label4.AutoSize = true;
             label4.BackColor = Color.FromArgb(33, 44, 66);
             label4.Font = new Font("Ubuntu Mono", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.Lime;
-            label4.Location = new Point(64, 282);
+            label4.Location = new Point(64, 306);
             label4.Name = "label4";
             label4.Size = new Size(24, 23);
             label4.TabIndex = 8;
@@ -554,12 +561,12 @@
             // 
             // label5
             // 
-            label5.Anchor = AnchorStyles.None;
+            label5.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             label5.AutoSize = true;
             label5.BackColor = Color.FromArgb(33, 44, 66);
             label5.Font = new Font("Ubuntu Mono", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.White;
-            label5.Location = new Point(91, 282);
+            label5.Location = new Point(91, 306);
             label5.Name = "label5";
             label5.Size = new Size(175, 23);
             label5.TabIndex = 7;
@@ -567,12 +574,12 @@
             // 
             // label6
             // 
-            label6.Anchor = AnchorStyles.None;
+            label6.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             label6.AutoSize = true;
             label6.BackColor = Color.FromArgb(33, 44, 66);
             label6.Font = new Font("Ubuntu Mono", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label6.ForeColor = Color.White;
-            label6.Location = new Point(90, 240);
+            label6.Location = new Point(90, 264);
             label6.Name = "label6";
             label6.Size = new Size(197, 23);
             label6.TabIndex = 9;
@@ -580,23 +587,25 @@
             // 
             // panel7
             // 
-            panel7.Anchor = AnchorStyles.None;
             panel7.Controls.Add(label3);
             panel7.Controls.Add(label5);
             panel7.Controls.Add(pictureBox4);
             panel7.Controls.Add(label4);
             panel7.Controls.Add(label6);
             panel7.Controls.Add(pictureBox3);
-            panel7.Location = new Point(552, 180);
+            panel7.Dock = DockStyle.Fill;
+            panel7.Location = new Point(561, 129);
             panel7.Name = "panel7";
-            panel7.Size = new Size(375, 368);
+            panel7.Size = new Size(373, 416);
             panel7.TabIndex = 0;
             // 
             // tableLayoutPanel1
             // 
             tableLayoutPanel1.ColumnCount = 2;
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 58.3778F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 41.6222F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 59.55176F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 40.44824F));
+            tableLayoutPanel1.Controls.Add(panel7, 1, 1);
+            tableLayoutPanel1.Controls.Add(panel2, 0, 1);
             tableLayoutPanel1.Dock = DockStyle.Fill;
             tableLayoutPanel1.Location = new Point(0, 0);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -613,13 +622,12 @@
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(937, 548);
             Controls.Add(panel1);
-            Controls.Add(panel2);
-            Controls.Add(panel7);
             Controls.Add(tableLayoutPanel1);
-            MinimumSize = new Size(477, 333);
+            MinimumSize = new Size(500, 333);
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
             Load += Form1_Load;
+            Resize += Form1_Resize;
             panel1.ResumeLayout(false);
             logPanel.ResumeLayout(false);
             panel5.ResumeLayout(false);
@@ -638,6 +646,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             panel7.ResumeLayout(false);
             panel7.PerformLayout();
+            tableLayoutPanel1.ResumeLayout(false);
             ResumeLayout(false);
         }
 

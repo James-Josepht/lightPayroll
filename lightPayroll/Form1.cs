@@ -100,6 +100,23 @@ namespace lighPayroll
             this.Hide();
         }
 
+        private void Form1_Resize(object sender, EventArgs e)
+        {
+            if (this.Width < 833) // threshold
+            {
+                tableLayoutPanel1.ColumnStyles[0].Width = 100;
+                tableLayoutPanel1.ColumnStyles[1].Width = 0;
+
+                panel7.Visible = false; // optional but cleaner
+            }
+            else
+            {
+                tableLayoutPanel1.ColumnStyles[0].Width = 60;
+                tableLayoutPanel1.ColumnStyles[1].Width = 40;
+
+                panel7.Visible = true;
+            }
+        }
     }
 
     //used for changing the hover color in features
