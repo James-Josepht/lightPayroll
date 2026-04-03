@@ -1,21 +1,57 @@
-﻿using System;
+﻿using lighPayrollUI;
+using lightPayrollServices;
+using Microsoft.VisualBasic.ApplicationServices;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using lightPayrollServices;
+using WinFormsTimer = System.Windows.Forms.Timer;
+//timer is having conflict between System.Windows.Forms and System.Thread.Tasks, so I am using an alias
 
 namespace lighPayroll
 {
+    
+
     public partial class LogIn : Form
     {
+
         public LogIn()
         {
             InitializeComponent();
+        }
+
+        private void LogIn_Load(object sender, EventArgs e)
+        {
+            TypeText(logckInLabel, "Let's LOGK IN!");
+        }
+        //used for Greetings lol
+        public void TypeText(Label lbl, string text, int speed = 50)
+        {
+            int i = 0;
+
+            //timer is having conflict between System.Windows.Forms and System.Thread.Tasks, so I am using an alias
+            WinFormsTimer t = new WinFormsTimer();
+            t.Interval = speed;
+
+            t.Tick += (s, e) =>
+            {
+                if (i < text.Length)
+                {
+                    lbl.Text += text[i];
+                    i++;
+                }
+                else
+                {
+                    t.Stop();
+                }
+            };
+
+            lbl.Text = "";
+            t.Start();
         }
 
         private void backHomeButton_Click(object sender, EventArgs e)
@@ -37,14 +73,27 @@ namespace lighPayroll
             string username = userLogBox.Text.Trim();
             string password = passLogBox.Text.Trim();
 
-            AdminUI storedCredentials = new AdminUI();
+            AdminUI admin = new AdminUI();
+            
             AuthService validator = new AuthService();
 
-            if (validator.ValidateCredentials(username, password))
+            string status = validator.ValidateCredentials(username, password);
+
+            if (status == "Active" && username.ToLower() == "admin")
             {
                 showCustomMessage("Login successful!");
-                storedCredentials.Show();
+                admin.Show();
                 this.Hide();
+            }
+            else if (status == "Active" && username.ToLower() != "admin")
+            {
+                showCustomMessage("Login successful!");
+                this.Hide();
+            }
+            else if (status == "Pending")
+            {
+                showCustomMessage("Your account is pending approval.");
+
             }
             else
             {
@@ -85,7 +134,9 @@ namespace lighPayroll
             customMsg.ShowDialog();
         }
 
-        private void LogIn_Load(object sender, EventArgs e)
+       
+
+        private void label3_Click(object sender, EventArgs e)
         {
 
         }

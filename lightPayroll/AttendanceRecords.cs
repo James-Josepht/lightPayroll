@@ -22,7 +22,7 @@ namespace lighPayroll
 {
     public partial class AttendanceRecords : Form
     {
-        List<Users> users = new List<Users>();
+        List<Users> attendance = new List<Users>();
 
 
         public AttendanceRecords()
@@ -59,22 +59,23 @@ namespace lighPayroll
 
         }
 
-        private void LoadUsersList()
+        private void LoadAttendanceList()//used by UsersUI
         {
-            users = SQLiteDataAccess.LoadUsers(); //from lightPayrollServices
-            WireUpUsersList();
+            //from lightPayrollServices
+           // users = SQLiteDataAccess.LoadUsers(); 
+            WireUpAttendanceList();
         }
 
-        private void WireUpUsersList()
+        private void WireUpAttendanceList()
         {
             attendanceGrid.DataSource = null;
-            attendanceGrid.DataSource = users;
+            attendanceGrid.DataSource = attendance;
         }
 
         private void loadButton_Click(object sender, EventArgs e)
         {
+            //LoadAttendanceList();
 
-            LoadUsersList();
         }
 
         private void addButton_Click(object? sender, EventArgs e)
@@ -85,7 +86,7 @@ namespace lighPayroll
                 Password = fNameTxtBox.Text,
             };
 
-            SQLiteDataAccess.SaveUsers(user);
+            SQLiteDataAccess.InsertUser(user);
             nameTxtBox.Text = "";
             fNameTxtBox.Text = "";
         }
@@ -148,21 +149,12 @@ namespace lighPayroll
 
         }
 
-        private void attendanceGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         private void nameTxtBox_TextChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 
- 
+
 }

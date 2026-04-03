@@ -268,7 +268,7 @@ namespace lighPayroll
             attendanceGrid.RowHeadersWidth = 51;
             attendanceGrid.Size = new Size(758, 210);
             attendanceGrid.TabIndex = 11;
-            attendanceGrid.CellContentClick += attendanceGrid_CellContentClick;
+  
             // 
             // taskLabel
             // 
@@ -329,7 +329,7 @@ namespace lighPayroll
             // 
             // searchMenuStrip
             // 
-            searchMenuStrip.BackgroundImage = lighPayrollUI.Properties.Resources.search_interface_symbol;
+            searchMenuStrip.BackgroundImage = Resources.search_interface_symbol;
             searchMenuStrip.BackgroundImageLayout = ImageLayout.Stretch;
             searchMenuStrip.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             searchMenuStrip.ImageScalingSize = new Size(20, 20);
@@ -464,7 +464,7 @@ namespace lighPayroll
             // pictureBox2
             // 
             pictureBox2.Cursor = Cursors.Hand;
-            pictureBox2.Image = lighPayrollUI.Properties.Resources.smart_idea;
+            pictureBox2.Image = Resources.smart_idea;
             pictureBox2.Location = new Point(10, -7);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(203, 123);
@@ -481,6 +481,7 @@ namespace lighPayroll
             panel1.Name = "panel1";
             panel1.Size = new Size(937, 499);
             panel1.TabIndex = 8;
+          
             // 
             // AttendanceRecords
             // 

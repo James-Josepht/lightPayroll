@@ -17,7 +17,7 @@ namespace lightPayrollModel
         private string? passWord;
         private string? role;
         private string? accountStatus;
-        private string? dateCreated;
+        private DateTime? dateCreated;
         //these variable must have the same name in Database
         //else it would not show in the UI
 
@@ -48,7 +48,7 @@ namespace lightPayrollModel
             get { return this.accountStatus; }
             set { this.accountStatus = value; }
         }
-        public string? DateCreated
+        public DateTime? DateCreated
         {
             get { return this.dateCreated; }
             set { this.dateCreated = value; }

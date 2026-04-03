@@ -33,9 +33,12 @@ namespace lightPayrollServices
                 // Step 1: Ensure the table exists
                 string createTableSql = @"
                 CREATE TABLE IF NOT EXISTS UsersTable (
-                    UserID INTEGER PRIMARY KEY AUTOINCREMENT,
-                    Username TEXT,
-                    Password TEXT
+                UserID INTEGER PRIMARY KEY AUTOINCREMENT,
+                Username TEXT NOT NULL UNIQUE,
+                Password TEXT NOT NULL,
+                Role TEXT CHECK(Role IN ('Admin','Manager','Accountant','Employee')) NOT NULL,
+                AccountStatus TEXT CHECK(AccountStatus IN ('Pending','Active','Rejected')) DEFAULT 'Pending',
+                DateCreated TEXT DEFAULT CURRENT_TIMESTAMP
                 );";
 
                 conn.Execute(createTableSql);  // Dapper extension method for non-query commands
@@ -43,29 +46,64 @@ namespace lightPayrollServices
                 // Step 2: Query the table
                 var output = conn.Query<Users>("SELECT * FROM UsersTable", new DynamicParameters());
 
-                return output.ToList();
+                var users = output.Select(u =>
+                {
+                    u.DateCreated = u.DateCreated.Value.ToLocalTime(); // converts to PH time
+                    return u;
+                }).ToList();
+
+
+                return users;
             }
         }
 
-        public static void SaveUsers(Users people)
+        public static void InsertUser(Users user)
         {
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
             {
-                conn.Execute("INSERT INTO UsersTable (Username, Password) VALUES (@Username, @Password)", people);
+                string sql = @"
+                INSERT INTO UsersTable 
+                (Username, Password, Role, AccountStatus) 
+                VALUES (@Username, @Password, @Role, @AccountStatus);";
+
+                conn.Execute(sql, user);
+            }
+        }
+
+        public static Users GetUserByUsername(string username)
+        {
+            using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
+            {
+                string sql = "SELECT * FROM UsersTable WHERE Username = @Username";
+                return conn.QueryFirstOrDefault<Users>(sql, new { Username = username });
+            }
+        }
+
+        //UPDATE status (approve/reject accounts)
+        public static void UpdateUserStatus(int userId, string status)
+        {
+            using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
+            {
+                string sql = @"
+                UPDATE UsersTable 
+                SET AccountStatus = @Status 
+                WHERE UserID = @UserID";
+
+                conn.Execute(sql, new { Status = status, UserID = userId });
             }
         }
 
 
         private static string LoadConnectionString(string id = "DefaultConnection")// goes to App.config to get the connection string with the name "Default"
         {
-            var settings =  ConfigurationManager.ConnectionStrings[id].ConnectionString;
+            var connStrings =  ConfigurationManager.ConnectionStrings[id].ConnectionString;
 
-            if (settings == null)
+            if (connStrings == null)
             {
                 throw new Exception($"Connection string '{id}' not found.");
             }
 
-            return settings;
+            return connStrings;
         }
     }
 

@@ -1,4 +1,6 @@
-﻿using lighPayrollUI.Properties;
+﻿using lighPayrollUI;
+using lighPayrollUI.Properties;
+using lightPayrollServices;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,6 +16,7 @@ namespace lighPayroll
 {
     public partial class AdminUI : Form
     {
+        LogIn loginDesigns = new LogIn();
         public AdminUI()
         {
             InitializeComponent();
@@ -22,8 +25,18 @@ namespace lighPayroll
 
         private void AdminUI_Load(object sender, EventArgs e)
         {
-            panelDesign();
+            if (!this.DesignMode) // ensures code runs only at runtime
+            {
+                GreetingService greetingService = new GreetingService();
 
+                string adminGreeting = greetingService.GetRandomGreeting("Admin") ?? "Hello Admin!";
+                string bibleGuidance = greetingService.GetRandomGreeting("Christ-Centered Guidance") ?? "Welcome!";
+
+                loginDesigns.TypeText(label1, adminGreeting);
+                loginDesigns.TypeText(encourageVerses, bibleGuidance);
+
+                panelDesign();
+            }
         }
 
 
@@ -52,6 +65,8 @@ namespace lighPayroll
 
         private void panelDesign()
         {
+            if (this.DesignMode) return;
+
             int radius = 30;
 
             GraphicsPath greetingsPath = new GraphicsPath();
@@ -124,20 +139,14 @@ namespace lighPayroll
             this.Hide();
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
+        private void userControlPanel_Click(object sender, EventArgs e)
         {
-
+            UserModification userModification = new UserModification();
+            userModification.Show();
+            this.Hide();
         }
 
-        private void searchMenuStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
-
-        private void searchMS_Click(object sender, EventArgs e)
-        {
-
-        }
+  
     }
 
 }

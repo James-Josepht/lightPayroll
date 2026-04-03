@@ -139,7 +139,7 @@ namespace lighPayroll
             label1.BackColor = Color.FromArgb(33, 44, 66);
             label1.Font = new Font("Ubuntu Mono", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Beige;
-            label1.Location = new Point(164, 164);
+            label1.Location = new Point(164, 140);
             label1.Name = "label1";
             label1.Size = new Size(152, 18);
             label1.TabIndex = 2;
@@ -156,7 +156,7 @@ namespace lighPayroll
             // 
             // registerAccountBox
             // 
-            registerAccountBox.Location = new Point(164, 194);
+            registerAccountBox.Location = new Point(164, 173);
             registerAccountBox.Name = "registerAccountBox";
             registerAccountBox.Size = new Size(238, 25);
             registerAccountBox.TabIndex = 0;
@@ -184,6 +184,7 @@ namespace lighPayroll
             Controls.Add(panel1);
             Name = "Register";
             StartPosition = FormStartPosition.CenterScreen;
+            Load += Register_Load;
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel2.ResumeLayout(false);

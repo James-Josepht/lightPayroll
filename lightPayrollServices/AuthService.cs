@@ -1,7 +1,10 @@
-﻿using System;
+﻿using lightPayrollModel;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace lightPayrollServices
@@ -19,12 +22,59 @@ namespace lightPayrollServices
             return reservedUsernames.Contains(username.ToLower());
         }
 
-        public bool ValidateCredentials(string username, string password)
+        public string ValidateCredentials(string username, string password)
         {
             // In a real application, you would query the database here.
             // But since I am using simulation, I will just check against hardcoded values for admin.
-            return username == "admin" && password == "admin";
 
+                var user = SQLiteDataAccess.GetUserByUsername(username);
+                if (user != null && user.Password == password && user.AccountStatus == "Active")
+                {
+                    return "Active";
+                }
+                else if (user != null && user.Password == password && user.AccountStatus == "Pending")
+                {
+                    return "Pending";
+                }
+                else if (username == "admin" && password == "admin")
+                {
+                    return "Active";
+                }
+           
+
+            return "Rejected";
+        }
+
+        public bool IsValidLightEmail(string email)
+        {
+            string pattern = @"^[a-zA-Z]+\.[a-zA-Z]+@light\.com$";
+            return Regex.IsMatch(email, pattern);
+        }
+
+        public bool RegisterAccount(string username, string password, string role = "Employee")
+        {
+            
+            //check if username already exists
+
+            var existingUser = SQLiteDataAccess.GetUserByUsername(username);
+
+            if (existingUser != null)
+                return false;
+
+
+            //Create user object
+            Users newUser = new Users
+            {
+                Username = username,
+                Password = password, // next step: HASH THIS
+                Role = role,
+                AccountStatus = "Pending"
+            };
+
+            //Save to DB
+            SQLiteDataAccess.InsertUser(newUser);
+
+            return true;
         }
 
     }

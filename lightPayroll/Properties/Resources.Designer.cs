@@ -83,6 +83,16 @@ namespace lighPayrollUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap cross {
+            get {
+                object obj = ResourceManager.GetObject("cross", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap good_evening_get_greeting {
             get {
                 object obj = ResourceManager.GetObject("good-evening-get-greeting", resourceCulture);
@@ -116,6 +126,16 @@ namespace lighPayrollUI.Properties {
         internal static System.Drawing.Bitmap smart_idea {
             get {
                 object obj = ResourceManager.GetObject("smart idea", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap to_do_list {
+            get {
+                object obj = ResourceManager.GetObject("to-do-list", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
