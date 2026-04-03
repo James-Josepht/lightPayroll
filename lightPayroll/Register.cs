@@ -34,16 +34,55 @@ namespace lighPayroll
 
         private void registerAccountTextChange(object sender, EventArgs e)
         {
-            UserName = registerAccountBox.Text;
+            AuthService authService = new AuthService();
 
+            UserName = registerAccountBox.Text;
         }
+
         private void registerPassTextChange(object sender, EventArgs e)
         {
+            // Check if the username (email) is in valid format
+            bool isValid = authService.IsValidLightEmail(userName);
+            invalidUsername.Visible = !isValid; // Show the error message if not valid
+
+            if (isValid)
+            {
+                registerButton.Enabled = true;
+            }
+            else
+            {
+                registerButton.Enabled = false;
+            }
+
+
             UserPass = registerPassBox.Text;
         }
 
         private void registerButtonClick(object sender, EventArgs e)
         {
+            if (UserPass.Length < 8)
+            {
+                invalidPassword.Visible = true; // Show the password error message
+                registerButton.Enabled = false; // Disable the register button
+                return;
+            }
+            else
+            {
+                invalidPassword.Visible = false; // Hide the password error message
+                registerButton.Enabled = true; // Enable the register button
+            }
+
+
+
+            if (string.IsNullOrWhiteSpace(UserName) || string.IsNullOrWhiteSpace(UserPass))
+            {
+                loginDesigns.showCustomMessage("Please fill in all fields.");
+                return;
+            }
+
+
+
+            //check if username exist in database
             if (authService.IsReserved(UserName))
             {
                 loginDesigns.showCustomMessage("This username is invalid. Please choose a different one.");
@@ -70,6 +109,8 @@ namespace lighPayroll
         {
 
         }
+
+  
 
         public string UserName
         {

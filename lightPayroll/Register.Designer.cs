@@ -42,6 +42,8 @@ namespace lighPayroll
             registerPassBox = new TextBox();
             registerAccountBox = new TextBox();
             backHomeButton = new PictureBox();
+            invalidUsername = new Label();
+            invalidPassword = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel2.SuspendLayout();
@@ -74,6 +76,8 @@ namespace lighPayroll
             panel2.BackColor = SystemColors.ActiveCaption;
             panel2.BackgroundImage = Resources.background;
             panel2.BackgroundImageLayout = ImageLayout.Stretch;
+            panel2.Controls.Add(invalidPassword);
+            panel2.Controls.Add(invalidUsername);
             panel2.Controls.Add(label3);
             panel2.Controls.Add(showPassBox);
             panel2.Controls.Add(registerButton);
@@ -85,6 +89,7 @@ namespace lighPayroll
             panel2.Name = "panel2";
             panel2.Size = new Size(564, 424);
             panel2.TabIndex = 3;
+        
             // 
             // label3
             // 
@@ -103,7 +108,7 @@ namespace lighPayroll
             showPassBox.AutoSize = true;
             showPassBox.BackColor = Color.FromArgb(33, 44, 66);
             showPassBox.ForeColor = Color.Beige;
-            showPassBox.Location = new Point(164, 304);
+            showPassBox.Location = new Point(138, 306);
             showPassBox.Name = "showPassBox";
             showPassBox.Size = new Size(118, 21);
             showPassBox.TabIndex = 7;
@@ -127,7 +132,7 @@ namespace lighPayroll
             label2.BackColor = Color.FromArgb(33, 44, 66);
             label2.Font = new Font("Ubuntu Mono", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.Beige;
-            label2.Location = new Point(164, 234);
+            label2.Location = new Point(138, 231);
             label2.Name = "label2";
             label2.Size = new Size(80, 18);
             label2.TabIndex = 3;
@@ -139,7 +144,7 @@ namespace lighPayroll
             label1.BackColor = Color.FromArgb(33, 44, 66);
             label1.Font = new Font("Ubuntu Mono", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Beige;
-            label1.Location = new Point(164, 140);
+            label1.Location = new Point(138, 140);
             label1.Name = "label1";
             label1.Size = new Size(152, 18);
             label1.TabIndex = 2;
@@ -147,18 +152,18 @@ namespace lighPayroll
             // 
             // registerPassBox
             // 
-            registerPassBox.Location = new Point(164, 263);
+            registerPassBox.Location = new Point(138, 254);
             registerPassBox.Name = "registerPassBox";
-            registerPassBox.Size = new Size(238, 25);
+            registerPassBox.Size = new Size(281, 25);
             registerPassBox.TabIndex = 1;
             registerPassBox.UseSystemPasswordChar = true;
             registerPassBox.TextChanged += registerPassTextChange;
             // 
             // registerAccountBox
             // 
-            registerAccountBox.Location = new Point(164, 173);
+            registerAccountBox.Location = new Point(138, 170);
             registerAccountBox.Name = "registerAccountBox";
-            registerAccountBox.Size = new Size(238, 25);
+            registerAccountBox.Size = new Size(281, 25);
             registerAccountBox.TabIndex = 0;
             registerAccountBox.TextChanged += registerAccountTextChange;
             // 
@@ -172,6 +177,32 @@ namespace lighPayroll
             backHomeButton.TabIndex = 4;
             backHomeButton.TabStop = false;
             backHomeButton.Click += backHomeButtonClick;
+            // 
+            // invalidUsername
+            // 
+            invalidUsername.AutoSize = true;
+            invalidUsername.BackColor = Color.FromArgb(33, 44, 66);
+            invalidUsername.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            invalidUsername.ForeColor = Color.Red;
+            invalidUsername.Location = new Point(138, 198);
+            invalidUsername.Name = "invalidUsername";
+            invalidUsername.Size = new Size(278, 17);
+            invalidUsername.TabIndex = 8;
+            invalidUsername.Text = "Format must be firstname.lastname@light.com";
+            invalidUsername.Visible = false;
+            // 
+            // invalidPassword
+            // 
+            invalidPassword.AutoSize = true;
+            invalidPassword.BackColor = Color.FromArgb(33, 44, 66);
+            invalidPassword.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            invalidPassword.ForeColor = Color.Red;
+            invalidPassword.Location = new Point(138, 281);
+            invalidPassword.Name = "invalidPassword";
+            invalidPassword.Size = new Size(236, 17);
+            invalidPassword.TabIndex = 9;
+            invalidPassword.Text = "Password must be at least 8 characters";
+            invalidPassword.Visible = false;
             // 
             // Register
             // 
@@ -206,5 +237,7 @@ namespace lighPayroll
         private Button registerButton;
         private CheckBox showPassBox;
         private Label label3;
+        private Label invalidPassword;
+        private Label invalidUsername;
     }
 }
