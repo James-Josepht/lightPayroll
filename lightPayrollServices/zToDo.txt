@@ -6,5 +6,5 @@
 [x]Create log in for users
 [x]Allow dates to be adjusting based on the time zone of the user
 [x]Implement typing effect for login label
-[]Create email based create of users
+[x]Create email based create of users
 []Finish UI for user and accountant

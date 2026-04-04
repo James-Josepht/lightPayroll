@@ -157,7 +157,7 @@ namespace lighPayroll
             registerPassBox.Size = new Size(281, 25);
             registerPassBox.TabIndex = 1;
             registerPassBox.UseSystemPasswordChar = true;
-            registerPassBox.TextChanged += registerPassTextChange;
+            registerPassBox.Leave += registerPassBox_Leave;
             // 
             // registerAccountBox
             // 
@@ -165,7 +165,7 @@ namespace lighPayroll
             registerAccountBox.Name = "registerAccountBox";
             registerAccountBox.Size = new Size(281, 25);
             registerAccountBox.TabIndex = 0;
-            registerAccountBox.TextChanged += registerAccountTextChange;
+            registerAccountBox.Leave += registerAccountBox_Leave;
             // 
             // backHomeButton
             // 

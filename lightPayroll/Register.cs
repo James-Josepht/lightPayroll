@@ -32,15 +32,12 @@ namespace lighPayroll
             this.Hide();
         }
 
-        private void registerAccountTextChange(object sender, EventArgs e)
+        //once the user leaves the username textbox, validate the email format 
+        private void registerAccountBox_Leave(object sender, EventArgs e)
         {
-            AuthService authService = new AuthService();
 
-            UserName = registerAccountBox.Text;
-        }
+            userName = registerAccountBox.Text;
 
-        private void registerPassTextChange(object sender, EventArgs e)
-        {
             // Check if the username (email) is in valid format
             bool isValid = authService.IsValidLightEmail(userName);
             invalidUsername.Visible = !isValid; // Show the error message if not valid
@@ -53,14 +50,12 @@ namespace lighPayroll
             {
                 registerButton.Enabled = false;
             }
-
-
-            UserPass = registerPassBox.Text;
         }
 
-        private void registerButtonClick(object sender, EventArgs e)
+        private void registerPassBox_Leave(object sender, EventArgs e)
         {
-            if (UserPass.Length < 8)
+            userPass = registerPassBox.Text;
+            if (userPass.Length < 8)
             {
                 invalidPassword.Visible = true; // Show the password error message
                 registerButton.Enabled = false; // Disable the register button
@@ -68,13 +63,15 @@ namespace lighPayroll
             }
             else
             {
-                invalidPassword.Visible = false; // Hide the password error message
-                registerButton.Enabled = true; // Enable the register button
+                invalidPassword.Visible = false;
+                registerButton.Enabled = true;
             }
+        }
 
-
-
-            if (string.IsNullOrWhiteSpace(UserName) || string.IsNullOrWhiteSpace(UserPass))
+        private void registerButtonClick(object sender, EventArgs e)
+        {
+          
+            if (string.IsNullOrWhiteSpace(userName) || string.IsNullOrWhiteSpace(userPass))
             {
                 loginDesigns.showCustomMessage("Please fill in all fields.");
                 return;
@@ -83,11 +80,11 @@ namespace lighPayroll
 
 
             //check if username exist in database
-            if (authService.IsReserved(UserName))
+            if (authService.IsReserved(userName))
             {
                 loginDesigns.showCustomMessage("This username is invalid. Please choose a different one.");
             }
-            else if (authService.RegisterAccount(UserName, UserPass))
+            else if (authService.RegisterAccount(userName, userPass))
             {
                 loginDesigns.showCustomMessage("Registration successful! You can now log in.");
                 LogIn login = new LogIn();
@@ -100,6 +97,7 @@ namespace lighPayroll
             }
 
         }
+
         private void showPassBoxClick(object sender, EventArgs e)
         {
             registerPassBox.UseSystemPasswordChar = !showPassBox.Checked;
@@ -112,16 +110,6 @@ namespace lighPayroll
 
   
 
-        public string UserName
-        {
-            get { return this.userName; }
-            set { this.userName = value; }
-        }
-        public string UserPass
-        {
-            get { return this.userPass; }
-            set { this.userPass = value; }
-        }
 
     }
 }
