@@ -27,7 +27,7 @@ namespace lightPayrollServices
             // In a real application, you would query the database here.
             // But since I am using simulation, I will just check against hardcoded values for admin.
 
-                var user = SQLiteDataAccess.GetUserByUsername(username);
+                var user = SQLiteDataAccess.GetUserByIdOrUsername(username);
                 if (user != null && user.Password == password && user.AccountStatus == "Active")
                 {
                     return "Active";
@@ -56,7 +56,7 @@ namespace lightPayrollServices
             
             //check if username already exists
 
-            var existingUser = SQLiteDataAccess.GetUserByUsername(username);
+            var existingUser = SQLiteDataAccess.GetUserByIdOrUsername(username);
 
             if (existingUser != null)
                 return false;

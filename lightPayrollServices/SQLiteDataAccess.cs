@@ -24,7 +24,7 @@ namespace lightPayrollServices
         lightPayroll\lightPayrollDB.db
          */
 
-        public static List<Users> LoadUsers()
+        public static List<UsersShow> LoadUsers()
         {
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
             {
@@ -44,11 +44,11 @@ namespace lightPayrollServices
                 conn.Execute(createTableSql);  // Dapper extension method for non-query commands
 
                 // Step 2: Query the table
-                var output = conn.Query<Users>("SELECT * FROM UsersTable", new DynamicParameters());
+                var output = conn.Query<UsersShow>("SELECT UsersID, Username, Role, AccountStatus, DateCreated FROM UsersTable", new DynamicParameters());
 
                 var users = output.Select(u =>
                 {
-                    u.DateCreated = u.DateCreated.Value.ToLocalTime(); // converts to PH time
+                    u.DateCreated = u.DateCreated.Value.ToLocalTime(); // converts to user local time (converting the database time)
                     return u;
                 }).ToList();
 
@@ -70,26 +70,34 @@ namespace lightPayrollServices
             }
         }
 
-        public static Users GetUserByUsername(string username)
+        public static Users GetUserByIdOrUsername(string input)
         {
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
             {
-                string sql = "SELECT * FROM UsersTable WHERE Username = @Username";
-                return conn.QueryFirstOrDefault<Users>(sql, new { Username = username });
+                int id;
+                bool isNumeric = int.TryParse(input, out id);
+
+                string sql = isNumeric
+                    ? "SELECT * FROM UsersTable WHERE UsersID = @Input LIMIT 1"
+                    : "SELECT * FROM UsersTable WHERE Username = @Input LIMIT 1";
+
+                return conn.QueryFirstOrDefault<Users>(sql, new { Input = isNumeric ? (object)id : input });
             }
         }
 
+
         //UPDATE status (approve/reject accounts)
-        public static void UpdateUserStatus(int userId, string status)
+        public static void UpdateUserStatus(int userId, string status, string role)
         {
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
             {
                 string sql = @"
                 UPDATE UsersTable 
-                SET AccountStatus = @Status 
-                WHERE UserID = @UserID";
+                SET AccountStatus = @Status, Role = @Role
+                WHERE UsersID = @UsersID";
 
-                conn.Execute(sql, new { Status = status, UserID = userId });
+
+                conn.Execute(sql, new { Status = status, Role = role, UsersID = userId });
             }
         }
 

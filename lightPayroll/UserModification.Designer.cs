@@ -32,18 +32,18 @@
             headPanel = new Panel();
             pictureBox1 = new PictureBox();
             bodyPanel = new Panel();
+            roleComboBox = new ComboBox();
+            statusComboBox = new ComboBox();
             lastNameLabel = new Label();
             panel3 = new Panel();
             addUserButton = new Button();
             modifyRowButton = new Button();
             deleteRowButton = new Button();
-            fNameTxtBox = new TextBox();
             userLabel = new Label();
             label4 = new Label();
             label2 = new Label();
             nameLabel = new Label();
             attendanceGrid = new DataGridView();
-            nameTxtBox = new TextBox();
             label1 = new Label();
             idTxtBox = new TextBox();
             loadButton = new Button();
@@ -75,19 +75,20 @@
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 1;
             pictureBox1.TabStop = false;
+            pictureBox1.Click += pictureBox1_Click;
             // 
             // bodyPanel
             // 
             bodyPanel.BackColor = Color.FromArgb(33, 44, 66);
+            bodyPanel.Controls.Add(roleComboBox);
+            bodyPanel.Controls.Add(statusComboBox);
             bodyPanel.Controls.Add(lastNameLabel);
             bodyPanel.Controls.Add(panel3);
-            bodyPanel.Controls.Add(fNameTxtBox);
             bodyPanel.Controls.Add(userLabel);
             bodyPanel.Controls.Add(label4);
             bodyPanel.Controls.Add(label2);
             bodyPanel.Controls.Add(nameLabel);
             bodyPanel.Controls.Add(attendanceGrid);
-            bodyPanel.Controls.Add(nameTxtBox);
             bodyPanel.Controls.Add(label1);
             bodyPanel.Controls.Add(idTxtBox);
             bodyPanel.Controls.Add(loadButton);
@@ -96,6 +97,26 @@
             bodyPanel.Size = new Size(937, 495);
             bodyPanel.TabIndex = 4;
             // 
+            // roleComboBox
+            // 
+            roleComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            roleComboBox.FormattingEnabled = true;
+            roleComboBox.Items.AddRange(new object[] { "Accountant", "Employee", "Manager", "Admin" });
+            roleComboBox.Location = new Point(754, 89);
+            roleComboBox.Name = "roleComboBox";
+            roleComboBox.Size = new Size(100, 25);
+            roleComboBox.TabIndex = 34;
+            // 
+            // statusComboBox
+            // 
+            statusComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            statusComboBox.FormattingEnabled = true;
+            statusComboBox.Items.AddRange(new object[] { "Active", "Pending", "Rejected" });
+            statusComboBox.Location = new Point(754, 61);
+            statusComboBox.Name = "statusComboBox";
+            statusComboBox.Size = new Size(100, 25);
+            statusComboBox.TabIndex = 33;
+            // 
             // lastNameLabel
             // 
             lastNameLabel.AutoSize = true;
@@ -103,7 +124,7 @@
             lastNameLabel.Cursor = Cursors.Hand;
             lastNameLabel.Font = new Font("Ubuntu Mono", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lastNameLabel.ForeColor = Color.Beige;
-            lastNameLabel.Location = new Point(687, 92);
+            lastNameLabel.Location = new Point(695, 92);
             lastNameLabel.Name = "lastNameLabel";
             lastNameLabel.Size = new Size(48, 17);
             lastNameLabel.TabIndex = 32;
@@ -146,6 +167,7 @@
             modifyRowButton.Size = new Size(43, 25);
             modifyRowButton.TabIndex = 1;
             modifyRowButton.UseVisualStyleBackColor = false;
+            modifyRowButton.Click += modifyRowButton_Click;
             // 
             // deleteRowButton
             // 
@@ -160,13 +182,6 @@
             deleteRowButton.Size = new Size(43, 25);
             deleteRowButton.TabIndex = 0;
             deleteRowButton.UseVisualStyleBackColor = false;
-            // 
-            // fNameTxtBox
-            // 
-            fNameTxtBox.Location = new Point(754, 92);
-            fNameTxtBox.Name = "fNameTxtBox";
-            fNameTxtBox.Size = new Size(100, 25);
-            fNameTxtBox.TabIndex = 31;
             // 
             // userLabel
             // 
@@ -213,11 +228,11 @@
             nameLabel.Cursor = Cursors.Hand;
             nameLabel.Font = new Font("Ubuntu Mono", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             nameLabel.ForeColor = Color.Beige;
-            nameLabel.Location = new Point(687, 65);
+            nameLabel.Location = new Point(679, 65);
             nameLabel.Name = "nameLabel";
-            nameLabel.Size = new Size(56, 17);
+            nameLabel.Size = new Size(64, 17);
             nameLabel.TabIndex = 29;
-            nameLabel.Text = "Email:";
+            nameLabel.Text = "Status:";
             // 
             // attendanceGrid
             // 
@@ -229,13 +244,6 @@
             attendanceGrid.RowHeadersWidth = 51;
             attendanceGrid.Size = new Size(758, 210);
             attendanceGrid.TabIndex = 23;
-            // 
-            // nameTxtBox
-            // 
-            nameTxtBox.Location = new Point(754, 62);
-            nameTxtBox.Name = "nameTxtBox";
-            nameTxtBox.Size = new Size(100, 25);
-            nameTxtBox.TabIndex = 28;
             // 
             // label1
             // 
@@ -249,7 +257,6 @@
             label1.Size = new Size(200, 17);
             label1.TabIndex = 25;
             label1.Text = "NOTE: VERIFY ID PROPERLY";
-            label1.Click += label1_Click;
             // 
             // idTxtBox
             // 
@@ -303,15 +310,15 @@
         private Button addUserButton;
         private Button modifyRowButton;
         private Button deleteRowButton;
-        private TextBox fNameTxtBox;
         private Label userLabel;
         private Label label4;
         private Label label2;
         private Label nameLabel;
         private DataGridView attendanceGrid;
-        private TextBox nameTxtBox;
         private Label label1;
         private TextBox idTxtBox;
         private Button loadButton;
+        private ComboBox roleComboBox;
+        private ComboBox statusComboBox;
     }
 }

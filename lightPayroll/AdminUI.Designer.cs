@@ -169,7 +169,7 @@ namespace lighPayroll
             // toolStripSeparator5
             // 
             toolStripSeparator5.Name = "toolStripSeparator5";
-            toolStripSeparator5.Size = new Size(157, 6);
+            toolStripSeparator5.Size = new Size(177, 6);
             // 
             // recentSearches
             // 
@@ -189,7 +189,7 @@ namespace lighPayroll
             featureStrip1.BackgroundImage = (Image)resources.GetObject("featureStrip1.BackgroundImage");
             featureStrip1.Font = new Font("Ubuntu Mono Medium", 7.20000029F, FontStyle.Bold, GraphicsUnit.Point, 0);
             featureStrip1.Name = "featureStrip1";
-            featureStrip1.Size = new Size(160, 22);
+            featureStrip1.Size = new Size(180, 22);
             featureStrip1.Text = "Attendance";
             // 
             // toolStripSeparator1
@@ -197,14 +197,14 @@ namespace lighPayroll
             toolStripSeparator1.BackColor = SystemColors.Info;
             toolStripSeparator1.ForeColor = SystemColors.ActiveCaption;
             toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(157, 6);
+            toolStripSeparator1.Size = new Size(177, 6);
             // 
             // featureStrip2
             // 
             featureStrip2.BackColor = Color.Beige;
             featureStrip2.Font = new Font("Ubuntu Mono Medium", 7.20000029F, FontStyle.Bold, GraphicsUnit.Point, 0);
             featureStrip2.Name = "featureStrip2";
-            featureStrip2.Size = new Size(160, 22);
+            featureStrip2.Size = new Size(180, 22);
             featureStrip2.Text = "User Removal";
             // 
             // toolStripSeparator2
@@ -212,14 +212,14 @@ namespace lighPayroll
             toolStripSeparator2.BackColor = SystemColors.Info;
             toolStripSeparator2.ForeColor = SystemColors.ActiveCaption;
             toolStripSeparator2.Name = "toolStripSeparator2";
-            toolStripSeparator2.Size = new Size(157, 6);
+            toolStripSeparator2.Size = new Size(177, 6);
             // 
             // featureStrip3
             // 
             featureStrip3.BackColor = Color.Beige;
             featureStrip3.Font = new Font("Ubuntu Mono Medium", 7.20000029F, FontStyle.Bold, GraphicsUnit.Point, 0);
             featureStrip3.Name = "featureStrip3";
-            featureStrip3.Size = new Size(160, 22);
+            featureStrip3.Size = new Size(180, 22);
             featureStrip3.Text = "Payroll";
             // 
             // toolStripMenuItem12

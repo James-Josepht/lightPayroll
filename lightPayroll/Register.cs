@@ -73,7 +73,7 @@ namespace lighPayroll
           
             if (string.IsNullOrWhiteSpace(userName) || string.IsNullOrWhiteSpace(userPass))
             {
-                loginDesigns.showCustomMessage("Please fill in all fields.");
+                loginDesigns.showCustomMessage("Fields must not be empty.");
                 return;
             }
 

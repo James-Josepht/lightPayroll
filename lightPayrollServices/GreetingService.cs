@@ -20,17 +20,17 @@ namespace lightPayrollServices
 
         private string[] christCenteredGuidance =
         {
-            "Come to me, all you who are weary,\n and I will give you rest. — Matthew 11:28",
+            "Come to me, all you who are weary, and I will give you rest. \n— Matthew 11:28",
             "Abide in me, and I in you. — John 15:4",
 
             // Beatitudes
-            "Blessed are the poor in spirit,\n for theirs is the kingdom of heaven. — Matthew 5:3",
-            "Blessed are those who mourn,\n for they shall be comforted. — Matthew 5:4",
-            "Blessed are the meek,\n for they shall inherit the earth. — Matthew 5:5",
-            "Blessed are those who hunger and thirst for righteousness,\n for they shall be satisfied. — Matthew 5:6",
-            "Blessed are the merciful,\n for they shall receive mercy. — Matthew 5:7",
-            "Blessed are the pure in heart,\n for they shall see God. — Matthew 5:8",
-            "Blessed are the peacemakers,\n for they shall be called children of God. — Matthew 5:9",
+            "Blessed are the poor in spirit, for theirs is the kingdom of heaven. \n— Matthew 5:3",
+            "Blessed are those who mourn, for they shall be comforted. \n— Matthew 5:4",
+            "Blessed are the meek, for they shall inherit the earth. \n— Matthew 5:5",
+            "Blessed are those who hunger and thirst for righteousness, \nfor they shall be satisfied. — Matthew 5:6",
+            "Blessed are the merciful, for they shall receive mercy. \n— Matthew 5:7",
+            "Blessed are the pure in heart, for they shall see God. \n— Matthew 5:8",
+            "Blessed are the peacemakers, for they shall be called children of God. \n— Matthew 5:9",
             "Take heart! I have overcome the world. — John 16:33",
             "Believe in the Lord Jesus, and you will be saved. — Acts 16:31"
         };

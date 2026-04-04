@@ -56,6 +56,46 @@ namespace lightPayrollModel
 
     }
 
+    public class UsersShow //only for showing in the UI, not for database
+    {
+        private int usersID;
+        private string? userName;
+        private string? role;
+        private string? accountStatus;
+        private DateTime? dateCreated;
+        //these variable must have the same name in Database
+        //else it would not show in the UI
+
+        public int UsersID
+        {
+            get { return this.usersID; }
+            set { this.usersID = value; }
+        }
+        public string? Username
+        {
+            get { return this.userName; }
+            set { this.userName = value; }
+        }
+
+
+        public string? Role
+        {
+            get { return this.role; }
+            set { this.role = value; }
+        }
+        public string? AccountStatus
+        {
+            get { return this.accountStatus; }
+            set { this.accountStatus = value; }
+        }
+        public DateTime? DateCreated
+        {
+            get { return this.dateCreated; }
+            set { this.dateCreated = value; }
+        }
+
+    }
+
     public class Employees
     {
         private string? firstName;

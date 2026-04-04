@@ -7,4 +7,5 @@
 [x]Allow dates to be adjusting based on the time zone of the user
 [x]Implement typing effect for login label
 [x]Create email based create of users
+[]Create a model for showing only, which does not include password
 []Finish UI for user and accountant

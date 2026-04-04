@@ -1,47 +1,31 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using lighPayroll;
-using lightPayrollModel;
 using lightPayrollServices;
 
 namespace lighPayrollUI
 {
     public partial class UserModification : Form
     {
-        LogIn greetings = new LogIn();
-        List<Users> users = new List<Users>();
+        LogIn greetingsAndMessageBoxDesign = new LogIn();
+
 
         public UserModification()
         {
             InitializeComponent();
         }
+
         private void UsersUI_Load(object sender, EventArgs e)
         {
-            greetings.TypeText(label2, "Trust But Always Verify!");
+            greetingsAndMessageBoxDesign.TypeText(label2, "Trust But Always Verify!");
         }
 
+        // Load directly from database
         private void LoadUserList()
         {
-            users = SQLiteDataAccess.LoadUsers();
-            WireUpUserList();
-        }
-        private void WireUpUserList()
-        {
-
-            attendanceGrid.DataSource = null;
-            attendanceGrid.DataSource = users;
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
+            attendanceGrid.DataSource = SQLiteDataAccess.LoadUsers();
         }
 
         private void loadButton_Click(object sender, EventArgs e)
@@ -49,5 +33,47 @@ namespace lighPayrollUI
             LoadUserList();
         }
 
+
+
+        // Update ONLY when button is clicked
+        private void modifyRowButton_Click(object sender, EventArgs e)
+        {
+            // Validate input first
+            if (!int.TryParse(idTxtBox.Text, out int userId))
+            {
+                greetingsAndMessageBoxDesign.showCustomMessage("Please enter a valid numeric User ID.");
+                return;
+            }
+
+            if (SQLiteDataAccess.GetUserByIdOrUsername(userId.ToString()) == null)
+            {
+                greetingsAndMessageBoxDesign.showCustomMessage("User ID not found.");
+                return;
+            }
+
+            // Optional: get status from another control (example)
+            string status = statusComboBox.Text;
+            string role = roleComboBox.Text;
+
+            if (string.IsNullOrEmpty(status) || string.IsNullOrEmpty(role))
+            {
+                greetingsAndMessageBoxDesign.showCustomMessage("Please select both status and role.");
+                return;
+            }
+
+            SQLiteDataAccess.UpdateUserStatus(userId, status, role);
+
+            greetingsAndMessageBoxDesign.showCustomMessage("User updated successfully!");
+
+            // Refresh grid
+            LoadUserList();
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            AdminUI adminUI = new AdminUI();
+            adminUI.Show();
+            this.Hide();
+        }
     }
 }
