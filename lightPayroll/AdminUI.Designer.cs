@@ -169,7 +169,7 @@ namespace lighPayroll
             // toolStripSeparator5
             // 
             toolStripSeparator5.Name = "toolStripSeparator5";
-            toolStripSeparator5.Size = new Size(177, 6);
+            toolStripSeparator5.Size = new Size(157, 6);
             // 
             // recentSearches
             // 
@@ -189,7 +189,7 @@ namespace lighPayroll
             featureStrip1.BackgroundImage = (Image)resources.GetObject("featureStrip1.BackgroundImage");
             featureStrip1.Font = new Font("Ubuntu Mono Medium", 7.20000029F, FontStyle.Bold, GraphicsUnit.Point, 0);
             featureStrip1.Name = "featureStrip1";
-            featureStrip1.Size = new Size(180, 22);
+            featureStrip1.Size = new Size(160, 22);
             featureStrip1.Text = "Attendance";
             // 
             // toolStripSeparator1
@@ -197,14 +197,14 @@ namespace lighPayroll
             toolStripSeparator1.BackColor = SystemColors.Info;
             toolStripSeparator1.ForeColor = SystemColors.ActiveCaption;
             toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(177, 6);
+            toolStripSeparator1.Size = new Size(157, 6);
             // 
             // featureStrip2
             // 
             featureStrip2.BackColor = Color.Beige;
             featureStrip2.Font = new Font("Ubuntu Mono Medium", 7.20000029F, FontStyle.Bold, GraphicsUnit.Point, 0);
             featureStrip2.Name = "featureStrip2";
-            featureStrip2.Size = new Size(180, 22);
+            featureStrip2.Size = new Size(160, 22);
             featureStrip2.Text = "User Removal";
             // 
             // toolStripSeparator2
@@ -212,14 +212,14 @@ namespace lighPayroll
             toolStripSeparator2.BackColor = SystemColors.Info;
             toolStripSeparator2.ForeColor = SystemColors.ActiveCaption;
             toolStripSeparator2.Name = "toolStripSeparator2";
-            toolStripSeparator2.Size = new Size(177, 6);
+            toolStripSeparator2.Size = new Size(157, 6);
             // 
             // featureStrip3
             // 
             featureStrip3.BackColor = Color.Beige;
             featureStrip3.Font = new Font("Ubuntu Mono Medium", 7.20000029F, FontStyle.Bold, GraphicsUnit.Point, 0);
             featureStrip3.Name = "featureStrip3";
-            featureStrip3.Size = new Size(180, 22);
+            featureStrip3.Size = new Size(160, 22);
             featureStrip3.Text = "Payroll";
             // 
             // toolStripMenuItem12
@@ -292,7 +292,7 @@ namespace lighPayroll
             label4.AutoSize = true;
             label4.Font = new Font("Ubuntu Mono", 11.9999981F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.Beige;
-            label4.Location = new Point(19, 394);
+            label4.Location = new Point(32, 394);
             label4.Name = "label4";
             label4.Size = new Size(117, 20);
             label4.TabIndex = 22;
@@ -301,23 +301,24 @@ namespace lighPayroll
             // encourageVerses
             // 
             encourageVerses.AutoSize = true;
-            encourageVerses.Font = new Font("Ubuntu Mono", 11.9999981F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            encourageVerses.Font = new Font("Ubuntu Mono", 11.2499981F, FontStyle.Regular, GraphicsUnit.Point, 0);
             encourageVerses.ForeColor = Color.Beige;
-            encourageVerses.Location = new Point(142, 394);
+            encourageVerses.Location = new Point(155, 395);
             encourageVerses.Name = "encourageVerses";
-            encourageVerses.Size = new Size(108, 20);
+            encourageVerses.Size = new Size(96, 18);
             encourageVerses.TabIndex = 8;
             encourageVerses.Text = "Bible Verse";
             // 
             // attendanceTool
             // 
+            attendanceTool.BorderStyle = BorderStyle.FixedSingle;
             attendanceTool.Controls.Add(pictureBox3);
             attendanceTool.Controls.Add(label3);
             attendanceTool.Controls.Add(label2);
             attendanceTool.Cursor = Cursors.Hand;
-            attendanceTool.Location = new Point(42, 232);
+            attendanceTool.Location = new Point(32, 232);
             attendanceTool.Name = "attendanceTool";
-            attendanceTool.Size = new Size(714, 56);
+            attendanceTool.Size = new Size(724, 56);
             attendanceTool.TabIndex = 16;
             attendanceTool.Click += attendanceToolClick;
             // 
@@ -325,7 +326,7 @@ namespace lighPayroll
             // 
             pictureBox3.Cursor = Cursors.Hand;
             pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
-            pictureBox3.Location = new Point(18, 6);
+            pictureBox3.Location = new Point(28, 4);
             pictureBox3.Name = "pictureBox3";
             pictureBox3.Size = new Size(67, 50);
             pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -340,7 +341,7 @@ namespace lighPayroll
             label3.Cursor = Cursors.Hand;
             label3.Font = new Font("Ubuntu Mono", 16.1999989F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.Beige;
-            label3.Location = new Point(130, 6);
+            label3.Location = new Point(139, 5);
             label3.Name = "label3";
             label3.Size = new Size(132, 27);
             label3.TabIndex = 9;
@@ -354,7 +355,7 @@ namespace lighPayroll
             label2.Cursor = Cursors.Hand;
             label2.Font = new Font("Ubuntu Mono", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.Beige;
-            label2.Location = new Point(133, 32);
+            label2.Location = new Point(141, 32);
             label2.Name = "label2";
             label2.Size = new Size(296, 17);
             label2.TabIndex = 10;
@@ -363,13 +364,14 @@ namespace lighPayroll
             // 
             // panel3
             // 
+            panel3.BorderStyle = BorderStyle.FixedSingle;
             panel3.Controls.Add(taskListsWordLabel);
             panel3.Controls.Add(toDoLabel);
             panel3.Controls.Add(pictureBox6);
             panel3.Cursor = Cursors.Hand;
             panel3.Location = new Point(32, 78);
             panel3.Name = "panel3";
-            panel3.Size = new Size(714, 56);
+            panel3.Size = new Size(724, 56);
             panel3.TabIndex = 21;
             // 
             // taskListsWordLabel
@@ -467,7 +469,7 @@ namespace lighPayroll
             // 
             userModificationPic.Cursor = Cursors.Hand;
             userModificationPic.Image = (Image)resources.GetObject("userModificationPic.Image");
-            userModificationPic.Location = new Point(60, 158);
+            userModificationPic.Location = new Point(60, 154);
             userModificationPic.Name = "userModificationPic";
             userModificationPic.Size = new Size(67, 50);
             userModificationPic.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -489,22 +491,24 @@ namespace lighPayroll
             // 
             // userControlPanel
             // 
+            userControlPanel.BorderStyle = BorderStyle.FixedSingle;
             userControlPanel.Cursor = Cursors.Hand;
             userControlPanel.Location = new Point(32, 152);
             userControlPanel.Name = "userControlPanel";
-            userControlPanel.Size = new Size(714, 56);
+            userControlPanel.Size = new Size(724, 56);
             userControlPanel.TabIndex = 17;
             userControlPanel.Click += userControlPanel_Click;
             // 
             // payrollTool
             // 
+            payrollTool.BorderStyle = BorderStyle.FixedSingle;
             payrollTool.Controls.Add(label9);
             payrollTool.Controls.Add(label8);
             payrollTool.Controls.Add(pictureBox4);
             payrollTool.Cursor = Cursors.Hand;
-            payrollTool.Location = new Point(42, 312);
+            payrollTool.Location = new Point(32, 312);
             payrollTool.Name = "payrollTool";
-            payrollTool.Size = new Size(714, 56);
+            payrollTool.Size = new Size(724, 56);
             payrollTool.TabIndex = 17;
             // 
             // label9
@@ -537,12 +541,13 @@ namespace lighPayroll
             // 
             pictureBox4.Cursor = Cursors.Hand;
             pictureBox4.Image = (Image)resources.GetObject("pictureBox4.Image");
-            pictureBox4.Location = new Point(18, 0);
+            pictureBox4.Location = new Point(28, 0);
             pictureBox4.Name = "pictureBox4";
             pictureBox4.Size = new Size(67, 50);
             pictureBox4.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox4.TabIndex = 10;
             pictureBox4.TabStop = false;
+            pictureBox4.Click += pictureBox4_Click;
             // 
             // greetingPanel
             // 

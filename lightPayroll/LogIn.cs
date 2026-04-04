@@ -74,6 +74,7 @@ namespace lighPayroll
             string password = passLogBox.Text.Trim();
 
             AdminUI admin = new AdminUI();
+            EmployeeUI employee = new EmployeeUI();
             
             AuthService validator = new AuthService();
 
@@ -88,6 +89,7 @@ namespace lighPayroll
             else if (status == "Active" && username.ToLower() != "admin")
             {
                 showCustomMessage("Login successful!");
+                employee.Show();
                 this.Hide();
             }
             else if (status == "Pending")

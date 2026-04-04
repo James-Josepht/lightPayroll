@@ -39,6 +39,11 @@
             label1 = new Label();
             greetingLabel = new Label();
             bodyPanel = new Panel();
+            employeeFeatures = new TabControl();
+            clock = new TabPage();
+            panel6 = new Panel();
+            employeePayroll = new TabPage();
+            profilePage = new TabPage();
             panel3 = new Panel();
             taskListsWordLabel = new Label();
             toDoLabel = new Label();
@@ -69,6 +74,8 @@
             greetingPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             bodyPanel.SuspendLayout();
+            employeeFeatures.SuspendLayout();
+            clock.SuspendLayout();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             headPanel.SuspendLayout();
@@ -87,7 +94,7 @@
             label4.AutoSize = true;
             label4.Font = new Font("Ubuntu Mono", 11.9999981F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.Beige;
-            label4.Location = new Point(19, 394);
+            label4.Location = new Point(39, 397);
             label4.Name = "label4";
             label4.Size = new Size(117, 20);
             label4.TabIndex = 22;
@@ -96,11 +103,11 @@
             // encourageVerses
             // 
             encourageVerses.AutoSize = true;
-            encourageVerses.Font = new Font("Ubuntu Mono", 11.9999981F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            encourageVerses.Font = new Font("Ubuntu Mono", 11.2499981F, FontStyle.Regular, GraphicsUnit.Point, 0);
             encourageVerses.ForeColor = Color.Beige;
-            encourageVerses.Location = new Point(142, 394);
+            encourageVerses.Location = new Point(162, 399);
             encourageVerses.Name = "encourageVerses";
-            encourageVerses.Size = new Size(108, 20);
+            encourageVerses.Size = new Size(96, 18);
             encourageVerses.TabIndex = 8;
             encourageVerses.Text = "Bible Verse";
             // 
@@ -171,6 +178,7 @@
             // bodyPanel
             // 
             bodyPanel.BackColor = Color.FromArgb(33, 44, 66);
+            bodyPanel.Controls.Add(employeeFeatures);
             bodyPanel.Controls.Add(label4);
             bodyPanel.Controls.Add(encourageVerses);
             bodyPanel.Controls.Add(panel3);
@@ -178,16 +186,74 @@
             bodyPanel.Name = "bodyPanel";
             bodyPanel.Size = new Size(783, 445);
             bodyPanel.TabIndex = 2;
+            bodyPanel.Paint += bodyPanel_Paint;
+            // 
+            // employeeFeatures
+            // 
+            employeeFeatures.Controls.Add(clock);
+            employeeFeatures.Controls.Add(employeePayroll);
+            employeeFeatures.Controls.Add(profilePage);
+            employeeFeatures.DrawMode = TabDrawMode.OwnerDrawFixed;
+            employeeFeatures.Font = new Font("Ubuntu Mono Medium", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            employeeFeatures.Location = new Point(39, 115);
+            employeeFeatures.Name = "employeeFeatures";
+            employeeFeatures.SelectedIndex = 0;
+            employeeFeatures.Size = new Size(704, 262);
+            employeeFeatures.TabIndex = 23;
+            employeeFeatures.DrawItem += employeeFeatures_DrawItem;
+            // 
+            // clock
+            // 
+            clock.AutoScroll = true;
+            clock.BackColor = Color.Beige;
+            clock.Controls.Add(panel6);
+            clock.Font = new Font("Ubuntu Mono Medium", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            clock.ForeColor = Color.FromArgb(33, 44, 66);
+            clock.Location = new Point(4, 25);
+            clock.Name = "clock";
+            clock.Padding = new Padding(3);
+            clock.Size = new Size(696, 233);
+            clock.TabIndex = 0;
+            clock.Text = "Clock In / Out";
+            // 
+            // panel6
+            // 
+            panel6.Font = new Font("Ubuntu Mono Medium", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            panel6.Location = new Point(28, 27);
+            panel6.Name = "panel6";
+            panel6.Size = new Size(626, 274);
+            panel6.TabIndex = 0;
+            // 
+            // employeePayroll
+            // 
+            employeePayroll.BackColor = Color.Beige;
+            employeePayroll.Location = new Point(4, 25);
+            employeePayroll.Name = "employeePayroll";
+            employeePayroll.Padding = new Padding(3);
+            employeePayroll.Size = new Size(696, 233);
+            employeePayroll.TabIndex = 1;
+            employeePayroll.Text = "Payslip";
+            // 
+            // profilePage
+            // 
+            profilePage.BackColor = Color.Beige;
+            profilePage.Location = new Point(4, 25);
+            profilePage.Name = "profilePage";
+            profilePage.Padding = new Padding(3);
+            profilePage.Size = new Size(696, 233);
+            profilePage.TabIndex = 2;
+            profilePage.Text = "Profile";
             // 
             // panel3
             // 
+            panel3.BorderStyle = BorderStyle.FixedSingle;
             panel3.Controls.Add(taskListsWordLabel);
             panel3.Controls.Add(toDoLabel);
             panel3.Controls.Add(pictureBox6);
             panel3.Cursor = Cursors.Hand;
-            panel3.Location = new Point(32, 78);
+            panel3.Location = new Point(39, 35);
             panel3.Name = "panel3";
-            panel3.Size = new Size(714, 56);
+            panel3.Size = new Size(704, 56);
             panel3.TabIndex = 21;
             // 
             // taskListsWordLabel
@@ -226,6 +292,7 @@
             pictureBox6.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox6.TabIndex = 18;
             pictureBox6.TabStop = false;
+            pictureBox6.Click += pictureBox6_Click;
             // 
             // panel4
             // 
@@ -304,7 +371,7 @@
             // toolStripSeparator5
             // 
             toolStripSeparator5.Name = "toolStripSeparator5";
-            toolStripSeparator5.Size = new Size(177, 6);
+            toolStripSeparator5.Size = new Size(157, 6);
             // 
             // recentSearches
             // 
@@ -324,7 +391,7 @@
             featureStrip1.BackgroundImage = (Image)resources.GetObject("featureStrip1.BackgroundImage");
             featureStrip1.Font = new Font("Ubuntu Mono Medium", 7.20000029F, FontStyle.Bold, GraphicsUnit.Point, 0);
             featureStrip1.Name = "featureStrip1";
-            featureStrip1.Size = new Size(180, 22);
+            featureStrip1.Size = new Size(160, 22);
             featureStrip1.Text = "Attendance";
             // 
             // toolStripSeparator1
@@ -332,14 +399,14 @@
             toolStripSeparator1.BackColor = SystemColors.Info;
             toolStripSeparator1.ForeColor = SystemColors.ActiveCaption;
             toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(177, 6);
+            toolStripSeparator1.Size = new Size(157, 6);
             // 
             // featureStrip2
             // 
             featureStrip2.BackColor = Color.Beige;
             featureStrip2.Font = new Font("Ubuntu Mono Medium", 7.20000029F, FontStyle.Bold, GraphicsUnit.Point, 0);
             featureStrip2.Name = "featureStrip2";
-            featureStrip2.Size = new Size(180, 22);
+            featureStrip2.Size = new Size(160, 22);
             featureStrip2.Text = "User Removal";
             // 
             // toolStripSeparator2
@@ -347,14 +414,14 @@
             toolStripSeparator2.BackColor = SystemColors.Info;
             toolStripSeparator2.ForeColor = SystemColors.ActiveCaption;
             toolStripSeparator2.Name = "toolStripSeparator2";
-            toolStripSeparator2.Size = new Size(177, 6);
+            toolStripSeparator2.Size = new Size(157, 6);
             // 
             // featureStrip3
             // 
             featureStrip3.BackColor = Color.Beige;
             featureStrip3.Font = new Font("Ubuntu Mono Medium", 7.20000029F, FontStyle.Bold, GraphicsUnit.Point, 0);
             featureStrip3.Name = "featureStrip3";
-            featureStrip3.Size = new Size(180, 22);
+            featureStrip3.Size = new Size(160, 22);
             featureStrip3.Text = "Payroll";
             // 
             // toolStripMenuItem12
@@ -408,12 +475,15 @@
             Controls.Add(headPanel);
             Name = "EmployeeUI";
             StartPosition = FormStartPosition.CenterScreen;
+            Load += EmployeeUI_Load;
             panel1.ResumeLayout(false);
             greetingPanel.ResumeLayout(false);
             greetingPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             bodyPanel.ResumeLayout(false);
             bodyPanel.PerformLayout();
+            employeeFeatures.ResumeLayout(false);
+            clock.ResumeLayout(false);
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
@@ -464,5 +534,10 @@
         private ToolStripMenuItem toolStripMenuItem17;
         private ToolStripMenuItem toolStripMenuItem19;
         private ToolStripMenuItem toolStripMenuItem21;
+        private TabControl employeeFeatures;
+        private TabPage clock;
+        private TabPage employeePayroll;
+        private Panel panel6;
+        private TabPage profilePage;
     }
 }
