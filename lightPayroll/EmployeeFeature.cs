@@ -23,10 +23,7 @@ namespace lighPayrollUI
 
         private void EmployeeFeature_Load(object sender, EventArgs e)
         {
-            if (!this.DesignMode) // ensures code runs only at runtime
-            {
-                adminUI.panelDesign();
-            }
+
         }
  
         private void tabControl1_DrawItem(object sender, DrawItemEventArgs e)

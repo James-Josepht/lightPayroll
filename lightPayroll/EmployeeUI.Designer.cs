@@ -39,6 +39,10 @@
             label1 = new Label();
             greetingLabel = new Label();
             bodyPanel = new Panel();
+            eFeaturesPanel = new Panel();
+            sFeaturesLabel = new Label();
+            bFeaturesLabel = new Label();
+            featuresPic = new PictureBox();
             panel3 = new Panel();
             taskListsWordLabel = new Label();
             toDoLabel = new Label();
@@ -65,22 +69,18 @@
             toolStripMenuItem17 = new ToolStripMenuItem();
             toolStripMenuItem19 = new ToolStripMenuItem();
             toolStripMenuItem21 = new ToolStripMenuItem();
-            panel6 = new Panel();
-            sFeaturesLabel = new Label();
-            bFeaturesLabel = new Label();
-            pictureBox3 = new PictureBox();
             panel1.SuspendLayout();
             greetingPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             bodyPanel.SuspendLayout();
+            eFeaturesPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)featuresPic).BeginInit();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             headPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             panel5.SuspendLayout();
             searchMenuStrip.SuspendLayout();
-            panel6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             SuspendLayout();
             // 
             // toolStripMenuItem22
@@ -177,7 +177,7 @@
             // bodyPanel
             // 
             bodyPanel.BackColor = Color.FromArgb(33, 44, 66);
-            bodyPanel.Controls.Add(panel6);
+            bodyPanel.Controls.Add(eFeaturesPanel);
             bodyPanel.Controls.Add(label4);
             bodyPanel.Controls.Add(encourageVerses);
             bodyPanel.Controls.Add(panel3);
@@ -186,6 +186,59 @@
             bodyPanel.Size = new Size(783, 445);
             bodyPanel.TabIndex = 2;
             bodyPanel.Paint += bodyPanel_Paint;
+            // 
+            // eFeaturesPanel
+            // 
+            eFeaturesPanel.BorderStyle = BorderStyle.FixedSingle;
+            eFeaturesPanel.Controls.Add(sFeaturesLabel);
+            eFeaturesPanel.Controls.Add(bFeaturesLabel);
+            eFeaturesPanel.Controls.Add(featuresPic);
+            eFeaturesPanel.Cursor = Cursors.Hand;
+            eFeaturesPanel.Location = new Point(39, 122);
+            eFeaturesPanel.Name = "eFeaturesPanel";
+            eFeaturesPanel.Size = new Size(704, 56);
+            eFeaturesPanel.TabIndex = 23;
+            eFeaturesPanel.Click += eFeaturesPanel_Click;
+            // 
+            // sFeaturesLabel
+            // 
+            sFeaturesLabel.AutoSize = true;
+            sFeaturesLabel.BackColor = Color.FromArgb(33, 44, 66);
+            sFeaturesLabel.Cursor = Cursors.Hand;
+            sFeaturesLabel.Font = new Font("Ubuntu Mono", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            sFeaturesLabel.ForeColor = Color.Beige;
+            sFeaturesLabel.Location = new Point(139, 31);
+            sFeaturesLabel.Name = "sFeaturesLabel";
+            sFeaturesLabel.Size = new Size(200, 17);
+            sFeaturesLabel.TabIndex = 22;
+            sFeaturesLabel.Text = "Explore what you can do!";
+            sFeaturesLabel.Click += eFeaturesPanel_Click;
+            // 
+            // bFeaturesLabel
+            // 
+            bFeaturesLabel.AutoSize = true;
+            bFeaturesLabel.BackColor = Color.FromArgb(33, 44, 66);
+            bFeaturesLabel.Cursor = Cursors.Hand;
+            bFeaturesLabel.Font = new Font("Ubuntu Mono", 16.1999989F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            bFeaturesLabel.ForeColor = Color.Beige;
+            bFeaturesLabel.Location = new Point(136, 7);
+            bFeaturesLabel.Name = "bFeaturesLabel";
+            bFeaturesLabel.Size = new Size(108, 27);
+            bFeaturesLabel.TabIndex = 22;
+            bFeaturesLabel.Text = "Features";
+            bFeaturesLabel.Click += eFeaturesPanel_Click;
+            // 
+            // featuresPic
+            // 
+            featuresPic.Cursor = Cursors.Hand;
+            featuresPic.Image = Properties.Resources.features;
+            featuresPic.Location = new Point(23, 0);
+            featuresPic.Name = "featuresPic";
+            featuresPic.Size = new Size(67, 50);
+            featuresPic.SizeMode = PictureBoxSizeMode.StretchImage;
+            featuresPic.TabIndex = 18;
+            featuresPic.TabStop = false;
+            featuresPic.Click += eFeaturesPanel_Click;
             // 
             // panel3
             // 
@@ -407,55 +460,6 @@
             toolStripMenuItem21.Name = "toolStripMenuItem21";
             toolStripMenuItem21.Size = new Size(12, 25);
             // 
-            // panel6
-            // 
-            panel6.BorderStyle = BorderStyle.FixedSingle;
-            panel6.Controls.Add(sFeaturesLabel);
-            panel6.Controls.Add(bFeaturesLabel);
-            panel6.Controls.Add(pictureBox3);
-            panel6.Cursor = Cursors.Hand;
-            panel6.Location = new Point(39, 122);
-            panel6.Name = "panel6";
-            panel6.Size = new Size(704, 56);
-            panel6.TabIndex = 23;
-            // 
-            // sFeaturesLabel
-            // 
-            sFeaturesLabel.AutoSize = true;
-            sFeaturesLabel.BackColor = Color.FromArgb(33, 44, 66);
-            sFeaturesLabel.Cursor = Cursors.Hand;
-            sFeaturesLabel.Font = new Font("Ubuntu Mono", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            sFeaturesLabel.ForeColor = Color.Beige;
-            sFeaturesLabel.Location = new Point(139, 31);
-            sFeaturesLabel.Name = "sFeaturesLabel";
-            sFeaturesLabel.Size = new Size(200, 17);
-            sFeaturesLabel.TabIndex = 22;
-            sFeaturesLabel.Text = "Explore what you can do!";
-            // 
-            // bFeaturesLabel
-            // 
-            bFeaturesLabel.AutoSize = true;
-            bFeaturesLabel.BackColor = Color.FromArgb(33, 44, 66);
-            bFeaturesLabel.Cursor = Cursors.Hand;
-            bFeaturesLabel.Font = new Font("Ubuntu Mono", 16.1999989F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            bFeaturesLabel.ForeColor = Color.Beige;
-            bFeaturesLabel.Location = new Point(136, 7);
-            bFeaturesLabel.Name = "bFeaturesLabel";
-            bFeaturesLabel.Size = new Size(108, 27);
-            bFeaturesLabel.TabIndex = 22;
-            bFeaturesLabel.Text = "Features";
-            // 
-            // pictureBox3
-            // 
-            pictureBox3.Cursor = Cursors.Hand;
-            pictureBox3.Image = Properties.Resources.features;
-            pictureBox3.Location = new Point(23, 0);
-            pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(67, 50);
-            pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox3.TabIndex = 18;
-            pictureBox3.TabStop = false;
-            // 
             // EmployeeUI
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
@@ -474,6 +478,9 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             bodyPanel.ResumeLayout(false);
             bodyPanel.PerformLayout();
+            eFeaturesPanel.ResumeLayout(false);
+            eFeaturesPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)featuresPic).EndInit();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
@@ -483,9 +490,6 @@
             panel5.PerformLayout();
             searchMenuStrip.ResumeLayout(false);
             searchMenuStrip.PerformLayout();
-            panel6.ResumeLayout(false);
-            panel6.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ResumeLayout(false);
         }
 
@@ -527,9 +531,9 @@
         private ToolStripMenuItem toolStripMenuItem17;
         private ToolStripMenuItem toolStripMenuItem19;
         private ToolStripMenuItem toolStripMenuItem21;
-        private Panel panel6;
+        private Panel eFeaturesPanel;
         private Label sFeaturesLabel;
         private Label bFeaturesLabel;
-        private PictureBox pictureBox3;
+        private PictureBox featuresPic;
     }
 }

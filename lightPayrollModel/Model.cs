@@ -4,7 +4,7 @@ namespace lightPayrollModel
 {
     public abstract class BaseEntity
     {
-        public int Id { get; set; }
+        public int UsersID { get; set; }
         public DateTime? DateCreated { get; set; }
 
         // Force all models to validate themselves
@@ -41,7 +41,7 @@ namespace lightPayrollModel
 
     public class UserDisplay
     {
-        public int Id { get; set; }
+        public int UsersID { get; set; }
         public string? Username { get; set; }
         public string? Role { get; set; }
         public string? AccountStatus { get; set; }
@@ -110,7 +110,7 @@ namespace lightPayrollModel
 
     public class Payroll : BaseEntity
     {
-        public int EmployeeId { get; set; }
+        public int EmployeeID { get; set; }
         public decimal? BasicSalary { get; set; }
         public decimal? OvertimePay { get; set; }
         public decimal? Deductions { get; set; }
@@ -120,14 +120,14 @@ namespace lightPayrollModel
 
         public override void Validate()
         {
-            if (EmployeeId <= 0)
+            if (EmployeeID <= 0)
                 throw new Exception("Invalid Employee ID");
         }
     }
 
     public class LeaveRequest : BaseEntity
     {
-        public int EmployeeId { get; set; }
+        public int EmployeeID { get; set; }
         public string? LeaveType { get; set; }
         public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }
@@ -137,14 +137,14 @@ namespace lightPayrollModel
 
         public override void Validate()
         {
-            if (EmployeeId <= 0)
+            if (EmployeeID <= 0)
                 throw new Exception("Invalid Employee ID");
         }
     }
 
     public class OvertimeRequest : BaseEntity
     {
-        public int EmployeeId { get; set; }
+        public int EmployeeID { get; set; }
         public DateTime? Date { get; set; }
         public float? HoursRendered { get; set; }
         public string? Status { get; set; }
@@ -152,7 +152,7 @@ namespace lightPayrollModel
 
         public override void Validate()
         {
-            if (EmployeeId <= 0)
+            if (EmployeeID <= 0)
                 throw new Exception("Invalid Employee ID");
         }
     }

@@ -70,7 +70,7 @@ namespace lightPayrollServices
             }
         }
 
-        public static Users GetUserByIdOrUsername(string input)
+        public static AdminUser GetUserByIdOrUsername(string input)
         {
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
             {
@@ -81,7 +81,7 @@ namespace lightPayrollServices
                     ? "SELECT * FROM UsersTable WHERE UsersID = @Input LIMIT 1"
                     : "SELECT * FROM UsersTable WHERE Username = @Input LIMIT 1";
 
-                return conn.QueryFirstOrDefault<Users>(sql, new { Input = isNumeric ? (object)id : input });
+                return conn.QueryFirstOrDefault<AdminUser>(sql, new { Input = isNumeric ? (object)id : input });
             }
         }
 

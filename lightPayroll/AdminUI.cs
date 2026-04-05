@@ -35,7 +35,7 @@ namespace lighPayroll
                 loginDesigns.TypeText(label1, adminGreeting);
                 loginDesigns.TypeText(encourageVerses, bibleGuidance);
 
-                panelDesign();
+                panelDesign(greetingPanel, bodyPanel);
             }
         }
 
@@ -63,7 +63,7 @@ namespace lighPayroll
             }
         }
 
-        internal void panelDesign()
+        internal void panelDesign(Panel headPanelDesign, Panel bodyPanelDesign)
         {
             if (this.DesignMode) return;
 
@@ -71,20 +71,20 @@ namespace lighPayroll
 
             GraphicsPath greetingsPath = new GraphicsPath();
             greetingsPath.AddArc(0, 0, radius, radius, 180, 90);
-            greetingsPath.AddArc(greetingPanel.Width - radius, 0, radius, radius, 270, 90);
-            greetingsPath.AddArc(greetingPanel.Width - radius, greetingPanel.Height - radius, radius, radius, 0, 90);
-            greetingsPath.AddArc(0, greetingPanel.Height - radius, radius, radius, 90, 90);
+            greetingsPath.AddArc(headPanelDesign.Width - radius, 0, radius, radius, 270, 90);
+            greetingsPath.AddArc(headPanelDesign.Width - radius, headPanelDesign.Height - radius, radius, radius, 0, 90);
+            greetingsPath.AddArc(0, headPanelDesign.Height - radius, radius, radius, 90, 90);
             greetingsPath.CloseAllFigures();
 
             GraphicsPath bodyPath = new GraphicsPath();
             bodyPath.AddArc(0, 0, radius, radius, 180, 90);
-            bodyPath.AddArc(bodyPanel.Width - radius, 0, radius, radius, 270, 90);
-            bodyPath.AddArc(bodyPanel.Width - radius, bodyPanel.Height - radius, radius, radius, 0, 90);
-            bodyPath.AddArc(0, bodyPanel.Height - radius, radius, radius, 90, 90);
+            bodyPath.AddArc(bodyPanelDesign.Width - radius, 0, radius, radius, 270, 90);
+            bodyPath.AddArc(bodyPanelDesign.Width - radius, bodyPanelDesign.Height - radius, radius, radius, 0, 90);
+            bodyPath.AddArc(0, bodyPanelDesign.Height - radius, radius, radius, 90, 90);
             bodyPath.CloseAllFigures();
 
-            greetingPanel.Region = new Region(greetingsPath);
-            bodyPanel.Region = new Region(bodyPath);
+            headPanelDesign.Region = new Region(greetingsPath);
+            bodyPanelDesign.Region = new Region(bodyPath);
 
 
 
