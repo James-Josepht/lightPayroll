@@ -1,6 +1,16 @@
+C:\Users\James\source\repos\lightPayrollServices\bin\Debug\net8.0\lightPayrollServices.deps.json
+C:\Users\James\source\repos\lightPayrollServices\bin\Debug\net8.0\lightPayrollServices.dll
+C:\Users\James\source\repos\lightPayrollServices\bin\Debug\net8.0\lightPayrollServices.pdb
+C:\Users\James\source\repos\lightPayrollServices\bin\Debug\net8.0\lightPayrollModel.dll
+C:\Users\James\source\repos\lightPayrollServices\bin\Debug\net8.0\lightPayrollModel.pdb
 C:\Users\James\source\repos\lightPayrollServices\obj\Debug\net8.0\lightPayrollServices.csproj.AssemblyReference.cache
 C:\Users\James\source\repos\lightPayrollServices\obj\Debug\net8.0\lightPayrollServices.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\James\source\repos\lightPayrollServices\obj\Debug\net8.0\lightPayrollServices.AssemblyInfoInputs.cache
 C:\Users\James\source\repos\lightPayrollServices\obj\Debug\net8.0\lightPayrollServices.AssemblyInfo.cs
 C:\Users\James\source\repos\lightPayrollServices\obj\Debug\net8.0\lightPayrollServices.csproj.CoreCompileInputs.cache
 C:\Users\James\source\repos\lightPayrollServices\obj\Debug\net8.0\lightPayrollServices.sourcelink.json
+C:\Users\James\source\repos\lightPayrollServices\obj\Debug\net8.0\lightPay.3D35F460.Up2Date
+C:\Users\James\source\repos\lightPayrollServices\obj\Debug\net8.0\lightPayrollServices.dll
+C:\Users\James\source\repos\lightPayrollServices\obj\Debug\net8.0\refint\lightPayrollServices.dll
+C:\Users\James\source\repos\lightPayrollServices\obj\Debug\net8.0\lightPayrollServices.pdb
+C:\Users\James\source\repos\lightPayrollServices\obj\Debug\net8.0\ref\lightPayrollServices.dll

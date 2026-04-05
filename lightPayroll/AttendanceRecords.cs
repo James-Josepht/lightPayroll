@@ -80,7 +80,7 @@ namespace lighPayroll
 
         private void addButton_Click(object? sender, EventArgs e)
         {
-            Users user = new Users
+            AdminUser user = new AdminUser //create an instance from admin, since only admin can add or modify users
             {
                 Username = nameTxtBox.Text,
                 Password = fNameTxtBox.Text,
