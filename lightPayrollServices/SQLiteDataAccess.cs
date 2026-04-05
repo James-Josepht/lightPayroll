@@ -24,7 +24,7 @@ namespace lightPayrollServices
         lightPayroll\lightPayrollDB.db
          */
 
-        public static List<UsersShow> LoadUsers()
+        public static List<UserDisplay> LoadUsers()
         {
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
             {
@@ -44,7 +44,7 @@ namespace lightPayrollServices
                 conn.Execute(createTableSql);  // Dapper extension method for non-query commands
 
                 // Step 2: Query the table
-                var output = conn.Query<UsersShow>("SELECT UsersID, Username, Role, AccountStatus, DateCreated FROM UsersTable", new DynamicParameters());
+                var output = conn.Query<UserDisplay>("SELECT UsersID, Username, Role, AccountStatus, DateCreated FROM UsersTable", new DynamicParameters());
 
                 var users = output.Select(u =>
                 {

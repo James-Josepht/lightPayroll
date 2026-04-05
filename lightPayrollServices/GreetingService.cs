@@ -35,10 +35,29 @@ namespace lightPayrollServices
             "Believe in the Lord Jesus, and you will be saved. — Acts 16:31"
         };
 
+        private string[] accountantGreetings =
+        {
+            "Welcome back! Ready to crunch some numbers?",
+            "Wear hoodie and let's type faster ;>",
+            "Welcome back! Ready to maintain stuff?"
+            
+
+        };
+
+        private string[] employeeGreetings =
+        {
+            "Time to rock the tasks! Let’s get typing 🚀",
+            "Hello there! Let’s make today less boring 😎",
+            "Ready to crush the to-do list today?",
+            "Good vibes only — let’s get to work! ✨",
+
+        };
+
+
 
         public string GetRandomGreeting(string role)
         {
-            if (role == "Admin") return adminGreetings[rand.Next(adminGreetings.Length)];
+            if (role == "Admin") return employeeGreetings[rand.Next(employeeGreetings.Length)];
             else if (role == "Christ-Centered Guidance") return christCenteredGuidance[rand.Next(christCenteredGuidance.Length)];
             
 

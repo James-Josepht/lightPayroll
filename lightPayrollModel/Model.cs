@@ -1,360 +1,174 @@
 ﻿using System;
 
-
 namespace lightPayrollModel
 {
-    /*  
-        all these changes in the database is shown in
-        lightPayroll\bin\Debug\net8.0-windows\lightPayrollDB.db
-        not the one in
-        lightPayroll\lightPayrollDB.db
-    */
-
-    public class Users
+    public abstract class BaseEntity
     {
-        private int usersID;
-        private string? userName;
-        private string? passWord;
-        private string? role;
-        private string? accountStatus;
-        private DateTime? dateCreated;
-        //these variable must have the same name in Database
-        //else it would not show in the UI
+        public int Id { get; set; }
+        public DateTime? DateCreated { get; set; }
 
-        public int UsersID
-        {
-            get { return this.usersID; }
-            set { this.usersID = value; }
-        }
-        public string? Username
-        {
-            get { return this.userName; }
-            set { this.userName = value; }
-        }
-
-        public string? Password
-        {
-            get { return this.passWord; }
-            set { this.passWord = value; }
-        }
-
-        public string? Role
-        {
-            get { return this.role; }
-            set { this.role = value; }
-        }
-        public string? AccountStatus
-        {
-            get { return this.accountStatus; }
-            set { this.accountStatus = value; }
-        }
-        public DateTime? DateCreated
-        {
-            get { return this.dateCreated; }
-            set { this.dateCreated = value; }
-        }
-
+        // Force all models to validate themselves
+        public abstract void Validate();
     }
 
-    public class UsersShow //only for showing in the UI, not for database
+    public abstract class Users : BaseEntity
     {
-        private int usersID;
-        private string? userName;
-        private string? role;
-        private string? accountStatus;
-        private DateTime? dateCreated;
-        //these variable must have the same name in Database
-        //else it would not show in the UI
+        public string? Username { get; set; }
+        public string? Password { get; set; }
+        public string? Role { get; set; }
+        public string? AccountStatus { get; set; }
 
-        public int UsersID
+        public override void Validate()
         {
-            get { return this.usersID; }
-            set { this.usersID = value; }
-        }
-        public string? Username
-        {
-            get { return this.userName; }
-            set { this.userName = value; }
-        }
+            if (string.IsNullOrWhiteSpace(Username))
+                throw new Exception("Username is required");
 
-
-        public string? Role
-        {
-            get { return this.role; }
-            set { this.role = value; }
+            if (string.IsNullOrWhiteSpace(Password))
+                throw new Exception("Password is required");
         }
-        public string? AccountStatus
-        {
-            get { return this.accountStatus; }
-            set { this.accountStatus = value; }
-        }
-        public DateTime? DateCreated
-        {
-            get { return this.dateCreated; }
-            set { this.dateCreated = value; }
-        }
-
     }
 
-    public class Employees
+
+    public interface IApprovable
     {
-        private string? firstName;
-        private string? middleName;
-        private string? lastName;
-        private string? position;
-        private string? department;
-        private DateTime? dateHired;
+        void Approve(int approvedBy);
+    }
+
+    public interface ILoggable
+    {
+        void LogAction(string action);
+    }
+
+    public class UserDisplay
+    {
+        public int Id { get; set; }
+        public string? Username { get; set; }
+        public string? Role { get; set; }
+        public string? AccountStatus { get; set; }
+        public DateTime? DateCreated { get; set; }
+    }
+
+    public class AdminUser : Users //used for creating instance for admin
+    {
+        public override void Validate()
+        {
+            base.Validate();
+        }
+    }
+
+    public class EmployeeUser : Users //used for creating instance for employee
+    {
+        public override void Validate()
+        {
+            base.Validate();
+        }
+    }
+
+    public class AccountantUser : Users //used for creating instance for accountant
+    {
+        public override void Validate()
+        {
+            base.Validate();
+        }
+    }
+    public class ManagerUser : Users //used for creating instance for manager
+    {
+        public override void Validate()
+        {
+            base.Validate();
+        }
+    }
+
+    public class Employee : BaseEntity
+    {
+        public string? FirstName { get; set; }
+        public string? MiddleName { get; set; }
+        public string? LastName { get; set; }
+        public string FullName => $"{FirstName} {MiddleName} {LastName}";
+        public string? Position { get; set; }
+        public string? Department { get; set; }
+        public DateTime? DateHired { get; set; }
+
         private float? salaryRate;
-
-        public string? FirstName
-        {
-            get { return this.firstName; }
-            set { this.firstName = value; }
-        }
-
-        public string? MiddleName
-        {
-            get { return this.middleName; }
-            set { this.middleName = value; }
-        }
-
-        public string? LastName
-        {
-            get { return this.lastName; }
-            set { this.lastName = value; }
-        }
-
-        public string FullName
-        {
-            get { return $"{this.firstName} {this.middleName} {this.lastName}"; }
-        }
-
-        public string? Position
-        {
-            get { return this.position; }
-            set { this.position = value; }
-        }
-
-        public string? Department
-        {
-            get { return this.department; }
-            set { this.department = value; }
-        }
-        
-        public DateTime? DateHired
-        {
-            get { return this.dateHired; }
-            set { this.dateHired = value; }
-        }
-
         public float? SalaryRate
         {
-            get { return this.salaryRate; }
-            set { this.salaryRate = value; }
+            get => salaryRate;
+            set
+            {
+                if (value < 0)
+                    throw new Exception("Salary rate cannot be negative");
+                salaryRate = value;
+            }
         }
 
+        public override void Validate()
+        {
+            if (string.IsNullOrWhiteSpace(FirstName))
+                throw new Exception("First name is required");
+        }
     }
 
-    public class Payroll
+    public class Payroll : BaseEntity
     {
-        private int payrollID;
-        private int employeeID;
-        private decimal? basicSalary;
-        private decimal? overtimePay;
-        private decimal? deductions;
-        private decimal? netSalary;
-        private DateTime? payrollDate;
-        private int processedBy;
+        public int EmployeeId { get; set; }
+        public decimal? BasicSalary { get; set; }
+        public decimal? OvertimePay { get; set; }
+        public decimal? Deductions { get; set; }
+        public decimal? NetSalary { get; set; }
+        public DateTime? PayrollDate { get; set; }
+        public int ProcessedBy { get; set; }
 
-        public int PayrollID
+        public override void Validate()
         {
-            get { return this.payrollID; }
-            set { this.payrollID = value; }
-        }
-
-        public int EmployeeID
-        {
-            get { return this.employeeID; }
-            set { this.employeeID = value; }
-        }
-
-        public decimal? BasicSalary
-        {
-            get { return this.basicSalary; }
-            set { this.basicSalary = value; }
-        }
-
-        public decimal? OvertimePay
-        {
-            get { return this.overtimePay; }
-            set { this.overtimePay = value; }
-        }
-
-        public decimal? Deductions
-        {
-            get { return this.deductions; }
-            set { this.deductions = value; }
-        }
-
-        public decimal? NetSalary
-        {
-            get { return this.netSalary; }
-            set { this.netSalary = value; }
-        }
-
-        public DateTime? PayrollDate
-        {
-            get { return this.payrollDate; }
-            set { this.payrollDate = value; }
-        }
-
-        public int ProcessedBy
-        {
-            get { return this.processedBy; }
-            set { this.processedBy = value; }
+            if (EmployeeId <= 0)
+                throw new Exception("Invalid Employee ID");
         }
     }
 
-    public class LeaveRequests
+    public class LeaveRequest : BaseEntity
     {
-        private int leaveID;
-        private int employeeID;
-        private string? leaveType;
-        private DateTime? startDate;
-        private DateTime? endDate;
-        private string? reason;
-        private string? status;
-        private int approvedBy;
+        public int EmployeeId { get; set; }
+        public string? LeaveType { get; set; }
+        public DateTime? StartDate { get; set; }
+        public DateTime? EndDate { get; set; }
+        public string? Reason { get; set; }
+        public string? Status { get; set; }
+        public int ApprovedBy { get; set; }
 
-        public int LeaveID
+        public override void Validate()
         {
-            get { return this.leaveID; }
-            set { this.leaveID = value; }
-        }
-
-        public int EmployeeID
-        {
-            get { return this.employeeID; }
-            set { this.employeeID = value; }
-        }
-
-        public string? LeaveType
-        {
-            get { return this.leaveType; }
-            set { this.leaveType = value; }
-        }
-
-        public DateTime? StartDate
-        {
-            get { return this.startDate; }
-            set { this.startDate = value; }
-        }
-
-        public DateTime? EndDate
-        {
-            get { return this.endDate; }
-            set { this.endDate = value; }
-        }
-
-        public string? Reason
-        {
-            get { return this.reason; }
-            set { this.reason = value; }
-        }
-
-        public string? Status
-        {
-            get { return this.status; }
-            set { this.status = value; }
-        }
-
-        public int ApprovedBy
-        {
-            get { return this.approvedBy; }
-            set { this.approvedBy = value; }
+            if (EmployeeId <= 0)
+                throw new Exception("Invalid Employee ID");
         }
     }
 
-    public class OvertimeRequests
+    public class OvertimeRequest : BaseEntity
     {
-        private int overtimeID;
-        private int employeeID;
-        private DateTime? date;
-        private float? hoursRendered;
-        private string? status;
-        private int approvedBy;
+        public int EmployeeId { get; set; }
+        public DateTime? Date { get; set; }
+        public float? HoursRendered { get; set; }
+        public string? Status { get; set; }
+        public int ApprovedBy { get; set; }
 
-        public int OvertimeID
+        public override void Validate()
         {
-            get { return this.overtimeID; }
-            set { this.overtimeID = value; }
-        }
-
-        public int EmployeeID
-        {
-            get { return this.employeeID; }
-            set { this.employeeID = value; }
-        }
-
-        public DateTime? Date
-        {
-            get { return this.date; }
-            set { this.date = value; }
-        }
-
-        public float? HoursRendered
-        {
-            get { return this.hoursRendered; }
-            set { this.hoursRendered = value; }
-        }
-
-        public string? Status
-        {
-            get { return this.status; }
-            set { this.status = value; }
-        }
-
-        public int ApprovedBy
-        {
-            get { return this.approvedBy; }
-            set { this.approvedBy = value; }
+            if (EmployeeId <= 0)
+                throw new Exception("Invalid Employee ID");
         }
     }
 
-    public class Reports
+    public class Report : BaseEntity
     {
-        private int reportID;
-        private string? reportType;
-        private DateTime? dateGenerated;
-        private int generatedBy;
+        public string? ReportType { get; set; }
+        public DateTime? DateGenerated { get; set; }
+        public int GeneratedBy { get; set; }
 
-        public int ReportID
+        public override void Validate()
         {
-            get { return this.reportID; }
-            set { this.reportID = value; }
-        }
-
-        public string? ReportType
-        {
-            get { return this.reportType; }
-            set { this.reportType = value; }
-        }
-
-        public DateTime? DateGenerated
-        {
-            get { return this.dateGenerated; }
-            set { this.dateGenerated = value; }
-        }
-
-        public int GeneratedBy
-        {
-            get { return this.generatedBy; }
-            set { this.generatedBy = value; }
+            if (string.IsNullOrWhiteSpace(ReportType))
+                throw new Exception("Report type is required");
         }
     }
 
-
-
-
-
+   
 }

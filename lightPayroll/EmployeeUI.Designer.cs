@@ -39,11 +39,6 @@
             label1 = new Label();
             greetingLabel = new Label();
             bodyPanel = new Panel();
-            employeeFeatures = new TabControl();
-            clock = new TabPage();
-            panel6 = new Panel();
-            employeePayroll = new TabPage();
-            profilePage = new TabPage();
             panel3 = new Panel();
             taskListsWordLabel = new Label();
             toDoLabel = new Label();
@@ -70,18 +65,22 @@
             toolStripMenuItem17 = new ToolStripMenuItem();
             toolStripMenuItem19 = new ToolStripMenuItem();
             toolStripMenuItem21 = new ToolStripMenuItem();
+            panel6 = new Panel();
+            sFeaturesLabel = new Label();
+            bFeaturesLabel = new Label();
+            pictureBox3 = new PictureBox();
             panel1.SuspendLayout();
             greetingPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             bodyPanel.SuspendLayout();
-            employeeFeatures.SuspendLayout();
-            clock.SuspendLayout();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             headPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             panel5.SuspendLayout();
             searchMenuStrip.SuspendLayout();
+            panel6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             SuspendLayout();
             // 
             // toolStripMenuItem22
@@ -178,7 +177,7 @@
             // bodyPanel
             // 
             bodyPanel.BackColor = Color.FromArgb(33, 44, 66);
-            bodyPanel.Controls.Add(employeeFeatures);
+            bodyPanel.Controls.Add(panel6);
             bodyPanel.Controls.Add(label4);
             bodyPanel.Controls.Add(encourageVerses);
             bodyPanel.Controls.Add(panel3);
@@ -187,62 +186,6 @@
             bodyPanel.Size = new Size(783, 445);
             bodyPanel.TabIndex = 2;
             bodyPanel.Paint += bodyPanel_Paint;
-            // 
-            // employeeFeatures
-            // 
-            employeeFeatures.Controls.Add(clock);
-            employeeFeatures.Controls.Add(employeePayroll);
-            employeeFeatures.Controls.Add(profilePage);
-            employeeFeatures.DrawMode = TabDrawMode.OwnerDrawFixed;
-            employeeFeatures.Font = new Font("Ubuntu Mono Medium", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            employeeFeatures.Location = new Point(39, 115);
-            employeeFeatures.Name = "employeeFeatures";
-            employeeFeatures.SelectedIndex = 0;
-            employeeFeatures.Size = new Size(704, 262);
-            employeeFeatures.TabIndex = 23;
-            employeeFeatures.DrawItem += employeeFeatures_DrawItem;
-            // 
-            // clock
-            // 
-            clock.AutoScroll = true;
-            clock.BackColor = Color.Beige;
-            clock.Controls.Add(panel6);
-            clock.Font = new Font("Ubuntu Mono Medium", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            clock.ForeColor = Color.FromArgb(33, 44, 66);
-            clock.Location = new Point(4, 25);
-            clock.Name = "clock";
-            clock.Padding = new Padding(3);
-            clock.Size = new Size(696, 233);
-            clock.TabIndex = 0;
-            clock.Text = "Clock In / Out";
-            // 
-            // panel6
-            // 
-            panel6.Font = new Font("Ubuntu Mono Medium", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            panel6.Location = new Point(28, 27);
-            panel6.Name = "panel6";
-            panel6.Size = new Size(626, 274);
-            panel6.TabIndex = 0;
-            // 
-            // employeePayroll
-            // 
-            employeePayroll.BackColor = Color.Beige;
-            employeePayroll.Location = new Point(4, 25);
-            employeePayroll.Name = "employeePayroll";
-            employeePayroll.Padding = new Padding(3);
-            employeePayroll.Size = new Size(696, 233);
-            employeePayroll.TabIndex = 1;
-            employeePayroll.Text = "Payslip";
-            // 
-            // profilePage
-            // 
-            profilePage.BackColor = Color.Beige;
-            profilePage.Location = new Point(4, 25);
-            profilePage.Name = "profilePage";
-            profilePage.Padding = new Padding(3);
-            profilePage.Size = new Size(696, 233);
-            profilePage.TabIndex = 2;
-            profilePage.Text = "Profile";
             // 
             // panel3
             // 
@@ -464,6 +407,55 @@
             toolStripMenuItem21.Name = "toolStripMenuItem21";
             toolStripMenuItem21.Size = new Size(12, 25);
             // 
+            // panel6
+            // 
+            panel6.BorderStyle = BorderStyle.FixedSingle;
+            panel6.Controls.Add(sFeaturesLabel);
+            panel6.Controls.Add(bFeaturesLabel);
+            panel6.Controls.Add(pictureBox3);
+            panel6.Cursor = Cursors.Hand;
+            panel6.Location = new Point(39, 122);
+            panel6.Name = "panel6";
+            panel6.Size = new Size(704, 56);
+            panel6.TabIndex = 23;
+            // 
+            // sFeaturesLabel
+            // 
+            sFeaturesLabel.AutoSize = true;
+            sFeaturesLabel.BackColor = Color.FromArgb(33, 44, 66);
+            sFeaturesLabel.Cursor = Cursors.Hand;
+            sFeaturesLabel.Font = new Font("Ubuntu Mono", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            sFeaturesLabel.ForeColor = Color.Beige;
+            sFeaturesLabel.Location = new Point(139, 31);
+            sFeaturesLabel.Name = "sFeaturesLabel";
+            sFeaturesLabel.Size = new Size(200, 17);
+            sFeaturesLabel.TabIndex = 22;
+            sFeaturesLabel.Text = "Explore what you can do!";
+            // 
+            // bFeaturesLabel
+            // 
+            bFeaturesLabel.AutoSize = true;
+            bFeaturesLabel.BackColor = Color.FromArgb(33, 44, 66);
+            bFeaturesLabel.Cursor = Cursors.Hand;
+            bFeaturesLabel.Font = new Font("Ubuntu Mono", 16.1999989F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            bFeaturesLabel.ForeColor = Color.Beige;
+            bFeaturesLabel.Location = new Point(136, 7);
+            bFeaturesLabel.Name = "bFeaturesLabel";
+            bFeaturesLabel.Size = new Size(108, 27);
+            bFeaturesLabel.TabIndex = 22;
+            bFeaturesLabel.Text = "Features";
+            // 
+            // pictureBox3
+            // 
+            pictureBox3.Cursor = Cursors.Hand;
+            pictureBox3.Image = Properties.Resources.features;
+            pictureBox3.Location = new Point(23, 0);
+            pictureBox3.Name = "pictureBox3";
+            pictureBox3.Size = new Size(67, 50);
+            pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox3.TabIndex = 18;
+            pictureBox3.TabStop = false;
+            // 
             // EmployeeUI
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
@@ -482,8 +474,6 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             bodyPanel.ResumeLayout(false);
             bodyPanel.PerformLayout();
-            employeeFeatures.ResumeLayout(false);
-            clock.ResumeLayout(false);
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
@@ -493,6 +483,9 @@
             panel5.PerformLayout();
             searchMenuStrip.ResumeLayout(false);
             searchMenuStrip.PerformLayout();
+            panel6.ResumeLayout(false);
+            panel6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ResumeLayout(false);
         }
 
@@ -534,10 +527,9 @@
         private ToolStripMenuItem toolStripMenuItem17;
         private ToolStripMenuItem toolStripMenuItem19;
         private ToolStripMenuItem toolStripMenuItem21;
-        private TabControl employeeFeatures;
-        private TabPage clock;
-        private TabPage employeePayroll;
         private Panel panel6;
-        private TabPage profilePage;
+        private Label sFeaturesLabel;
+        private Label bFeaturesLabel;
+        private PictureBox pictureBox3;
     }
 }

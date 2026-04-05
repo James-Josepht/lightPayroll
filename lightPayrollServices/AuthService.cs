@@ -63,7 +63,7 @@ namespace lightPayrollServices
 
 
             //Create user object
-            Users newUser = new Users
+            EmployeeUser newUser = new EmployeeUser
             {
                 Username = username,
                 Password = password, // next step: HASH THIS

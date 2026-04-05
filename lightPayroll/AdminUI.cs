@@ -20,7 +20,7 @@ namespace lighPayroll
         public AdminUI()
         {
             InitializeComponent();
-            searchMenuStrip.Renderer = new MyRendererBackground();
+            searchMenuStrip.Renderer = new MyRendererBackground(); //for search button design
         }
 
         private void AdminUI_Load(object sender, EventArgs e)
@@ -63,7 +63,7 @@ namespace lighPayroll
             }
         }
 
-        private void panelDesign()
+        internal void panelDesign()
         {
             if (this.DesignMode) return;
 
