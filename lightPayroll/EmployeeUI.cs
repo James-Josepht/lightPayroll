@@ -28,7 +28,7 @@ namespace lighPayrollUI
             switch (user_role)
             {
                 case "Manager":
-                   
+                    logIn.TypeMessage();
                     //btnApprove.Enabled = true;
                     //btnPayroll.Enabled = true;
                     break;

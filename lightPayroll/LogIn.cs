@@ -26,33 +26,10 @@ namespace lighPayroll
 
         private void LogIn_Load(object sender, EventArgs e)
         {
-            TypeText(logckInLabel, "Let's LOGK IN!");
+            TypeMessage(logckInLabel, "Let's LOGK IN!");
         }
-        //used for Greetings lol
-        public void TypeText(Label lbl, string text, int speed = 50)
-        {
-            int i = 0;
 
-            //timer is having conflict between System.Windows.Forms and System.Thread.Tasks, so I am using an alias
-            WinFormsTimer t = new WinFormsTimer();
-            t.Interval = speed;
-
-            t.Tick += (s, e) =>
-            {
-                if (i < text.Length)
-                {
-                    lbl.Text += text[i];
-                    i++;
-                }
-                else
-                {
-                    t.Stop();
-                }
-            };
-
-            lbl.Text = "";
-            t.Start();
-        }
+       
 
         private void backHomeButton_Click(object sender, EventArgs e)
         {
@@ -88,13 +65,13 @@ namespace lighPayroll
             {
                 if (username.ToLower() == "admin" && password == "admin")
                 {
-                    CustomMessage("Login successful!");
+                    CustomMessageBox("Login successful!");
                     admin.Show();
                     this.Hide();
                 }
                 else
                 {
-                     CustomMessage("Login successful!");
+                     CustomMessageBox("Login successful!");
                     employee.Show();
                     this.Hide();
                 }
@@ -102,16 +79,16 @@ namespace lighPayroll
             }
             else if (status == "Pending")
             {
-                CustomMessage("Your account is pending approval.");
+                CustomMessageBox("Your account is pending approval.");
 
             }
             else
             {
-                CustomMessage("Invalid credentials.");
+                CustomMessageBox("Invalid credentials.");
             }
         }
 
-        public void CustomMessage(string message)
+        public void CustomMessageBox(string message)
         {
             Form customMsg = new Form();
 
@@ -144,7 +121,33 @@ namespace lighPayroll
             customMsg.ShowDialog();
         }
 
-       
+        //used for Greetings lol
+        public void TypeMessage(Label lbl, string text, int speed = 50)
+        {
+            int i = 0;
+
+            //timer is having conflict between System.Windows.Forms and System.Thread.Tasks, so I am using an alias
+            WinFormsTimer t = new WinFormsTimer();
+            t.Interval = speed;
+
+            t.Tick += (s, e) =>
+            {
+                if (i < text.Length)
+                {
+                    lbl.Text += text[i];
+                    i++;
+                }
+                else
+                {
+                    t.Stop();
+                }
+            };
+
+            lbl.Text = "";
+            t.Start();
+        }
+
+
 
         private void label3_Click(object sender, EventArgs e)
         {

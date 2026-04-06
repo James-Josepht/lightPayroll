@@ -32,8 +32,8 @@ namespace lighPayroll
                 string adminGreeting = greetingService.GetRandomGreeting("Admin") ?? "Hello Admin!";
                 string bibleGuidance = greetingService.GetRandomGreeting("Christ-Centered Guidance") ?? "Welcome!";
 
-                loginDesigns.TypeText(label1, adminGreeting);
-                loginDesigns.TypeText(encourageVerses, bibleGuidance);
+                loginDesigns.TypeMessage(label1, adminGreeting);
+                loginDesigns.TypeMessage(encourageVerses, bibleGuidance);
 
                 panelDesign(greetingPanel, bodyPanel);
             }
@@ -59,7 +59,7 @@ namespace lighPayroll
             }
             else if (e.KeyCode == Keys.Enter && !storedFeatures.Any(feature => searchBox.Text.Contains(feature)))
             {
-                CustomMessage("No results found\r\n\r\nYou may want to try different keywords or check for any possible typos.");
+                CustomMessageBox("No results found\r\n\r\nYou may want to try different keywords or check for any possible typos.");
             }
         }
 
@@ -98,7 +98,7 @@ namespace lighPayroll
             }
 
         }
-        public void CustomMessage(string message)
+        public void CustomMessageBox(string message)
         {
             Form customMsg = new Form();
 

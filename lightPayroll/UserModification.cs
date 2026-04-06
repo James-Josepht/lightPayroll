@@ -19,7 +19,7 @@ namespace lighPayrollUI
 
         private void UsersUI_Load(object sender, EventArgs e)
         {
-            greetingsAndMessageBoxDesign.TypeText(label2, "Trust But Always Verify!");
+            greetingsAndMessageBoxDesign.TypeMessage(label2, "Trust But Always Verify!");
         }
 
         // Load directly from database
@@ -41,13 +41,13 @@ namespace lighPayrollUI
             // Validate input first
             if (!int.TryParse(idTxtBox.Text, out int userId))
             {
-                greetingsAndMessageBoxDesign.CustomMessage("Please enter a valid numeric User ID.");
+                greetingsAndMessageBoxDesign.CustomMessageBox("Please enter a valid numeric User ID.");
                 return;
             }
 
             if (SQLiteDataAccess.GetUserByIdOrUsername(userId.ToString()) == null)
             {
-                greetingsAndMessageBoxDesign.CustomMessage("User ID not found.");
+                greetingsAndMessageBoxDesign.CustomMessageBox("User ID not found.");
                 return;
             }
 
@@ -57,13 +57,13 @@ namespace lighPayrollUI
 
             if (string.IsNullOrEmpty(status) || string.IsNullOrEmpty(role))
             {
-                greetingsAndMessageBoxDesign.CustomMessage("Please select both status and role.");
+                greetingsAndMessageBoxDesign.CustomMessageBox("Please select both status and role.");
                 return;
             }
 
             SQLiteDataAccess.UpdateUserStatus(userId, status, role);
 
-            greetingsAndMessageBoxDesign.CustomMessage("User updated successfully!");
+            greetingsAndMessageBoxDesign.CustomMessageBox("User updated successfully!");
 
             // Refresh grid
             LoadUserList();
