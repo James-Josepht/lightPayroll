@@ -17,14 +17,12 @@ namespace lightPayrollServices
 {
     public class SQLiteDataAccess
     {
-        /*  
-        all these changes in the database is shown in
-        lightPayroll\bin\Debug\net8.0-windows\lightPayrollDB.db
-        not the one in
-        lightPayroll\lightPayrollDB.db
-         */
+        
+        // all these changes in the database can be seen in lightPayroll\bin\Debug\net8.0-windows\lightPayrollDB.db
+        // not the one in lightPayroll\lightPayrollDB.db
+         
 
-        public static List<UserDisplay> LoadUsers()
+        public static List<UserDisplay> LoadUsers()//used for displaying the users, not for authentication
         {
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
             {
@@ -84,6 +82,18 @@ namespace lightPayrollServices
                 return conn.QueryFirstOrDefault<AdminUser>(sql, new { Input = isNumeric ? (object)id : input });
             }
         }
+
+        public static string GetUserRoleByUsername(string username)
+        {
+            using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
+            {
+                string sql = "SELECT Role FROM UsersTable WHERE Username = @Username LIMIT 1";
+
+                return conn.QueryFirstOrDefault<string>(sql, new { Username = username });
+            }
+        }
+
+
 
 
         //UPDATE status (approve/reject accounts)

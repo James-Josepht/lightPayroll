@@ -7,5 +7,10 @@
 [x]Allow dates to be adjusting based on the time zone of the user
 [x]Implement typing effect for login label
 [x]Create email based create of users
-[]Create a model for showing only, which does not include password
-[]Finish UI for user and accountant
+[x]Create a model for showing only, which does not include password
+[x]Finish UI for user 
+[x]Add a new function for finding ID
+[]Make the function for finding ID in authservices/sql into suiting it to the username for searching.
+
+
+[]Make a logic where one form with different roles!

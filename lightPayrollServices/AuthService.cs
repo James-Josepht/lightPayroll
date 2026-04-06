@@ -22,10 +22,12 @@ namespace lightPayrollServices
             return reservedUsernames.Contains(username.ToLower());
         }
 
+
+        //used to send in the log in UI, whether thier acc ready to login or not
         public string ValidateCredentials(string username, string password)
         {
-            // In a real application, you would query the database here.
-            // But since I am using simulation, I will just check against hardcoded values for admin.
+            // I am using simulation, I will just check against hardcoded values for admin.
+
 
                 var user = SQLiteDataAccess.GetUserByIdOrUsername(username);
                 if (user != null && user.Password == password && user.AccountStatus == "Active")
@@ -44,6 +46,11 @@ namespace lightPayrollServices
 
             return "Rejected";
         }
+
+
+
+
+
 
         public bool IsValidLightEmail(string email)
         {

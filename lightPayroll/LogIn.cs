@@ -74,36 +74,44 @@ namespace lighPayroll
             string password = passLogBox.Text.Trim();
 
             AdminUI admin = new AdminUI();
-            EmployeeUI employee = new EmployeeUI();
+            
             
             AuthService validator = new AuthService();
 
             string status = validator.ValidateCredentials(username, password);
+            string role = SQLiteDataAccess.GetUserRoleByUsername(username);
 
-            if (status == "Active" && username.ToLower() == "admin")
+            // UI for manager, accountant, and employee shared the same form, but different layout.
+            EmployeeUI employee = new EmployeeUI(role);
+
+            if (status == "Active")
             {
-                showCustomMessage("Login successful!");
-                admin.Show();
-                this.Hide();
-            }
-            else if (status == "Active" && username.ToLower() != "admin")
-            {
-                showCustomMessage("Login successful!");
-                employee.Show();
-                this.Hide();
+                if (username.ToLower() == "admin" && password == "admin")
+                {
+                    CustomMessage("Login successful!");
+                    admin.Show();
+                    this.Hide();
+                }
+                else
+                {
+                     CustomMessage("Login successful!");
+                    employee.Show();
+                    this.Hide();
+                }
+
             }
             else if (status == "Pending")
             {
-                showCustomMessage("Your account is pending approval.");
+                CustomMessage("Your account is pending approval.");
 
             }
             else
             {
-                showCustomMessage("Invalid credentials.");
+                CustomMessage("Invalid credentials.");
             }
         }
 
-        public void showCustomMessage(string message)
+        public void CustomMessage(string message)
         {
             Form customMsg = new Form();
 

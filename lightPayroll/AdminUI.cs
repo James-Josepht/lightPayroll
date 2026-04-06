@@ -59,7 +59,7 @@ namespace lighPayroll
             }
             else if (e.KeyCode == Keys.Enter && !storedFeatures.Any(feature => searchBox.Text.Contains(feature)))
             {
-                showCustomMessage("No results found\r\n\r\nYou may want to try different keywords or check for any possible typos.");
+                CustomMessage("No results found\r\n\r\nYou may want to try different keywords or check for any possible typos.");
             }
         }
 
@@ -98,7 +98,7 @@ namespace lighPayroll
             }
 
         }
-        public void showCustomMessage(string message)
+        public void CustomMessage(string message)
         {
             Form customMsg = new Form();
 

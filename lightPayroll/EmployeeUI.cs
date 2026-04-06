@@ -14,31 +14,45 @@ namespace lighPayrollUI
 {
     public partial class EmployeeUI : Form
     {
+        private string user_role;
         AdminUI adminUI = new AdminUI(); //used for getting panel design and greeting service
-        public EmployeeUI()
+        LogIn logIn = new LogIn(); //used for getting greeting service
+        public EmployeeUI(string role)
         {
             InitializeComponent();
+            user_role = role;
         }
 
+        private void ApplyRolePermissions()
+        {
+            switch (user_role)
+            {
+                case "Manager":
+                   
+                    //btnApprove.Enabled = true;
+                    //btnPayroll.Enabled = true;
+                    break;
+
+                case "Accountant":
+                    //btnPayroll.Enabled = true;
+                    //btnApprove.Enabled = false;
+                    break;
+
+                case "Employee":
+                    //btnPayroll.Enabled = false;
+                    //btnApprove.Enabled = false;
+                    break;
+            }
+        }
 
 
         private void EmployeeUI_Load(object sender, EventArgs e)
         {
+            ApplyRolePermissions();
             adminUI.panelDesign(greetingPanel, bodyPanel);
         }
 
         //forces the tab control to draw the text in the color we want
-
-
-        private void pictureBox6_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void bodyPanel_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
 
         private void eFeaturesPanel_Click(object sender, EventArgs e)
         {

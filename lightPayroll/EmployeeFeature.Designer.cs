@@ -61,14 +61,14 @@
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(800, 100);
+            panel1.Size = new Size(937, 100);
             panel1.TabIndex = 25;
             // 
             // pictureBox2
             // 
             pictureBox2.Cursor = Cursors.Hand;
             pictureBox2.Image = Properties.Resources.smart_idea;
-            pictureBox2.Location = new Point(299, -11);
+            pictureBox2.Location = new Point(367, -23);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(203, 123);
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -88,7 +88,7 @@
             tableLayoutPanel1.RowCount = 2;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 22.666666F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 77.3333359F));
-            tableLayoutPanel1.Size = new Size(800, 450);
+            tableLayoutPanel1.Size = new Size(937, 548);
             tableLayoutPanel1.TabIndex = 26;
             // 
             // tabControl1
@@ -98,10 +98,10 @@
             tabControl1.Controls.Add(tabPage3);
             tabControl1.DrawMode = TabDrawMode.OwnerDrawFixed;
             tabControl1.Font = new Font("Ubuntu Mono Medium", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            tabControl1.Location = new Point(3, 105);
+            tabControl1.Location = new Point(3, 127);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(794, 327);
+            tabControl1.Size = new Size(931, 418);
             tabControl1.TabIndex = 26;
             tabControl1.DrawItem += tabControl1_DrawItem;
             // 
@@ -115,7 +115,7 @@
             tabPage1.Location = new Point(4, 25);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(786, 298);
+            tabPage1.Size = new Size(923, 389);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Clock In / Out";
             // 
@@ -125,34 +125,34 @@
             panel2.Font = new Font("Ubuntu Mono Medium", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             panel2.Location = new Point(28, 27);
             panel2.Name = "panel2";
-            panel2.Size = new Size(713, 356);
+            panel2.Size = new Size(868, 414);
             panel2.TabIndex = 0;
             // 
             // panel3
             // 
             panel3.BackColor = Color.FromArgb(33, 44, 66);
-            panel3.Location = new Point(52, 3);
+            panel3.Location = new Point(148, 13);
             panel3.Name = "panel3";
             panel3.Size = new Size(585, 100);
             panel3.TabIndex = 0;
             // 
             // tabPage2
             // 
-            tabPage2.BackColor = Color.Beige;
+            tabPage2.BackColor = Color.FromArgb(33, 44, 66);
             tabPage2.Location = new Point(4, 25);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(786, 298);
+            tabPage2.Size = new Size(923, 389);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Payslip";
             // 
             // tabPage3
             // 
-            tabPage3.BackColor = Color.Beige;
+            tabPage3.BackColor = Color.FromArgb(33, 44, 66);
             tabPage3.Location = new Point(4, 25);
             tabPage3.Name = "tabPage3";
             tabPage3.Padding = new Padding(3);
-            tabPage3.Size = new Size(786, 298);
+            tabPage3.Size = new Size(923, 389);
             tabPage3.TabIndex = 2;
             tabPage3.Text = "Profile";
             // 
@@ -225,10 +225,11 @@
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(937, 548);
             Controls.Add(panel1);
             Controls.Add(tableLayoutPanel1);
             Name = "EmployeeFeature";
+            StartPosition = FormStartPosition.CenterScreen;
             Load += EmployeeFeature_Load;
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();

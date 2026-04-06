@@ -185,7 +185,6 @@
             bodyPanel.Name = "bodyPanel";
             bodyPanel.Size = new Size(783, 445);
             bodyPanel.TabIndex = 2;
-            bodyPanel.Paint += bodyPanel_Paint;
             // 
             // eFeaturesPanel
             // 
@@ -288,7 +287,6 @@
             pictureBox6.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox6.TabIndex = 18;
             pictureBox6.TabStop = false;
-            pictureBox6.Click += pictureBox6_Click;
             // 
             // panel4
             // 

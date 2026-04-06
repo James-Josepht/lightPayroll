@@ -73,7 +73,7 @@ namespace lighPayroll
           
             if (string.IsNullOrWhiteSpace(userName) || string.IsNullOrWhiteSpace(userPass))
             {
-                loginDesigns.showCustomMessage("Fields must not be empty.");
+                loginDesigns.CustomMessage("Fields must not be empty.");
                 return;
             }
 
@@ -82,18 +82,18 @@ namespace lighPayroll
             //check if username exist in database
             if (authService.IsReserved(userName))
             {
-                loginDesigns.showCustomMessage("This username is invalid. Please choose a different one.");
+                loginDesigns.CustomMessage("This username is invalid. Please choose a different one.");
             }
             else if (authService.RegisterAccount(userName, userPass))
             {
-                loginDesigns.showCustomMessage("Registration successful! You can now log in.");
+                loginDesigns.CustomMessage("Registration successful! You can now log in.");
                 LogIn login = new LogIn();
                 login.Show();
                 this.Hide();
             }
             else
             {
-                loginDesigns.showCustomMessage("This username is taken. Please try again.");
+                loginDesigns.CustomMessage("This username is taken. Please try again.");
             }
 
         }
