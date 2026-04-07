@@ -33,14 +33,14 @@ namespace lighPayrollUI
             switch (user_role)
             {
                 case "Manager":
-                    greetingLabel.Text = $"Hola {user_name}!";
+                    greetingLabel.Text = $"Hello {user_name}!";
                     logIn.TypeMessage(sGreetingsLabel, greetings.GetRandomGreeting("Manager"));
                     //btnApprove.Enabled = true;
                     //btnPayroll.Enabled = true;
                     break;
 
                 case "Accountant":
-                    greetingLabel.Text = $"Hola {user_name}!";
+                    greetingLabel.Text = $"Hello {user_name}!";
                     logIn.TypeMessage(sGreetingsLabel, greetings.GetRandomGreeting("Accountant"));
                     //btnPayroll.Enabled = true;
                     //btnApprove.Enabled = false;
@@ -62,18 +62,13 @@ namespace lighPayrollUI
             adminUI.panelDesign(greetingPanel, bodyPanel);
         }
 
-        //forces the tab control to draw the text in the color we want
 
         private void eFeaturesPanel_Click(object sender, EventArgs e)
         {
-            EmployeeFeature empFeature = new EmployeeFeature();
+            EmployeeFeature empFeature = new EmployeeFeature(user_role, user_name);
             empFeature.Show();
             this.Hide();
         }
 
-        private void eFeaturesPanel_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
     }
 }

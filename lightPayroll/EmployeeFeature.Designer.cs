@@ -34,7 +34,14 @@
             employeeFeatures = new TabControl();
             clockPage = new TabPage();
             panel2 = new Panel();
+            statusPanel = new Panel();
+            label1 = new Label();
+            clockInButton = new Button();
+            clockInLabel = new Label();
+            clockOutButton = new Button();
             panel3 = new Panel();
+            clockStatusReal = new Label();
+            clockStatus = new Label();
             payslipPage = new TabPage();
             profilePage = new TabPage();
             panel1.SuspendLayout();
@@ -43,6 +50,8 @@
             employeeFeatures.SuspendLayout();
             clockPage.SuspendLayout();
             panel2.SuspendLayout();
+            statusPanel.SuspendLayout();
+            panel3.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -52,19 +61,20 @@
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(937, 100);
+            panel1.Size = new Size(937, 109);
             panel1.TabIndex = 25;
             // 
             // pictureBox2
             // 
             pictureBox2.Cursor = Cursors.Hand;
             pictureBox2.Image = Properties.Resources.smart_idea;
-            pictureBox2.Location = new Point(367, -23);
+            pictureBox2.Location = new Point(350, -8);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(203, 123);
+            pictureBox2.Size = new Size(236, 123);
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox2.TabIndex = 6;
             pictureBox2.TabStop = false;
+            pictureBox2.Click += HomeUser_Click;
             // 
             // tableLayoutPanel1
             // 
@@ -76,8 +86,8 @@
             tableLayoutPanel1.Location = new Point(0, 0);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 2;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 22.666666F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 77.3333359F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 18.9781017F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 81.0219F));
             tableLayoutPanel1.Size = new Size(937, 548);
             tableLayoutPanel1.TabIndex = 26;
             // 
@@ -88,43 +98,121 @@
             employeeFeatures.Controls.Add(profilePage);
             employeeFeatures.DrawMode = TabDrawMode.OwnerDrawFixed;
             employeeFeatures.Font = new Font("Ubuntu Mono Medium", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            employeeFeatures.Location = new Point(3, 127);
+            employeeFeatures.Location = new Point(3, 107);
             employeeFeatures.Name = "employeeFeatures";
             employeeFeatures.SelectedIndex = 0;
-            employeeFeatures.Size = new Size(931, 418);
+            employeeFeatures.Size = new Size(931, 438);
             employeeFeatures.TabIndex = 26;
             employeeFeatures.DrawItem += tabControl1_DrawItem;
             // 
             // clockPage
             // 
             clockPage.AutoScroll = true;
-            clockPage.BackColor = Color.FromArgb(33, 44, 66);
+            clockPage.BackColor = SystemColors.ActiveCaption;
             clockPage.Controls.Add(panel2);
             clockPage.Font = new Font("Ubuntu Mono Medium", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             clockPage.ForeColor = Color.FromArgb(33, 44, 66);
             clockPage.Location = new Point(4, 25);
             clockPage.Name = "clockPage";
             clockPage.Padding = new Padding(3);
-            clockPage.Size = new Size(923, 389);
+            clockPage.Size = new Size(923, 409);
             clockPage.TabIndex = 0;
             clockPage.Text = "Clock In / Out";
             // 
             // panel2
             // 
-            panel2.Controls.Add(panel3);
+            panel2.BackColor = SystemColors.ActiveCaption;
+            panel2.Controls.Add(statusPanel);
             panel2.Font = new Font("Ubuntu Mono Medium", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             panel2.Location = new Point(28, 27);
             panel2.Name = "panel2";
-            panel2.Size = new Size(868, 414);
+            panel2.Size = new Size(872, 360);
             panel2.TabIndex = 0;
+            // 
+            // statusPanel
+            // 
+            statusPanel.BackColor = Color.FromArgb(33, 44, 66);
+            statusPanel.Controls.Add(label1);
+            statusPanel.Controls.Add(clockInButton);
+            statusPanel.Controls.Add(clockInLabel);
+            statusPanel.Controls.Add(clockOutButton);
+            statusPanel.Controls.Add(panel3);
+            statusPanel.Location = new Point(42, 39);
+            statusPanel.Name = "statusPanel";
+            statusPanel.Size = new Size(789, 285);
+            statusPanel.TabIndex = 0;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.ForeColor = Color.Beige;
+            label1.Location = new Point(658, 85);
+            label1.Name = "label1";
+            label1.Size = new Size(70, 16);
+            label1.TabIndex = 4;
+            label1.Text = "Clock Out";
+            // 
+            // clockInButton
+            // 
+            clockInButton.BackgroundImage = Properties.Resources.clock_in;
+            clockInButton.BackgroundImageLayout = ImageLayout.Zoom;
+            clockInButton.Location = new Point(457, 16);
+            clockInButton.Name = "clockInButton";
+            clockInButton.Size = new Size(110, 66);
+            clockInButton.TabIndex = 1;
+            clockInButton.Text = "n";
+            clockInButton.UseVisualStyleBackColor = true;
+            // 
+            // clockInLabel
+            // 
+            clockInLabel.AutoSize = true;
+            clockInLabel.ForeColor = Color.Beige;
+            clockInLabel.Location = new Point(483, 85);
+            clockInLabel.Name = "clockInLabel";
+            clockInLabel.Size = new Size(63, 16);
+            clockInLabel.TabIndex = 3;
+            clockInLabel.Text = "Clock In";
+            // 
+            // clockOutButton
+            // 
+            clockOutButton.BackgroundImage = Properties.Resources.clock_out;
+            clockOutButton.BackgroundImageLayout = ImageLayout.Zoom;
+            clockOutButton.Location = new Point(638, 16);
+            clockOutButton.Name = "clockOutButton";
+            clockOutButton.Size = new Size(110, 66);
+            clockOutButton.TabIndex = 2;
+            clockOutButton.UseVisualStyleBackColor = true;
             // 
             // panel3
             // 
-            panel3.BackColor = Color.FromArgb(33, 44, 66);
-            panel3.Location = new Point(148, 13);
+            panel3.Controls.Add(clockStatusReal);
+            panel3.Controls.Add(clockStatus);
+            panel3.Location = new Point(40, 17);
             panel3.Name = "panel3";
-            panel3.Size = new Size(585, 100);
-            panel3.TabIndex = 0;
+            panel3.Size = new Size(293, 65);
+            panel3.TabIndex = 7;
+            // 
+            // clockStatusReal
+            // 
+            clockStatusReal.AutoSize = true;
+            clockStatusReal.Font = new Font("Ubuntu Mono", 20.2499981F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            clockStatusReal.ForeColor = Color.FromArgb(0, 192, 0);
+            clockStatusReal.Location = new Point(136, 15);
+            clockStatusReal.Name = "clockStatusReal";
+            clockStatusReal.Size = new Size(135, 34);
+            clockStatusReal.TabIndex = 6;
+            clockStatusReal.Text = "Clock In";
+            // 
+            // clockStatus
+            // 
+            clockStatus.AutoSize = true;
+            clockStatus.Font = new Font("Ubuntu Mono", 21.7499981F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            clockStatus.ForeColor = Color.Beige;
+            clockStatus.Location = new Point(3, 13);
+            clockStatus.Name = "clockStatus";
+            clockStatus.Size = new Size(127, 36);
+            clockStatus.TabIndex = 5;
+            clockStatus.Text = "Status:";
             // 
             // payslipPage
             // 
@@ -132,7 +220,7 @@
             payslipPage.Location = new Point(4, 25);
             payslipPage.Name = "payslipPage";
             payslipPage.Padding = new Padding(3);
-            payslipPage.Size = new Size(923, 389);
+            payslipPage.Size = new Size(926, 409);
             payslipPage.TabIndex = 1;
             payslipPage.Text = "Payslip";
             // 
@@ -142,7 +230,7 @@
             profilePage.Location = new Point(4, 25);
             profilePage.Name = "profilePage";
             profilePage.Padding = new Padding(3);
-            profilePage.Size = new Size(923, 389);
+            profilePage.Size = new Size(926, 409);
             profilePage.TabIndex = 2;
             profilePage.Text = "Profile";
             // 
@@ -150,7 +238,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.ActiveCaption;
+            BackColor = Color.Beige;
             ClientSize = new Size(937, 548);
             Controls.Add(panel1);
             Controls.Add(tableLayoutPanel1);
@@ -163,6 +251,10 @@
             employeeFeatures.ResumeLayout(false);
             clockPage.ResumeLayout(false);
             panel2.ResumeLayout(false);
+            statusPanel.ResumeLayout(false);
+            statusPanel.PerformLayout();
+            panel3.ResumeLayout(false);
+            panel3.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -171,10 +263,17 @@
         private TableLayoutPanel tableLayoutPanel1;
         private TabControl employeeFeatures;
         private TabPage clockPage;
-        private Panel panel2;
-        private Panel panel3;
         private TabPage payslipPage;
         private TabPage profilePage;
         private PictureBox pictureBox2;
+        private Panel panel2;
+        private Panel statusPanel;
+        private Label clockStatus;
+        private Label label1;
+        private Button clockInButton;
+        private Label clockInLabel;
+        private Button clockOutButton;
+        private Label clockStatusReal;
+        private Panel panel3;
     }
 }

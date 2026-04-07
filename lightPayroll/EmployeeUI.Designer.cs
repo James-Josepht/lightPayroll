@@ -198,7 +198,7 @@
             eFeaturesPanel.Size = new Size(704, 56);
             eFeaturesPanel.TabIndex = 23;
             eFeaturesPanel.Click += eFeaturesPanel_Click;
-            eFeaturesPanel.Paint += eFeaturesPanel_Paint;
+          
             // 
             // sFeaturesLabel
             // 

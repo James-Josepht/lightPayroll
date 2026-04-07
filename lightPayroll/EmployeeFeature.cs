@@ -15,16 +15,18 @@ namespace lighPayrollUI
     public partial class EmployeeFeature : Form
     {
         AdminUI adminUI = new AdminUI(); //used for getting panel design and greeting service
-
-        public EmployeeFeature()
+        private string user_role, user_name;
+        public EmployeeFeature(string role, string username)
         {
             InitializeComponent();
-            employeeFeatures.DrawMode = TabDrawMode.OwnerDrawFixed; 
+            employeeFeatures.DrawMode = TabDrawMode.OwnerDrawFixed;
+            user_role = role;
+            user_name = username;
         }
 
         private void EmployeeFeature_Load(object sender, EventArgs e)
         {
-
+            adminUI.panelDesign(statusPanel);
         }
 
 
@@ -51,5 +53,14 @@ namespace lighPayrollUI
                 TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter
             );
         }
+
+        private void HomeUser_Click(object sender, EventArgs e)
+        {
+            EmployeeUI employeeUI = new EmployeeUI(user_role, user_name);
+            employeeUI.Show();
+            this.Hide();
+        }
+
+       
     }
 }
