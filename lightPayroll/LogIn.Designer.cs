@@ -75,6 +75,7 @@ namespace lighPayroll
             // 
             backHomeButton.BackgroundImage = (Image)resources.GetObject("backHomeButton.BackgroundImage");
             backHomeButton.BackgroundImageLayout = ImageLayout.Stretch;
+            backHomeButton.Cursor = Cursors.Hand;
             backHomeButton.Location = new Point(22, 136);
             backHomeButton.Name = "backHomeButton";
             backHomeButton.Size = new Size(74, 59);

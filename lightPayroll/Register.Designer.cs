@@ -34,6 +34,8 @@ namespace lighPayroll
             panel1 = new Panel();
             pictureBox1 = new PictureBox();
             panel2 = new Panel();
+            invalidPassword = new Label();
+            invalidUsername = new Label();
             label3 = new Label();
             showPassBox = new CheckBox();
             registerButton = new Button();
@@ -42,8 +44,6 @@ namespace lighPayroll
             registerPassBox = new TextBox();
             registerAccountBox = new TextBox();
             backHomeButton = new PictureBox();
-            invalidUsername = new Label();
-            invalidPassword = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel2.SuspendLayout();
@@ -89,7 +89,32 @@ namespace lighPayroll
             panel2.Name = "panel2";
             panel2.Size = new Size(564, 424);
             panel2.TabIndex = 3;
-        
+            // 
+            // invalidPassword
+            // 
+            invalidPassword.AutoSize = true;
+            invalidPassword.BackColor = Color.FromArgb(33, 44, 66);
+            invalidPassword.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            invalidPassword.ForeColor = Color.Red;
+            invalidPassword.Location = new Point(138, 281);
+            invalidPassword.Name = "invalidPassword";
+            invalidPassword.Size = new Size(236, 17);
+            invalidPassword.TabIndex = 9;
+            invalidPassword.Text = "Password must be at least 8 characters";
+            invalidPassword.Visible = false;
+            // 
+            // invalidUsername
+            // 
+            invalidUsername.AutoSize = true;
+            invalidUsername.BackColor = Color.FromArgb(33, 44, 66);
+            invalidUsername.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            invalidUsername.ForeColor = Color.Red;
+            invalidUsername.Location = new Point(138, 198);
+            invalidUsername.Name = "invalidUsername";
+            invalidUsername.Size = new Size(278, 17);
+            invalidUsername.TabIndex = 8;
+            invalidUsername.Text = "Format must be firstname.lastname@light.com";
+            invalidUsername.Visible = false;
             // 
             // label3
             // 
@@ -171,38 +196,13 @@ namespace lighPayroll
             // 
             backHomeButton.BackgroundImage = (Image)resources.GetObject("backHomeButton.BackgroundImage");
             backHomeButton.BackgroundImageLayout = ImageLayout.Stretch;
+            backHomeButton.Cursor = Cursors.Hand;
             backHomeButton.Location = new Point(22, 136);
             backHomeButton.Name = "backHomeButton";
             backHomeButton.Size = new Size(74, 59);
             backHomeButton.TabIndex = 4;
             backHomeButton.TabStop = false;
             backHomeButton.Click += backHomeButtonClick;
-            // 
-            // invalidUsername
-            // 
-            invalidUsername.AutoSize = true;
-            invalidUsername.BackColor = Color.FromArgb(33, 44, 66);
-            invalidUsername.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            invalidUsername.ForeColor = Color.Red;
-            invalidUsername.Location = new Point(138, 198);
-            invalidUsername.Name = "invalidUsername";
-            invalidUsername.Size = new Size(278, 17);
-            invalidUsername.TabIndex = 8;
-            invalidUsername.Text = "Format must be firstname.lastname@light.com";
-            invalidUsername.Visible = false;
-            // 
-            // invalidPassword
-            // 
-            invalidPassword.AutoSize = true;
-            invalidPassword.BackColor = Color.FromArgb(33, 44, 66);
-            invalidPassword.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            invalidPassword.ForeColor = Color.Red;
-            invalidPassword.Location = new Point(138, 281);
-            invalidPassword.Name = "invalidPassword";
-            invalidPassword.Size = new Size(236, 17);
-            invalidPassword.TabIndex = 9;
-            invalidPassword.Text = "Password must be at least 8 characters";
-            invalidPassword.Visible = false;
             // 
             // Register
             // 

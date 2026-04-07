@@ -10,7 +10,7 @@
 [x]Create a model for showing only, which does not include password
 [x]Finish UI for user 
 [x]Add a new function for finding ID
-[]Make the function for finding ID in authservices/sql into suiting it to the username for searching.
+[x]Make the function for finding ID in authservices/sql into suiting it to the username for searching.
 
 
 []Make a logic where one form with different roles!

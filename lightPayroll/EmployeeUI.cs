@@ -9,18 +9,23 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Forms;
+using lightPayrollModel;
+using lightPayrollServices;
 
 namespace lighPayrollUI
 {
     public partial class EmployeeUI : Form
     {
-        private string user_role;
+        private string user_role, user_name;
         AdminUI adminUI = new AdminUI(); //used for getting panel design and greeting service
-        LogIn logIn = new LogIn(); //used for getting greeting service
-        public EmployeeUI(string role)
+        GreetingService greetings = new GreetingService(); //used for getting greetings
+        LogIn logIn = new LogIn(); //used for applying greetings
+
+        public EmployeeUI(string role, string username)
         {
             InitializeComponent();
             user_role = role;
+            user_name = username;
         }
 
         private void ApplyRolePermissions()
@@ -28,17 +33,22 @@ namespace lighPayrollUI
             switch (user_role)
             {
                 case "Manager":
-                    logIn.TypeMessage();
+                    greetingLabel.Text = $"Hola {user_name}!";
+                    logIn.TypeMessage(sGreetingsLabel, greetings.GetRandomGreeting("Manager"));
                     //btnApprove.Enabled = true;
                     //btnPayroll.Enabled = true;
                     break;
 
                 case "Accountant":
+                    greetingLabel.Text = $"Hola {user_name}!";
+                    logIn.TypeMessage(sGreetingsLabel, greetings.GetRandomGreeting("Accountant"));
                     //btnPayroll.Enabled = true;
                     //btnApprove.Enabled = false;
                     break;
 
                 case "Employee":
+                    greetingLabel.Text = $"Hello {user_name}!";
+                    logIn.TypeMessage(sGreetingsLabel, greetings.GetRandomGreeting("Employee"));
                     //btnPayroll.Enabled = false;
                     //btnApprove.Enabled = false;
                     break;

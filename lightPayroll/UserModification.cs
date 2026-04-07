@@ -39,7 +39,7 @@ namespace lighPayrollUI
         private void modifyRowButton_Click(object sender, EventArgs e)
         {
             // Validate input first
-            if (!int.TryParse(idTxtBox.Text, out int userId))
+            if (!int.TryParse(nameOrIDTxtBox.Text, out int userId))
             {
                 greetingsAndMessageBoxDesign.CustomMessageBox("Please enter a valid numeric User ID.");
                 return;
@@ -68,6 +68,26 @@ namespace lighPayrollUI
             // Refresh grid
             LoadUserList();
         }
+        private void searchUserButton_Click(object sender, EventArgs e)
+        {
+           string username = nameOrIDTxtBox.Text;
+
+           if (string.IsNullOrEmpty(username))
+           {
+                greetingsAndMessageBoxDesign.CustomMessageBox("Enter valid name.");
+                return;
+           }
+
+
+            if (SQLiteDataAccess.SearchUsersByUsername(username) == null)
+                greetingsAndMessageBoxDesign.CustomMessageBox("User not found.");
+            else
+                attendanceGrid.DataSource = SQLiteDataAccess.SearchUsersByUsername(username);
+
+
+
+
+        }
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
@@ -75,5 +95,6 @@ namespace lighPayrollUI
             adminUI.Show();
             this.Hide();
         }
+
     }
 }

@@ -35,13 +35,22 @@ namespace lightPayrollServices
             "Believe in the Lord Jesus, and you will be saved. — Acts 16:31"
         };
 
+        //emoji are cute though :>
         private string[] accountantGreetings =
         {
-            "Welcome back! Ready to crunch some numbers?",
-            "Wear hoodie and let's type faster ;>",
-            "Welcome back! Ready to maintain stuff?"
-            
+            "Let’s balance those numbers like a pro 💼",
+            "Time to make every cent count 📊",
+            "Ready to crunch some numbers today?",
+            "Accuracy mode: ON. Let’s get to work!"
+        };
 
+        private string[] managerGreetings =
+        {
+            "Time to lead the team to success 🚀",
+            "Big decisions ahead — you’ve got this!",
+            "Let’s turn plans into results today 💡",
+            "Ready to manage, motivate, and win?",
+            "Another day, another strategy to conquer 📈",
         };
 
         private string[] employeeGreetings =
@@ -57,9 +66,11 @@ namespace lightPayrollServices
 
         public string GetRandomGreeting(string role)
         {
-            if (role == "Admin") return employeeGreetings[rand.Next(employeeGreetings.Length)];
+            if (role == "Admin") return adminGreetings[rand.Next(adminGreetings.Length)];
             else if (role == "Christ-Centered Guidance") return christCenteredGuidance[rand.Next(christCenteredGuidance.Length)];
-            
+            else if (role == "Accountant") return accountantGreetings[rand.Next(accountantGreetings.Length)];
+            else if (role == "Employee") return employeeGreetings[rand.Next(employeeGreetings.Length)];
+
 
             return "Hello!";
         }

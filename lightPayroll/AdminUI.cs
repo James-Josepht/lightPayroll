@@ -30,7 +30,7 @@ namespace lighPayroll
                 GreetingService greetingService = new GreetingService();
 
                 string adminGreeting = greetingService.GetRandomGreeting("Admin") ?? "Hello Admin!";
-                string bibleGuidance = greetingService.GetRandomGreeting("Christ-Centered Guidance") ?? "Welcome!";
+                string bibleGuidance = greetingService.GetRandomGreeting("Christ-Centered Guidance") ?? "John 3:16";
 
                 loginDesigns.TypeMessage(label1, adminGreeting);
                 loginDesigns.TypeMessage(encourageVerses, bibleGuidance);
@@ -149,6 +149,16 @@ namespace lighPayroll
         private void pictureBox4_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void exitButton_Click(object sender, EventArgs e)
+        {
+            LogIn messageBox = new LogIn();
+
+            messageBox.CustomMessageBox("Signing out.");
+            Form1 homepage = new Form1();
+            homepage.Show();
+            this.Hide();
         }
     }
 

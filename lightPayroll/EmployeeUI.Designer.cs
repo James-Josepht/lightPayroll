@@ -36,7 +36,7 @@
             panel2 = new Panel();
             greetingPanel = new Panel();
             pictureBox1 = new PictureBox();
-            label1 = new Label();
+            sGreetingsLabel = new Label();
             greetingLabel = new Label();
             bodyPanel = new Panel();
             eFeaturesPanel = new Panel();
@@ -133,7 +133,7 @@
             // 
             greetingPanel.BackColor = Color.FromArgb(33, 44, 66);
             greetingPanel.Controls.Add(pictureBox1);
-            greetingPanel.Controls.Add(label1);
+            greetingPanel.Controls.Add(sGreetingsLabel);
             greetingPanel.Controls.Add(greetingLabel);
             greetingPanel.Location = new Point(73, 36);
             greetingPanel.Name = "greetingPanel";
@@ -150,17 +150,17 @@
             pictureBox1.TabIndex = 8;
             pictureBox1.TabStop = false;
             // 
-            // label1
+            // sGreetingsLabel
             // 
-            label1.AutoSize = true;
-            label1.BackColor = Color.FromArgb(33, 44, 66);
-            label1.Font = new Font("Ubuntu Mono", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.Beige;
-            label1.Location = new Point(111, 58);
-            label1.Name = "label1";
-            label1.Size = new Size(428, 23);
-            label1.TabIndex = 7;
-            label1.Text = "Welcome back! Ready to maintain stuff?";
+            sGreetingsLabel.AutoSize = true;
+            sGreetingsLabel.BackColor = Color.FromArgb(33, 44, 66);
+            sGreetingsLabel.Font = new Font("Ubuntu Mono", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            sGreetingsLabel.ForeColor = Color.Beige;
+            sGreetingsLabel.Location = new Point(111, 58);
+            sGreetingsLabel.Name = "sGreetingsLabel";
+            sGreetingsLabel.Size = new Size(428, 23);
+            sGreetingsLabel.TabIndex = 7;
+            sGreetingsLabel.Text = "Welcome back! Ready to maintain stuff?";
             // 
             // greetingLabel
             // 
@@ -500,7 +500,7 @@
         private Panel panel2;
         private Panel greetingPanel;
         private PictureBox pictureBox1;
-        private Label label1;
+        private Label sGreetingsLabel;
         private Label greetingLabel;
         private Panel bodyPanel;
         private Panel panel3;

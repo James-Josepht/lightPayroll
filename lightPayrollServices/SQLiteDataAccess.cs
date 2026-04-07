@@ -82,6 +82,19 @@ namespace lightPayrollServices
                 return conn.QueryFirstOrDefault<AdminUser>(sql, new { Input = isNumeric ? (object)id : input });
             }
         }
+        public static List<UserDisplay> SearchUsersByUsername(string input)
+        {
+            using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
+            {
+
+                string sql = "SELECT * FROM UsersTable WHERE Username LIKE @Input";
+                var users = conn.Query<UserDisplay>(sql, new { Input = $"%{input}%" }).ToList();
+
+                return users;
+            }
+        }
+
+        
 
         public static string GetUserRoleByUsername(string username)
         {

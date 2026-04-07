@@ -32,6 +32,7 @@ namespace lighPayroll
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminUI));
             headPanel = new Panel();
+            exitLabel = new Label();
             pictureBox2 = new PictureBox();
             panel5 = new Panel();
             searchMenuStrip = new MenuStrip();
@@ -53,6 +54,8 @@ namespace lighPayroll
             toolStripMenuItem19 = new ToolStripMenuItem();
             toolStripMenuItem21 = new ToolStripMenuItem();
             toolStripMenuItem22 = new ToolStripMenuItem();
+            panel6 = new Panel();
+            exitButton = new Button();
             bodyPanel = new Panel();
             label4 = new Label();
             encourageVerses = new Label();
@@ -86,6 +89,7 @@ namespace lighPayroll
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             panel5.SuspendLayout();
             searchMenuStrip.SuspendLayout();
+            panel6.SuspendLayout();
             bodyPanel.SuspendLayout();
             attendanceTool.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -102,13 +106,26 @@ namespace lighPayroll
             // headPanel
             // 
             headPanel.BackColor = Color.Beige;
+            headPanel.Controls.Add(exitLabel);
             headPanel.Controls.Add(pictureBox2);
             headPanel.Controls.Add(panel5);
+            headPanel.Controls.Add(panel6);
             headPanel.Dock = DockStyle.Top;
             headPanel.Location = new Point(0, 0);
             headPanel.Name = "headPanel";
             headPanel.Size = new Size(937, 101);
             headPanel.TabIndex = 1;
+            // 
+            // exitLabel
+            // 
+            exitLabel.AutoSize = true;
+            exitLabel.Font = new Font("Ubuntu Mono", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            exitLabel.ForeColor = Color.FromArgb(33, 44, 66);
+            exitLabel.Location = new Point(852, 60);
+            exitLabel.Name = "exitLabel";
+            exitLabel.Size = new Size(63, 16);
+            exitLabel.TabIndex = 7;
+            exitLabel.Text = "Sign Out";
             // 
             // pictureBox2
             // 
@@ -128,7 +145,7 @@ namespace lighPayroll
             panel5.BackgroundImageLayout = ImageLayout.Stretch;
             panel5.Controls.Add(searchMenuStrip);
             panel5.Cursor = Cursors.Hand;
-            panel5.Location = new Point(584, 38);
+            panel5.Location = new Point(761, 34);
             panel5.Name = "panel5";
             panel5.Size = new Size(58, 33);
             panel5.TabIndex = 3;
@@ -266,6 +283,29 @@ namespace lighPayroll
             // 
             toolStripMenuItem22.Name = "toolStripMenuItem22";
             toolStripMenuItem22.Size = new Size(12, 25);
+            // 
+            // panel6
+            // 
+            panel6.Controls.Add(exitButton);
+            panel6.Location = new Point(840, 20);
+            panel6.Name = "panel6";
+            panel6.Size = new Size(85, 67);
+            panel6.TabIndex = 8;
+            // 
+            // exitButton
+            // 
+            exitButton.BackgroundImage = Resources.exit;
+            exitButton.BackgroundImageLayout = ImageLayout.Zoom;
+            exitButton.Cursor = Cursors.Hand;
+            exitButton.FlatAppearance.BorderColor = Color.White;
+            exitButton.FlatAppearance.BorderSize = 0;
+            exitButton.FlatStyle = FlatStyle.Flat;
+            exitButton.Location = new Point(26, 14);
+            exitButton.Name = "exitButton";
+            exitButton.Size = new Size(40, 23);
+            exitButton.TabIndex = 6;
+            exitButton.UseVisualStyleBackColor = true;
+            exitButton.Click += exitButton_Click;
             // 
             // bodyPanel
             // 
@@ -634,11 +674,13 @@ namespace lighPayroll
             StartPosition = FormStartPosition.CenterScreen;
             Load += AdminUI_Load;
             headPanel.ResumeLayout(false);
+            headPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             panel5.ResumeLayout(false);
             panel5.PerformLayout();
             searchMenuStrip.ResumeLayout(false);
             searchMenuStrip.PerformLayout();
+            panel6.ResumeLayout(false);
             bodyPanel.ResumeLayout(false);
             bodyPanel.PerformLayout();
             attendanceTool.ResumeLayout(false);
@@ -710,5 +752,8 @@ namespace lighPayroll
         private Label toDoLabel;
         private Label encourageVerses;
         private Label label4;
+        private Button exitButton;
+        private Label exitLabel;
+        private Panel panel6;
     }
 }

@@ -47,23 +47,30 @@ namespace lighPayroll
         private void loginButtonClick(object sender, EventArgs e)
         {
 
-            string username = userLogBox.Text.Trim();
+            string email = userLogBox.Text.Trim();
             string password = passLogBox.Text.Trim();
+
+            //only took the user name
+            string usernamePart = email.Split('@')[0]; // "jesus.saves"
+
+            // Replace dot with space
+            string formattedName = usernamePart.Replace('.', ' '); // "jesus saves"
+
 
             AdminUI admin = new AdminUI();
             
             
             AuthService validator = new AuthService();
 
-            string status = validator.ValidateCredentials(username, password);
-            string role = SQLiteDataAccess.GetUserRoleByUsername(username);
+            string status = validator.ValidateCredentials(email, password);
+            string role = SQLiteDataAccess.GetUserRoleByUsername(email);
 
             // UI for manager, accountant, and employee shared the same form, but different layout.
-            EmployeeUI employee = new EmployeeUI(role);
+            EmployeeUI employee = new EmployeeUI(role, formattedName);
 
             if (status == "Active")
             {
-                if (username.ToLower() == "admin" && password == "admin")
+                if (email.ToLower() == "admin" && password == "admin")
                 {
                     CustomMessageBox("Login successful!");
                     admin.Show();
