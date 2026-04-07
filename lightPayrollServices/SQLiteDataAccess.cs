@@ -68,6 +68,21 @@ namespace lightPayrollServices
             }
         }
 
+        public static int GetUserIdByUsername(string username)
+        {
+            using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
+            {
+                conn.Open();
+                string sql = "SELECT UsersID FROM UsersTable WHERE Username = @Username LIMIT 1";
+                int? userId = conn.QueryFirstOrDefault<int?>(sql, new { Username = username });
+
+                if (userId == null)
+                    throw new Exception($"User '{username}' not found.");
+
+                return userId.Value;
+            }
+        }
+
         public static AdminUser GetUserByIdOrUsername(string input)
         {
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
@@ -125,7 +140,7 @@ namespace lightPayrollServices
         }
 
 
-        private static string LoadConnectionString(string id = "DefaultConnection")// goes to App.config to get the connection string with the name "Default"
+        protected static string LoadConnectionString(string id = "DefaultConnection")// goes to App.config to get the connection string with the name "Default"
         {
             var connStrings =  ConfigurationManager.ConnectionStrings[id].ConnectionString;
 

@@ -1,4 +1,5 @@
 ﻿using lighPayroll;
+using lightPayrollModel;
 using lightPayrollServices;
 using System;
 using System.Collections.Generic;
@@ -16,17 +17,30 @@ namespace lighPayrollUI
     {
         AdminUI adminUI = new AdminUI(); //used for getting panel design and greeting service
         private string user_role, user_name;
-        public EmployeeFeature(string role, string username)
+        private int user_id;
+
+
+        public EmployeeFeature(string role, string username, int userId)
         {
             InitializeComponent();
             employeeFeatures.DrawMode = TabDrawMode.OwnerDrawFixed;
             user_role = role;
             user_name = username;
+            user_id = userId;
         }
+
+        private void LoadAttendanceList()
+        {
+            clockGrid.DataSource = null;
+            clockGrid.Columns.Clear();
+            clockGrid.DataSource = AttendanceService.LoadUserAttendance();
+        }
+
 
         private void EmployeeFeature_Load(object sender, EventArgs e)
         {
             adminUI.panelDesign(statusPanel);
+            LoadAttendanceList();
         }
 
 
@@ -56,11 +70,26 @@ namespace lighPayrollUI
 
         private void HomeUser_Click(object sender, EventArgs e)
         {
-            EmployeeUI employeeUI = new EmployeeUI(user_role, user_name);
+            EmployeeUI employeeUI = new EmployeeUI(user_role, user_name, user_id);
             employeeUI.Show();
             this.Hide();
         }
 
-       
+        private void clockInButton_Click(object sender, EventArgs e)
+        {
+
+            var attendance = new AttendanceUser
+            {
+                Date = DateTime.Now.Date,
+                TimeIn = DateTime.Now,
+                TimeOut = null,
+                Status = "Present",
+                Remarks = ""
+            };
+
+            AttendanceService.InsertClock(attendance, user_id, user_name);
+
+            LoadAttendanceList(); // refresh grid
+        }
     }
 }

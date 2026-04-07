@@ -1,10 +1,12 @@
-﻿using lighPayrollUI;
+﻿using Dapper;
+using lighPayrollUI;
 using lightPayrollServices;
 using Microsoft.VisualBasic.ApplicationServices;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SQLite;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -70,8 +72,9 @@ namespace lighPayroll
                 formattedName = string.Join(" ", parts); //First Last
             }
 
+            int userID = SQLiteDataAccess.GetUserIdByUsername(email);
             // UI for manager, accountant, and employee shared the same form, but different layout.
-            EmployeeUI employee = new EmployeeUI(role, formattedName);
+            EmployeeUI employee = new EmployeeUI(role, formattedName, userID);
 
             if (status == "Active")
             {
@@ -132,6 +135,8 @@ namespace lighPayroll
 
             customMsg.ShowDialog();
         }
+
+      
 
         //used for Greetings lol
         public void TypeMessage(Label lbl, string text, int speed = 50)

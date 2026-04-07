@@ -17,15 +17,17 @@ namespace lighPayrollUI
     public partial class EmployeeUI : Form
     {
         private string user_role, user_name;
+        private int user_id;
         AdminUI adminUI = new AdminUI(); //used for getting panel design and greeting service
         GreetingService greetings = new GreetingService(); //used for getting greetings
         LogIn logIn = new LogIn(); //used for applying greetings
 
-        public EmployeeUI(string role, string username)
+        public EmployeeUI(string role, string username, int id)
         {
             InitializeComponent();
             user_role = role;
             user_name = username;
+            user_id = id;
         }
 
         private void ApplyRolePermissions()
@@ -65,7 +67,7 @@ namespace lighPayrollUI
 
         private void eFeaturesPanel_Click(object sender, EventArgs e)
         {
-            EmployeeFeature empFeature = new EmployeeFeature(user_role, user_name);
+            EmployeeFeature empFeature = new EmployeeFeature(user_role, user_name, user_id);
             empFeature.Show();
             this.Hide();
         }

@@ -13,4 +13,7 @@
 [x]Make the function for finding ID in authservices/sql into suiting it to the username for searching.
 
 
-[]Make a logic where one form with different roles!
+[x]Make a logic where one form with different roles!
+[]Make ClockIn usable
+[]Make Payroll and Payslip usable
+[]Use multiple interface

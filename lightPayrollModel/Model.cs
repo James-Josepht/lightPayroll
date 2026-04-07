@@ -28,7 +28,6 @@ namespace lightPayrollModel
         }
     }
 
-
     public interface IApprovable
     {
         void Approve(int approvedBy);
@@ -39,13 +38,17 @@ namespace lightPayrollModel
         void LogAction(string action);
     }
 
-    public class UserDisplay
+    public class UserDisplay: BaseEntity
     {
-        public int UsersID { get; set; }
         public string? Username { get; set; }
         public string? Role { get; set; }
         public string? AccountStatus { get; set; }
-        public DateTime? DateCreated { get; set; }
+
+        public override void Validate()
+        {
+            if (string.IsNullOrWhiteSpace(Username))
+                throw new Exception("Username is required");
+        }
     }
 
     public class AdminUser : Users //used for creating instance for admin
@@ -108,6 +111,8 @@ namespace lightPayrollModel
         }
     }
 
+
+
     public class Payroll : BaseEntity
     {
         public int EmployeeID { get; set; }
@@ -160,7 +165,6 @@ namespace lightPayrollModel
     public class Report : BaseEntity
     {
         public string? ReportType { get; set; }
-        public DateTime? DateGenerated { get; set; }
         public int GeneratedBy { get; set; }
 
         public override void Validate()
@@ -170,5 +174,39 @@ namespace lightPayrollModel
         }
     }
 
-   
+    public class AttendanceAdmin : BaseEntity
+    {
+        public int AttendanceID { get; set; }
+        public int UserID { get; set; }
+        public string? FullName { get; set; }
+
+        public DateTime? Date { get; set; }
+        public DateTime? TimeIn { get; set; }
+        public DateTime? TimeOut { get; set; }
+
+        public string? Status { get; set; }
+        public string? Remarks { get; set; }
+
+        public override void Validate()
+        {
+            if (UserID <= 0)
+                throw new Exception("Invalid User ID");
+
+            if (Date == null)
+                throw new Exception("Date is required");
+        }
+    }
+
+    public class AttendanceUser
+    {
+        public DateTime? Date { get; set; }
+        public DateTime? TimeIn { get; set; }
+        public DateTime? TimeOut { get; set; }
+
+        public string? Status { get; set; }
+        public string? Remarks { get; set; }
+
+    }
+
+
 }

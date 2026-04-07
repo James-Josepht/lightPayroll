@@ -35,6 +35,7 @@
             clockPage = new TabPage();
             panel2 = new Panel();
             statusPanel = new Panel();
+            clockGrid = new DataGridView();
             label1 = new Label();
             clockInButton = new Button();
             clockInLabel = new Label();
@@ -51,6 +52,7 @@
             clockPage.SuspendLayout();
             panel2.SuspendLayout();
             statusPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)clockGrid).BeginInit();
             panel3.SuspendLayout();
             SuspendLayout();
             // 
@@ -132,6 +134,7 @@
             // statusPanel
             // 
             statusPanel.BackColor = Color.FromArgb(33, 44, 66);
+            statusPanel.Controls.Add(clockGrid);
             statusPanel.Controls.Add(label1);
             statusPanel.Controls.Add(clockInButton);
             statusPanel.Controls.Add(clockInLabel);
@@ -141,6 +144,15 @@
             statusPanel.Name = "statusPanel";
             statusPanel.Size = new Size(789, 285);
             statusPanel.TabIndex = 0;
+            // 
+            // clockGrid
+            // 
+            clockGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            clockGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            clockGrid.Location = new Point(43, 137);
+            clockGrid.Name = "clockGrid";
+            clockGrid.Size = new Size(705, 135);
+            clockGrid.TabIndex = 8;
             // 
             // label1
             // 
@@ -156,12 +168,14 @@
             // 
             clockInButton.BackgroundImage = Properties.Resources.clock_in;
             clockInButton.BackgroundImageLayout = ImageLayout.Zoom;
+            clockInButton.Cursor = Cursors.Hand;
             clockInButton.Location = new Point(457, 16);
             clockInButton.Name = "clockInButton";
             clockInButton.Size = new Size(110, 66);
             clockInButton.TabIndex = 1;
             clockInButton.Text = "n";
             clockInButton.UseVisualStyleBackColor = true;
+            clockInButton.Click += clockInButton_Click;
             // 
             // clockInLabel
             // 
@@ -177,6 +191,7 @@
             // 
             clockOutButton.BackgroundImage = Properties.Resources.clock_out;
             clockOutButton.BackgroundImageLayout = ImageLayout.Zoom;
+            clockOutButton.Cursor = Cursors.Hand;
             clockOutButton.Location = new Point(638, 16);
             clockOutButton.Name = "clockOutButton";
             clockOutButton.Size = new Size(110, 66);
@@ -220,7 +235,7 @@
             payslipPage.Location = new Point(4, 25);
             payslipPage.Name = "payslipPage";
             payslipPage.Padding = new Padding(3);
-            payslipPage.Size = new Size(926, 409);
+            payslipPage.Size = new Size(923, 409);
             payslipPage.TabIndex = 1;
             payslipPage.Text = "Payslip";
             // 
@@ -230,7 +245,7 @@
             profilePage.Location = new Point(4, 25);
             profilePage.Name = "profilePage";
             profilePage.Padding = new Padding(3);
-            profilePage.Size = new Size(926, 409);
+            profilePage.Size = new Size(923, 409);
             profilePage.TabIndex = 2;
             profilePage.Text = "Profile";
             // 
@@ -253,6 +268,7 @@
             panel2.ResumeLayout(false);
             statusPanel.ResumeLayout(false);
             statusPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)clockGrid).EndInit();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
             ResumeLayout(false);
@@ -275,5 +291,6 @@
         private Button clockOutButton;
         private Label clockStatusReal;
         private Panel panel3;
+        private DataGridView clockGrid;
     }
 }
