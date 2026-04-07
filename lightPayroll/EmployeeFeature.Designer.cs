@@ -31,27 +31,18 @@
             panel1 = new Panel();
             pictureBox2 = new PictureBox();
             tableLayoutPanel1 = new TableLayoutPanel();
-            tabControl1 = new TabControl();
-            tabPage1 = new TabPage();
+            employeeFeatures = new TabControl();
+            clockPage = new TabPage();
             panel2 = new Panel();
             panel3 = new Panel();
-            tabPage2 = new TabPage();
-            tabPage3 = new TabPage();
-            employeeFeatures = new TabControl();
-            clock = new TabPage();
-            panel6 = new Panel();
-            insideClockPanel = new Panel();
-            employeePayroll = new TabPage();
+            payslipPage = new TabPage();
             profilePage = new TabPage();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             tableLayoutPanel1.SuspendLayout();
-            tabControl1.SuspendLayout();
-            tabPage1.SuspendLayout();
-            panel2.SuspendLayout();
             employeeFeatures.SuspendLayout();
-            clock.SuspendLayout();
-            panel6.SuspendLayout();
+            clockPage.SuspendLayout();
+            panel2.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -80,8 +71,7 @@
             tableLayoutPanel1.ColumnCount = 1;
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel1.Controls.Add(tabControl1, 0, 1);
-            tableLayoutPanel1.Controls.Add(employeeFeatures, 0, 0);
+            tableLayoutPanel1.Controls.Add(employeeFeatures, 0, 1);
             tableLayoutPanel1.Dock = DockStyle.Fill;
             tableLayoutPanel1.Location = new Point(0, 0);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -91,33 +81,33 @@
             tableLayoutPanel1.Size = new Size(937, 548);
             tableLayoutPanel1.TabIndex = 26;
             // 
-            // tabControl1
+            // employeeFeatures
             // 
-            tabControl1.Controls.Add(tabPage1);
-            tabControl1.Controls.Add(tabPage2);
-            tabControl1.Controls.Add(tabPage3);
-            tabControl1.DrawMode = TabDrawMode.OwnerDrawFixed;
-            tabControl1.Font = new Font("Ubuntu Mono Medium", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            tabControl1.Location = new Point(3, 127);
-            tabControl1.Name = "tabControl1";
-            tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(931, 418);
-            tabControl1.TabIndex = 26;
-            tabControl1.DrawItem += tabControl1_DrawItem;
+            employeeFeatures.Controls.Add(clockPage);
+            employeeFeatures.Controls.Add(payslipPage);
+            employeeFeatures.Controls.Add(profilePage);
+            employeeFeatures.DrawMode = TabDrawMode.OwnerDrawFixed;
+            employeeFeatures.Font = new Font("Ubuntu Mono Medium", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            employeeFeatures.Location = new Point(3, 127);
+            employeeFeatures.Name = "employeeFeatures";
+            employeeFeatures.SelectedIndex = 0;
+            employeeFeatures.Size = new Size(931, 418);
+            employeeFeatures.TabIndex = 26;
+            employeeFeatures.DrawItem += tabControl1_DrawItem;
             // 
-            // tabPage1
+            // clockPage
             // 
-            tabPage1.AutoScroll = true;
-            tabPage1.BackColor = Color.FromArgb(33, 44, 66);
-            tabPage1.Controls.Add(panel2);
-            tabPage1.Font = new Font("Ubuntu Mono Medium", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            tabPage1.ForeColor = Color.FromArgb(33, 44, 66);
-            tabPage1.Location = new Point(4, 25);
-            tabPage1.Name = "tabPage1";
-            tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(923, 389);
-            tabPage1.TabIndex = 0;
-            tabPage1.Text = "Clock In / Out";
+            clockPage.AutoScroll = true;
+            clockPage.BackColor = Color.FromArgb(33, 44, 66);
+            clockPage.Controls.Add(panel2);
+            clockPage.Font = new Font("Ubuntu Mono Medium", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            clockPage.ForeColor = Color.FromArgb(33, 44, 66);
+            clockPage.Location = new Point(4, 25);
+            clockPage.Name = "clockPage";
+            clockPage.Padding = new Padding(3);
+            clockPage.Size = new Size(923, 389);
+            clockPage.TabIndex = 0;
+            clockPage.Text = "Clock In / Out";
             // 
             // panel2
             // 
@@ -136,87 +126,23 @@
             panel3.Size = new Size(585, 100);
             panel3.TabIndex = 0;
             // 
-            // tabPage2
+            // payslipPage
             // 
-            tabPage2.BackColor = Color.FromArgb(33, 44, 66);
-            tabPage2.Location = new Point(4, 25);
-            tabPage2.Name = "tabPage2";
-            tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(923, 389);
-            tabPage2.TabIndex = 1;
-            tabPage2.Text = "Payslip";
-            // 
-            // tabPage3
-            // 
-            tabPage3.BackColor = Color.FromArgb(33, 44, 66);
-            tabPage3.Location = new Point(4, 25);
-            tabPage3.Name = "tabPage3";
-            tabPage3.Padding = new Padding(3);
-            tabPage3.Size = new Size(923, 389);
-            tabPage3.TabIndex = 2;
-            tabPage3.Text = "Profile";
-            // 
-            // employeeFeatures
-            // 
-            employeeFeatures.Controls.Add(clock);
-            employeeFeatures.Controls.Add(employeePayroll);
-            employeeFeatures.Controls.Add(profilePage);
-            employeeFeatures.DrawMode = TabDrawMode.OwnerDrawFixed;
-            employeeFeatures.Font = new Font("Ubuntu Mono Medium", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            employeeFeatures.Location = new Point(3, 3);
-            employeeFeatures.Name = "employeeFeatures";
-            employeeFeatures.SelectedIndex = 0;
-            employeeFeatures.Size = new Size(794, 96);
-            employeeFeatures.TabIndex = 25;
-            // 
-            // clock
-            // 
-            clock.AutoScroll = true;
-            clock.BackColor = Color.FromArgb(33, 44, 66);
-            clock.Controls.Add(panel6);
-            clock.Font = new Font("Ubuntu Mono Medium", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            clock.ForeColor = Color.FromArgb(33, 44, 66);
-            clock.Location = new Point(4, 25);
-            clock.Name = "clock";
-            clock.Padding = new Padding(3);
-            clock.Size = new Size(786, 67);
-            clock.TabIndex = 0;
-            clock.Text = "Clock In / Out";
-            // 
-            // panel6
-            // 
-            panel6.Controls.Add(insideClockPanel);
-            panel6.Font = new Font("Ubuntu Mono Medium", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            panel6.Location = new Point(28, 27);
-            panel6.Name = "panel6";
-            panel6.Size = new Size(713, 356);
-            panel6.TabIndex = 0;
-            // 
-            // insideClockPanel
-            // 
-            insideClockPanel.BackColor = Color.FromArgb(33, 44, 66);
-            insideClockPanel.Location = new Point(52, 3);
-            insideClockPanel.Name = "insideClockPanel";
-            insideClockPanel.Size = new Size(585, 100);
-            insideClockPanel.TabIndex = 0;
-            // 
-            // employeePayroll
-            // 
-            employeePayroll.BackColor = Color.Beige;
-            employeePayroll.Location = new Point(4, 25);
-            employeePayroll.Name = "employeePayroll";
-            employeePayroll.Padding = new Padding(3);
-            employeePayroll.Size = new Size(786, 67);
-            employeePayroll.TabIndex = 1;
-            employeePayroll.Text = "Payslip";
+            payslipPage.BackColor = Color.FromArgb(33, 44, 66);
+            payslipPage.Location = new Point(4, 25);
+            payslipPage.Name = "payslipPage";
+            payslipPage.Padding = new Padding(3);
+            payslipPage.Size = new Size(923, 389);
+            payslipPage.TabIndex = 1;
+            payslipPage.Text = "Payslip";
             // 
             // profilePage
             // 
-            profilePage.BackColor = Color.Beige;
+            profilePage.BackColor = Color.FromArgb(33, 44, 66);
             profilePage.Location = new Point(4, 25);
             profilePage.Name = "profilePage";
             profilePage.Padding = new Padding(3);
-            profilePage.Size = new Size(786, 67);
+            profilePage.Size = new Size(923, 389);
             profilePage.TabIndex = 2;
             profilePage.Text = "Profile";
             // 
@@ -234,29 +160,20 @@
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             tableLayoutPanel1.ResumeLayout(false);
-            tabControl1.ResumeLayout(false);
-            tabPage1.ResumeLayout(false);
-            panel2.ResumeLayout(false);
             employeeFeatures.ResumeLayout(false);
-            clock.ResumeLayout(false);
-            panel6.ResumeLayout(false);
+            clockPage.ResumeLayout(false);
+            panel2.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
         private Panel panel1;
         private TableLayoutPanel tableLayoutPanel1;
-        private TabControl tabControl1;
-        private TabPage tabPage1;
+        private TabControl employeeFeatures;
+        private TabPage clockPage;
         private Panel panel2;
         private Panel panel3;
-        private TabPage tabPage2;
-        private TabPage tabPage3;
-        private TabControl employeeFeatures;
-        private TabPage clock;
-        private Panel panel6;
-        private Panel insideClockPanel;
-        private TabPage employeePayroll;
+        private TabPage payslipPage;
         private TabPage profilePage;
         private PictureBox pictureBox2;
     }

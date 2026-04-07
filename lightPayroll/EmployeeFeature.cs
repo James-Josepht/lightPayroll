@@ -19,13 +19,16 @@ namespace lighPayrollUI
         public EmployeeFeature()
         {
             InitializeComponent();
+            employeeFeatures.DrawMode = TabDrawMode.OwnerDrawFixed; 
         }
 
         private void EmployeeFeature_Load(object sender, EventArgs e)
         {
 
         }
- 
+
+
+        //different colors for selected and unselected tabs
         private void tabControl1_DrawItem(object sender, DrawItemEventArgs e)
         {
             TabPage tabPage = employeeFeatures.TabPages[e.Index];

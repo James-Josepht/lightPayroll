@@ -70,5 +70,10 @@ namespace lighPayrollUI
             empFeature.Show();
             this.Hide();
         }
+
+        private void eFeaturesPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

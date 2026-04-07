@@ -49,14 +49,7 @@ namespace lighPayroll
 
             string email = userLogBox.Text.Trim();
             string password = passLogBox.Text.Trim();
-
-            //only took the user name
-            string usernamePart = email.Split('@')[0]; // "jesus.saves"
-
-            // Replace dot with space
-            string formattedName = usernamePart.Replace('.', ' '); // "jesus saves"
-
-
+            string formattedName = "";
             AdminUI admin = new AdminUI();
             
             
@@ -64,6 +57,18 @@ namespace lighPayroll
 
             string status = validator.ValidateCredentials(email, password);
             string role = SQLiteDataAccess.GetUserRoleByUsername(email);
+
+            if (email.ToLower() != "admin" )
+            {
+                string usernamePart = email.Split('@')[0]; // "first.last"
+                string[] parts = usernamePart.Split('.');
+
+                //capitalizing first letter of each word in username
+                parts[0] = char.ToUpper(parts[0][0]) + parts[0].Substring(1);
+                parts[1] = char.ToUpper(parts[1][0]) + parts[1].Substring(1); 
+
+                formattedName = string.Join(" ", parts); //First Last
+            }
 
             // UI for manager, accountant, and employee shared the same form, but different layout.
             EmployeeUI employee = new EmployeeUI(role, formattedName);
