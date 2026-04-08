@@ -45,6 +45,9 @@
             clockStatus = new Label();
             payslipPage = new TabPage();
             profilePage = new TabPage();
+            payrollPage = new TabPage();
+            overTimePage = new TabPage();
+            attendancePage = new TabPage();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             tableLayoutPanel1.SuspendLayout();
@@ -98,6 +101,9 @@
             employeeFeatures.Controls.Add(clockPage);
             employeeFeatures.Controls.Add(payslipPage);
             employeeFeatures.Controls.Add(profilePage);
+            employeeFeatures.Controls.Add(payrollPage);
+            employeeFeatures.Controls.Add(overTimePage);
+            employeeFeatures.Controls.Add(attendancePage);
             employeeFeatures.DrawMode = TabDrawMode.OwnerDrawFixed;
             employeeFeatures.Font = new Font("Ubuntu Mono Medium", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             employeeFeatures.Location = new Point(3, 107);
@@ -250,6 +256,36 @@
             profilePage.TabIndex = 2;
             profilePage.Text = "Profile";
             // 
+            // payrollPage
+            // 
+            payrollPage.BackColor = Color.FromArgb(33, 44, 66);
+            payrollPage.Location = new Point(4, 25);
+            payrollPage.Name = "payrollPage";
+            payrollPage.Padding = new Padding(3);
+            payrollPage.Size = new Size(923, 409);
+            payrollPage.TabIndex = 3;
+            payrollPage.Text = "Payroll";
+            // 
+            // overTimePage
+            // 
+            overTimePage.Location = new Point(4, 25);
+            overTimePage.Name = "overTimePage";
+            overTimePage.Padding = new Padding(3);
+            overTimePage.Size = new Size(923, 409);
+            overTimePage.TabIndex = 4;
+            overTimePage.Text = "Overtime";
+            overTimePage.UseVisualStyleBackColor = true;
+            // 
+            // attendancePage
+            // 
+            attendancePage.Location = new Point(4, 25);
+            attendancePage.Name = "attendancePage";
+            attendancePage.Padding = new Padding(3);
+            attendancePage.Size = new Size(923, 409);
+            attendancePage.TabIndex = 5;
+            attendancePage.Text = "Attendance";
+            attendancePage.UseVisualStyleBackColor = true;
+            // 
             // EmployeeFeature
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
@@ -293,5 +329,8 @@
         private Label clockStatusReal;
         private Panel panel3;
         private DataGridView clockGrid;
+        private TabPage payrollPage;
+        private TabPage overTimePage;
+        private TabPage attendancePage;
     }
 }

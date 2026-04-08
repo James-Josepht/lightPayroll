@@ -51,10 +51,40 @@ namespace lighPayrollUI
             clockGrid.DataSource = displayData;
         }
 
+        private void ConfigureTabsByRole()
+        {
+            if (user_role == "Employee")
+            {
+                // Only allow this tab (change name based on your actual TabPage Name)
+                var allowedTabs = new List<string> 
+                { 
+                    "payslipPage", "clockPage", "profilePage" 
+                
+                };
+
+                foreach (TabPage tab in employeeFeatures.TabPages.Cast<TabPage>().ToList())
+                {
+                    if (!allowedTabs.Contains(tab.Name))
+                    {
+                        employeeFeatures.TabPages.Remove(tab);
+                    }
+                }
+            }
+            else if (user_role == "Manager")
+            {
+                // Allow all tabs for Manager
+            }
+            else if (user_role == "Accountant")
+            {
+                // Allow all tabs for Accountant
+            }
+
+        }
 
         private void EmployeeFeature_Load(object sender, EventArgs e)
         {
             adminUI.panelDesign(statusPanel);
+            ConfigureTabsByRole(); 
             LoadAttendanceList();
         }
 
