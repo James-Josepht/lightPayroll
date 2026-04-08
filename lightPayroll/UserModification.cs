@@ -26,6 +26,8 @@ namespace lighPayrollUI
         private void LoadUserList()
         {
             attendanceGrid.DataSource = SQLiteDataAccess.LoadUsers();
+            attendanceGrid.Columns["UsersID"].DisplayIndex = 0;       // move to first
+
         }
 
         private void loadButton_Click(object sender, EventArgs e)

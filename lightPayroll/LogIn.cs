@@ -59,9 +59,11 @@ namespace lighPayroll
 
             string status = validator.ValidateCredentials(email, password);
             string role = SQLiteDataAccess.GetUserRoleByUsername(email);
+            int userID = 0;
 
             if (email.ToLower() != "admin" )
             {
+                userID = SQLiteDataAccess.GetUserIdByUsername(email);
                 string usernamePart = email.Split('@')[0]; // "first.last"
                 string[] parts = usernamePart.Split('.');
 
@@ -72,7 +74,7 @@ namespace lighPayroll
                 formattedName = string.Join(" ", parts); //First Last
             }
 
-            int userID = SQLiteDataAccess.GetUserIdByUsername(email);
+          
             // UI for manager, accountant, and employee shared the same form, but different layout.
             EmployeeUI employee = new EmployeeUI(role, formattedName, userID);
 

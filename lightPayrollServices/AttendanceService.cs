@@ -77,6 +77,55 @@ namespace lightPayrollServices
             }
         }
 
+        public static bool HasClockedInToday(int userId)
+        {
+            using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
+            {
+                // Check if there’s any record for this user with today's date and non-null TimeIn
+                var count = conn.ExecuteScalar<int>(
+                    "SELECT COUNT(1) FROM AttendanceTable WHERE UsersID = @UsersID AND DATE(Date) = DATE('now','localtime') AND TimeIn IS NOT NULL",
+                    new { UsersID = userId });
+
+                return count > 0;
+            }
+        }
+
+        public static void UpdateClockOut(int userId, DateTime timeOut)
+        {
+            using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
+            {
+                string sql = @"
+                UPDATE AttendanceTable
+                SET TimeOut = @TimeOut
+                WHERE UsersID = @UsersID 
+                AND DATE(Date) = DATE(@Date);"; // safer date comparison
+
+                conn.Execute(sql, new
+                {
+                    TimeOut = timeOut.ToUniversalTime(),
+                    UsersID = userId,
+                    Date = DateTime.UtcNow // compare dates safely
+                });
+            }
+        }
+
+        public static List<AttendanceUser> LoadUserAttendanceById(int userId)
+        {
+            using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
+            {
+                var output = conn.Query<AttendanceUser>("SELECT Date, TimeIn, TimeOut, Status, Remarks FROM AttendanceTable WHERE UsersID = @UsersID", new { UsersID = userId });
+                var attendances = output.Select(u =>
+                {
+                    u.Date = u.Date?.ToLocalTime();
+                    u.TimeIn = u.TimeIn?.ToLocalTime();
+                    u.TimeOut = u.TimeOut?.ToLocalTime();
+                    return u;
+                }).ToList();
+                return attendances;
+            }
+        }
+
+
         //UPDATE status (approve/reject accounts)
         public static void UpdateUserClock(int userId, string status, string role)
         {

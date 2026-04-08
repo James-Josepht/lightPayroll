@@ -1,6 +1,7 @@
 ﻿using lighPayroll;
 using lightPayrollModel;
 using lightPayrollServices;
+using Microsoft.VisualBasic.ApplicationServices;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -33,7 +34,21 @@ namespace lighPayrollUI
         {
             clockGrid.DataSource = null;
             clockGrid.Columns.Clear();
-            clockGrid.DataSource = AttendanceService.LoadUserAttendance();
+           var data = AttendanceService.LoadUserAttendance();
+
+            // Project to display properties for the grid
+            var displayData = data.Select(a => new
+            {
+                Date = a.Date?.ToLocalTime().ToString("yyyy-MM-dd"),
+                TimeIn = a.TimeInDisplay,
+                TimeOut = a.TimeOutDisplay,
+                a.Status,
+                a.Remarks
+            }).ToList();
+
+
+
+            clockGrid.DataSource = displayData;
         }
 
 
@@ -77,10 +92,16 @@ namespace lighPayrollUI
 
         private void clockInButton_Click(object sender, EventArgs e)
         {
+            if (AttendanceService.HasClockedInToday(user_id))
+            {
+                adminUI.CustomMessageBox("You have already clocked in today."); 
+                return; // stop further execution
+            }
+
 
             var attendance = new AttendanceUser
             {
-                Date = DateTime.Now.Date,
+                Date = DateTime.UtcNow.Date,
                 TimeIn = DateTime.Now,
                 TimeOut = null,
                 Status = "Present",
@@ -88,6 +109,14 @@ namespace lighPayrollUI
             };
 
             AttendanceService.InsertClock(attendance, user_id, user_name);
+
+            LoadAttendanceList(); // refresh grid
+        }
+
+        private void clockOutButton_Click(object sender, EventArgs e)
+        {
+
+            AttendanceService.UpdateClockOut(user_id, DateTime.Now);
 
             LoadAttendanceList(); // refresh grid
         }

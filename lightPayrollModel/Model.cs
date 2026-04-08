@@ -206,6 +206,10 @@ namespace lightPayrollModel
         public string? Status { get; set; }
         public string? Remarks { get; set; }
 
+        // For display only
+        public string TimeInDisplay => TimeIn?.ToLocalTime().ToString("HH:mm");
+        public string TimeOutDisplay => TimeOut?.ToLocalTime().ToString("HH:mm");
+
     }
 
 

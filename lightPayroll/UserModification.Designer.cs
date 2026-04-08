@@ -280,11 +280,11 @@
             noteLabel.Cursor = Cursors.Hand;
             noteLabel.Font = new Font("Ubuntu Mono", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             noteLabel.ForeColor = Color.Beige;
-            noteLabel.Location = new Point(241, 395);
+            noteLabel.Location = new Point(309, 395);
             noteLabel.Name = "noteLabel";
-            noteLabel.Size = new Size(456, 17);
+            noteLabel.Size = new Size(320, 17);
             noteLabel.TabIndex = 25;
-            noteLabel.Text = "NOTE: ONLY SEARCH BUTTON IS REQUIRED TO BE PRESSED FIRST\r\n";
+            noteLabel.Text = "NOTE: TYPE USERNAME TO SEARCH FOR USERS";
             // 
             // nameOrIDTxtBox
             // 

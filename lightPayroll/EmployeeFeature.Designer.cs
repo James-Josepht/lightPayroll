@@ -197,6 +197,7 @@
             clockOutButton.Size = new Size(110, 66);
             clockOutButton.TabIndex = 2;
             clockOutButton.UseVisualStyleBackColor = true;
+            clockOutButton.Click += clockOutButton_Click;
             // 
             // panel3
             // 
