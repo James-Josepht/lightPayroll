@@ -34,7 +34,7 @@ namespace lighPayrollUI
         {
             clockGrid.DataSource = null;
             clockGrid.Columns.Clear();
-           var data = AttendanceService.LoadUserAttendance();
+           var data = AttendanceService.LoadUserAttendanceById(user_id);
 
             // Project to display properties for the grid
             var displayData = data.Select(a => new
@@ -72,11 +72,35 @@ namespace lighPayrollUI
             }
             else if (user_role == "Manager")
             {
-                // Allow all tabs for Manager
+                var allowedTabs = new List<string>
+                {
+                    "payslipPage", "clockPage", "profilePage", "overTimePage", "attendancePage"
+
+                };
+
+                foreach (TabPage tab in employeeFeatures.TabPages.Cast<TabPage>().ToList())
+                {
+                    if (!allowedTabs.Contains(tab.Name))
+                    {
+                        employeeFeatures.TabPages.Remove(tab);
+                    }
+                }
             }
             else if (user_role == "Accountant")
             {
-                // Allow all tabs for Accountant
+                var allowedTabs = new List<string>
+                {
+                    "payslipPage", "clockPage", "profilePage", "payrollPage", "attendancePage"
+
+                };
+
+                foreach (TabPage tab in employeeFeatures.TabPages.Cast<TabPage>().ToList())
+                {
+                    if (!allowedTabs.Contains(tab.Name))
+                    {
+                        employeeFeatures.TabPages.Remove(tab);
+                    }
+                }
             }
 
         }
@@ -129,10 +153,12 @@ namespace lighPayrollUI
             }
 
 
+            var nowUtc = DateTime.UtcNow;
+
             var attendance = new AttendanceUser
             {
-                Date = DateTime.UtcNow.Date,
-                TimeIn = DateTime.Now,
+                Date = nowUtc,   // store full datetime
+                TimeIn = nowUtc,
                 TimeOut = null,
                 Status = "Present",
                 Remarks = ""
@@ -146,7 +172,7 @@ namespace lighPayrollUI
         private void clockOutButton_Click(object sender, EventArgs e)
         {
 
-            AttendanceService.UpdateClockOut(user_id, DateTime.Now);
+            AttendanceService.UpdateClockOut(user_id, DateTime.UtcNow);
 
             LoadAttendanceList(); // refresh grid
         }

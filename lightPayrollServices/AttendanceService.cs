@@ -81,10 +81,28 @@ namespace lightPayrollServices
         {
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
             {
-                // Check if there’s any record for this user with today's date and non-null TimeIn
+                // Get LOCAL day (PH time)
+                var localNow = DateTime.Now;
+                var localStart = localNow.Date;
+                var localEnd = localStart.AddDays(1);
+
+                // Convert to UTC
+                var utcStart = localStart.ToUniversalTime();
+                var utcEnd = localEnd.ToUniversalTime();
+
                 var count = conn.ExecuteScalar<int>(
-                    "SELECT COUNT(1) FROM AttendanceTable WHERE UsersID = @UsersID AND DATE(Date) = DATE('now','localtime') AND TimeIn IS NOT NULL",
-                    new { UsersID = userId });
+                    @"SELECT COUNT(1) 
+              FROM AttendanceTable 
+              WHERE UsersID = @UsersID 
+              AND Date >= @Start 
+              AND Date < @End
+              AND TimeIn IS NOT NULL",
+                    new
+                    {
+                        UsersID = userId,
+                        Start = utcStart,
+                        End = utcEnd
+                    });
 
                 return count > 0;
             }
@@ -125,20 +143,5 @@ namespace lightPayrollServices
             }
         }
 
-
-        //UPDATE status (approve/reject accounts)
-        public static void UpdateUserClock(int userId, string status, string role)
-        {
-            using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
-            {
-                string sql = @"
-                UPDATE UsersTable 
-                SET AccountStatus = @Status, Role = @Role
-                WHERE UsersID = @UsersID";
-
-
-                conn.Execute(sql, new { Status = status, Role = role, UsersID = userId });
-            }
-        }
     }
 }

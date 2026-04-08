@@ -86,9 +86,6 @@ namespace lighPayrollUI
             else
                 attendanceGrid.DataSource = SQLiteDataAccess.SearchUsersByUsername(username);
 
-
-
-
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
