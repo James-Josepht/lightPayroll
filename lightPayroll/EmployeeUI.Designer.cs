@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EmployeeUI));
-            toolStripMenuItem22 = new ToolStripMenuItem();
             label4 = new Label();
             encourageVerses = new Label();
             panel1 = new Panel();
@@ -49,26 +47,10 @@
             pictureBox6 = new PictureBox();
             panel4 = new Panel();
             headPanel = new Panel();
+            exitLabel = new Label();
+            panel6 = new Panel();
+            exitButton = new Button();
             pictureBox2 = new PictureBox();
-            panel5 = new Panel();
-            searchMenuStrip = new MenuStrip();
-            searchMS = new ToolStripMenuItem();
-            searchBox = new ToolStripTextBox();
-            toolStripSeparator5 = new ToolStripSeparator();
-            recentSearches = new ToolStripTextBox();
-            featureStrip1 = new ToolStripMenuItem();
-            toolStripSeparator1 = new ToolStripSeparator();
-            featureStrip2 = new ToolStripMenuItem();
-            toolStripSeparator2 = new ToolStripSeparator();
-            featureStrip3 = new ToolStripMenuItem();
-            toolStripMenuItem12 = new ToolStripMenuItem();
-            toolStripMenuItem13 = new ToolStripMenuItem();
-            toolStripMenuItem14 = new ToolStripMenuItem();
-            toolStripMenuItem15 = new ToolStripMenuItem();
-            toolStripMenuItem16 = new ToolStripMenuItem();
-            toolStripMenuItem17 = new ToolStripMenuItem();
-            toolStripMenuItem19 = new ToolStripMenuItem();
-            toolStripMenuItem21 = new ToolStripMenuItem();
             panel1.SuspendLayout();
             greetingPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -78,15 +60,9 @@
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             headPanel.SuspendLayout();
+            panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
-            panel5.SuspendLayout();
-            searchMenuStrip.SuspendLayout();
             SuspendLayout();
-            // 
-            // toolStripMenuItem22
-            // 
-            toolStripMenuItem22.Name = "toolStripMenuItem22";
-            toolStripMenuItem22.Size = new Size(12, 25);
             // 
             // label4
             // 
@@ -198,7 +174,6 @@
             eFeaturesPanel.Size = new Size(704, 56);
             eFeaturesPanel.TabIndex = 23;
             eFeaturesPanel.Click += eFeaturesPanel_Click;
-          
             // 
             // sFeaturesLabel
             // 
@@ -300,13 +275,49 @@
             // headPanel
             // 
             headPanel.BackColor = Color.Beige;
+            headPanel.Controls.Add(exitLabel);
+            headPanel.Controls.Add(panel6);
             headPanel.Controls.Add(pictureBox2);
-            headPanel.Controls.Add(panel5);
             headPanel.Dock = DockStyle.Top;
             headPanel.Location = new Point(0, 0);
             headPanel.Name = "headPanel";
             headPanel.Size = new Size(937, 101);
             headPanel.TabIndex = 6;
+            headPanel.Paint += headPanel_Paint;
+            // 
+            // exitLabel
+            // 
+            exitLabel.AutoSize = true;
+            exitLabel.Font = new Font("Ubuntu Mono", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            exitLabel.ForeColor = Color.FromArgb(33, 44, 66);
+            exitLabel.Location = new Point(852, 60);
+            exitLabel.Name = "exitLabel";
+            exitLabel.Size = new Size(63, 16);
+            exitLabel.TabIndex = 9;
+            exitLabel.Text = "Sign Out";
+            // 
+            // panel6
+            // 
+            panel6.Controls.Add(exitButton);
+            panel6.Location = new Point(840, 20);
+            panel6.Name = "panel6";
+            panel6.Size = new Size(85, 67);
+            panel6.TabIndex = 10;
+            // 
+            // exitButton
+            // 
+            exitButton.BackgroundImage = Properties.Resources.exit;
+            exitButton.BackgroundImageLayout = ImageLayout.Zoom;
+            exitButton.Cursor = Cursors.Hand;
+            exitButton.FlatAppearance.BorderColor = Color.White;
+            exitButton.FlatAppearance.BorderSize = 0;
+            exitButton.FlatStyle = FlatStyle.Flat;
+            exitButton.Location = new Point(26, 14);
+            exitButton.Name = "exitButton";
+            exitButton.Size = new Size(40, 23);
+            exitButton.TabIndex = 6;
+            exitButton.UseVisualStyleBackColor = true;
+            exitButton.Click += exitButton_Click;
             // 
             // pictureBox2
             // 
@@ -318,146 +329,6 @@
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox2.TabIndex = 5;
             pictureBox2.TabStop = false;
-            // 
-            // panel5
-            // 
-            panel5.AllowDrop = true;
-            panel5.AutoScroll = true;
-            panel5.BackgroundImageLayout = ImageLayout.Stretch;
-            panel5.Controls.Add(searchMenuStrip);
-            panel5.Cursor = Cursors.Hand;
-            panel5.Location = new Point(584, 38);
-            panel5.Name = "panel5";
-            panel5.Size = new Size(58, 33);
-            panel5.TabIndex = 3;
-            // 
-            // searchMenuStrip
-            // 
-            searchMenuStrip.BackgroundImage = Properties.Resources.search_interface_symbol;
-            searchMenuStrip.BackgroundImageLayout = ImageLayout.Stretch;
-            searchMenuStrip.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            searchMenuStrip.ImageScalingSize = new Size(20, 20);
-            searchMenuStrip.Items.AddRange(new ToolStripItem[] { searchMS, toolStripMenuItem12, toolStripMenuItem13, toolStripMenuItem14, toolStripMenuItem15, toolStripMenuItem16, toolStripMenuItem17, toolStripMenuItem19, toolStripMenuItem21, toolStripMenuItem22 });
-            searchMenuStrip.Location = new Point(0, 0);
-            searchMenuStrip.Name = "searchMenuStrip";
-            searchMenuStrip.Padding = new Padding(5, 2, 0, 2);
-            searchMenuStrip.RightToLeft = RightToLeft.Yes;
-            searchMenuStrip.Size = new Size(58, 29);
-            searchMenuStrip.TabIndex = 0;
-            searchMenuStrip.Text = "menuStrip2";
-            // 
-            // searchMS
-            // 
-            searchMS.BackColor = Color.Transparent;
-            searchMS.BackgroundImageLayout = ImageLayout.Stretch;
-            searchMS.DropDownItems.AddRange(new ToolStripItem[] { searchBox, toolStripSeparator5, recentSearches, featureStrip1, toolStripSeparator1, featureStrip2, toolStripSeparator2, featureStrip3 });
-            searchMS.Font = new Font("Sans Serif Collection", 4.20000029F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            searchMS.Name = "searchMS";
-            searchMS.Size = new Size(51, 25);
-            searchMS.Text = "                             ";
-            // 
-            // searchBox
-            // 
-            searchBox.BackColor = Color.White;
-            searchBox.Name = "searchBox";
-            searchBox.RightToLeft = RightToLeft.No;
-            searchBox.Size = new Size(100, 25);
-            // 
-            // toolStripSeparator5
-            // 
-            toolStripSeparator5.Name = "toolStripSeparator5";
-            toolStripSeparator5.Size = new Size(157, 6);
-            // 
-            // recentSearches
-            // 
-            recentSearches.BackColor = Color.Beige;
-            recentSearches.BorderStyle = BorderStyle.None;
-            recentSearches.Enabled = false;
-            recentSearches.Font = new Font("Segoe UI", 7.20000029F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            recentSearches.Name = "recentSearches";
-            recentSearches.ReadOnly = true;
-            recentSearches.RightToLeft = RightToLeft.No;
-            recentSearches.Size = new Size(100, 13);
-            recentSearches.Text = "Recent Features";
-            // 
-            // featureStrip1
-            // 
-            featureStrip1.BackColor = Color.Beige;
-            featureStrip1.BackgroundImage = (Image)resources.GetObject("featureStrip1.BackgroundImage");
-            featureStrip1.Font = new Font("Ubuntu Mono Medium", 7.20000029F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            featureStrip1.Name = "featureStrip1";
-            featureStrip1.Size = new Size(160, 22);
-            featureStrip1.Text = "Attendance";
-            // 
-            // toolStripSeparator1
-            // 
-            toolStripSeparator1.BackColor = SystemColors.Info;
-            toolStripSeparator1.ForeColor = SystemColors.ActiveCaption;
-            toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(157, 6);
-            // 
-            // featureStrip2
-            // 
-            featureStrip2.BackColor = Color.Beige;
-            featureStrip2.Font = new Font("Ubuntu Mono Medium", 7.20000029F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            featureStrip2.Name = "featureStrip2";
-            featureStrip2.Size = new Size(160, 22);
-            featureStrip2.Text = "User Removal";
-            // 
-            // toolStripSeparator2
-            // 
-            toolStripSeparator2.BackColor = SystemColors.Info;
-            toolStripSeparator2.ForeColor = SystemColors.ActiveCaption;
-            toolStripSeparator2.Name = "toolStripSeparator2";
-            toolStripSeparator2.Size = new Size(157, 6);
-            // 
-            // featureStrip3
-            // 
-            featureStrip3.BackColor = Color.Beige;
-            featureStrip3.Font = new Font("Ubuntu Mono Medium", 7.20000029F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            featureStrip3.Name = "featureStrip3";
-            featureStrip3.Size = new Size(160, 22);
-            featureStrip3.Text = "Payroll";
-            // 
-            // toolStripMenuItem12
-            // 
-            toolStripMenuItem12.Name = "toolStripMenuItem12";
-            toolStripMenuItem12.Size = new Size(12, 25);
-            // 
-            // toolStripMenuItem13
-            // 
-            toolStripMenuItem13.Name = "toolStripMenuItem13";
-            toolStripMenuItem13.Size = new Size(12, 25);
-            // 
-            // toolStripMenuItem14
-            // 
-            toolStripMenuItem14.Name = "toolStripMenuItem14";
-            toolStripMenuItem14.Size = new Size(12, 25);
-            // 
-            // toolStripMenuItem15
-            // 
-            toolStripMenuItem15.Name = "toolStripMenuItem15";
-            toolStripMenuItem15.Size = new Size(12, 25);
-            // 
-            // toolStripMenuItem16
-            // 
-            toolStripMenuItem16.Name = "toolStripMenuItem16";
-            toolStripMenuItem16.Size = new Size(12, 25);
-            // 
-            // toolStripMenuItem17
-            // 
-            toolStripMenuItem17.Name = "toolStripMenuItem17";
-            toolStripMenuItem17.Size = new Size(12, 25);
-            // 
-            // toolStripMenuItem19
-            // 
-            toolStripMenuItem19.Name = "toolStripMenuItem19";
-            toolStripMenuItem19.Size = new Size(12, 25);
-            // 
-            // toolStripMenuItem21
-            // 
-            toolStripMenuItem21.Name = "toolStripMenuItem21";
-            toolStripMenuItem21.Size = new Size(12, 25);
             // 
             // EmployeeUI
             // 
@@ -484,17 +355,13 @@
             panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
             headPanel.ResumeLayout(false);
+            headPanel.PerformLayout();
+            panel6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
-            panel5.ResumeLayout(false);
-            panel5.PerformLayout();
-            searchMenuStrip.ResumeLayout(false);
-            searchMenuStrip.PerformLayout();
             ResumeLayout(false);
         }
 
         #endregion
-
-        private ToolStripMenuItem toolStripMenuItem22;
         private Label label4;
         private Label encourageVerses;
         private Panel panel1;
@@ -511,28 +378,12 @@
         private Panel panel4;
         private Panel headPanel;
         private PictureBox pictureBox2;
-        private Panel panel5;
-        private MenuStrip searchMenuStrip;
-        private ToolStripMenuItem searchMS;
-        private ToolStripTextBox searchBox;
-        private ToolStripSeparator toolStripSeparator5;
-        private ToolStripTextBox recentSearches;
-        private ToolStripMenuItem featureStrip1;
-        private ToolStripSeparator toolStripSeparator1;
-        private ToolStripMenuItem featureStrip2;
-        private ToolStripSeparator toolStripSeparator2;
-        private ToolStripMenuItem featureStrip3;
-        private ToolStripMenuItem toolStripMenuItem12;
-        private ToolStripMenuItem toolStripMenuItem13;
-        private ToolStripMenuItem toolStripMenuItem14;
-        private ToolStripMenuItem toolStripMenuItem15;
-        private ToolStripMenuItem toolStripMenuItem16;
-        private ToolStripMenuItem toolStripMenuItem17;
-        private ToolStripMenuItem toolStripMenuItem19;
-        private ToolStripMenuItem toolStripMenuItem21;
         private Panel eFeaturesPanel;
         private Label sFeaturesLabel;
         private Label bFeaturesLabel;
         private PictureBox featuresPic;
+        private Label exitLabel;
+        private Panel panel6;
+        private Button exitButton;
     }
 }

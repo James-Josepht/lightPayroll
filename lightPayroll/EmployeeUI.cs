@@ -60,6 +60,9 @@ namespace lighPayrollUI
 
         private void EmployeeUI_Load(object sender, EventArgs e)
         {
+            string bibleVerse = greetings.GetRandomGreeting("Christ-Centered Guidance");
+            logIn.TypeMessage(encourageVerses, bibleVerse);
+
             ApplyRolePermissions();
             adminUI.panelDesign(greetingPanel, bodyPanel);
         }
@@ -72,5 +75,17 @@ namespace lighPayrollUI
             this.Hide();
         }
 
+        private void headPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void exitButton_Click(object sender, EventArgs e)
+        {
+            logIn.CustomMessageBox("Signing out");
+            Form1 homePage = new Form1();
+            homePage.Show();
+            this.Hide();
+        }
     }
 }
