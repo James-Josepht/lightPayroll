@@ -35,7 +35,7 @@ namespace lighPayroll
 
         private void backHomeButton_Click(object sender, EventArgs e)
         {
-            Form1 home = new Form1();
+            Homepage home = new Homepage();
             home.Show();
             this.Hide();
         }

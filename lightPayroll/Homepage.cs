@@ -6,15 +6,13 @@ using System.Windows.Forms;
 namespace lighPayroll
 {
 
-    public partial class Form1 : Form
+    public partial class Homepage : Form
     {
-        //used for manual sizing just in case
-        private Rectangle textBox1OriginalRect;
         private Rectangle panel7riginalRect;
 
         private Size formOriginalSize;
 
-        public Form1()
+        public Homepage()
         {
             InitializeComponent();
             menuStrip1.Renderer = new MyRenderer(); // this is for to change features images every mouse hover
@@ -88,7 +86,7 @@ namespace lighPayroll
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            Form1 home = new Form1();
+            Homepage home = new Homepage();
             home.Show();
             this.Hide();
         }

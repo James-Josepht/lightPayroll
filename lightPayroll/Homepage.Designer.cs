@@ -1,6 +1,6 @@
 ﻿namespace lighPayroll
 {
-    partial class Form1
+    partial class Homepage
     {
         /// <summary>
         ///  Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Homepage));
             panel1 = new Panel();
             logPanel = new Panel();
             joinHomeBut = new Button();

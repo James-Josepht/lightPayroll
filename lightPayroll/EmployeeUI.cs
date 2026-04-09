@@ -83,7 +83,7 @@ namespace lighPayrollUI
         private void exitButton_Click(object sender, EventArgs e)
         {
             logIn.CustomMessageBox("Signing out");
-            Form1 homePage = new Form1();
+            Homepage homePage = new Homepage();
             homePage.Show();
             this.Hide();
         }

@@ -161,7 +161,7 @@ namespace lighPayroll
             LogIn messageBox = new LogIn();
 
             messageBox.CustomMessageBox("Signing out.");
-            Form1 homepage = new Form1();
+            Homepage homepage = new Homepage();
             homepage.Show();
             this.Hide();
         }

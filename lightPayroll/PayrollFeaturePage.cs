@@ -63,7 +63,7 @@ namespace lighPayroll
         }
         private void pictureBox1_Click_1(object sender, EventArgs e)
         {
-            Form1 home = new Form1();
+            Homepage home = new Homepage();
             home.Show();
             this.Hide();
         }
