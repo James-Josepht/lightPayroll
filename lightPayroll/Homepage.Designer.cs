@@ -115,12 +115,14 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(937, 109);
             panel1.TabIndex = 0;
+            panel1.Paint += panel1_Paint;
             // 
             // menu
             // 
+            menu.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             menu.Enabled = false;
             menu.Image = lighPayrollUI.Properties.Resources.menu;
-            menu.Location = new Point(507, 29);
+            menu.Location = new Point(868, 27);
             menu.Name = "menu";
             menu.Size = new Size(64, 50);
             menu.SizeMode = PictureBoxSizeMode.Zoom;

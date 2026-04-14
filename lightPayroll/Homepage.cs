@@ -135,6 +135,11 @@ namespace lighPayroll
                 logPanel.Enabled = true;
             }
         }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 
     //used for changing the hover color in features
