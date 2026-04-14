@@ -63,21 +63,21 @@ namespace lighPayroll
             pictureBox3 = new PictureBox();
             label3 = new Label();
             label2 = new Label();
-            panel3 = new Panel();
+            taskPanel = new Panel();
             taskListsWordLabel = new Label();
             toDoLabel = new Label();
-            pictureBox6 = new PictureBox();
+            toDoPicture = new PictureBox();
             label6 = new Label();
             label7 = new Label();
-            userModificationLabel = new Label();
-            userModificationShort = new Label();
-            userModificationPic = new PictureBox();
             taskLabel = new Label();
-            userControlPanel = new Panel();
             payrollTool = new Panel();
             label9 = new Label();
             label8 = new Label();
             pictureBox4 = new PictureBox();
+            userControlPanel = new Panel();
+            userModificationLabel = new Label();
+            userModificationPic = new PictureBox();
+            userModificationShort = new Label();
             greetingPanel = new Panel();
             pictureBox1 = new PictureBox();
             label1 = new Label();
@@ -93,11 +93,12 @@ namespace lighPayroll
             bodyPanel.SuspendLayout();
             attendanceTool.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
-            panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)userModificationPic).BeginInit();
+            taskPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)toDoPicture).BeginInit();
             payrollTool.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
+            userControlPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)userModificationPic).BeginInit();
             greetingPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
@@ -313,15 +314,12 @@ namespace lighPayroll
             bodyPanel.Controls.Add(label4);
             bodyPanel.Controls.Add(encourageVerses);
             bodyPanel.Controls.Add(attendanceTool);
-            bodyPanel.Controls.Add(panel3);
+            bodyPanel.Controls.Add(taskPanel);
             bodyPanel.Controls.Add(label6);
             bodyPanel.Controls.Add(label7);
-            bodyPanel.Controls.Add(userModificationLabel);
-            bodyPanel.Controls.Add(userModificationShort);
-            bodyPanel.Controls.Add(userModificationPic);
             bodyPanel.Controls.Add(taskLabel);
-            bodyPanel.Controls.Add(userControlPanel);
             bodyPanel.Controls.Add(payrollTool);
+            bodyPanel.Controls.Add(userControlPanel);
             bodyPanel.Location = new Point(73, 156);
             bodyPanel.Name = "bodyPanel";
             bodyPanel.Size = new Size(783, 445);
@@ -402,17 +400,18 @@ namespace lighPayroll
             label2.Text = "Verify and modify attendance records";
             label2.Click += attendanceToolClick;
             // 
-            // panel3
+            // taskPanel
             // 
-            panel3.BorderStyle = BorderStyle.FixedSingle;
-            panel3.Controls.Add(taskListsWordLabel);
-            panel3.Controls.Add(toDoLabel);
-            panel3.Controls.Add(pictureBox6);
-            panel3.Cursor = Cursors.Hand;
-            panel3.Location = new Point(32, 78);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(724, 56);
-            panel3.TabIndex = 21;
+            taskPanel.BorderStyle = BorderStyle.FixedSingle;
+            taskPanel.Controls.Add(taskListsWordLabel);
+            taskPanel.Controls.Add(toDoLabel);
+            taskPanel.Controls.Add(toDoPicture);
+            taskPanel.Cursor = Cursors.Hand;
+            taskPanel.Location = new Point(32, 78);
+            taskPanel.Name = "taskPanel";
+            taskPanel.Size = new Size(724, 56);
+            taskPanel.TabIndex = 21;
+            taskPanel.Click += toDoPanel_Click;
             // 
             // taskListsWordLabel
             // 
@@ -426,6 +425,7 @@ namespace lighPayroll
             taskListsWordLabel.Size = new Size(104, 17);
             taskListsWordLabel.TabIndex = 22;
             taskListsWordLabel.Text = "Let's start!";
+            taskListsWordLabel.Click += toDoPanel_Click;
             // 
             // toDoLabel
             // 
@@ -439,17 +439,19 @@ namespace lighPayroll
             toDoLabel.Size = new Size(120, 27);
             toDoLabel.TabIndex = 22;
             toDoLabel.Text = "Task List";
+            toDoLabel.Click += toDoPanel_Click;
             // 
-            // pictureBox6
+            // toDoPicture
             // 
-            pictureBox6.Cursor = Cursors.Hand;
-            pictureBox6.Image = Resources.to_do_list;
-            pictureBox6.Location = new Point(23, 0);
-            pictureBox6.Name = "pictureBox6";
-            pictureBox6.Size = new Size(67, 50);
-            pictureBox6.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox6.TabIndex = 18;
-            pictureBox6.TabStop = false;
+            toDoPicture.Cursor = Cursors.Hand;
+            toDoPicture.Image = Resources.to_do_list;
+            toDoPicture.Location = new Point(23, 0);
+            toDoPicture.Name = "toDoPicture";
+            toDoPicture.Size = new Size(67, 50);
+            toDoPicture.SizeMode = PictureBoxSizeMode.StretchImage;
+            toDoPicture.TabIndex = 18;
+            toDoPicture.TabStop = false;
+            toDoPicture.Click += toDoPanel_Click;
             // 
             // label6
             // 
@@ -477,46 +479,6 @@ namespace lighPayroll
             label7.TabIndex = 15;
             label7.Text = "Look and secure payroll logs";
             // 
-            // userModificationLabel
-            // 
-            userModificationLabel.AutoSize = true;
-            userModificationLabel.BackColor = Color.FromArgb(33, 44, 66);
-            userModificationLabel.Cursor = Cursors.Hand;
-            userModificationLabel.Font = new Font("Ubuntu Mono", 16.1999989F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            userModificationLabel.ForeColor = Color.Beige;
-            userModificationLabel.Location = new Point(168, 158);
-            userModificationLabel.Name = "userModificationLabel";
-            userModificationLabel.Size = new Size(216, 27);
-            userModificationLabel.TabIndex = 12;
-            userModificationLabel.Text = "User Modification";
-            userModificationLabel.Click += userControlPanel_Click;
-            // 
-            // userModificationShort
-            // 
-            userModificationShort.AutoSize = true;
-            userModificationShort.BackColor = Color.FromArgb(33, 44, 66);
-            userModificationShort.Cursor = Cursors.Hand;
-            userModificationShort.Font = new Font("Ubuntu Mono", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            userModificationShort.ForeColor = Color.Beige;
-            userModificationShort.Location = new Point(171, 187);
-            userModificationShort.Name = "userModificationShort";
-            userModificationShort.Size = new Size(296, 17);
-            userModificationShort.TabIndex = 13;
-            userModificationShort.Text = "Be careful in handling user accounts";
-            userModificationShort.Click += userControlPanel_Click;
-            // 
-            // userModificationPic
-            // 
-            userModificationPic.Cursor = Cursors.Hand;
-            userModificationPic.Image = (Image)resources.GetObject("userModificationPic.Image");
-            userModificationPic.Location = new Point(60, 154);
-            userModificationPic.Name = "userModificationPic";
-            userModificationPic.Size = new Size(67, 50);
-            userModificationPic.SizeMode = PictureBoxSizeMode.StretchImage;
-            userModificationPic.TabIndex = 11;
-            userModificationPic.TabStop = false;
-            userModificationPic.Click += userControlPanel_Click;
-            // 
             // taskLabel
             // 
             taskLabel.AutoSize = true;
@@ -528,16 +490,6 @@ namespace lighPayroll
             taskLabel.Size = new Size(108, 27);
             taskLabel.TabIndex = 9;
             taskLabel.Text = "My Tools";
-            // 
-            // userControlPanel
-            // 
-            userControlPanel.BorderStyle = BorderStyle.FixedSingle;
-            userControlPanel.Cursor = Cursors.Hand;
-            userControlPanel.Location = new Point(32, 152);
-            userControlPanel.Name = "userControlPanel";
-            userControlPanel.Size = new Size(724, 56);
-            userControlPanel.TabIndex = 17;
-            userControlPanel.Click += userControlPanel_Click;
             // 
             // payrollTool
             // 
@@ -588,6 +540,59 @@ namespace lighPayroll
             pictureBox4.TabIndex = 10;
             pictureBox4.TabStop = false;
             pictureBox4.Click += pictureBox4_Click;
+            // 
+            // userControlPanel
+            // 
+            userControlPanel.BorderStyle = BorderStyle.FixedSingle;
+            userControlPanel.Controls.Add(userModificationLabel);
+            userControlPanel.Controls.Add(userModificationPic);
+            userControlPanel.Controls.Add(userModificationShort);
+            userControlPanel.Cursor = Cursors.Hand;
+            userControlPanel.Location = new Point(32, 152);
+            userControlPanel.Name = "userControlPanel";
+            userControlPanel.Size = new Size(724, 56);
+            userControlPanel.TabIndex = 17;
+            userControlPanel.Click += userControlPanel_Click;
+            // 
+            // userModificationLabel
+            // 
+            userModificationLabel.AutoSize = true;
+            userModificationLabel.BackColor = Color.FromArgb(33, 44, 66);
+            userModificationLabel.Cursor = Cursors.Hand;
+            userModificationLabel.Font = new Font("Ubuntu Mono", 16.1999989F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            userModificationLabel.ForeColor = Color.Beige;
+            userModificationLabel.Location = new Point(139, 5);
+            userModificationLabel.Name = "userModificationLabel";
+            userModificationLabel.Size = new Size(216, 27);
+            userModificationLabel.TabIndex = 12;
+            userModificationLabel.Text = "User Modification";
+            userModificationLabel.Click += userControlPanel_Click;
+            // 
+            // userModificationPic
+            // 
+            userModificationPic.Cursor = Cursors.Hand;
+            userModificationPic.Image = (Image)resources.GetObject("userModificationPic.Image");
+            userModificationPic.Location = new Point(23, 1);
+            userModificationPic.Name = "userModificationPic";
+            userModificationPic.Size = new Size(67, 50);
+            userModificationPic.SizeMode = PictureBoxSizeMode.StretchImage;
+            userModificationPic.TabIndex = 11;
+            userModificationPic.TabStop = false;
+            userModificationPic.Click += userControlPanel_Click;
+            // 
+            // userModificationShort
+            // 
+            userModificationShort.AutoSize = true;
+            userModificationShort.BackColor = Color.FromArgb(33, 44, 66);
+            userModificationShort.Cursor = Cursors.Hand;
+            userModificationShort.Font = new Font("Ubuntu Mono", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            userModificationShort.ForeColor = Color.Beige;
+            userModificationShort.Location = new Point(141, 32);
+            userModificationShort.Name = "userModificationShort";
+            userModificationShort.Size = new Size(296, 17);
+            userModificationShort.TabIndex = 13;
+            userModificationShort.Text = "Be careful in handling user accounts";
+            userModificationShort.Click += userControlPanel_Click;
             // 
             // greetingPanel
             // 
@@ -686,18 +691,25 @@ namespace lighPayroll
             attendanceTool.ResumeLayout(false);
             attendanceTool.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
-            panel3.ResumeLayout(false);
-            panel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
-            ((System.ComponentModel.ISupportInitialize)userModificationPic).EndInit();
+            taskPanel.ResumeLayout(false);
+            taskPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)toDoPicture).EndInit();
             payrollTool.ResumeLayout(false);
             payrollTool.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
+            userControlPanel.ResumeLayout(false);
+            userControlPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)userModificationPic).EndInit();
             greetingPanel.ResumeLayout(false);
             greetingPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel1.ResumeLayout(false);
             ResumeLayout(false);
+        }
+
+        private void TaskListsWordLabel_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion
@@ -744,8 +756,8 @@ namespace lighPayroll
         private Panel attendanceTool;
         private Panel userControlPanel;
         private Panel payrollTool;
-        private PictureBox pictureBox6;
-        private Panel panel3;
+        private PictureBox toDoPicture;
+        private Panel taskPanel;
         private Label label9;
         private Label label8;
         private Label taskListsWordLabel;

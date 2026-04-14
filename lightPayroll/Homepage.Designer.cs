@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Homepage));
             panel1 = new Panel();
+            menu = new PictureBox();
             logPanel = new Panel();
             joinHomeBut = new Button();
             loginHomeBut = new Button();
@@ -86,6 +87,7 @@
             panel7 = new Panel();
             tableLayoutPanel1 = new TableLayoutPanel();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)menu).BeginInit();
             logPanel.SuspendLayout();
             panel5.SuspendLayout();
             menuStrip2.SuspendLayout();
@@ -103,6 +105,7 @@
             // panel1
             // 
             panel1.BackColor = Color.Beige;
+            panel1.Controls.Add(menu);
             panel1.Controls.Add(logPanel);
             panel1.Controls.Add(panel5);
             panel1.Controls.Add(panel4);
@@ -112,6 +115,18 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(937, 109);
             panel1.TabIndex = 0;
+            // 
+            // menu
+            // 
+            menu.Enabled = false;
+            menu.Image = lighPayrollUI.Properties.Resources.menu;
+            menu.Location = new Point(507, 29);
+            menu.Name = "menu";
+            menu.Size = new Size(64, 50);
+            menu.SizeMode = PictureBoxSizeMode.Zoom;
+            menu.TabIndex = 10;
+            menu.TabStop = false;
+            menu.Visible = false;
             // 
             // logPanel
             // 
@@ -615,7 +630,7 @@
             tableLayoutPanel1.Size = new Size(937, 548);
             tableLayoutPanel1.TabIndex = 9;
             // 
-            // Form1
+            // Homepage
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -624,11 +639,12 @@
             Controls.Add(panel1);
             Controls.Add(tableLayoutPanel1);
             MinimumSize = new Size(500, 333);
-            Name = "Form1";
+            Name = "Homepage";
             StartPosition = FormStartPosition.CenterScreen;
             Load += Form1_Load;
             Resize += Form1_Resize;
             panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)menu).EndInit();
             logPanel.ResumeLayout(false);
             panel5.ResumeLayout(false);
             panel5.PerformLayout();
@@ -708,5 +724,6 @@
         private ToolStripTextBox searchBox;
         private Panel panel7;
         private TableLayoutPanel tableLayoutPanel1;
+        private PictureBox menu;
     }
 }

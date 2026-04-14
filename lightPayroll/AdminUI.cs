@@ -37,6 +37,13 @@ namespace lighPayroll
 
                 panelDesign(greetingPanel, bodyPanel);
             }
+
+           
+            ColorHelper.AddPanelGroupHover(taskPanel, Color.FromArgb(60, 75, 100), Color.FromArgb(33, 44, 66));
+            ColorHelper.AddPanelGroupHover(userControlPanel, Color.FromArgb(60, 75, 100), Color.FromArgb(33, 44, 66));
+            ColorHelper.AddPanelGroupHover(attendanceTool, Color.FromArgb(60, 75, 100), Color.FromArgb(33, 44, 66));
+            ColorHelper.AddPanelGroupHover(payrollTool, Color.FromArgb(60, 75, 100), Color.FromArgb(33, 44, 66));
+
         }
 
 
@@ -73,7 +80,7 @@ namespace lighPayroll
 
             if (headPanelDesign != null)
             {
-                
+
                 greetingsPath.AddArc(0, 0, radius, radius, 180, 90);
                 greetingsPath.AddArc(headPanelDesign.Width - radius, 0, radius, radius, 270, 90);
                 greetingsPath.AddArc(headPanelDesign.Width - radius, headPanelDesign.Height - radius, radius, radius, 0, 90);
@@ -81,7 +88,7 @@ namespace lighPayroll
                 greetingsPath.CloseAllFigures();
                 headPanelDesign.Region = new Region(greetingsPath);
             }
-           
+
             if (bodyPanelDesign != null)
             {
                 bodyPath.AddArc(0, 0, radius, radius, 180, 90);
@@ -164,6 +171,12 @@ namespace lighPayroll
             Homepage homepage = new Homepage();
             homepage.Show();
             this.Hide();
+        }
+
+        private void toDoPanel_Click(object sender, EventArgs e)
+        {
+
+
         }
     }
 

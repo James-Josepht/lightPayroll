@@ -106,6 +106,18 @@ namespace lighPayroll
                 tableLayoutPanel1.ColumnStyles[1].Width = 0;
 
                 panel7.Visible = false; // optional but cleaner
+
+                if (this.Width < 800)
+                {
+                    panel4.Visible = false;
+                    menu.Visible = true;
+                    menu.Enabled = true;
+                    panel5.Enabled = false;
+                    panel5.Visible = false;
+                    logPanel.Enabled = false;
+                    logPanel.Visible = false;
+
+                }
             }
             else
             {
@@ -113,6 +125,14 @@ namespace lighPayroll
                 tableLayoutPanel1.ColumnStyles[1].Width = 40;
 
                 panel7.Visible = true;
+
+                panel4.Visible = true;
+                menu.Visible = false;
+                menu.Enabled = false;
+                panel5.Enabled = true;
+                panel5.Visible = true;
+                logPanel.Visible = true;
+                logPanel.Enabled = true;
             }
         }
     }
