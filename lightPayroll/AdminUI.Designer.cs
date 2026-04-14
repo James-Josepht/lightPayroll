@@ -412,6 +412,7 @@ namespace lighPayroll
             taskPanel.Size = new Size(724, 56);
             taskPanel.TabIndex = 21;
             taskPanel.Click += toDoPanel_Click;
+           
             // 
             // taskListsWordLabel
             // 

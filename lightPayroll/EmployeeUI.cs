@@ -70,7 +70,7 @@ namespace lighPayrollUI
 
         private void eFeaturesPanel_Click(object sender, EventArgs e)
         {
-            EmployeeFeature empFeature = new EmployeeFeature(user_role, user_name, user_id);
+            UsableFeatures empFeature = new UsableFeatures(user_role, user_name, user_id);
             empFeature.Show();
             this.Hide();
         }

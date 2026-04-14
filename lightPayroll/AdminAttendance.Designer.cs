@@ -2,7 +2,7 @@
 
 namespace lighPayroll
 {
-    partial class AttendanceRecords
+    partial class AdminAttendance
     {
         /// <summary>
         /// Required designer variable.
@@ -31,7 +31,7 @@ namespace lighPayroll
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AttendanceRecords));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminAttendance));
             label2 = new Label();
             bodyPanel = new Panel();
             lastNameLabel = new Label();

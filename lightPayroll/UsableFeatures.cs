@@ -14,14 +14,14 @@ using System.Windows.Forms;
 
 namespace lighPayrollUI
 {
-    public partial class EmployeeFeature : Form
+    public partial class UsableFeatures : Form
     {
         AdminUI adminUI = new AdminUI(); //used for getting panel design and greeting service
         private string user_role, user_name;
         private int user_id;
 
 
-        public EmployeeFeature(string role, string username, int userId)
+        public UsableFeatures(string role, string username, int userId)
         {
             InitializeComponent();
             employeeFeatures.DrawMode = TabDrawMode.OwnerDrawFixed;

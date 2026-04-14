@@ -1,6 +1,6 @@
 ﻿namespace lighPayrollUI
 {
-    partial class EmployeeFeature
+    partial class UsableFeatures
     {
         /// <summary>
         /// Required designer variable.
@@ -286,7 +286,7 @@
             attendancePage.Text = "Attendance";
             attendancePage.UseVisualStyleBackColor = true;
             // 
-            // EmployeeFeature
+            // UsableFeatures
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -294,7 +294,7 @@
             ClientSize = new Size(937, 548);
             Controls.Add(panel1);
             Controls.Add(tableLayoutPanel1);
-            Name = "EmployeeFeature";
+            Name = "UsableFeatures";
             StartPosition = FormStartPosition.CenterScreen;
             Load += EmployeeFeature_Load;
             panel1.ResumeLayout(false);

@@ -7,12 +7,12 @@ using lightPayrollServices;
 
 namespace lighPayrollUI
 {
-    public partial class UserModification : Form
+    public partial class AdminUserMod : Form
     {
         LogIn greetingsAndMessageBoxDesign = new LogIn();
 
 
-        public UserModification()
+        public AdminUserMod()
         {
             InitializeComponent();
         }

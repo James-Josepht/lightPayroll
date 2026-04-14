@@ -20,12 +20,12 @@ using System.Security.AccessControl;
 
 namespace lighPayroll
 {
-    public partial class AttendanceRecords : Form
+    public partial class AdminAttendance : Form
     {
         List<Users> attendance = new List<Users>();
 
 
-        public AttendanceRecords()
+        public AdminAttendance()
         {
             InitializeComponent();
 

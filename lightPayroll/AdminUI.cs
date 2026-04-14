@@ -16,6 +16,7 @@ namespace lighPayroll
 {
     public partial class AdminUI : Form
     {
+        
         LogIn loginDesigns = new LogIn();
         public AdminUI()
         {
@@ -38,7 +39,7 @@ namespace lighPayroll
                 panelDesign(greetingPanel, bodyPanel);
             }
 
-           
+
             ColorHelper.AddPanelGroupHover(taskPanel, Color.FromArgb(60, 75, 100), Color.FromArgb(33, 44, 66));
             ColorHelper.AddPanelGroupHover(userControlPanel, Color.FromArgb(60, 75, 100), Color.FromArgb(33, 44, 66));
             ColorHelper.AddPanelGroupHover(attendanceTool, Color.FromArgb(60, 75, 100), Color.FromArgb(33, 44, 66));
@@ -60,7 +61,7 @@ namespace lighPayroll
             if (e.KeyCode == Keys.Enter && storedFeatures.Any(feature => searchBox.Text.Contains("Attendance")))
             {
                 e.SuppressKeyPress = true;
-                AttendanceRecords attRecords = new AttendanceRecords();
+                AdminAttendance attRecords = new AdminAttendance();
                 attRecords.Show();
                 this.Hide();
             }
@@ -146,14 +147,14 @@ namespace lighPayroll
 
         private void attendanceToolClick(object sender, EventArgs e)
         {
-            AttendanceRecords home = new AttendanceRecords();
+            AdminAttendance home = new AdminAttendance();
             home.Show();
             this.Hide();
         }
 
         private void userControlPanel_Click(object sender, EventArgs e)
         {
-            UserModification userModification = new UserModification();
+            AdminUserMod userModification = new AdminUserMod();
             userModification.Show();
             this.Hide();
         }
@@ -175,9 +176,12 @@ namespace lighPayroll
 
         private void toDoPanel_Click(object sender, EventArgs e)
         {
-
+            AdminDashboard dashboard = new AdminDashboard();
+            dashboard.Show();
+            this.Hide();
 
         }
+
     }
 
 }

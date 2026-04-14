@@ -120,6 +120,7 @@
             // menu
             // 
             menu.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            menu.Cursor = Cursors.Hand;
             menu.Enabled = false;
             menu.Image = lighPayrollUI.Properties.Resources.menu;
             menu.Location = new Point(868, 27);
