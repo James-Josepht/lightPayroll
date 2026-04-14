@@ -37,13 +37,13 @@ namespace lighPayroll
             pictureBox2 = new PictureBox();
             bodyPanel = new Panel();
             panel3 = new Panel();
+            Dashboard = new Label();
             payrollB = new Button();
             attendanceB = new Button();
             usersB = new Button();
             taskB = new Button();
             panel1 = new Panel();
             panel2 = new Panel();
-            Dashboard = new Label();
             headPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             bodyPanel.SuspendLayout();
@@ -110,27 +110,42 @@ namespace lighPayroll
             panel3.Size = new Size(200, 426);
             panel3.TabIndex = 0;
             // 
+            // Dashboard
+            // 
+            Dashboard.AutoSize = true;
+            Dashboard.Font = new Font("Ubuntu Mono", 15.7499981F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            Dashboard.ForeColor = Color.Beige;
+            Dashboard.Location = new Point(14, 21);
+            Dashboard.Name = "Dashboard";
+            Dashboard.Size = new Size(120, 26);
+            Dashboard.TabIndex = 0;
+            Dashboard.Text = "Dashboard";
+            // 
             // payrollB
             // 
+            payrollB.BackgroundImage = Resources.payroll;
+            payrollB.BackgroundImageLayout = ImageLayout.Zoom;
             payrollB.FlatAppearance.BorderColor = Color.Beige;
+            payrollB.FlatAppearance.MouseDownBackColor = Color.Beige;
             payrollB.FlatStyle = FlatStyle.Flat;
             payrollB.Location = new Point(14, 298);
             payrollB.Name = "payrollB";
             payrollB.Size = new Size(172, 57);
             payrollB.TabIndex = 3;
-            payrollB.Text = "button3";
             payrollB.UseVisualStyleBackColor = true;
             // 
             // attendanceB
             // 
             attendanceB.BackColor = Color.FromArgb(25, 35, 55);
+            attendanceB.BackgroundImage = Resources.attendance;
+            attendanceB.BackgroundImageLayout = ImageLayout.Zoom;
             attendanceB.FlatAppearance.BorderColor = Color.Beige;
+            attendanceB.FlatAppearance.MouseDownBackColor = Color.Beige;
             attendanceB.FlatStyle = FlatStyle.Flat;
             attendanceB.Location = new Point(14, 225);
             attendanceB.Name = "attendanceB";
             attendanceB.Size = new Size(172, 57);
             attendanceB.TabIndex = 2;
-            attendanceB.Text = "button4";
             attendanceB.UseVisualStyleBackColor = false;
             // 
             // usersB
@@ -139,8 +154,7 @@ namespace lighPayroll
             usersB.BackgroundImage = Resources.users1;
             usersB.BackgroundImageLayout = ImageLayout.Zoom;
             usersB.FlatAppearance.BorderColor = Color.Beige;
-            usersB.FlatAppearance.MouseDownBackColor = Color.Black;
-            usersB.FlatAppearance.MouseOverBackColor = Color.FromArgb(255, 255, 192);
+            usersB.FlatAppearance.MouseDownBackColor = Color.Beige;
             usersB.FlatStyle = FlatStyle.Flat;
             usersB.ForeColor = SystemColors.Control;
             usersB.Location = new Point(14, 152);
@@ -151,10 +165,10 @@ namespace lighPayroll
             // 
             // taskB
             // 
-            taskB.BackColor = Color.Transparent;
             taskB.BackgroundImage = Resources.users;
             taskB.BackgroundImageLayout = ImageLayout.Zoom;
             taskB.FlatAppearance.BorderColor = Color.Beige;
+            taskB.FlatAppearance.MouseDownBackColor = Color.Beige;
             taskB.FlatStyle = FlatStyle.Flat;
             taskB.Location = new Point(14, 80);
             taskB.Name = "taskB";
@@ -180,17 +194,6 @@ namespace lighPayroll
             panel2.Name = "panel2";
             panel2.Size = new Size(737, 426);
             panel2.TabIndex = 0;
-            // 
-            // Dashboard
-            // 
-            Dashboard.AutoSize = true;
-            Dashboard.Font = new Font("Ubuntu Mono", 15.7499981F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            Dashboard.ForeColor = Color.Beige;
-            Dashboard.Location = new Point(14, 21);
-            Dashboard.Name = "Dashboard";
-            Dashboard.Size = new Size(120, 26);
-            Dashboard.TabIndex = 0;
-            Dashboard.Text = "Dashboard";
             // 
             // AdminDashboard
             // 

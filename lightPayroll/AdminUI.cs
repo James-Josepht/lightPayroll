@@ -16,7 +16,7 @@ namespace lighPayroll
 {
     public partial class AdminUI : Form
     {
-        
+
         LogIn loginDesigns = new LogIn();
         public AdminUI()
         {
@@ -159,11 +159,7 @@ namespace lighPayroll
             this.Hide();
         }
 
-        private void pictureBox4_Click(object sender, EventArgs e)
-        {
-
-        }
-
+ 
         private void exitButton_Click(object sender, EventArgs e)
         {
             LogIn messageBox = new LogIn();
