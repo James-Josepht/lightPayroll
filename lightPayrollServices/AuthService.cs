@@ -1,12 +1,13 @@
-﻿using lightPayrollModel;
+﻿using BCrypt.Net;
+using lightPayrollModel;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using BCrypt.Net;
 
 namespace lightPayrollServices
 {
@@ -93,6 +94,11 @@ namespace lightPayrollServices
     {
         public static string HashPassword(string password)
         {
+            //increase security in the future use:
+            //BCrypt.HashPassword(password, workFactor: 12);
+
+            //Higher work factor → slower hashing → more secure
+            //Lower work factor → faster hashing → less secure
             return BCrypt.Net.BCrypt.HashPassword(password);
         }
 

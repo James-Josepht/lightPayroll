@@ -62,7 +62,6 @@ namespace lighPayroll
             // pictureBox1
             // 
             pictureBox1.BackColor = Color.Transparent;
-            pictureBox1.Cursor = Cursors.Hand;
             pictureBox1.Image = lighPayrollUI.Properties.Resources.smart_idea;
             pictureBox1.Location = new Point(324, -14);
             pictureBox1.Name = "pictureBox1";

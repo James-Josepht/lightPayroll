@@ -11,6 +11,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Windows.Interop;
 using WinFormsTimer = System.Windows.Forms.Timer;
 //timer is having conflict between System.Windows.Forms and System.Thread.Tasks, so I am using an alias
 
@@ -29,6 +30,7 @@ namespace lighPayroll
         private void LogIn_Load(object sender, EventArgs e)
         {
             TypeMessage(logckInLabel, "Let's LOGK IN!");
+
         }
 
        
@@ -82,6 +84,10 @@ namespace lighPayroll
             {
                 if (email.ToLower() == "admin" && password == "admin")
                 {
+
+                    //string pass = PasswordHash.HashPassword("testpass");
+                    //Clipboard.SetText(pass);
+                    //MessageBox.Show(pass);
                     CustomMessageBox("Login successful!");
                     admin.Show();
                     this.Hide();
