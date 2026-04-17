@@ -7,7 +7,6 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Controls;
 using System.Windows.Forms;
 using lightPayrollModel;
 using lightPayrollServices;
@@ -75,16 +74,19 @@ namespace lighPayrollUI
             this.Hide();
         }
 
-        private void headPanel_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
 
         private void exitButton_Click(object sender, EventArgs e)
         {
             logIn.CustomMessageBox("Signing out");
             Homepage homePage = new Homepage();
             homePage.Show();
+            this.Hide();
+        }
+
+        private void toDoPanel_Click(object sender, EventArgs e)
+        {
+            AdminDashboard dashboard = new AdminDashboard(user_role, user_name, user_id);
+            dashboard.Show();
             this.Hide();
         }
     }

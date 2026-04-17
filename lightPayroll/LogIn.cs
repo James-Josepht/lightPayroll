@@ -11,7 +11,6 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using System.Windows.Interop;
 using WinFormsTimer = System.Windows.Forms.Timer;
 //timer is having conflict between System.Windows.Forms and System.Thread.Tasks, so I am using an alias
 
@@ -32,8 +31,6 @@ namespace lighPayroll
             TypeMessage(logckInLabel, "Let's LOGK IN!");
 
         }
-
-       
 
         private void backHomeButton_Click(object sender, EventArgs e)
         {
@@ -82,7 +79,7 @@ namespace lighPayroll
 
             if (status == "Active")
             {
-                if (email.ToLower() == "admin" && password == "admin")
+                if (email.ToLower() == "admin" && password == "admin" || role == "Admin")
                 {
 
                     //string pass = PasswordHash.HashPassword("testpass");

@@ -41,10 +41,10 @@
             sFeaturesLabel = new Label();
             bFeaturesLabel = new Label();
             featuresPic = new PictureBox();
-            panel3 = new Panel();
+            toDoPanel = new Panel();
             taskListsWordLabel = new Label();
             toDoLabel = new Label();
-            pictureBox6 = new PictureBox();
+            toDoPic = new PictureBox();
             panel4 = new Panel();
             headPanel = new Panel();
             exitLabel = new Label();
@@ -57,8 +57,8 @@
             bodyPanel.SuspendLayout();
             eFeaturesPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)featuresPic).BeginInit();
-            panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
+            toDoPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)toDoPic).BeginInit();
             headPanel.SuspendLayout();
             panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -156,7 +156,7 @@
             bodyPanel.Controls.Add(eFeaturesPanel);
             bodyPanel.Controls.Add(label4);
             bodyPanel.Controls.Add(encourageVerses);
-            bodyPanel.Controls.Add(panel3);
+            bodyPanel.Controls.Add(toDoPanel);
             bodyPanel.Location = new Point(73, 156);
             bodyPanel.Name = "bodyPanel";
             bodyPanel.Size = new Size(783, 445);
@@ -215,17 +215,18 @@
             featuresPic.TabStop = false;
             featuresPic.Click += eFeaturesPanel_Click;
             // 
-            // panel3
+            // toDoPanel
             // 
-            panel3.BorderStyle = BorderStyle.FixedSingle;
-            panel3.Controls.Add(taskListsWordLabel);
-            panel3.Controls.Add(toDoLabel);
-            panel3.Controls.Add(pictureBox6);
-            panel3.Cursor = Cursors.Hand;
-            panel3.Location = new Point(39, 35);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(704, 56);
-            panel3.TabIndex = 21;
+            toDoPanel.BorderStyle = BorderStyle.FixedSingle;
+            toDoPanel.Controls.Add(taskListsWordLabel);
+            toDoPanel.Controls.Add(toDoLabel);
+            toDoPanel.Controls.Add(toDoPic);
+            toDoPanel.Cursor = Cursors.Hand;
+            toDoPanel.Location = new Point(39, 35);
+            toDoPanel.Name = "toDoPanel";
+            toDoPanel.Size = new Size(704, 56);
+            toDoPanel.TabIndex = 21;
+            toDoPanel.Click += toDoPanel_Click;
             // 
             // taskListsWordLabel
             // 
@@ -252,17 +253,19 @@
             toDoLabel.Size = new Size(120, 27);
             toDoLabel.TabIndex = 22;
             toDoLabel.Text = "Task List";
+            toDoLabel.Click += toDoPanel_Click;
             // 
-            // pictureBox6
+            // toDoPic
             // 
-            pictureBox6.Cursor = Cursors.Hand;
-            pictureBox6.Image = Properties.Resources.to_do_list;
-            pictureBox6.Location = new Point(23, 0);
-            pictureBox6.Name = "pictureBox6";
-            pictureBox6.Size = new Size(67, 50);
-            pictureBox6.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox6.TabIndex = 18;
-            pictureBox6.TabStop = false;
+            toDoPic.Cursor = Cursors.Hand;
+            toDoPic.Image = Properties.Resources.to_do_list;
+            toDoPic.Location = new Point(23, 0);
+            toDoPic.Name = "toDoPic";
+            toDoPic.Size = new Size(67, 50);
+            toDoPic.SizeMode = PictureBoxSizeMode.StretchImage;
+            toDoPic.TabIndex = 18;
+            toDoPic.TabStop = false;
+            toDoPic.Click += toDoPanel_Click;
             // 
             // panel4
             // 
@@ -283,7 +286,6 @@
             headPanel.Name = "headPanel";
             headPanel.Size = new Size(937, 101);
             headPanel.TabIndex = 6;
-            headPanel.Paint += headPanel_Paint;
             // 
             // exitLabel
             // 
@@ -351,9 +353,9 @@
             eFeaturesPanel.ResumeLayout(false);
             eFeaturesPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)featuresPic).EndInit();
-            panel3.ResumeLayout(false);
-            panel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
+            toDoPanel.ResumeLayout(false);
+            toDoPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)toDoPic).EndInit();
             headPanel.ResumeLayout(false);
             headPanel.PerformLayout();
             panel6.ResumeLayout(false);
@@ -371,10 +373,10 @@
         private Label sGreetingsLabel;
         private Label greetingLabel;
         private Panel bodyPanel;
-        private Panel panel3;
+        private Panel toDoPanel;
         private Label taskListsWordLabel;
         private Label toDoLabel;
-        private PictureBox pictureBox6;
+        private PictureBox toDoPic;
         private Panel panel4;
         private Panel headPanel;
         private PictureBox pictureBox2;

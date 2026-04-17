@@ -172,7 +172,7 @@ namespace lighPayroll
 
         private void toDoPanel_Click(object sender, EventArgs e)
         {
-            AdminDashboard dashboard = new AdminDashboard();
+            AdminDashboard dashboard = new AdminDashboard("Admin", "null", 0);
             dashboard.Show();
             this.Hide();
 

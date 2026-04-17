@@ -151,6 +151,31 @@ namespace lightPayrollServices
 
             return connStrings;
         }
+
+
+
+        ////////////////////////////////////////////////////////////////////// 
+        /// FOR GETTING THE TOTAL NUMBER OF USERS IN THE DATABASE, USED IN ADMIN DASHBOARD
+        /// 
+        /// I DECIDE HOW TO COMMENT LOL
+        /////////////////////////////////////////////////////////////////////
+        public static int GetUserCount()
+        {
+            using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
+            {
+                string sql = "SELECT COUNT(*) FROM UsersTable";
+                return conn.ExecuteScalar<int>(sql);
+            }
+        }
+
+        public static int GetUserCountByRole(string role)
+        {
+            using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
+            {
+                string sql = "SELECT COUNT(*) FROM UsersTable WHERE Role = @Role";
+                return conn.ExecuteScalar<int>(sql, new { Role = role });
+            }
+        }
     }
 
 }

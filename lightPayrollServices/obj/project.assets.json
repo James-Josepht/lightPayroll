@@ -28,10 +28,10 @@
           }
         }
       },
-      "Microsoft.Data.Sqlite/10.0.5": {
+      "Microsoft.Data.Sqlite/10.0.6": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Data.Sqlite.Core": "10.0.5",
+          "Microsoft.Data.Sqlite.Core": "10.0.6",
           "SQLitePCLRaw.bundle_e_sqlite3": "2.1.11",
           "SQLitePCLRaw.core": "2.1.11"
         },
@@ -42,7 +42,7 @@
           "lib/netstandard2.0/_._": {}
         }
       },
-      "Microsoft.Data.Sqlite.Core/10.0.5": {
+      "Microsoft.Data.Sqlite.Core/10.0.6": {
         "type": "package",
         "dependencies": {
           "SQLitePCLRaw.core": "2.1.11"
@@ -259,11 +259,11 @@
           }
         }
       },
-      "System.Configuration.ConfigurationManager/10.0.5": {
+      "System.Configuration.ConfigurationManager/10.0.6": {
         "type": "package",
         "dependencies": {
-          "System.Diagnostics.EventLog": "10.0.5",
-          "System.Security.Cryptography.ProtectedData": "10.0.5"
+          "System.Diagnostics.EventLog": "10.0.6",
+          "System.Security.Cryptography.ProtectedData": "10.0.6"
         },
         "compile": {
           "lib/net8.0/System.Configuration.ConfigurationManager.dll": {
@@ -285,7 +285,7 @@
           "Stub.System.Data.SQLite.Core.NetStandard": "[1.0.119]"
         }
       },
-      "System.Diagnostics.EventLog/10.0.5": {
+      "System.Diagnostics.EventLog/10.0.6": {
         "type": "package",
         "compile": {
           "lib/net8.0/System.Diagnostics.EventLog.dll": {
@@ -320,7 +320,7 @@
           "lib/netcoreapp2.1/_._": {}
         }
       },
-      "System.Security.Cryptography.ProtectedData/10.0.5": {
+      "System.Security.Cryptography.ProtectedData/10.0.6": {
         "type": "package",
         "compile": {
           "lib/net8.0/System.Security.Cryptography.ProtectedData.dll": {
@@ -404,24 +404,24 @@
         "readme.md"
       ]
     },
-    "Microsoft.Data.Sqlite/10.0.5": {
-      "sha512": "y4noWO5q8tav8I/JyOhuWxII+1KrXCLuhjXdP1GRd3PvVf/IlgL+eQlikp9DyCrybQxS/0ZO7Me/X6c22MjSaQ==",
+    "Microsoft.Data.Sqlite/10.0.6": {
+      "sha512": "hlwbTByzt2tPyRHlG1SzMrnHdO7GE9dG945456rOu2s0Tv6PBgN7ykidAfsnOn6fhDdmbCMoU+pq7+6CbCneSg==",
       "type": "package",
-      "path": "microsoft.data.sqlite/10.0.5",
+      "path": "microsoft.data.sqlite/10.0.6",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "PACKAGE.md",
         "lib/netstandard2.0/_._",
-        "microsoft.data.sqlite.10.0.5.nupkg.sha512",
+        "microsoft.data.sqlite.10.0.6.nupkg.sha512",
         "microsoft.data.sqlite.nuspec"
       ]
     },
-    "Microsoft.Data.Sqlite.Core/10.0.5": {
-      "sha512": "jFYXnh7s0RShCw6Vkf+ReGCw+mVi7ISg1YaEzYCJcXnUifmbW+aqvCsRJuSRj2ZuQ+oqetpjxlZtbpMmk5FKqQ==",
+    "Microsoft.Data.Sqlite.Core/10.0.6": {
+      "sha512": "OqZDg2/SROHR33XJLaf3kIU2zEbxcZ2ef+O/HIyZWfiKenp/B2qgy/jv6wJmmsBgh4ETaRKdlcLyJ9es2woKCg==",
       "type": "package",
-      "path": "microsoft.data.sqlite.core/10.0.5",
+      "path": "microsoft.data.sqlite.core/10.0.6",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -431,7 +431,7 @@
         "lib/net8.0/Microsoft.Data.Sqlite.xml",
         "lib/netstandard2.0/Microsoft.Data.Sqlite.dll",
         "lib/netstandard2.0/Microsoft.Data.Sqlite.xml",
-        "microsoft.data.sqlite.core.10.0.5.nupkg.sha512",
+        "microsoft.data.sqlite.core.10.0.6.nupkg.sha512",
         "microsoft.data.sqlite.core.nuspec"
       ]
     },
@@ -571,10 +571,10 @@
         "stub.system.data.sqlite.core.netstandard.nuspec"
       ]
     },
-    "System.Configuration.ConfigurationManager/10.0.5": {
-      "sha512": "9UHU7hldEOVgcOHUX7Pa+owDfpzhW+a1gshEvyknAoDA++G6FV+N1cPoUbtsXEO7GgPErGSg8MHrI/YqrLoiGA==",
+    "System.Configuration.ConfigurationManager/10.0.6": {
+      "sha512": "NQyzNGPPKUf5ykuPcUl1oKiY/gS+r9iASQmc8ITcwC6jBC20C9aFMIrBznpirpkoRev6I+p9n11u5QcqTfr+vg==",
       "type": "package",
-      "path": "system.configuration.configurationmanager/10.0.5",
+      "path": "system.configuration.configurationmanager/10.0.6",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -595,7 +595,7 @@
         "lib/net9.0/System.Configuration.ConfigurationManager.xml",
         "lib/netstandard2.0/System.Configuration.ConfigurationManager.dll",
         "lib/netstandard2.0/System.Configuration.ConfigurationManager.xml",
-        "system.configuration.configurationmanager.10.0.5.nupkg.sha512",
+        "system.configuration.configurationmanager.10.0.6.nupkg.sha512",
         "system.configuration.configurationmanager.nuspec",
         "useSharedDesignerContext.txt"
       ]
@@ -611,10 +611,10 @@
         "system.data.sqlite.core.nuspec"
       ]
     },
-    "System.Diagnostics.EventLog/10.0.5": {
-      "sha512": "wugvy+pBVzjQEnRs9wMTWwoaeNFX3hsaHeVHFDIvJSWXp7wfmNWu3mxAwBIE6pyW+g6+rHa1Of5fTzb0QVqUTA==",
+    "System.Diagnostics.EventLog/10.0.6": {
+      "sha512": "RMe4gRBwSVd1O6HVRjNwLgcH2jjrT8sHyNRJegZLX68voA+HzMf1xZPvFxMMDpyW86B9U2pYslgl4DFCE61WyA==",
       "type": "package",
-      "path": "system.diagnostics.eventlog/10.0.5",
+      "path": "system.diagnostics.eventlog/10.0.6",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -644,7 +644,7 @@
         "runtimes/win/lib/net9.0/System.Diagnostics.EventLog.Messages.dll",
         "runtimes/win/lib/net9.0/System.Diagnostics.EventLog.dll",
         "runtimes/win/lib/net9.0/System.Diagnostics.EventLog.xml",
-        "system.diagnostics.eventlog.10.0.5.nupkg.sha512",
+        "system.diagnostics.eventlog.10.0.6.nupkg.sha512",
         "system.diagnostics.eventlog.nuspec",
         "useSharedDesignerContext.txt"
       ]
@@ -670,10 +670,10 @@
         "version.txt"
       ]
     },
-    "System.Security.Cryptography.ProtectedData/10.0.5": {
-      "sha512": "kxR4O/8o32eNN3m4qbLe3UifYqeyEpallCyVAsLvL5ZFJVyT3JCb+9du/WHfC09VyJh1Q+p/Gd4+AwM7Rz4acg==",
+    "System.Security.Cryptography.ProtectedData/10.0.6": {
+      "sha512": "XsGj3pcZ4PIqz9Vhk7ymbL9iNQzOAnDzHmMBqK1rzjjfQBJ4AUZVJQWbDmTKUS8BIXX53QBDRrdiCpwdWfZM9A==",
       "type": "package",
-      "path": "system.security.cryptography.protecteddata/10.0.5",
+      "path": "system.security.cryptography.protecteddata/10.0.6",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -700,7 +700,7 @@
         "lib/xamarinmac20/_._",
         "lib/xamarintvos10/_._",
         "lib/xamarinwatchos10/_._",
-        "system.security.cryptography.protecteddata.10.0.5.nupkg.sha512",
+        "system.security.cryptography.protecteddata.10.0.6.nupkg.sha512",
         "system.security.cryptography.protecteddata.nuspec",
         "useSharedDesignerContext.txt"
       ]
@@ -714,10 +714,10 @@
   "projectFileDependencyGroups": {
     "net8.0": [
       "BCrypt.Net-Next >= 4.1.0",
-      "Microsoft.Data.Sqlite >= 10.0.5",
-      "Microsoft.Data.Sqlite.Core >= 10.0.5",
+      "Microsoft.Data.Sqlite >= 10.0.6",
+      "Microsoft.Data.Sqlite.Core >= 10.0.6",
       "SQLite >= 3.13.0",
-      "System.Configuration.ConfigurationManager >= 10.0.5",
+      "System.Configuration.ConfigurationManager >= 10.0.6",
       "System.Data.SQLite.Core >= 1.0.119",
       "lightPayrollModel >= 1.0.0"
     ]
@@ -777,11 +777,11 @@
           },
           "Microsoft.Data.Sqlite": {
             "target": "Package",
-            "version": "[10.0.5, )"
+            "version": "[10.0.6, )"
           },
           "Microsoft.Data.Sqlite.Core": {
             "target": "Package",
-            "version": "[10.0.5, )"
+            "version": "[10.0.6, )"
           },
           "SQLite": {
             "target": "Package",
@@ -789,7 +789,7 @@
           },
           "System.Configuration.ConfigurationManager": {
             "target": "Package",
-            "version": "[10.0.5, )"
+            "version": "[10.0.6, )"
           },
           "System.Data.SQLite.Core": {
             "target": "Package",

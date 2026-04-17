@@ -1,4 +1,4 @@
-using GemBox.Spreadsheet;
+
 using lightPayrollModel;
 using lightPayrollServices;
 using System;
@@ -13,7 +13,6 @@ namespace lighPayroll
         [STAThread]
         static void Main()
         {
-            SpreadsheetInfo.SetLicense("FREE-LIMITED-KEY");
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
