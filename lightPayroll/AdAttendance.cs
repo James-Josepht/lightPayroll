@@ -20,12 +20,12 @@ using System.Security.AccessControl;
 
 namespace lighPayroll
 {
-    public partial class AdminAttendance : Form
+    public partial class AdAttendance : Form
     {
         List<Users> attendance = new List<Users>();
 
 
-        public AdminAttendance()
+        public AdAttendance()
         {
             InitializeComponent();
 
@@ -62,7 +62,7 @@ namespace lighPayroll
         private void LoadAttendanceList()//used by UsersUI
         {
             //from lightPayrollServices
-           // users = SQLiteDataAccess.LoadUsers(); 
+            // users = SQLiteDataAccess.LoadUsers(); 
             WireUpAttendanceList();
         }
 
@@ -154,6 +154,12 @@ namespace lighPayroll
 
         }
 
+        private void adminHome_Click(object sender, EventArgs e)
+        {
+            AdUI home = new AdUI();
+            home.Show();
+            this.Hide();
+        }
     }
 
 

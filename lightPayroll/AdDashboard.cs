@@ -25,13 +25,13 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace lighPayroll
 {
-    public partial class AdminDashboard : Form
+    public partial class AdDashboard : Form
     {
         List<Users> attendance = new List<Users>();
 
         private string user_role, user_name;
         private int user_id;
-        public AdminDashboard(string role, string username, int id)
+        public AdDashboard(string role, string username, int id)
         {
             InitializeComponent();
 
@@ -67,77 +67,107 @@ namespace lighPayroll
 
         private void AdminDashboard_Load(object sender, EventArgs e)
         {
-            LoadUserPieChart();
+            
             ApplyRole(user_role);
         }
 
         private void LoadUserCount()
         {
             int count = SQLiteDataAccess.GetUserCount();
-            labelUserCount.Text = count.ToString();
+            labelUserCount.Text = $"User Count: {count.ToString()}";
         }
 
-        private void LoadUserPieChart()
-        {
-            int adminCount = SQLiteDataAccess.GetUserCountByRole("Admin");
-            int managerCount = SQLiteDataAccess.GetUserCountByRole("Manager");
-            int accountantCount = SQLiteDataAccess.GetUserCountByRole("Accountant");
-            int employeeCount = SQLiteDataAccess.GetUserCountByRole("Employee");
-
-            usersChart.Series = new ISeries[]
-            {
-                new PieSeries<int>
-                {
-                    Values = new[] { adminCount },
-                    Name = "Admin",
-                    DataLabelsSize = 14,
-                    DataLabelsPosition = LiveChartsCore.Measure.PolarLabelsPosition.Middle,
-                    DataLabelsFormatter = point => $"{point.StackedValue} ({point.StackedValue.Share:P})"
-
-                },
-                new PieSeries<int>
-                {
-                    Values = new[] { accountantCount },
-                    Name = "Accountant",
-                    DataLabelsSize = 14,
-                    DataLabelsPosition = LiveChartsCore.Measure.PolarLabelsPosition.Middle,
-                    DataLabelsFormatter = point => $"{point.StackedValue} ({point.StackedValue.Share:P})"
-
-                },
-                new PieSeries<int>
-                {
-                    Values = new[] { managerCount },
-                    Name = "Manager",
-                    DataLabelsSize = 14,
-                    DataLabelsPosition = LiveChartsCore.Measure.PolarLabelsPosition.Middle,
-                    DataLabelsFormatter = point => $"{point.StackedValue} ({point.StackedValue.Share:P})"
-
-                },
-                new PieSeries<int>
-                {
-                    Values = new[] { employeeCount },
-                    Name = "Employee",
-                    DataLabelsSize = 14,
-                    DataLabelsPosition = LiveChartsCore.Measure.PolarLabelsPosition.Middle,
-                    DataLabelsFormatter = point => $"{point.StackedValue} ({point.StackedValue.Share:P})"
-                }
-            };
-        }
+        
 
 
         private void usersB_Click(object sender, EventArgs e)
         {
+            LoadUserPieChart("user");
+            usersChart.Visible = true;
+            usersChart.Enabled = true;
+            labelUserCount.Enabled = true;
+            labelUserCount.Visible = true;
+            LoadUserCount();
 
         }
 
         private void taskB_Click(object sender, EventArgs e)
         {
-
+            LoadUserPieChart("task");
+            usersChart.Visible = false;
+            usersChart.Enabled = false;
+            labelUserCount.Enabled = false;
+            labelUserCount.Visible = false;
         }
 
         private void attendanceB_Click(object sender, EventArgs e)
         {
+            LoadUserPieChart("attendance");
+            usersChart.Visible = false;
+            usersChart.Enabled = false;
+            labelUserCount.Enabled = false;
+            labelUserCount.Visible = false;
+        }
 
+
+        //this is the pie that would appear on the right side of the dashboard
+        private void LoadUserPieChart(string button)
+        {
+            if (button == "user")
+            {
+                int adminCount = SQLiteDataAccess.GetUserCountByRole("Admin");
+                int managerCount = SQLiteDataAccess.GetUserCountByRole("Manager");
+                int accountantCount = SQLiteDataAccess.GetUserCountByRole("Accountant");
+                int employeeCount = SQLiteDataAccess.GetUserCountByRole("Employee");
+
+                usersChart.Series = new ISeries[]
+                {
+                    new PieSeries<int>
+                    {
+                        Values = new[] { adminCount },
+                        Name = "Admin",
+                        DataLabelsSize = 14,
+                        DataLabelsPosition = LiveChartsCore.Measure.PolarLabelsPosition.Middle,
+                        DataLabelsFormatter = point => $"{point.StackedValue} ({point.StackedValue.Share:P})"
+
+                    },
+                    new PieSeries<int>
+                    {
+                        Values = new[] { accountantCount },
+                        Name = "Accountant",
+                        DataLabelsSize = 14,
+                        DataLabelsPosition = LiveChartsCore.Measure.PolarLabelsPosition.Middle,
+                        DataLabelsFormatter = point => $"{point.StackedValue} ({point.StackedValue.Share:P})"
+
+                    },
+                    new PieSeries<int>
+                    {
+                        Values = new[] { managerCount },
+                        Name = "Manager",
+                        DataLabelsSize = 14,
+                        DataLabelsPosition = LiveChartsCore.Measure.PolarLabelsPosition.Middle,
+                        DataLabelsFormatter = point => $"{point.StackedValue} ({point.StackedValue.Share:P})"
+
+                    },
+                    new PieSeries<int>
+                    {
+                        Values = new[] { employeeCount },
+                        Name = "Employee",
+                        DataLabelsSize = 14,
+                        DataLabelsPosition = LiveChartsCore.Measure.PolarLabelsPosition.Middle,
+                        DataLabelsFormatter = point => $"{point.StackedValue} ({point.StackedValue.Share:P})"
+                    }
+                };
+            }
+            else if (button == "attendance")
+            {
+               
+            }
+            else
+            {
+
+            }
+            
         }
 
         private void ApplyRole(string role)
@@ -172,12 +202,12 @@ namespace lighPayroll
         {
             if (user_role != "Admin")
             {
-                EmployeeUI home = new EmployeeUI(user_role, user_name, user_id);
+                EUI home = new EUI(user_role, user_name, user_id);
                 home.Show();
             }
             else
             {
-                AdminUI home = new AdminUI();
+                AdUI home = new AdUI();
                 home.Show();
 
             }

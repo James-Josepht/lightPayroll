@@ -2,7 +2,7 @@
 
 namespace lighPayroll
 {
-    partial class AdminAttendance
+    partial class AdAttendance
     {
         /// <summary>
         /// Required designer variable.
@@ -31,7 +31,7 @@ namespace lighPayroll
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminAttendance));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdAttendance));
             label2 = new Label();
             bodyPanel = new Panel();
             lastNameLabel = new Label();
@@ -72,7 +72,7 @@ namespace lighPayroll
             toolStripMenuItem19 = new ToolStripMenuItem();
             toolStripMenuItem21 = new ToolStripMenuItem();
             toolStripMenuItem22 = new ToolStripMenuItem();
-            pictureBox2 = new PictureBox();
+            adminHome = new PictureBox();
             panel1 = new Panel();
             bodyPanel.SuspendLayout();
             panel3.SuspendLayout();
@@ -80,7 +80,7 @@ namespace lighPayroll
             headPanel.SuspendLayout();
             panel5.SuspendLayout();
             searchMenuStrip.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)adminHome).BeginInit();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -268,7 +268,6 @@ namespace lighPayroll
             attendanceGrid.RowHeadersWidth = 51;
             attendanceGrid.Size = new Size(758, 210);
             attendanceGrid.TabIndex = 11;
-  
             // 
             // taskLabel
             // 
@@ -308,7 +307,7 @@ namespace lighPayroll
             // 
             headPanel.BackColor = Color.Beige;
             headPanel.Controls.Add(panel5);
-            headPanel.Controls.Add(pictureBox2);
+            headPanel.Controls.Add(adminHome);
             headPanel.Dock = DockStyle.Top;
             headPanel.Location = new Point(0, 0);
             headPanel.Name = "headPanel";
@@ -461,16 +460,17 @@ namespace lighPayroll
             toolStripMenuItem22.Name = "toolStripMenuItem22";
             toolStripMenuItem22.Size = new Size(12, 25);
             // 
-            // pictureBox2
+            // adminHome
             // 
-            pictureBox2.Cursor = Cursors.Hand;
-            pictureBox2.Image = Resources.smart_idea;
-            pictureBox2.Location = new Point(10, -7);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(203, 123);
-            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox2.TabIndex = 5;
-            pictureBox2.TabStop = false;
+            adminHome.Cursor = Cursors.Hand;
+            adminHome.Image = Resources.smart_idea;
+            adminHome.Location = new Point(10, -7);
+            adminHome.Name = "adminHome";
+            adminHome.Size = new Size(203, 123);
+            adminHome.SizeMode = PictureBoxSizeMode.StretchImage;
+            adminHome.TabIndex = 5;
+            adminHome.TabStop = false;
+            adminHome.Click += adminHome_Click;
             // 
             // panel1
             // 
@@ -481,9 +481,8 @@ namespace lighPayroll
             panel1.Name = "panel1";
             panel1.Size = new Size(937, 499);
             panel1.TabIndex = 8;
-          
             // 
-            // AttendanceRecords
+            // AdAttendance
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -491,7 +490,7 @@ namespace lighPayroll
             Controls.Add(panel4);
             Controls.Add(headPanel);
             Controls.Add(panel1);
-            Name = "AttendanceRecords";
+            Name = "AdAttendance";
             StartPosition = FormStartPosition.CenterScreen;
             Load += AttendanceRecords_Load;
             bodyPanel.ResumeLayout(false);
@@ -503,7 +502,7 @@ namespace lighPayroll
             panel5.PerformLayout();
             searchMenuStrip.ResumeLayout(false);
             searchMenuStrip.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)adminHome).EndInit();
             panel1.ResumeLayout(false);
             ResumeLayout(false);
         }
@@ -515,7 +514,7 @@ namespace lighPayroll
         private Panel panel4;
         private Panel panel2;
         private Panel headPanel;
-        private PictureBox pictureBox2;
+        private PictureBox adminHome;
         private Panel panel1;
         private DataGridView attendanceGrid;
         private ContextMenuStrip delORmod;

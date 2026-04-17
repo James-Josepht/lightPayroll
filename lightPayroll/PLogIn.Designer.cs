@@ -2,7 +2,7 @@
 
 namespace lighPayroll
 {
-    partial class LogIn
+    partial class PLogIn
     {
         /// <summary>
         /// Required designer variable.
@@ -30,7 +30,7 @@ namespace lighPayroll
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LogIn));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PLogIn));
             panel1 = new Panel();
             pictureBox1 = new PictureBox();
             backHomeButton = new PictureBox();

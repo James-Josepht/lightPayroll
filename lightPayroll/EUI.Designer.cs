@@ -1,6 +1,6 @@
 ﻿namespace lighPayrollUI
 {
-    partial class EmployeeUI
+    partial class EUI
     {
         /// <summary>
         /// Required designer variable.

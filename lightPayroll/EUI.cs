@@ -13,15 +13,15 @@ using lightPayrollServices;
 
 namespace lighPayrollUI
 {
-    public partial class EmployeeUI : Form
+    public partial class EUI : Form
     {
         private string user_role, user_name;
         private int user_id;
-        AdminUI adminUI = new AdminUI(); //used for getting panel design and greeting service
+        AdUI adminUI = new AdUI(); //used for getting panel design and greeting service
         GreetingService greetings = new GreetingService(); //used for getting greetings
-        LogIn logIn = new LogIn(); //used for applying greetings
+        PLogIn logIn = new PLogIn(); //used for applying greetings
 
-        public EmployeeUI(string role, string username, int id)
+        public EUI(string role, string username, int id)
         {
             InitializeComponent();
             user_role = role;
@@ -69,7 +69,7 @@ namespace lighPayrollUI
 
         private void eFeaturesPanel_Click(object sender, EventArgs e)
         {
-            UsableFeatures empFeature = new UsableFeatures(user_role, user_name, user_id);
+            EFeatures empFeature = new EFeatures(user_role, user_name, user_id);
             empFeature.Show();
             this.Hide();
         }
@@ -78,14 +78,14 @@ namespace lighPayrollUI
         private void exitButton_Click(object sender, EventArgs e)
         {
             logIn.CustomMessageBox("Signing out");
-            Homepage homePage = new Homepage();
+            PHome homePage = new PHome();
             homePage.Show();
             this.Hide();
         }
 
         private void toDoPanel_Click(object sender, EventArgs e)
         {
-            AdminDashboard dashboard = new AdminDashboard(user_role, user_name, user_id);
+            AdDashboard dashboard = new AdDashboard(user_role, user_name, user_id);
             dashboard.Show();
             this.Hide();
         }

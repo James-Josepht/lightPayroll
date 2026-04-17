@@ -2,7 +2,7 @@
 
 namespace lighPayroll
 {
-    partial class Register
+    partial class PRegister
     {
         /// <summary>
         /// Required designer variable.
@@ -30,7 +30,7 @@ namespace lighPayroll
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Register));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PRegister));
             panel1 = new Panel();
             pictureBox1 = new PictureBox();
             panel2 = new Panel();

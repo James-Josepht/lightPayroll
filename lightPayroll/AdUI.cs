@@ -14,11 +14,11 @@ using System.Windows.Forms;
 
 namespace lighPayroll
 {
-    public partial class AdminUI : Form
+    public partial class AdUI : Form
     {
 
-        LogIn loginDesigns = new LogIn();
-        public AdminUI()
+        PLogIn loginDesigns = new PLogIn();
+        public AdUI()
         {
             InitializeComponent();
             searchMenuStrip.Renderer = new MyRendererBackground(); //for search button design
@@ -61,7 +61,7 @@ namespace lighPayroll
             if (e.KeyCode == Keys.Enter && storedFeatures.Any(feature => searchBox.Text.Contains("Attendance")))
             {
                 e.SuppressKeyPress = true;
-                AdminAttendance attRecords = new AdminAttendance();
+                AdAttendance attRecords = new AdAttendance();
                 attRecords.Show();
                 this.Hide();
             }
@@ -147,14 +147,14 @@ namespace lighPayroll
 
         private void attendanceToolClick(object sender, EventArgs e)
         {
-            AdminAttendance home = new AdminAttendance();
+            AdAttendance home = new AdAttendance();
             home.Show();
             this.Hide();
         }
 
         private void userControlPanel_Click(object sender, EventArgs e)
         {
-            AdminUserMod userModification = new AdminUserMod();
+            AdUserMod userModification = new AdUserMod();
             userModification.Show();
             this.Hide();
         }
@@ -162,17 +162,17 @@ namespace lighPayroll
  
         private void exitButton_Click(object sender, EventArgs e)
         {
-            LogIn messageBox = new LogIn();
+            PLogIn messageBox = new PLogIn();
 
             messageBox.CustomMessageBox("Signing out.");
-            Homepage homepage = new Homepage();
+            PHome homepage = new PHome();
             homepage.Show();
             this.Hide();
         }
 
         private void toDoPanel_Click(object sender, EventArgs e)
         {
-            AdminDashboard dashboard = new AdminDashboard("Admin", "null", 0);
+            AdDashboard dashboard = new AdDashboard("Admin", "null", 0);
             dashboard.Show();
             this.Hide();
 

@@ -1,6 +1,6 @@
 ﻿namespace lighPayroll
 {
-    partial class Homepage
+    partial class PHome
     {
         /// <summary>
         ///  Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Homepage));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PHome));
             panel1 = new Panel();
             menu = new PictureBox();
             logPanel = new Panel();
@@ -115,7 +115,7 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(937, 109);
             panel1.TabIndex = 0;
-            panel1.Paint += panel1_Paint;
+           
             // 
             // menu
             // 
@@ -247,7 +247,7 @@
             featureStrip1.Name = "featureStrip1";
             featureStrip1.Size = new Size(160, 22);
             featureStrip1.Text = "Feature 1";
-            featureStrip1.Click += featureStrip1_Click;
+
             // 
             // toolStripSeparator1
             // 
@@ -367,39 +367,42 @@
             clockInFeatureTab.BackgroundImage = (Image)resources.GetObject("clockInFeatureTab.BackgroundImage");
             clockInFeatureTab.Font = new Font("Ubuntu Mono Medium", 7.20000029F, FontStyle.Bold, GraphicsUnit.Point, 0);
             clockInFeatureTab.Name = "clockInFeatureTab";
-            clockInFeatureTab.Size = new Size(143, 22);
+            clockInFeatureTab.Size = new Size(180, 22);
+            clockInFeatureTab.Tag = "Clock In";
             clockInFeatureTab.Text = "Clock In";
-            clockInFeatureTab.Click += clockInFeatureTab_Click;
+            clockInFeatureTab.Click += FeatureTab_Click;
             // 
             // toolStripSeparator4
             // 
             toolStripSeparator4.ForeColor = Color.FromArgb(33, 44, 66);
             toolStripSeparator4.Name = "toolStripSeparator4";
-            toolStripSeparator4.Size = new Size(140, 6);
+            toolStripSeparator4.Size = new Size(177, 6);
             // 
             // attendanceFeatureTab
             // 
             attendanceFeatureTab.BackgroundImage = (Image)resources.GetObject("attendanceFeatureTab.BackgroundImage");
             attendanceFeatureTab.Font = new Font("Ubuntu Mono Medium", 7.20000029F, FontStyle.Bold, GraphicsUnit.Point, 0);
             attendanceFeatureTab.Name = "attendanceFeatureTab";
-            attendanceFeatureTab.Size = new Size(143, 22);
+            attendanceFeatureTab.Size = new Size(180, 22);
+            attendanceFeatureTab.Tag = "Attendance";
             attendanceFeatureTab.Text = "Attendance";
-            attendanceFeatureTab.Click += attendanceFeatureTab_Click;
+            attendanceFeatureTab.Click += FeatureTab_Click;
             // 
             // toolStripSeparator3
             // 
             toolStripSeparator3.BackColor = SystemColors.ActiveCaption;
             toolStripSeparator3.Name = "toolStripSeparator3";
-            toolStripSeparator3.Size = new Size(140, 6);
+            toolStripSeparator3.Size = new Size(177, 6);
             // 
             // payrollFeatureTab
             // 
             payrollFeatureTab.BackColor = Color.Beige;
             payrollFeatureTab.Font = new Font("Ubuntu Mono Medium", 7.20000029F, FontStyle.Bold, GraphicsUnit.Point, 0);
             payrollFeatureTab.Name = "payrollFeatureTab";
-            payrollFeatureTab.Size = new Size(143, 22);
+            payrollFeatureTab.Size = new Size(180, 22);
+            payrollFeatureTab.Tag = "Payroll";
             payrollFeatureTab.Text = "Payroll";
-            payrollFeatureTab.Click += payrollFeatureTab_Click;
+            payrollFeatureTab.Click += FeatureTab_Click;
             // 
             // toolStripMenuItem2
             // 
@@ -633,7 +636,7 @@
             tableLayoutPanel1.Size = new Size(937, 548);
             tableLayoutPanel1.TabIndex = 9;
             // 
-            // Homepage
+            // PHome
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -642,7 +645,7 @@
             Controls.Add(panel1);
             Controls.Add(tableLayoutPanel1);
             MinimumSize = new Size(500, 333);
-            Name = "Homepage";
+            Name = "PHome";
             StartPosition = FormStartPosition.CenterScreen;
             Load += Form1_Load;
             Resize += Form1_Resize;

@@ -11,19 +11,25 @@ using System.Windows.Forms;
 
 namespace lighPayroll
 {
-    public partial class ClockInFeaturePage : Form
+    public partial class PFeauture : Form
     {
+        //class below this, used for designing only
         ClockInDesignPage design = new ClockInDesignPage();
-        public ClockInFeaturePage()
+
+        private string page_feature;
+        public PFeauture(string feature)
         {
             InitializeComponent();
             menuStrip1.Renderer = new MyRenderer(); // this is for to change features images every mouse hover
             menuStrip2.Renderer = new MyRendererBackground();
+            page_feature = feature;
+
         }
 
         private void ClockInFeaturePage_Load(object sender, EventArgs e)
         {
             var dd = toolStripMenuItem8.DropDown as ToolStripDropDownMenu;
+            SetFeature(page_feature);
 
             if (dd != null)
             {
@@ -36,60 +42,63 @@ namespace lighPayroll
 
             recentSearches.Margin = new Padding(40, 0, 0, 0); // increase 40 to go left and decrease to put it right
             toolStripSeparator4.Margin = Padding.Empty;
+
         }
+
+
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
+
         }
 
-        private void attendanceFeatureTab_Click(object sender, EventArgs e)
+
+        private void FeatureTab_Click(object sender, EventArgs e)
         {
-            AttendanceFeaturePagecs attendanceFeaturePage = new AttendanceFeaturePagecs();
-            attendanceFeaturePage.Show();
+            //Button btn = sender as Button;
+
+            //string feature = btn.Tag.ToString();
+
+            ToolStripMenuItem item = sender as ToolStripMenuItem;
+
+            string feature = item.Tag.ToString();
+
+            PFeauture page = new PFeauture(feature);
+            page.Show();
             this.Hide();
-        }
 
-
-        private void clockInFeatureTab_Click_1(object sender, EventArgs e)
-        {
-            ClockInFeaturePage clockInFeaturePage = new ClockInFeaturePage();
-            clockInFeaturePage.Show();
-            this.Hide();
-        }
-
-        private void pictureBox2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void clockInIntroLabel_Click(object sender, EventArgs e)
-        {
 
         }
 
 
-        private void panel2_Paint_1(object sender, PaintEventArgs e)
+        private void home_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-            Homepage home = new Homepage();
+            PHome home = new PHome();
             home.Show();
             this.Hide();
         }
 
-        private void payrollFeatureTab_Click(object sender, EventArgs e)
+        public void SetFeature(string featureType)
         {
-            PayrollFeaturePage payroll = new PayrollFeaturePage();
-            payroll.Show();
-            this.Hide();
+            switch (featureType)
+            {
+                case "Clock In":
+                    introLabel.Text = "Clock In";
+                    
+                    break;
+
+                case "Attendance":
+                    introLabel.Text = "Attendance";
+                   
+                    break;
+
+                case "Payroll":
+                    introLabel.Text = "Payroll";
+                    
+                    break;
+            }
         }
+
+
     }
 
     public class ClockInDesignPage
@@ -113,7 +122,7 @@ namespace lighPayroll
             control.Region = new Region(path);
         }
 
-
+        
 
     }
 

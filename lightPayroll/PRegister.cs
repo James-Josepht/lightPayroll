@@ -13,20 +13,20 @@ using System.Windows.Forms;
 
 namespace lighPayroll
 {
-    public partial class Register : Form
+    public partial class PRegister : Form
     {
         AuthService authService = new AuthService();
-        LogIn loginDesigns = new LogIn();
+        PLogIn loginDesigns = new PLogIn();
         private string userName;
         private string userPass;
 
-        public Register()
+        public PRegister()
         {
             InitializeComponent();
         }
         private void backHomeButtonClick(object sender, EventArgs e)
         {
-            Homepage home = new Homepage();
+            PHome home = new PHome();
             home.Show();
             this.Hide();
         }
@@ -86,7 +86,7 @@ namespace lighPayroll
             else if (authService.RegisterAccount(userName, userPass))
             {
                 loginDesigns.CustomMessageBox("Registration successful! You can now log in.");
-                LogIn login = new LogIn();
+                PLogIn login = new PLogIn();
                 login.Show();
                 this.Hide();
             }

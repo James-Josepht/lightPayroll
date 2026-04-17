@@ -7,12 +7,12 @@ using lightPayrollServices;
 
 namespace lighPayrollUI
 {
-    public partial class AdminUserMod : Form
+    public partial class AdUserMod : Form
     {
-        LogIn greetingsAndMessageBoxDesign = new LogIn();
+        PLogIn greetingsAndMessageBoxDesign = new PLogIn();
 
 
-        public AdminUserMod()
+        public AdUserMod()
         {
             InitializeComponent();
         }
@@ -90,7 +90,7 @@ namespace lighPayrollUI
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            AdminUI adminUI = new AdminUI();
+            AdUI adminUI = new AdUI();
             adminUI.Show();
             this.Hide();
         }

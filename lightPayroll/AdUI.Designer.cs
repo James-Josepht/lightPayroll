@@ -2,7 +2,7 @@
 
 namespace lighPayroll
 {
-    partial class AdminUI
+    partial class AdUI
     {
         /// <summary>
         /// Required designer variable.
@@ -30,7 +30,7 @@ namespace lighPayroll
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminUI));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdUI));
             headPanel = new Panel();
             exitLabel = new Label();
             pictureBox2 = new PictureBox();

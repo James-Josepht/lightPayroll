@@ -1,6 +1,6 @@
 ﻿namespace lighPayrollUI
 {
-    partial class AdminUserMod
+    partial class AdUserMod
     {
         /// <summary>
         /// Required designer variable.

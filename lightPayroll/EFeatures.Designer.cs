@@ -1,6 +1,6 @@
 ﻿namespace lighPayrollUI
 {
-    partial class UsableFeatures
+    partial class EFeatures
     {
         /// <summary>
         /// Required designer variable.

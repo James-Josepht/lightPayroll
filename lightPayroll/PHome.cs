@@ -6,13 +6,13 @@ using System.Windows.Forms;
 namespace lighPayroll
 {
 
-    public partial class Homepage : Form
+    public partial class PHome : Form
     {
         private Rectangle panel7riginalRect;
 
         private Size formOriginalSize;
 
-        public Homepage()
+        public PHome()
         {
             InitializeComponent();
             menuStrip1.Renderer = new MyRenderer(); // this is for to change features images every mouse hover
@@ -40,23 +40,19 @@ namespace lighPayroll
 
         private void joinHomeBut_Click(object sender, EventArgs e)
         {
-            Register register = new Register();
+            PRegister register = new PRegister();
             register.Show();
             this.Hide();
         }
         private void loginHomeBut_Click(object sender, EventArgs e)
         {
 
-            LogIn login = new LogIn();
+            PLogIn login = new PLogIn();
             login.Show();
             this.Hide();
         }
 
 
-        private void featureStrip1_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void featureStrip2_Click(object sender, EventArgs e)
         {
@@ -64,39 +60,27 @@ namespace lighPayroll
         }
 
 
-        private void searchBox_Click(object sender, EventArgs e)
+
+        private void FeatureTab_Click(object sender, EventArgs e)
         {
+            ToolStripMenuItem item = sender as ToolStripMenuItem;
 
-        }
+            string feature = item.Tag.ToString();
 
-
-        private void clockInFeatureTab_Click(object sender, EventArgs e)
-        {
-            ClockInFeaturePage clockInFeaturePage = new ClockInFeaturePage();
-            clockInFeaturePage.Show();
+            PFeauture page = new PFeauture(feature);
+            page.Show();
             this.Hide();
+
         }
 
-        private void attendanceFeatureTab_Click(object sender, EventArgs e)
-        {
-            AttendanceFeaturePagecs attendanceFeaturePage = new AttendanceFeaturePagecs();
-            attendanceFeaturePage.Show();
-            this.Hide();
-        }
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            Homepage home = new Homepage();
+            PHome home = new PHome();
             home.Show();
             this.Hide();
         }
 
-        private void payrollFeatureTab_Click(object sender, EventArgs e)
-        {
-            PayrollFeaturePage payroll = new PayrollFeaturePage();
-            payroll.Show();
-            this.Hide();
-        }
 
         private void Form1_Resize(object sender, EventArgs e)
         {
@@ -136,10 +120,7 @@ namespace lighPayroll
             }
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
+    
     }
 
     //used for changing the hover color in features

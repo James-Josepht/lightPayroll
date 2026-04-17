@@ -18,10 +18,10 @@ namespace lighPayroll
 {
     
 
-    public partial class LogIn : Form
+    public partial class PLogIn : Form
     {
 
-        public LogIn()
+        public PLogIn()
         {
             InitializeComponent();
         }
@@ -34,7 +34,7 @@ namespace lighPayroll
 
         private void backHomeButton_Click(object sender, EventArgs e)
         {
-            Homepage home = new Homepage();
+            PHome home = new PHome();
             home.Show();
             this.Hide();
         }
@@ -51,7 +51,7 @@ namespace lighPayroll
             string email = userLogBox.Text.Trim();
             string password = passLogBox.Text.Trim();
             string formattedName = "";
-            AdminUI admin = new AdminUI();
+            AdUI admin = new AdUI();
             
             
             AuthService validator = new AuthService();
@@ -75,7 +75,7 @@ namespace lighPayroll
 
           
             // UI for manager, accountant, and employee shared the same form, but different layout.
-            EmployeeUI employee = new EmployeeUI(role, formattedName, userID);
+            EUI employee = new EUI(role, formattedName, userID);
 
             if (status == "Active")
             {
