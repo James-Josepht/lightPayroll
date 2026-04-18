@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 
-public static class ColorHelper
+public static class HColorPanel
 {
     // =========================
     // SET PANEL COLOR

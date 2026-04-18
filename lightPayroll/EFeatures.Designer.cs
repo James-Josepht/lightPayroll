@@ -44,10 +44,16 @@
             clockStatusReal = new Label();
             clockStatus = new Label();
             payslipPage = new TabPage();
-            profilePage = new TabPage();
-            payrollPage = new TabPage();
-            overTimePage = new TabPage();
             attendancePage = new TabPage();
+            payrollPage = new TabPage();
+            payrollGrid = new DataGridView();
+            payrollSearchPanel = new Panel();
+            searchBox = new TextBox();
+            pictureBox1 = new PictureBox();
+            payrollPanel = new Panel();
+            modifyPayrollB = new Button();
+            overTimePage = new TabPage();
+            profilePage = new TabPage();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             tableLayoutPanel1.SuspendLayout();
@@ -57,6 +63,11 @@
             statusPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)clockGrid).BeginInit();
             panel3.SuspendLayout();
+            payrollPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)payrollGrid).BeginInit();
+            payrollSearchPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            payrollPanel.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -100,11 +111,10 @@
             // 
             employeeFeatures.Controls.Add(clockPage);
             employeeFeatures.Controls.Add(payslipPage);
-            employeeFeatures.Controls.Add(profilePage);
+            employeeFeatures.Controls.Add(attendancePage);
             employeeFeatures.Controls.Add(payrollPage);
             employeeFeatures.Controls.Add(overTimePage);
-            employeeFeatures.Controls.Add(attendancePage);
-            employeeFeatures.DrawMode = TabDrawMode.OwnerDrawFixed;
+            employeeFeatures.Controls.Add(profilePage);
             employeeFeatures.Font = new Font("Ubuntu Mono Medium", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             employeeFeatures.Location = new Point(3, 107);
             employeeFeatures.Name = "employeeFeatures";
@@ -148,13 +158,15 @@
             statusPanel.Controls.Add(panel3);
             statusPanel.Location = new Point(42, 39);
             statusPanel.Name = "statusPanel";
-            statusPanel.Size = new Size(789, 285);
+            statusPanel.Size = new Size(789, 309);
             statusPanel.TabIndex = 0;
             // 
             // clockGrid
             // 
             clockGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            clockGrid.BorderStyle = BorderStyle.None;
             clockGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            clockGrid.GridColor = SystemColors.ActiveBorder;
             clockGrid.Location = new Point(43, 137);
             clockGrid.Name = "clockGrid";
             clockGrid.Size = new Size(705, 135);
@@ -246,19 +258,22 @@
             payslipPage.TabIndex = 1;
             payslipPage.Text = "Payslip";
             // 
-            // profilePage
+            // attendancePage
             // 
-            profilePage.BackColor = Color.FromArgb(33, 44, 66);
-            profilePage.Location = new Point(4, 25);
-            profilePage.Name = "profilePage";
-            profilePage.Padding = new Padding(3);
-            profilePage.Size = new Size(923, 409);
-            profilePage.TabIndex = 2;
-            profilePage.Text = "Profile";
+            attendancePage.BackColor = Color.FromArgb(33, 44, 66);
+            attendancePage.Location = new Point(4, 25);
+            attendancePage.Name = "attendancePage";
+            attendancePage.Padding = new Padding(3);
+            attendancePage.Size = new Size(923, 409);
+            attendancePage.TabIndex = 2;
+            attendancePage.Text = "Attendance";
             // 
             // payrollPage
             // 
-            payrollPage.BackColor = Color.FromArgb(33, 44, 66);
+            payrollPage.BackColor = SystemColors.ActiveCaption;
+            payrollPage.Controls.Add(payrollGrid);
+            payrollPage.Controls.Add(payrollSearchPanel);
+            payrollPage.Controls.Add(payrollPanel);
             payrollPage.Location = new Point(4, 25);
             payrollPage.Name = "payrollPage";
             payrollPage.Padding = new Padding(3);
@@ -266,27 +281,94 @@
             payrollPage.TabIndex = 3;
             payrollPage.Text = "Payroll";
             // 
+            // payrollGrid
+            // 
+            payrollGrid.AllowUserToAddRows = false;
+            payrollGrid.AllowUserToDeleteRows = false;
+            payrollGrid.BorderStyle = BorderStyle.None;
+            payrollGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            payrollGrid.Location = new Point(83, 132);
+            payrollGrid.Name = "payrollGrid";
+            payrollGrid.ReadOnly = true;
+            payrollGrid.Size = new Size(766, 221);
+            payrollGrid.TabIndex = 1;
+            payrollGrid.CellContentClick += dataGridView1_CellContentClick;
+            // 
+            // payrollSearchPanel
+            // 
+            payrollSearchPanel.BackColor = Color.FromArgb(60, 80, 110);
+            payrollSearchPanel.Controls.Add(searchBox);
+            payrollSearchPanel.Controls.Add(pictureBox1);
+            payrollSearchPanel.Location = new Point(83, 41);
+            payrollSearchPanel.Name = "payrollSearchPanel";
+            payrollSearchPanel.Size = new Size(496, 56);
+            payrollSearchPanel.TabIndex = 0;
+            // 
+            // searchBox
+            // 
+            searchBox.BackColor = Color.FromArgb(60, 80, 110);
+            searchBox.BorderStyle = BorderStyle.None;
+            searchBox.Font = new Font("Segoe UI Historic", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            searchBox.ForeColor = Color.Beige;
+            searchBox.Location = new Point(59, 17);
+            searchBox.Name = "searchBox";
+            searchBox.Size = new Size(695, 26);
+            searchBox.TabIndex = 2;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.BackgroundImage = Properties.Resources.search_interface_symbol;
+            pictureBox1.BackgroundImageLayout = ImageLayout.Zoom;
+            pictureBox1.Location = new Point(3, 15);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(52, 30);
+            pictureBox1.TabIndex = 1;
+            pictureBox1.TabStop = false;
+            // 
+            // payrollPanel
+            // 
+            payrollPanel.BackColor = Color.FromArgb(33, 44, 66);
+            payrollPanel.Controls.Add(modifyPayrollB);
+            payrollPanel.Location = new Point(24, 21);
+            payrollPanel.Name = "payrollPanel";
+            payrollPanel.Size = new Size(876, 367);
+            payrollPanel.TabIndex = 2;
+            // 
+            // modifyPayrollB
+            // 
+            modifyPayrollB.BackgroundImage = Properties.Resources.modify;
+            modifyPayrollB.BackgroundImageLayout = ImageLayout.Zoom;
+            modifyPayrollB.Cursor = Cursors.Hand;
+            modifyPayrollB.FlatAppearance.BorderColor = Color.FromArgb(33, 44, 66);
+            modifyPayrollB.FlatAppearance.MouseDownBackColor = Color.FromArgb(33, 44, 66);
+            modifyPayrollB.FlatStyle = FlatStyle.Flat;
+            modifyPayrollB.Location = new Point(760, 20);
+            modifyPayrollB.Name = "modifyPayrollB";
+            modifyPayrollB.Size = new Size(75, 56);
+            modifyPayrollB.TabIndex = 0;
+            modifyPayrollB.UseVisualStyleBackColor = true;
+            // 
             // overTimePage
             // 
+            overTimePage.BackColor = Color.FromArgb(33, 44, 66);
             overTimePage.Location = new Point(4, 25);
             overTimePage.Name = "overTimePage";
             overTimePage.Padding = new Padding(3);
             overTimePage.Size = new Size(923, 409);
             overTimePage.TabIndex = 4;
             overTimePage.Text = "Overtime";
-            overTimePage.UseVisualStyleBackColor = true;
             // 
-            // attendancePage
+            // profilePage
             // 
-            attendancePage.Location = new Point(4, 25);
-            attendancePage.Name = "attendancePage";
-            attendancePage.Padding = new Padding(3);
-            attendancePage.Size = new Size(923, 409);
-            attendancePage.TabIndex = 5;
-            attendancePage.Text = "Attendance";
-            attendancePage.UseVisualStyleBackColor = true;
+            profilePage.BackColor = Color.FromArgb(33, 44, 66);
+            profilePage.Location = new Point(4, 25);
+            profilePage.Name = "profilePage";
+            profilePage.Padding = new Padding(3);
+            profilePage.Size = new Size(923, 409);
+            profilePage.TabIndex = 5;
+            profilePage.Text = "Profile";
             // 
-            // UsableFeatures
+            // EFeatures
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -294,7 +376,7 @@
             ClientSize = new Size(937, 548);
             Controls.Add(panel1);
             Controls.Add(tableLayoutPanel1);
-            Name = "UsableFeatures";
+            Name = "EFeatures";
             StartPosition = FormStartPosition.CenterScreen;
             Load += EmployeeFeature_Load;
             panel1.ResumeLayout(false);
@@ -308,6 +390,12 @@
             ((System.ComponentModel.ISupportInitialize)clockGrid).EndInit();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
+            payrollPage.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)payrollGrid).EndInit();
+            payrollSearchPanel.ResumeLayout(false);
+            payrollSearchPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            payrollPanel.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -317,7 +405,7 @@
         private TabControl employeeFeatures;
         private TabPage clockPage;
         private TabPage payslipPage;
-        private TabPage profilePage;
+        private TabPage attendancePage;
         private PictureBox pictureBox2;
         private Panel panel2;
         private Panel statusPanel;
@@ -331,6 +419,12 @@
         private DataGridView clockGrid;
         private TabPage payrollPage;
         private TabPage overTimePage;
-        private TabPage attendancePage;
+        private TabPage profilePage;
+        private Panel payrollSearchPanel;
+        private PictureBox pictureBox1;
+        private DataGridView payrollGrid;
+        private Panel payrollPanel;
+        private TextBox searchBox;
+        private Button modifyPayrollB;
     }
 }

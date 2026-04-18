@@ -40,10 +40,10 @@ namespace lighPayroll
             }
 
 
-            ColorHelper.AddPanelGroupHover(taskPanel, Color.FromArgb(60, 75, 100), Color.FromArgb(33, 44, 66));
-            ColorHelper.AddPanelGroupHover(userControlPanel, Color.FromArgb(60, 75, 100), Color.FromArgb(33, 44, 66));
-            ColorHelper.AddPanelGroupHover(attendanceTool, Color.FromArgb(60, 75, 100), Color.FromArgb(33, 44, 66));
-            ColorHelper.AddPanelGroupHover(payrollTool, Color.FromArgb(60, 75, 100), Color.FromArgb(33, 44, 66));
+            HColorPanel.AddPanelGroupHover(taskPanel, Color.FromArgb(60, 75, 100), Color.FromArgb(33, 44, 66));
+            HColorPanel.AddPanelGroupHover(userControlPanel, Color.FromArgb(60, 75, 100), Color.FromArgb(33, 44, 66));
+            HColorPanel.AddPanelGroupHover(attendanceTool, Color.FromArgb(60, 75, 100), Color.FromArgb(33, 44, 66));
+            HColorPanel.AddPanelGroupHover(payrollTool, Color.FromArgb(60, 75, 100), Color.FromArgb(33, 44, 66));
 
         }
 

@@ -76,10 +76,8 @@ namespace lightPayrollServices
                 string sql = "SELECT UsersID FROM UsersTable WHERE Username = @Username LIMIT 1";
                 int? userId = conn.QueryFirstOrDefault<int?>(sql, new { Username = username });
 
-                if (userId == null)
-                    throw new Exception($"User '{username}' not found.");
 
-                return userId.Value;
+                return userId ?? -1; // no exception
             }
         }
 
@@ -154,11 +152,11 @@ namespace lightPayrollServices
 
 
 
-        ////////////////////////////////////////////////////////////////////// 
-        /// FOR GETTING THE TOTAL NUMBER OF USERS IN THE DATABASE, USED IN ADMIN DASHBOARD
+        ////////////////////////////////////////////////////////////////////// //////////////
+        /// FOR GETTING THE TOTAL NUMBER OF USERS IN THE DATABASE, USED IN ADMIN DASHBOARD 
         /// 
-        /// I DECIDE HOW TO COMMENT LOL
-        /////////////////////////////////////////////////////////////////////
+        /// I DECIDE HOW TO COMMENT HEHEHEHE
+        ////////////////////////////////////////////////////////////////////////////////////
         public static int GetUserCount()
         {
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))

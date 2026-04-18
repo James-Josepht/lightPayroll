@@ -77,16 +77,24 @@ namespace lighPayroll
             labelUserCount.Text = $"User Count: {count.ToString()}";
         }
 
-        
 
+        /// 
+        /// STARTING IN HERE IT SHOWS WHEN A USER CLICKS ON LEFT BUTTONS
+        /// 
+        ///  IT WILL SHOW DIFFERENT CHART
+        /// 
 
         private void usersB_Click(object sender, EventArgs e)
         {
             LoadUserPieChart("user");
             usersChart.Visible = true;
             usersChart.Enabled = true;
+
             labelUserCount.Enabled = true;
             labelUserCount.Visible = true;
+            
+            countPanel.Visible = true;
+            countPanel.Enabled = true;
             LoadUserCount();
 
         }
@@ -96,8 +104,12 @@ namespace lighPayroll
             LoadUserPieChart("task");
             usersChart.Visible = false;
             usersChart.Enabled = false;
+
             labelUserCount.Enabled = false;
             labelUserCount.Visible = false;
+
+            countPanel.Visible = false;
+            countPanel.Enabled = false;
         }
 
         private void attendanceB_Click(object sender, EventArgs e)
@@ -105,8 +117,12 @@ namespace lighPayroll
             LoadUserPieChart("attendance");
             usersChart.Visible = false;
             usersChart.Enabled = false;
+
             labelUserCount.Enabled = false;
             labelUserCount.Visible = false;
+
+            countPanel.Visible = false;
+            countPanel.Enabled = false;
         }
 
 
@@ -169,6 +185,7 @@ namespace lighPayroll
             }
             
         }
+
 
         private void ApplyRole(string role)
         {

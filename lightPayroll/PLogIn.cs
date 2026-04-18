@@ -60,6 +60,13 @@ namespace lighPayroll
             string role = SQLiteDataAccess.GetUserRoleByUsername(email);
             int userID = 0;
 
+
+            if (status != "Active" || status != "Active" || status != "Active")
+            {
+                CustomMessageBox("Invalid credentials.");
+                return;
+            }
+
             if (email.ToLower() != "admin" )
             {
                 userID = SQLiteDataAccess.GetUserIdByUsername(email);
@@ -75,10 +82,11 @@ namespace lighPayroll
 
           
             // UI for manager, accountant, and employee shared the same form, but different layout.
-            EUI employee = new EUI(role, formattedName, userID);
+            
 
             if (status == "Active")
             {
+                EUI employee = new EUI(role, formattedName, userID);
                 if (email.ToLower() == "admin" && password == "admin" || role == "Admin")
                 {
 

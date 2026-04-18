@@ -57,7 +57,7 @@ namespace lighPayroll
             labelUserCount = new Label();
             usersChart = new LiveChartsCore.SkiaSharpView.WinForms.PieChart();
             profileChart = new LiveChartsCore.SkiaSharpView.WinForms.PieChart();
-            panel5 = new Panel();
+            countPanel = new Panel();
             headPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)homeButton).BeginInit();
             bodyPanel.SuspendLayout();
@@ -205,7 +205,7 @@ namespace lighPayroll
             panel2.Controls.Add(labelUserCount);
             panel2.Controls.Add(usersChart);
             panel2.Controls.Add(profileChart);
-            panel2.Controls.Add(panel5);
+            panel2.Controls.Add(countPanel);
             panel2.Dock = DockStyle.Bottom;
             panel2.Location = new Point(0, 21);
             panel2.Name = "panel2";
@@ -334,15 +334,17 @@ namespace lighPayroll
             profileChart.UpdaterThrottler = TimeSpan.Parse("00:00:00.0500000");
             profileChart.Visible = false;
             // 
-            // panel5
+            // countPanel
             // 
-            panel5.BorderStyle = BorderStyle.FixedSingle;
-            panel5.Location = new Point(497, 238);
-            panel5.Name = "panel5";
-            panel5.Size = new Size(200, 23);
-            panel5.TabIndex = 6;
+            countPanel.BorderStyle = BorderStyle.FixedSingle;
+            countPanel.Enabled = false;
+            countPanel.Location = new Point(497, 238);
+            countPanel.Name = "countPanel";
+            countPanel.Size = new Size(200, 23);
+            countPanel.TabIndex = 6;
+            countPanel.Visible = false;
             // 
-            // AdminDashboard
+            // AdDashboard
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -351,7 +353,7 @@ namespace lighPayroll
             Controls.Add(bodyPanel);
             Controls.Add(panel4);
             Controls.Add(headPanel);
-            Name = "AdminDashboard";
+            Name = "AdDashboard";
             StartPosition = FormStartPosition.CenterScreen;
             Load += AdminDashboard_Load;
             headPanel.ResumeLayout(false);
@@ -396,6 +398,6 @@ namespace lighPayroll
         private Label labelTaskCount;
         private Label labelUserCount;
         private Label label3;
-        private Panel panel5;
+        private Panel countPanel;
     }
 }

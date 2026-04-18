@@ -29,12 +29,28 @@ namespace lighPayrollUI
             user_name = username;
             user_id = userId;
         }
+        private void EmployeeFeature_Load(object sender, EventArgs e)
+        {
+            adminUI.panelDesign(statusPanel);
+            ConfigureTabsByRole();
+            LoadAttendanceList();
+
+            if (!DesignMode)
+            {
+                employeeFeatures.DrawMode = TabDrawMode.OwnerDrawFixed;
+            }
+
+            HBorderRadius borderRadius = new HBorderRadius();
+            borderRadius.SetRoundedRegion(payrollSearchPanel, 37);
+            borderRadius.SetRoundedRegion(payrollPanel, 33);
+
+        }
 
         private void LoadAttendanceList()
         {
             clockGrid.DataSource = null;
             clockGrid.Columns.Clear();
-           var data = AttendanceService.LoadUserAttendanceById(user_id);
+            var data = AttendanceService.LoadUserAttendanceById(user_id);
 
             // Project to display properties for the grid
             var displayData = data.Select(a => new
@@ -56,10 +72,10 @@ namespace lighPayrollUI
             if (user_role == "Employee")
             {
                 // Only allow this tab (change name based on your actual TabPage Name)
-                var allowedTabs = new List<string> 
-                { 
-                    "payslipPage", "clockPage", "profilePage" 
-                
+                var allowedTabs = new List<string>
+                {
+                    "payslipPage", "clockPage", "profilePage"
+
                 };
 
                 foreach (TabPage tab in employeeFeatures.TabPages.Cast<TabPage>().ToList())
@@ -105,17 +121,14 @@ namespace lighPayrollUI
 
         }
 
-        private void EmployeeFeature_Load(object sender, EventArgs e)
-        {
-            adminUI.panelDesign(statusPanel);
-            ConfigureTabsByRole(); 
-            LoadAttendanceList();
-        }
 
 
         //different colors for selected and unselected tabs
         private void tabControl1_DrawItem(object sender, DrawItemEventArgs e)
         {
+            if (DesignMode) return; // I need to add this check to prevent design-time errors when drawing tabs in the designer
+
+
             TabPage tabPage = employeeFeatures.TabPages[e.Index];
             Rectangle tabBounds = employeeFeatures.GetTabRect(e.Index);
 
@@ -148,7 +161,7 @@ namespace lighPayrollUI
         {
             if (AttendanceService.HasClockedInToday(user_id))
             {
-                adminUI.CustomMessageBox("You have already clocked in today."); 
+                adminUI.CustomMessageBox("You have already clocked in today.");
                 return; // stop further execution
             }
 
@@ -167,6 +180,8 @@ namespace lighPayrollUI
             AttendanceService.InsertClock(attendance, user_id, user_name);
 
             LoadAttendanceList(); // refresh grid
+            clockStatusReal.ForeColor = Color.FromArgb(0, 192, 0);
+
         }
 
         private void clockOutButton_Click(object sender, EventArgs e)
@@ -175,6 +190,13 @@ namespace lighPayrollUI
             AttendanceService.UpdateClockOut(user_id, DateTime.UtcNow);
 
             LoadAttendanceList(); // refresh grid
+            clockStatusReal.Text = "Clock Out";
+            clockStatusReal.ForeColor = Color.IndianRed;
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
