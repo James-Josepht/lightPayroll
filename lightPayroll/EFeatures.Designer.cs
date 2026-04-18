@@ -54,6 +54,10 @@
             modifyPayrollB = new Button();
             overTimePage = new TabPage();
             profilePage = new TabPage();
+            profilePanel = new Panel();
+            profileTableLayout = new TableLayoutPanel();
+            label2 = new Label();
+            label3 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             tableLayoutPanel1.SuspendLayout();
@@ -68,6 +72,9 @@
             payrollSearchPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             payrollPanel.SuspendLayout();
+            profilePage.SuspendLayout();
+            profilePanel.SuspendLayout();
+            profileTableLayout.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -360,13 +367,61 @@
             // 
             // profilePage
             // 
-            profilePage.BackColor = Color.FromArgb(33, 44, 66);
+            profilePage.BackColor = SystemColors.ActiveCaption;
+            profilePage.Controls.Add(profilePanel);
             profilePage.Location = new Point(4, 25);
             profilePage.Name = "profilePage";
             profilePage.Padding = new Padding(3);
             profilePage.Size = new Size(923, 409);
             profilePage.TabIndex = 5;
             profilePage.Text = "Profile";
+            // 
+            // profilePanel
+            // 
+            profilePanel.BackColor = Color.FromArgb(33, 44, 66);
+            profilePanel.Controls.Add(profileTableLayout);
+            profilePanel.Location = new Point(24, 21);
+            profilePanel.Name = "profilePanel";
+            profilePanel.Size = new Size(876, 367);
+            profilePanel.TabIndex = 3;
+            // 
+            // profileTableLayout
+            // 
+            profileTableLayout.ColumnCount = 3;
+            profileTableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 41.55844F));
+            profileTableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 58.44156F));
+            profileTableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 721F));
+            profileTableLayout.Controls.Add(label2, 2, 1);
+            profileTableLayout.Controls.Add(label3, 1, 1);
+            profileTableLayout.Dock = DockStyle.Fill;
+            profileTableLayout.Location = new Point(0, 0);
+            profileTableLayout.Name = "profileTableLayout";
+            profileTableLayout.RowCount = 3;
+            profileTableLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 45.03311F));
+            profileTableLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 54.96689F));
+            profileTableLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 215F));
+            profileTableLayout.Size = new Size(876, 367);
+            profileTableLayout.TabIndex = 0;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.ForeColor = Color.Beige;
+            label2.Location = new Point(157, 68);
+            label2.Name = "label2";
+            label2.Size = new Size(84, 16);
+            label2.TabIndex = 0;
+            label2.Text = "First Name:";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.ForeColor = Color.Beige;
+            label3.Location = new Point(67, 68);
+            label3.Name = "label3";
+            label3.Size = new Size(84, 16);
+            label3.TabIndex = 1;
+            label3.Text = "First Name:";
             // 
             // EFeatures
             // 
@@ -396,6 +451,10 @@
             payrollSearchPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             payrollPanel.ResumeLayout(false);
+            profilePage.ResumeLayout(false);
+            profilePanel.ResumeLayout(false);
+            profileTableLayout.ResumeLayout(false);
+            profileTableLayout.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -426,5 +485,9 @@
         private Panel payrollPanel;
         private TextBox searchBox;
         private Button modifyPayrollB;
+        private Panel profilePanel;
+        private TableLayoutPanel profileTableLayout;
+        private Label label3;
+        private Label label2;
     }
 }

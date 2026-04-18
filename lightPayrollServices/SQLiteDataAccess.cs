@@ -138,17 +138,7 @@ namespace lightPayrollServices
         }
 
 
-        protected static string LoadConnectionString(string id = "DefaultConnection")// goes to App.config to get the connection string with the name "Default"
-        {
-            var connStrings =  ConfigurationManager.ConnectionStrings[id].ConnectionString;
-
-            if (connStrings == null)
-            {
-                throw new Exception($"Connection string '{id}' not found.");
-            }
-
-            return connStrings;
-        }
+       
 
 
 
@@ -173,6 +163,39 @@ namespace lightPayrollServices
                 string sql = "SELECT COUNT(*) FROM UsersTable WHERE Role = @Role";
                 return conn.ExecuteScalar<int>(sql, new { Role = role });
             }
+        }
+
+        ////////////////////////////////////////////////
+        ///
+        /// USED FOR PAYROLL
+        //////////////////////////////////////////////////
+        ///
+        public static void InsertPayroll(Payroll payroll)
+        {
+            using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
+            {
+                conn.Open();
+
+                string sql = @"
+        INSERT INTO Payroll
+        (EmployeeID, BasicSalary, OvertimePay, SSS, PhilHealth, PagIBIG, WithholdingTax, Deductions, NetSalary, PayrollDate, ProcessedBy)
+        VALUES
+        (@EmployeeID, @BasicSalary, @OvertimePay, @SSS, @PhilHealth, @PagIBIG, @WithholdingTax, @Deductions, @NetSalary, @PayrollDate, @ProcessedBy)";
+
+                conn.Execute(sql, payroll);
+            }
+        }
+
+        protected static string LoadConnectionString(string id = "DefaultConnection")// goes to App.config to get the connection string with the name "Default"
+        {
+            var connStrings = ConfigurationManager.ConnectionStrings[id].ConnectionString;
+
+            if (connStrings == null)
+            {
+                throw new Exception($"Connection string '{id}' not found.");
+            }
+
+            return connStrings;
         }
     }
 

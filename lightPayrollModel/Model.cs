@@ -1,7 +1,7 @@
 ﻿using System;
 
 namespace lightPayrollModel
-{
+{ 
     public abstract class BaseEntity
     {
         public int UsersID { get; set; }
@@ -118,6 +118,10 @@ namespace lightPayrollModel
         public int EmployeeID { get; set; }
         public decimal? BasicSalary { get; set; }
         public decimal? OvertimePay { get; set; }
+        public decimal SSS { get; set; }
+        public decimal PhilHealth { get; set; }
+        public decimal PagIBIG { get; set; }
+        public decimal WithholdingTax { get; set; }
         public decimal? Deductions { get; set; }
         public decimal? NetSalary { get; set; }
         public DateTime? PayrollDate { get; set; }
