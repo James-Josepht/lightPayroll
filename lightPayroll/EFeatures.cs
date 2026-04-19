@@ -43,6 +43,7 @@ namespace lighPayrollUI
             HBorderRadius borderRadius = new HBorderRadius();
             borderRadius.SetRoundedRegion(payrollSearchPanel, 37);
             borderRadius.SetRoundedRegion(payrollPanel, 33);
+            borderRadius.SetRoundedRegion(profilePanel, 33);
 
         }
 
@@ -72,6 +73,7 @@ namespace lighPayrollUI
             if (user_role == "Employee")
             {
                 // Only allow this tab (change name based on your actual TabPage Name)
+                //this depend on role
                 var allowedTabs = new List<string>
                 {
                     "payslipPage", "clockPage", "profilePage"
@@ -157,6 +159,10 @@ namespace lighPayrollUI
             this.Hide();
         }
 
+        /// 
+        /// FOR CLOCK IN PAGE
+        /// 
+        /// 
         private void clockInButton_Click(object sender, EventArgs e)
         {
             if (AttendanceService.HasClockedInToday(user_id))
@@ -194,6 +200,11 @@ namespace lighPayrollUI
             clockStatusReal.ForeColor = Color.IndianRed;
         }
 
+
+        ////
+        //// FOR PROFILE PAGE
+        ////
+        ////
        
     }
 }

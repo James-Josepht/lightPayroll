@@ -73,14 +73,15 @@ namespace lightPayrollServices
             }
         }
 
-        public static void InsertEmploye(Employee employee)
+        public static void InsertEmployee(Employee employee)
         {
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
             {
                 string sql = @"
-                INSERT INTO UsersTable 
-                (Username, Password, Role, AccountStatus) 
-                VALUES (@Username, @Password, @Role, @AccountStatus);";
+        INSERT INTO EmployeeTable
+        (UsersID, FirstName, MiddleName, LastName, Position, Department, DateHired, SalaryRate)
+        VALUES
+        (@UsersID, @FirstName, @MiddleName, @LastName, @Position, @Department, @DateHired, @SalaryRate);";
 
                 conn.Execute(sql, employee);
             }
