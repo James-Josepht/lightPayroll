@@ -59,7 +59,7 @@ namespace lightPayrollModel
         }
     }
 
-    public class EmployeeUser : Users //used for creating instance for employee
+    public class NewUser : Users //used for creating instance for users
     {
         public override void Validate()
         {
@@ -67,22 +67,8 @@ namespace lightPayrollModel
         }
     }
 
-    public class AccountantUser : Users //used for creating instance for accountant
-    {
-        public override void Validate()
-        {
-            base.Validate();
-        }
-    }
-    public class ManagerUser : Users //used for creating instance for manager
-    {
-        public override void Validate()
-        {
-            base.Validate();
-        }
-    }
 
-    public class Employee : BaseEntity
+    public class Employee : BaseEntity //used for employeeTable
     {
         public string? FirstName { get; set; }
         public string? MiddleName { get; set; }

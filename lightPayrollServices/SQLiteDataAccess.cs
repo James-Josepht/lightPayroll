@@ -55,6 +55,11 @@ namespace lightPayrollServices
             }
         }
 
+        /// 
+        /// INSERTION PART (DILI INTAWN NI AI AKONG COMMENT!)
+        /// 
+        /// 
+
         public static void InsertUser(Users user)
         {
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
@@ -67,6 +72,41 @@ namespace lightPayrollServices
                 conn.Execute(sql, user);
             }
         }
+
+        public static void InsertEmploye(Employee employee)
+        {
+            using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
+            {
+                string sql = @"
+                INSERT INTO UsersTable 
+                (Username, Password, Role, AccountStatus) 
+                VALUES (@Username, @Password, @Role, @AccountStatus);";
+
+                conn.Execute(sql, employee);
+            }
+        }
+
+        public static void InsertPayroll(Payroll payroll)
+        {
+            using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
+            {
+                conn.Open();
+
+                string sql = @"
+        INSERT INTO Payroll
+        (EmployeeID, BasicSalary, OvertimePay, SSS, PhilHealth, PagIBIG, WithholdingTax, Deductions, NetSalary, PayrollDate, ProcessedBy)
+        VALUES
+        (@EmployeeID, @BasicSalary, @OvertimePay, @SSS, @PhilHealth, @PagIBIG, @WithholdingTax, @Deductions, @NetSalary, @PayrollDate, @ProcessedBy)";
+
+                conn.Execute(sql, payroll);
+            }
+        }
+
+
+        /// 
+        /// SEARCHING PART
+        /// 
+        /// 
 
         public static int GetUserIdByUsername(string username)
         {
@@ -120,9 +160,12 @@ namespace lightPayrollServices
         }
 
 
+        /// 
+        /// UPDATE PART
+        /// 
+  
 
-
-        //UPDATE status (approve/reject accounts)
+ 
         public static void UpdateUserStatus(int userId, string status, string role)
         {
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
@@ -165,27 +208,13 @@ namespace lightPayrollServices
             }
         }
 
-        ////////////////////////////////////////////////
+
+
+
+        /// 
+        /// INITIALIZATION OF DATABASE (AYAW INTAWN HILABTI!)
         ///
-        /// USED FOR PAYROLL
-        //////////////////////////////////////////////////
-        ///
-        public static void InsertPayroll(Payroll payroll)
-        {
-            using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
-            {
-                conn.Open();
-
-                string sql = @"
-        INSERT INTO Payroll
-        (EmployeeID, BasicSalary, OvertimePay, SSS, PhilHealth, PagIBIG, WithholdingTax, Deductions, NetSalary, PayrollDate, ProcessedBy)
-        VALUES
-        (@EmployeeID, @BasicSalary, @OvertimePay, @SSS, @PhilHealth, @PagIBIG, @WithholdingTax, @Deductions, @NetSalary, @PayrollDate, @ProcessedBy)";
-
-                conn.Execute(sql, payroll);
-            }
-        }
-
+ 
         protected static string LoadConnectionString(string id = "DefaultConnection")// goes to App.config to get the connection string with the name "Default"
         {
             var connStrings = ConfigurationManager.ConnectionStrings[id].ConnectionString;

@@ -61,7 +61,7 @@ namespace lightPayrollServices
             return Regex.IsMatch(email, pattern);
         }
 
-        public bool RegisterAccount(string username, string password, string role = "Employee")
+        public bool RegisterAccount(string username, string password, string role = "User")
         {
             
             //check if username already exists
@@ -74,7 +74,7 @@ namespace lightPayrollServices
             string hashedPassword = PasswordHash.HashPassword(password);//hash password before saving
 
             //Create user object
-            EmployeeUser newUser = new EmployeeUser
+            NewUser newUser = new NewUser
             {
                 Username = username,
                 Password = hashedPassword, 

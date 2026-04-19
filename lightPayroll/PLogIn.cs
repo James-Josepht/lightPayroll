@@ -61,7 +61,7 @@ namespace lighPayroll
             int userID = 0;
 
 
-            if (status != "Active" || status != "Active" || status != "Active")
+            if (status != "Active" && status != "Pending" && status != "Rejected")
             {
                 CustomMessageBox("Invalid credentials.");
                 return;

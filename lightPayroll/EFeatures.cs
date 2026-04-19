@@ -194,9 +194,6 @@ namespace lighPayrollUI
             clockStatusReal.ForeColor = Color.IndianRed;
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
+       
     }
 }
