@@ -105,6 +105,6 @@ namespace lightPayrollServices
         public static bool VerifyPassword(string inputPassword, string storedHash)
         {
             return BCrypt.Net.BCrypt.Verify(inputPassword, storedHash);
-        }
+        } 
     }
 }

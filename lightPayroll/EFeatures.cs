@@ -34,6 +34,8 @@ namespace lighPayrollUI
             adminUI.panelDesign(statusPanel);
             ConfigureTabsByRole();
             LoadAttendanceList();
+            LoadEmployeeList();
+            LoadProfile();
 
             if (!DesignMode)
             {
@@ -44,8 +46,15 @@ namespace lighPayrollUI
             borderRadius.SetRoundedRegion(payrollSearchPanel, 37);
             borderRadius.SetRoundedRegion(payrollPanel, 33);
             borderRadius.SetRoundedRegion(profilePanel, 33);
+            //borderRadius.SetRoundedRegion(insideProfile, 33);
 
         }
+
+
+        /// 
+        /// FOR LOADING PART IN TABLES
+        /// 
+
 
         private void LoadAttendanceList()
         {
@@ -67,6 +76,62 @@ namespace lighPayrollUI
 
             clockGrid.DataSource = displayData;
         }
+
+        private void LoadEmployeeList()
+        {
+            payrollGrid.DataSource = null;
+            payrollGrid.Columns.Clear();
+            var data = SQLiteDataAccess.LoadEmployeeWithUser();
+            
+
+            payrollGrid.DataSource = data;
+        }
+
+        private void LoadProfile()
+        {
+            var employee = SQLiteDataAccess.GetEmployeeByID(user_id);
+            if (employee != null)
+            {
+                userID.Text = employee.EmployeeID.ToString();
+                // Update UI elements with employee information
+                firstName.Text = employee.FirstName;
+
+                if (string.IsNullOrEmpty(employee.MiddleName))
+                {
+                    middleName.Text = "-";
+                }
+                else middleName.Text = employee.MiddleName;
+
+                lastName.Text = employee.LastName;
+                role.Text = employee.Position;
+
+
+                if (string.IsNullOrEmpty(employee.Department))
+                {
+                    department.Text = "-";
+                }
+                if (string.IsNullOrEmpty(employee.SalaryRate?.ToString("C")))
+                {
+                    salaryRate.Text = "-";
+                }
+                if (!string.IsNullOrEmpty(employee.Department) && !string.IsNullOrEmpty(employee.SalaryRate?.ToString("C")))
+                {
+                    department.Text = employee.Department;
+                    salaryRate.Text = employee.SalaryRate?.ToString("C");
+
+                }
+            
+               
+            }
+        }
+
+
+
+
+
+
+
+
 
         private void ConfigureTabsByRole()
         {
@@ -201,10 +266,16 @@ namespace lighPayrollUI
         }
 
 
+
+
         ////
         //// FOR PROFILE PAGE
         ////
         ////
-       
+
+        private void profileTableLayout_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             panel1 = new Panel();
             pictureBox2 = new PictureBox();
             tableLayoutPanel1 = new TableLayoutPanel();
@@ -56,8 +58,16 @@
             profilePage = new TabPage();
             profilePanel = new Panel();
             profileTableLayout = new TableLayoutPanel();
-            panel4 = new Panel();
+            insideProfile = new Panel();
+            department = new Label();
+            salaryRate = new Label();
+            role = new Label();
+            middleName = new Label();
+            firstName = new Label();
+            lastName = new Label();
+            userID = new Label();
             departmentL = new Label();
+            modifyProfile = new Button();
             salaryRateLabel = new Label();
             employeeIDL = new Label();
             roleL = new Label();
@@ -65,14 +75,7 @@
             middleNameLabel = new Label();
             firstNameLabel = new Label();
             panel5 = new Panel();
-            department = new Label();
-            modifyProfile = new Button();
-            salaryRate = new Label();
-            roleLabel = new Label();
-            middleName = new Label();
-            firstName = new Label();
-            lastNameLabel = new Label();
-            userID = new Label();
+            panel6 = new Panel();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             tableLayoutPanel1.SuspendLayout();
@@ -90,8 +93,7 @@
             profilePage.SuspendLayout();
             profilePanel.SuspendLayout();
             profileTableLayout.SuspendLayout();
-            panel4.SuspendLayout();
-            panel5.SuspendLayout();
+            insideProfile.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -193,6 +195,7 @@
             clockGrid.GridColor = SystemColors.ActiveBorder;
             clockGrid.Location = new Point(43, 137);
             clockGrid.Name = "clockGrid";
+            clockGrid.ReadOnly = true;
             clockGrid.Size = new Size(705, 135);
             clockGrid.TabIndex = 8;
             // 
@@ -309,8 +312,26 @@
             // 
             payrollGrid.AllowUserToAddRows = false;
             payrollGrid.AllowUserToDeleteRows = false;
+            payrollGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            payrollGrid.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
             payrollGrid.BorderStyle = BorderStyle.None;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Ubuntu Mono Medium", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = SystemColors.Desktop;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            payrollGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             payrollGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI Historic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlDarkDark;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            payrollGrid.DefaultCellStyle = dataGridViewCellStyle2;
             payrollGrid.Location = new Point(83, 132);
             payrollGrid.Name = "payrollGrid";
             payrollGrid.ReadOnly = true;
@@ -404,51 +425,146 @@
             // profileTableLayout
             // 
             profileTableLayout.ColumnCount = 3;
-            profileTableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 18.2222214F));
-            profileTableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 81.77778F));
-            profileTableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 719F));
-            profileTableLayout.Controls.Add(panel4, 1, 1);
+            profileTableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 5.41516256F));
+            profileTableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 94.58484F));
+            profileTableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 44F));
+            profileTableLayout.Controls.Add(insideProfile, 1, 1);
             profileTableLayout.Controls.Add(panel5, 2, 1);
+            profileTableLayout.Controls.Add(panel6, 0, 1);
             profileTableLayout.Dock = DockStyle.Fill;
             profileTableLayout.Location = new Point(0, 0);
             profileTableLayout.Name = "profileTableLayout";
             profileTableLayout.RowCount = 3;
             profileTableLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 10.1265821F));
             profileTableLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 89.87342F));
-            profileTableLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 106F));
+            profileTableLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 103F));
             profileTableLayout.Size = new Size(876, 367);
             profileTableLayout.TabIndex = 0;
+            profileTableLayout.Paint += profileTableLayout_Paint;
             // 
-            // panel4
+            // insideProfile
             // 
-            panel4.Controls.Add(departmentL);
-            panel4.Controls.Add(salaryRateLabel);
-            panel4.Controls.Add(employeeIDL);
-            panel4.Controls.Add(roleL);
-            panel4.Controls.Add(finalNameLabel);
-            panel4.Controls.Add(middleNameLabel);
-            panel4.Controls.Add(firstNameLabel);
-            panel4.Dock = DockStyle.Fill;
-            panel4.Location = new Point(31, 29);
-            panel4.Name = "panel4";
-            panel4.Size = new Size(122, 228);
-            panel4.TabIndex = 1;
+            insideProfile.BackColor = Color.FromArgb(60, 80, 110);
+            insideProfile.Controls.Add(department);
+            insideProfile.Controls.Add(salaryRate);
+            insideProfile.Controls.Add(role);
+            insideProfile.Controls.Add(middleName);
+            insideProfile.Controls.Add(firstName);
+            insideProfile.Controls.Add(lastName);
+            insideProfile.Controls.Add(userID);
+            insideProfile.Controls.Add(departmentL);
+            insideProfile.Controls.Add(modifyProfile);
+            insideProfile.Controls.Add(salaryRateLabel);
+            insideProfile.Controls.Add(employeeIDL);
+            insideProfile.Controls.Add(roleL);
+            insideProfile.Controls.Add(finalNameLabel);
+            insideProfile.Controls.Add(middleNameLabel);
+            insideProfile.Controls.Add(firstNameLabel);
+            insideProfile.Dock = DockStyle.Fill;
+            insideProfile.Location = new Point(48, 29);
+            insideProfile.Name = "insideProfile";
+            insideProfile.Size = new Size(780, 231);
+            insideProfile.TabIndex = 1;
+            // 
+            // department
+            // 
+            department.AutoSize = true;
+            department.ForeColor = Color.Beige;
+            department.Location = new Point(120, 157);
+            department.Name = "department";
+            department.Size = new Size(77, 16);
+            department.TabIndex = 14;
+            department.Text = "Department";
+            // 
+            // salaryRate
+            // 
+            salaryRate.AutoSize = true;
+            salaryRate.ForeColor = Color.Beige;
+            salaryRate.Location = new Point(120, 184);
+            salaryRate.Name = "salaryRate";
+            salaryRate.Size = new Size(84, 16);
+            salaryRate.TabIndex = 18;
+            salaryRate.Text = "Salary Rate";
+            // 
+            // role
+            // 
+            role.AutoSize = true;
+            role.ForeColor = Color.Beige;
+            role.Location = new Point(120, 132);
+            role.Name = "role";
+            role.Size = new Size(35, 16);
+            role.TabIndex = 17;
+            role.Text = "Role";
+            // 
+            // middleName
+            // 
+            middleName.AutoSize = true;
+            middleName.ForeColor = Color.Beige;
+            middleName.Location = new Point(120, 77);
+            middleName.Name = "middleName";
+            middleName.Size = new Size(84, 16);
+            middleName.TabIndex = 16;
+            middleName.Text = "Middle Name";
+            // 
+            // firstName
+            // 
+            firstName.AutoSize = true;
+            firstName.ForeColor = Color.Beige;
+            firstName.Location = new Point(120, 48);
+            firstName.Name = "firstName";
+            firstName.Size = new Size(77, 16);
+            firstName.TabIndex = 15;
+            firstName.Text = "First Name";
+            // 
+            // lastName
+            // 
+            lastName.AutoSize = true;
+            lastName.ForeColor = Color.Beige;
+            lastName.Location = new Point(120, 107);
+            lastName.Name = "lastName";
+            lastName.Size = new Size(70, 16);
+            lastName.TabIndex = 13;
+            lastName.Text = "Last Name";
+            // 
+            // userID
+            // 
+            userID.AutoSize = true;
+            userID.ForeColor = Color.Beige;
+            userID.Location = new Point(120, 22);
+            userID.Name = "userID";
+            userID.Size = new Size(56, 16);
+            userID.TabIndex = 12;
+            userID.Text = "User ID";
             // 
             // departmentL
             // 
             departmentL.AutoSize = true;
             departmentL.ForeColor = Color.Beige;
-            departmentL.Location = new Point(17, 172);
+            departmentL.Location = new Point(12, 157);
             departmentL.Name = "departmentL";
             departmentL.Size = new Size(84, 16);
             departmentL.TabIndex = 6;
             departmentL.Text = "Department:";
             // 
+            // modifyProfile
+            // 
+            modifyProfile.BackgroundImage = Properties.Resources.modify;
+            modifyProfile.BackgroundImageLayout = ImageLayout.Zoom;
+            modifyProfile.Cursor = Cursors.Hand;
+            modifyProfile.FlatAppearance.BorderColor = Color.FromArgb(60, 80, 110);
+            modifyProfile.FlatAppearance.MouseDownBackColor = Color.FromArgb(33, 44, 66);
+            modifyProfile.FlatStyle = FlatStyle.Flat;
+            modifyProfile.Location = new Point(697, 22);
+            modifyProfile.Name = "modifyProfile";
+            modifyProfile.Size = new Size(75, 56);
+            modifyProfile.TabIndex = 11;
+            modifyProfile.UseVisualStyleBackColor = true;
+            // 
             // salaryRateLabel
             // 
             salaryRateLabel.AutoSize = true;
             salaryRateLabel.ForeColor = Color.Beige;
-            salaryRateLabel.Location = new Point(17, 199);
+            salaryRateLabel.Location = new Point(12, 184);
             salaryRateLabel.Name = "salaryRateLabel";
             salaryRateLabel.Size = new Size(91, 16);
             salaryRateLabel.TabIndex = 5;
@@ -458,7 +574,7 @@
             // 
             employeeIDL.AutoSize = true;
             employeeIDL.ForeColor = Color.Beige;
-            employeeIDL.Location = new Point(17, 37);
+            employeeIDL.Location = new Point(12, 22);
             employeeIDL.Name = "employeeIDL";
             employeeIDL.Size = new Size(91, 16);
             employeeIDL.TabIndex = 4;
@@ -468,7 +584,7 @@
             // 
             roleL.AutoSize = true;
             roleL.ForeColor = Color.Beige;
-            roleL.Location = new Point(17, 147);
+            roleL.Location = new Point(12, 132);
             roleL.Name = "roleL";
             roleL.Size = new Size(42, 16);
             roleL.TabIndex = 3;
@@ -478,7 +594,7 @@
             // 
             finalNameLabel.AutoSize = true;
             finalNameLabel.ForeColor = Color.Beige;
-            finalNameLabel.Location = new Point(17, 122);
+            finalNameLabel.Location = new Point(12, 107);
             finalNameLabel.Name = "finalNameLabel";
             finalNameLabel.Size = new Size(77, 16);
             finalNameLabel.TabIndex = 2;
@@ -488,7 +604,7 @@
             // 
             middleNameLabel.AutoSize = true;
             middleNameLabel.ForeColor = Color.Beige;
-            middleNameLabel.Location = new Point(17, 92);
+            middleNameLabel.Location = new Point(12, 77);
             middleNameLabel.Name = "middleNameLabel";
             middleNameLabel.Size = new Size(91, 16);
             middleNameLabel.TabIndex = 1;
@@ -498,7 +614,7 @@
             // 
             firstNameLabel.AutoSize = true;
             firstNameLabel.ForeColor = Color.Beige;
-            firstNameLabel.Location = new Point(17, 63);
+            firstNameLabel.Location = new Point(12, 48);
             firstNameLabel.Name = "firstNameLabel";
             firstNameLabel.Size = new Size(84, 16);
             firstNameLabel.TabIndex = 0;
@@ -506,103 +622,19 @@
             // 
             // panel5
             // 
-            panel5.Controls.Add(department);
-            panel5.Controls.Add(modifyProfile);
-            panel5.Controls.Add(salaryRate);
-            panel5.Controls.Add(roleLabel);
-            panel5.Controls.Add(middleName);
-            panel5.Controls.Add(firstName);
-            panel5.Controls.Add(lastNameLabel);
-            panel5.Controls.Add(userID);
             panel5.Dock = DockStyle.Fill;
-            panel5.Location = new Point(159, 29);
+            panel5.Location = new Point(834, 29);
             panel5.Name = "panel5";
-            panel5.Size = new Size(714, 228);
+            panel5.Size = new Size(39, 231);
             panel5.TabIndex = 2;
             // 
-            // department
+            // panel6
             // 
-            department.AutoSize = true;
-            department.ForeColor = Color.Beige;
-            department.Location = new Point(6, 172);
-            department.Name = "department";
-            department.Size = new Size(77, 16);
-            department.TabIndex = 7;
-            department.Text = "Department";
-            // 
-            // modifyProfile
-            // 
-            modifyProfile.BackgroundImage = Properties.Resources.modify;
-            modifyProfile.BackgroundImageLayout = ImageLayout.Zoom;
-            modifyProfile.Cursor = Cursors.Hand;
-            modifyProfile.FlatAppearance.BorderColor = Color.FromArgb(33, 44, 66);
-            modifyProfile.FlatAppearance.MouseDownBackColor = Color.FromArgb(33, 44, 66);
-            modifyProfile.FlatStyle = FlatStyle.Flat;
-            modifyProfile.Location = new Point(603, 37);
-            modifyProfile.Name = "modifyProfile";
-            modifyProfile.Size = new Size(75, 56);
-            modifyProfile.TabIndex = 11;
-            modifyProfile.UseVisualStyleBackColor = true;
-            // 
-            // salaryRate
-            // 
-            salaryRate.AutoSize = true;
-            salaryRate.ForeColor = Color.Beige;
-            salaryRate.Location = new Point(6, 199);
-            salaryRate.Name = "salaryRate";
-            salaryRate.Size = new Size(84, 16);
-            salaryRate.TabIndex = 10;
-            salaryRate.Text = "Salary Rate";
-            // 
-            // roleLabel
-            // 
-            roleLabel.AutoSize = true;
-            roleLabel.ForeColor = Color.Beige;
-            roleLabel.Location = new Point(6, 147);
-            roleLabel.Name = "roleLabel";
-            roleLabel.Size = new Size(35, 16);
-            roleLabel.TabIndex = 9;
-            roleLabel.Text = "Role";
-            // 
-            // middleName
-            // 
-            middleName.AutoSize = true;
-            middleName.ForeColor = Color.Beige;
-            middleName.Location = new Point(6, 92);
-            middleName.Name = "middleName";
-            middleName.Size = new Size(84, 16);
-            middleName.TabIndex = 8;
-            middleName.Text = "Middle Name";
-            // 
-            // firstName
-            // 
-            firstName.AutoSize = true;
-            firstName.ForeColor = Color.Beige;
-            firstName.Location = new Point(6, 63);
-            firstName.Name = "firstName";
-            firstName.Size = new Size(77, 16);
-            firstName.TabIndex = 7;
-            firstName.Text = "First Name";
-            // 
-            // lastNameLabel
-            // 
-            lastNameLabel.AutoSize = true;
-            lastNameLabel.ForeColor = Color.Beige;
-            lastNameLabel.Location = new Point(6, 122);
-            lastNameLabel.Name = "lastNameLabel";
-            lastNameLabel.Size = new Size(70, 16);
-            lastNameLabel.TabIndex = 6;
-            lastNameLabel.Text = "Last Name";
-            // 
-            // userID
-            // 
-            userID.AutoSize = true;
-            userID.ForeColor = Color.Beige;
-            userID.Location = new Point(6, 37);
-            userID.Name = "userID";
-            userID.Size = new Size(56, 16);
-            userID.TabIndex = 5;
-            userID.Text = "User ID";
+            panel6.Dock = DockStyle.Fill;
+            panel6.Location = new Point(3, 29);
+            panel6.Name = "panel6";
+            panel6.Size = new Size(39, 231);
+            panel6.TabIndex = 3;
             // 
             // EFeatures
             // 
@@ -635,10 +667,8 @@
             profilePage.ResumeLayout(false);
             profilePanel.ResumeLayout(false);
             profileTableLayout.ResumeLayout(false);
-            panel4.ResumeLayout(false);
-            panel4.PerformLayout();
-            panel5.ResumeLayout(false);
-            panel5.PerformLayout();
+            insideProfile.ResumeLayout(false);
+            insideProfile.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -672,21 +702,22 @@
         private Panel profilePanel;
         private TableLayoutPanel profileTableLayout;
         private Label firstNameLabel;
-        private Panel panel4;
+        private Panel insideProfile;
         private Label finalNameLabel;
         private Label middleNameLabel;
         private Label roleL;
         private Label employeeIDL;
         private Panel panel5;
-        private Label roleLabel;
-        private Label middleName;
-        private Label firstName;
-        private Label lastNameLabel;
-        private Label userID;
         private Label salaryRateLabel;
-        private Label salaryRate;
         private Button modifyProfile;
         private Label departmentL;
         private Label department;
+        private Label salaryRate;
+        private Label role;
+        private Label middleName;
+        private Label firstName;
+        private Label lastName;
+        private Label userID;
+        private Panel panel6;
     }
 }

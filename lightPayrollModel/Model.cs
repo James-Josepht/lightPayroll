@@ -51,6 +51,22 @@ namespace lightPayrollModel
         }
     }
 
+    public class EmployeeDisplay //used for lists in data grid
+    {
+        public int EmployeeID { get; set; }
+        public string? FirstName { get; set; }
+        public string? MiddleName { get; set; }
+        public string? LastName { get; set; }
+        public string FullName =>
+        string.Join(" ", new[]
+        {
+            FirstName,
+            MiddleName == "-" ? "" : MiddleName,
+            LastName
+        });
+        public string? Role { get; set; }
+    }
+
     public class AdminUser : Users //used for creating instance for admin
     {
         public override void Validate()
@@ -68,19 +84,22 @@ namespace lightPayrollModel
     }
 
 
-    public class Employee : BaseEntity //used for employeeTable
+    public class Employee : BaseEntity //used for getting employee complete info not for display
     {
         public int EmployeeID { get; set; }
         public string? FirstName { get; set; }
         public string? MiddleName { get; set; }
         public string? LastName { get; set; }
-        public string FullName => $"{FirstName} {MiddleName} {LastName}";
+        public string FullName =>
+            string.Join(" ", new[] { FirstName, MiddleName, LastName }
+            .Where(s => !string.IsNullOrWhiteSpace(s)));
+
         public string? Position { get; set; }
         public string? Department { get; set; }
         public DateTime? DateHired { get; set; }
 
-        private float? salaryRate;
-        public float? SalaryRate
+        private double? salaryRate;
+        public double? SalaryRate
         {
             get => salaryRate;
             set

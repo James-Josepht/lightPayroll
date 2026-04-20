@@ -17,10 +17,13 @@ namespace lightPayrollServices
 {
     public class SQLiteDataAccess
     {
-        
+
         // all these changes in the database can be seen in lightPayroll\bin\Debug\net8.0-windows\lightPayrollDB.db
         // not the one in lightPayroll\lightPayrollDB.db
-         
+
+        /// 
+        ///                LOAD SECTION
+        /// 
 
         public static List<UserDisplay> LoadUsers()//used for displaying the users, not for authentication
         {
@@ -52,6 +55,29 @@ namespace lightPayrollServices
 
 
                 return users;
+            }
+        }
+
+
+        public static List<EmployeeDisplay> LoadEmployeeWithUser()
+        {
+            using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
+            {
+                conn.Open();
+
+                var result = conn.Query<EmployeeDisplay>(
+                    @"SELECT 
+                e.EmployeeID,
+                e.FirstName,
+                IFNULL(e.MiddleName, '-') AS MiddleName,
+                e.LastName,
+                u.Username,
+                u.Role
+              FROM EmployeesTable e
+              JOIN UsersTable u ON e.UsersID = u.UsersID"
+                ).ToList();
+
+                return result;
             }
         }
 
@@ -109,6 +135,29 @@ namespace lightPayrollServices
         /// 
         /// 
 
+
+        public static Employee GetEmployeeByID(int id)
+        {
+            using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
+            {
+                string sql = @"
+                SELECT 
+                    e.EmployeeID,
+                    e.UsersID,
+                    e.FirstName,
+                    e.LastName,
+                    e.Position,
+                    u.Username,
+                    u.Role
+                FROM EmployeesTable e
+                INNER JOIN UsersTable u ON e.UsersID = u.UsersID
+                WHERE e.UsersID = @UsersID
+                LIMIT 1;";
+
+                return conn.QueryFirstOrDefault<Employee>(sql, new { UsersID = id });
+            }
+        }
+
         public static int GetUserIdByUsername(string username)
         {
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
@@ -160,13 +209,14 @@ namespace lightPayrollServices
             }
         }
 
+        
 
         /// 
         /// UPDATE PART
         /// 
-  
 
- 
+
+
         public static void UpdateUserStatus(int userId, string status, string role)
         {
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
