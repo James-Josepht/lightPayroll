@@ -136,6 +136,7 @@ namespace lightPayrollServices
         /// 
 
 
+        //THE QUERY WILL LAG ONCE USER REACHES HUGE NUMBER, NEED TO OPTIMIZE IN THE FUTURE!
         public static List<EmployeeDisplay> GetEmployeeByName(string fullname)
         {
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
@@ -152,12 +153,17 @@ namespace lightPayrollServices
                     u.Role
                 FROM EmployeesTable e
                 INNER JOIN UsersTable u ON e.UsersID = u.UsersID
-                 WHERE 
-                LOWER(TRIM(e.FirstName || ' ' || IFNULL(e.MiddleName, '') || ' ' || e.LastName))
-                LIKE LOWER(@Name);";
+                WHERE REPLACE(
+                LOWER(TRIM(e.FirstName || ' ' || IFNULL(e.MiddleName, '') || ' ' || e.LastName)), 
+                '  ', ' '
+            ) LIKE LOWER(@Name);";
 
-                return conn.Query<EmployeeDisplay>(sql, new { Name = "%" + fullname + "%" }).ToList();
-            
+               
+                // It's often safer to Trim the input from the user as well
+                string searchPattern = "%" + fullname.Trim() + "%";
+
+                return conn.Query<EmployeeDisplay>(sql, new { Name = searchPattern }).ToList();
+
             }
         }
 
