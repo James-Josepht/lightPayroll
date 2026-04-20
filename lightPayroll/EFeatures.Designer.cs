@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             panel1 = new Panel();
             pictureBox2 = new PictureBox();
             tableLayoutPanel1 = new TableLayoutPanel();
@@ -60,7 +60,6 @@
             profileTableLayout = new TableLayoutPanel();
             insideProfile = new Panel();
             department = new Label();
-            salaryRate = new Label();
             role = new Label();
             middleName = new Label();
             firstName = new Label();
@@ -76,6 +75,9 @@
             firstNameLabel = new Label();
             panel5 = new Panel();
             panel6 = new Panel();
+            salaryRate = new Label();
+            panel4 = new Panel();
+            profileNote = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             tableLayoutPanel1.SuspendLayout();
@@ -94,6 +96,7 @@
             profilePanel.SuspendLayout();
             profileTableLayout.SuspendLayout();
             insideProfile.SuspendLayout();
+            panel4.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -315,23 +318,23 @@
             payrollGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             payrollGrid.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
             payrollGrid.BorderStyle = BorderStyle.None;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = SystemColors.Control;
-            dataGridViewCellStyle1.Font = new Font("Ubuntu Mono Medium", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle1.ForeColor = SystemColors.Desktop;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            payrollGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.Control;
+            dataGridViewCellStyle3.Font = new Font("Ubuntu Mono Medium", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle3.ForeColor = SystemColors.Desktop;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            payrollGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             payrollGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = SystemColors.Window;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI Historic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle2.ForeColor = SystemColors.ControlDarkDark;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            payrollGrid.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = SystemColors.Window;
+            dataGridViewCellStyle4.Font = new Font("Segoe UI Historic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle4.ForeColor = SystemColors.ControlDarkDark;
+            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
+            payrollGrid.DefaultCellStyle = dataGridViewCellStyle4;
             payrollGrid.Location = new Point(83, 132);
             payrollGrid.Name = "payrollGrid";
             payrollGrid.ReadOnly = true;
@@ -358,6 +361,7 @@
             searchBox.Name = "searchBox";
             searchBox.Size = new Size(695, 26);
             searchBox.TabIndex = 2;
+            searchBox.KeyDown += searchEnter;
             // 
             // pictureBox1
             // 
@@ -431,6 +435,7 @@
             profileTableLayout.Controls.Add(insideProfile, 1, 1);
             profileTableLayout.Controls.Add(panel5, 2, 1);
             profileTableLayout.Controls.Add(panel6, 0, 1);
+            profileTableLayout.Controls.Add(panel4, 1, 2);
             profileTableLayout.Dock = DockStyle.Fill;
             profileTableLayout.Location = new Point(0, 0);
             profileTableLayout.Name = "profileTableLayout";
@@ -475,16 +480,6 @@
             department.Size = new Size(77, 16);
             department.TabIndex = 14;
             department.Text = "Department";
-            // 
-            // salaryRate
-            // 
-            salaryRate.AutoSize = true;
-            salaryRate.ForeColor = Color.Beige;
-            salaryRate.Location = new Point(120, 184);
-            salaryRate.Name = "salaryRate";
-            salaryRate.Size = new Size(84, 16);
-            salaryRate.TabIndex = 18;
-            salaryRate.Text = "Salary Rate";
             // 
             // role
             // 
@@ -636,6 +631,36 @@
             panel6.Size = new Size(39, 231);
             panel6.TabIndex = 3;
             // 
+            // salaryRate
+            // 
+            salaryRate.AutoSize = true;
+            salaryRate.ForeColor = Color.Beige;
+            salaryRate.Location = new Point(120, 184);
+            salaryRate.Name = "salaryRate";
+            salaryRate.Size = new Size(84, 16);
+            salaryRate.TabIndex = 18;
+            salaryRate.Text = "Salary Rate";
+            // 
+            // panel4
+            // 
+            panel4.Controls.Add(profileNote);
+            panel4.Dock = DockStyle.Fill;
+            panel4.Location = new Point(48, 266);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(780, 98);
+            panel4.TabIndex = 4;
+            // 
+            // profileNote
+            // 
+            profileNote.AutoSize = true;
+            profileNote.Font = new Font("Ubuntu Mono", 15.7499981F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            profileNote.ForeColor = Color.Beige;
+            profileNote.Location = new Point(12, 46);
+            profileNote.Name = "profileNote";
+            profileNote.Size = new Size(72, 26);
+            profileNote.TabIndex = 19;
+            profileNote.Text = "NOTE:";
+            // 
             // EFeatures
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
@@ -669,6 +694,8 @@
             profileTableLayout.ResumeLayout(false);
             insideProfile.ResumeLayout(false);
             insideProfile.PerformLayout();
+            panel4.ResumeLayout(false);
+            panel4.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -712,12 +739,14 @@
         private Button modifyProfile;
         private Label departmentL;
         private Label department;
-        private Label salaryRate;
         private Label role;
         private Label middleName;
         private Label firstName;
         private Label lastName;
         private Label userID;
         private Panel panel6;
+        private Label salaryRate;
+        private Panel panel4;
+        private Label profileNote;
     }
 }

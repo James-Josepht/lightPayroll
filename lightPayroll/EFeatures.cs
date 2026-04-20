@@ -55,6 +55,7 @@ namespace lighPayrollUI
         /// FOR LOADING PART IN TABLES
         /// 
 
+        
 
         private void LoadAttendanceList()
         {
@@ -129,8 +130,33 @@ namespace lighPayrollUI
 
 
 
+        private void SearchUser(string name)
+        {
+            string username = searchBox.Text;
+
+            if (string.IsNullOrEmpty(username))
+            {
+                adminUI.CustomMessageBox("Enter valid name.");
+                return;
+            }
 
 
+            if (SQLiteDataAccess.GetEmployeeByName(username) == null)
+                adminUI.CustomMessageBox("User not found.");
+            else
+                payrollGrid.DataSource = SQLiteDataAccess.GetEmployeeByName(username);
+
+
+        }
+
+        private void searchEnter(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true; // prevents "ding" sound
+                SearchUser(searchBox.Text);
+            }
+        }
 
 
         private void ConfigureTabsByRole()

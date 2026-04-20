@@ -136,6 +136,31 @@ namespace lightPayrollServices
         /// 
 
 
+        public static List<EmployeeDisplay> GetEmployeeByName(string fullname)
+        {
+            using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
+            {
+                string sql = @"
+                SELECT 
+                    e.EmployeeID,
+                    e.UsersID,
+                    e.FirstName,
+                    e.MiddleName,
+                    e.LastName,
+                    e.Position,
+                    u.Username,
+                    u.Role
+                FROM EmployeesTable e
+                INNER JOIN UsersTable u ON e.UsersID = u.UsersID
+                 WHERE 
+                LOWER(TRIM(e.FirstName || ' ' || IFNULL(e.MiddleName, '') || ' ' || e.LastName))
+                LIKE LOWER(@Name);";
+
+                return conn.Query<EmployeeDisplay>(sql, new { Name = "%" + fullname + "%" }).ToList();
+            
+            }
+        }
+
         public static Employee GetEmployeeByID(int id)
         {
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
