@@ -28,8 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
             panel1 = new Panel();
             pictureBox2 = new PictureBox();
             tableLayoutPanel1 = new TableLayoutPanel();
@@ -47,6 +49,12 @@
             clockStatus = new Label();
             payslipPage = new TabPage();
             attendancePage = new TabPage();
+            attendanceGrid = new DataGridView();
+            attendanceSearchPnl = new Panel();
+            attendanceSearch = new TextBox();
+            searchAttendancePic = new PictureBox();
+            attendancePanel = new Panel();
+            noteLbl = new Label();
             payrollPage = new TabPage();
             payrollGrid = new DataGridView();
             payrollSearchPanel = new Panel();
@@ -88,6 +96,11 @@
             statusPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)clockGrid).BeginInit();
             panel3.SuspendLayout();
+            attendancePage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)attendanceGrid).BeginInit();
+            attendanceSearchPnl.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)searchAttendancePic).BeginInit();
+            attendancePanel.SuspendLayout();
             payrollPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)payrollGrid).BeginInit();
             payrollSearchPanel.SuspendLayout();
@@ -291,13 +304,96 @@
             // 
             // attendancePage
             // 
-            attendancePage.BackColor = Color.FromArgb(33, 44, 66);
+            attendancePage.BackColor = SystemColors.ActiveCaption;
+            attendancePage.Controls.Add(attendanceGrid);
+            attendancePage.Controls.Add(attendanceSearchPnl);
+            attendancePage.Controls.Add(attendancePanel);
             attendancePage.Location = new Point(4, 25);
             attendancePage.Name = "attendancePage";
             attendancePage.Padding = new Padding(3);
             attendancePage.Size = new Size(923, 409);
             attendancePage.TabIndex = 2;
             attendancePage.Text = "Attendance";
+            // 
+            // attendanceGrid
+            // 
+            attendanceGrid.AllowUserToAddRows = false;
+            attendanceGrid.AllowUserToDeleteRows = false;
+            attendanceGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            attendanceGrid.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
+            attendanceGrid.BorderStyle = BorderStyle.None;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = SystemColors.Control;
+            dataGridViewCellStyle5.Font = new Font("Ubuntu Mono Medium", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle5.ForeColor = SystemColors.Desktop;
+            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
+            attendanceGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            attendanceGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = SystemColors.Window;
+            dataGridViewCellStyle6.Font = new Font("Segoe UI Historic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle6.ForeColor = SystemColors.ControlDarkDark;
+            dataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.False;
+            attendanceGrid.DefaultCellStyle = dataGridViewCellStyle6;
+            attendanceGrid.Location = new Point(82, 132);
+            attendanceGrid.Name = "attendanceGrid";
+            attendanceGrid.ReadOnly = true;
+            attendanceGrid.Size = new Size(766, 221);
+            attendanceGrid.TabIndex = 4;
+            // 
+            // attendanceSearchPnl
+            // 
+            attendanceSearchPnl.BackColor = Color.FromArgb(60, 80, 110);
+            attendanceSearchPnl.Controls.Add(attendanceSearch);
+            attendanceSearchPnl.Controls.Add(searchAttendancePic);
+            attendanceSearchPnl.Location = new Point(82, 41);
+            attendanceSearchPnl.Name = "attendanceSearchPnl";
+            attendanceSearchPnl.Size = new Size(766, 56);
+            attendanceSearchPnl.TabIndex = 3;
+            // 
+            // attendanceSearch
+            // 
+            attendanceSearch.BackColor = Color.FromArgb(60, 80, 110);
+            attendanceSearch.BorderStyle = BorderStyle.None;
+            attendanceSearch.Font = new Font("Segoe UI Historic", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            attendanceSearch.ForeColor = Color.Beige;
+            attendanceSearch.Location = new Point(59, 17);
+            attendanceSearch.Name = "attendanceSearch";
+            attendanceSearch.Size = new Size(687, 26);
+            attendanceSearch.TabIndex = 2;
+            // 
+            // searchAttendancePic
+            // 
+            searchAttendancePic.BackgroundImage = Properties.Resources.search_interface_symbol;
+            searchAttendancePic.BackgroundImageLayout = ImageLayout.Zoom;
+            searchAttendancePic.Location = new Point(3, 15);
+            searchAttendancePic.Name = "searchAttendancePic";
+            searchAttendancePic.Size = new Size(52, 30);
+            searchAttendancePic.TabIndex = 1;
+            searchAttendancePic.TabStop = false;
+            // 
+            // attendancePanel
+            // 
+            attendancePanel.BackColor = Color.FromArgb(33, 44, 66);
+            attendancePanel.Controls.Add(noteLbl);
+            attendancePanel.Location = new Point(24, 21);
+            attendancePanel.Name = "attendancePanel";
+            attendancePanel.Size = new Size(876, 367);
+            attendancePanel.TabIndex = 5;
+            // 
+            // noteLbl
+            // 
+            noteLbl.AutoSize = true;
+            noteLbl.ForeColor = Color.Beige;
+            noteLbl.Location = new Point(323, 342);
+            noteLbl.Name = "noteLbl";
+            noteLbl.Size = new Size(231, 16);
+            noteLbl.TabIndex = 1;
+            noteLbl.Text = "NOTE: SEARCH NAME OR EMPLOYEE ID\r\n";
             // 
             // payrollPage
             // 
@@ -319,23 +415,23 @@
             payrollGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             payrollGrid.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
             payrollGrid.BorderStyle = BorderStyle.None;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = SystemColors.Control;
-            dataGridViewCellStyle1.Font = new Font("Ubuntu Mono Medium", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle1.ForeColor = SystemColors.Desktop;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            payrollGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = SystemColors.Control;
+            dataGridViewCellStyle7.Font = new Font("Ubuntu Mono Medium", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle7.ForeColor = SystemColors.Desktop;
+            dataGridViewCellStyle7.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
+            payrollGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             payrollGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = SystemColors.Window;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI Historic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle2.ForeColor = SystemColors.ControlDarkDark;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            payrollGrid.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = SystemColors.Window;
+            dataGridViewCellStyle8.Font = new Font("Segoe UI Historic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle8.ForeColor = SystemColors.ControlDarkDark;
+            dataGridViewCellStyle8.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.False;
+            payrollGrid.DefaultCellStyle = dataGridViewCellStyle8;
             payrollGrid.Location = new Point(83, 132);
             payrollGrid.Name = "payrollGrid";
             payrollGrid.ReadOnly = true;
@@ -360,7 +456,7 @@
             searchBox.ForeColor = Color.Beige;
             searchBox.Location = new Point(59, 17);
             searchBox.Name = "searchBox";
-            searchBox.Size = new Size(695, 26);
+            searchBox.Size = new Size(419, 26);
             searchBox.TabIndex = 2;
             searchBox.KeyDown += searchEnter;
             // 
@@ -457,7 +553,6 @@
             profileTableLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 103F));
             profileTableLayout.Size = new Size(876, 367);
             profileTableLayout.TabIndex = 0;
-            profileTableLayout.Paint += profileTableLayout_Paint;
             // 
             // insideProfile
             // 
@@ -695,6 +790,13 @@
             ((System.ComponentModel.ISupportInitialize)clockGrid).EndInit();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
+            attendancePage.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)attendanceGrid).EndInit();
+            attendanceSearchPnl.ResumeLayout(false);
+            attendanceSearchPnl.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)searchAttendancePic).EndInit();
+            attendancePanel.ResumeLayout(false);
+            attendancePanel.PerformLayout();
             payrollPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)payrollGrid).EndInit();
             payrollSearchPanel.ResumeLayout(false);
@@ -762,5 +864,11 @@
         private Panel panel4;
         private Label profileNote;
         private Label notePayrollL;
+        private DataGridView attendanceGrid;
+        private Panel attendanceSearchPnl;
+        private TextBox attendanceSearch;
+        private PictureBox searchAttendancePic;
+        private Panel attendancePanel;
+        private Label noteLbl;
     }
 }

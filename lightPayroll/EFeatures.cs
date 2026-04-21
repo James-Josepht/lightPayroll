@@ -46,7 +46,11 @@ namespace lighPayrollUI
             HBorderRadius borderRadius = new HBorderRadius();
             borderRadius.SetRoundedRegion(payrollSearchPanel, 37);
             borderRadius.SetRoundedRegion(payrollPanel, 33);
+            borderRadius.SetRoundedRegion(attendancePanel, 33);
+            borderRadius.SetRoundedRegion(attendanceSearchPnl, 33);
             borderRadius.SetRoundedRegion(profilePanel, 33);
+
+
             //borderRadius.SetRoundedRegion(insideProfile, 33);
 
             if (AttendanceService.HasClockedOutToday(user_id))
@@ -54,7 +58,7 @@ namespace lighPayrollUI
                 clockStatusReal.Text = "Clock Out";
                 clockStatusReal.ForeColor = Color.IndianRed;
             }
-            else if (clockStatusReal.Text == "Pending") clockStatusReal.ForeColor= Color.FromArgb(255, 255, 128);
+            else if (clockStatusReal.Text == "Pending") clockStatusReal.ForeColor = Color.FromArgb(255, 255, 128);
             else
             {
                 clockStatusReal.Text = "Clock In";
@@ -68,7 +72,7 @@ namespace lighPayrollUI
         /// FOR LOADING PART IN TABLES
         /// 
 
-        
+
 
         private void LoadAttendanceList()
         {
@@ -96,7 +100,7 @@ namespace lighPayrollUI
             payrollGrid.DataSource = null;
             payrollGrid.Columns.Clear();
             var data = SQLiteDataAccess.LoadEmployeeWithUser();
-            
+
 
             payrollGrid.DataSource = data;
         }
@@ -134,8 +138,8 @@ namespace lighPayrollUI
                     salaryRate.Text = employee.SalaryRate?.ToString("C");
 
                 }
-            
-               
+
+
             }
         }
 
@@ -322,9 +326,6 @@ namespace lighPayrollUI
         ////
         ////
 
-        private void profileTableLayout_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
+       
     }
 }
