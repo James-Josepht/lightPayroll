@@ -144,6 +144,8 @@ namespace lighPayroll
             customMsg.ShowDialog();
         }
 
+        
+
 
         private void attendanceToolClick(object sender, EventArgs e)
         {

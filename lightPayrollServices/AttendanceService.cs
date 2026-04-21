@@ -42,20 +42,14 @@ namespace lightPayrollServices
                 // Step 2: Query the table
                 var output = conn.Query<AttendanceUser>("SELECT  Date, TimeIn, TimeOut, Status, Remarks FROM AttendanceTable", new DynamicParameters());
 
-                var attendances = output.Select(u =>
-                {
-                    u.Date = u.Date?.ToLocalTime();
-                    u.TimeIn = u.TimeIn?.ToLocalTime();
-                    u.TimeOut = u.TimeOut?.ToLocalTime();
-                    return u;
-                }).ToList();
+                var attendances = output.ToList();
 
 
                 return attendances;
             }
         }
 
-        public static void InsertClock(AttendanceUser user, int userId, string fullName)
+        public static int InsertClock(AttendanceUser user, int userId, string fullName)
         {
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
             {
@@ -68,62 +62,91 @@ namespace lightPayrollServices
                 {
                     UsersID = userId,
                     FullName = fullName,
-                    Date = user.Date?.ToUniversalTime(),       // store UTC
-                    TimeIn = user.TimeIn?.ToUniversalTime(),
-                    TimeOut = user.TimeOut?.ToUniversalTime(),
+                    Date = user.Date ?? DateTime.Now,
+                    TimeIn = user.TimeIn ?? DateTime.Now,
+                    TimeOut = user.TimeOut,
                     Status = user.Status,
                     Remarks = user.Remarks
                 });
+
+                //INSERT → SQLite generates AttendanceID
+                //SELECT last_insert_rowid() → gets that ID
+                //return ID → you store it in app
+
+                int attendanceID = conn.ExecuteScalar<int>("SELECT last_insert_rowid();");
+                return attendanceID;
             }
+
+           
         }
 
         public static bool HasClockedInToday(int userId)
         {
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
             {
-                // Get LOCAL day (PH time)
-                var localNow = DateTime.Now;
-                var localStart = localNow.Date;
-                var localEnd = localStart.AddDays(1);
-
-                // Convert to UTC
-                var utcStart = localStart.ToUniversalTime();
-                var utcEnd = localEnd.ToUniversalTime();
+                DateTime start = DateTime.Now.Date;
+                DateTime end = start.AddDays(1);
 
                 var count = conn.ExecuteScalar<int>(
-                    @"SELECT COUNT(1) 
-              FROM AttendanceTable 
-              WHERE UsersID = @UsersID 
-              AND Date >= @Start 
+                    @"SELECT COUNT(1)
+              FROM AttendanceTable
+              WHERE UsersID = @UsersID
+              AND Date >= @Start
               AND Date < @End
               AND TimeIn IS NOT NULL",
                     new
                     {
                         UsersID = userId,
-                        Start = utcStart,
-                        End = utcEnd
+                        Start = start,
+                        End = end
                     });
 
                 return count > 0;
             }
         }
-
-        public static void UpdateClockOut(int userId, DateTime timeOut)
+        public static void UpdateClockOut(int attendanceId, DateTime timeOut)
         {
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
             {
-                string sql = @"
-                UPDATE AttendanceTable
-                SET TimeOut = @TimeOut
-                WHERE UsersID = @UsersID 
-                AND DATE(Date) = DATE(@Date);"; // safer date comparison
+                conn.Execute(
+                    @"UPDATE AttendanceTable
+              SET TimeOut = @TimeOut
+              WHERE AttendanceID = @AttendanceID;",
+                    new
+                    {
+                        TimeOut = timeOut,
+                        AttendanceID = attendanceId
+                    });
+            }
+        }
 
-                conn.Execute(sql, new
-                {
-                    TimeOut = timeOut.ToUniversalTime(),
-                    UsersID = userId,
-                    Date = DateTime.UtcNow // compare dates safely
-                });
+        public static int GetActiveAttendanceId(int userId)
+        {
+            using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
+            {
+                return conn.ExecuteScalar<int>(
+                    @"SELECT AttendanceID
+              FROM AttendanceTable
+              WHERE UsersID = @UsersID
+              AND TimeOut IS NULL
+              ORDER BY Date DESC
+              LIMIT 1;",
+                    new { UsersID = userId });
+            }
+        }
+
+        public static bool HasClockedOutToday(int userId)
+        {
+            using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
+            {
+                return conn.ExecuteScalar<int>(
+                    @"SELECT COUNT(1)
+              FROM AttendanceTable
+              WHERE UsersID = @UsersID
+              AND TimeOut IS NOT NULL
+              AND TimeIn IS NOT NULL
+              AND DATE(Date) = DATE('now','localtime')",
+                    new { UsersID = userId }) > 0;
             }
         }
 
@@ -134,14 +157,28 @@ namespace lightPayrollServices
                 var output = conn.Query<AttendanceUser>("SELECT Date, TimeIn, TimeOut, Status, Remarks FROM AttendanceTable WHERE UsersID = @UsersID", new { UsersID = userId });
                 var attendances = output.Select(u =>
                 {
-                    u.Date = u.Date?.ToLocalTime();
-                    u.TimeIn = u.TimeIn?.ToLocalTime();
-                    u.TimeOut = u.TimeOut?.ToLocalTime();
+                    u.Date = u.Date;
+                    u.TimeIn = u.TimeIn;
+                    u.TimeOut = u.TimeOut;
                     return u;
                 }).ToList();
                 return attendances;
             }
         }
 
+        public decimal CalculateHours(DateTime timeIn, DateTime timeOut)
+        {
+            TimeSpan total = timeOut - timeIn;
+
+            // convert to decimal hours (e.g., 8.5 hours)
+            return (decimal)total.TotalHours;
+        }
+        public decimal CalculateOvertime(decimal totalHours)
+        {
+            if (totalHours > 8)
+                return totalHours - 8;
+
+            return 0;
+        }
     }
 }

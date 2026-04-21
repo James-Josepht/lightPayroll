@@ -17,8 +17,9 @@ namespace lighPayrollUI
     public partial class EFeatures : Form
     {
         AdUI adminUI = new AdUI(); //used for getting panel design and greeting service
-        private string user_role, user_name;
-        private int user_id;
+        private readonly string user_role, user_name;
+        private readonly int user_id;
+        private int attendance_id;
 
 
         public EFeatures(string role, string username, int userId)
@@ -48,6 +49,17 @@ namespace lighPayrollUI
             borderRadius.SetRoundedRegion(profilePanel, 33);
             //borderRadius.SetRoundedRegion(insideProfile, 33);
 
+            if (AttendanceService.HasClockedOutToday(user_id))
+            {
+                clockStatusReal.Text = "Clock Out";
+                clockStatusReal.ForeColor = Color.IndianRed;
+            }
+            else
+            {
+                clockStatusReal.Text = "Clock In";
+                clockStatusReal.ForeColor = Color.FromArgb(0, 192, 0);
+            }
+
         }
 
 
@@ -66,7 +78,7 @@ namespace lighPayrollUI
             // Project to display properties for the grid
             var displayData = data.Select(a => new
             {
-                Date = a.Date?.ToLocalTime().ToString("yyyy-MM-dd"),
+                Date = a.Date?.ToString("yyyy-MM-dd"),
                 TimeIn = a.TimeInDisplay,
                 TimeOut = a.TimeOutDisplay,
                 a.Status,
@@ -129,7 +141,7 @@ namespace lighPayrollUI
 
 
 
-
+        //used for employee in payroll searching
         private void SearchUser(string name)
         {
             string username = searchBox.Text;
@@ -140,13 +152,15 @@ namespace lighPayrollUI
                 return;
             }
 
+            var result = SQLiteDataAccess.GetEmployeeByName(username);
 
-            if (SQLiteDataAccess.GetEmployeeByName(username) == null)
+            if (result == null || result.Count == 0)
+            {
                 adminUI.CustomMessageBox("User not found.");
-            else
-                payrollGrid.DataSource = SQLiteDataAccess.GetEmployeeByName(username);
+                return;
+            }
 
-
+            payrollGrid.DataSource = result;
         }
 
         private void searchEnter(object sender, KeyEventArgs e)
@@ -259,32 +273,40 @@ namespace lighPayrollUI
             if (AttendanceService.HasClockedInToday(user_id))
             {
                 adminUI.CustomMessageBox("You have already clocked in today.");
-                return; // stop further execution
+                return;
             }
 
-
-            var nowUtc = DateTime.UtcNow;
+            var now = DateTime.Now;
 
             var attendance = new AttendanceUser
             {
-                Date = nowUtc,   // store full datetime
-                TimeIn = nowUtc,
+                Date = now,
+                TimeIn = now,
                 TimeOut = null,
                 Status = "Present",
                 Remarks = ""
             };
 
-            AttendanceService.InsertClock(attendance, user_id, user_name);
+            attendance_id = AttendanceService.InsertClock(attendance, user_id, user_name);
 
-            LoadAttendanceList(); // refresh grid
+            LoadAttendanceList();
+
             clockStatusReal.ForeColor = Color.FromArgb(0, 192, 0);
-
+            clockStatusReal.Text = "Clock In";
         }
 
         private void clockOutButton_Click(object sender, EventArgs e)
         {
+            attendance_id = AttendanceService.GetActiveAttendanceId(user_id);
 
-            AttendanceService.UpdateClockOut(user_id, DateTime.UtcNow);
+            if (attendance_id == null || attendance_id == 0)
+            {
+                adminUI.CustomMessageBox("You are already clocked out or have no active shift.");
+                return;
+            }
+
+
+            AttendanceService.UpdateClockOut(attendance_id, DateTime.Now);
 
             LoadAttendanceList(); // refresh grid
             clockStatusReal.Text = "Clock Out";

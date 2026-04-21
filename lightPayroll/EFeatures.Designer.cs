@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             panel1 = new Panel();
             pictureBox2 = new PictureBox();
             tableLayoutPanel1 = new TableLayoutPanel();
@@ -53,6 +53,7 @@
             searchBox = new TextBox();
             pictureBox1 = new PictureBox();
             payrollPanel = new Panel();
+            notePayrollL = new Label();
             modifyPayrollB = new Button();
             overTimePage = new TabPage();
             profilePage = new TabPage();
@@ -60,6 +61,7 @@
             profileTableLayout = new TableLayoutPanel();
             insideProfile = new Panel();
             department = new Label();
+            salaryRate = new Label();
             role = new Label();
             middleName = new Label();
             firstName = new Label();
@@ -75,7 +77,6 @@
             firstNameLabel = new Label();
             panel5 = new Panel();
             panel6 = new Panel();
-            salaryRate = new Label();
             panel4 = new Panel();
             profileNote = new Label();
             panel1.SuspendLayout();
@@ -260,12 +261,12 @@
             // 
             clockStatusReal.AutoSize = true;
             clockStatusReal.Font = new Font("Ubuntu Mono", 20.2499981F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            clockStatusReal.ForeColor = Color.FromArgb(0, 192, 0);
+            clockStatusReal.ForeColor = Color.FromArgb(255, 255, 128);
             clockStatusReal.Location = new Point(136, 15);
             clockStatusReal.Name = "clockStatusReal";
-            clockStatusReal.Size = new Size(135, 34);
+            clockStatusReal.Size = new Size(120, 34);
             clockStatusReal.TabIndex = 6;
-            clockStatusReal.Text = "Clock In";
+            clockStatusReal.Text = "Pending";
             // 
             // clockStatus
             // 
@@ -318,23 +319,23 @@
             payrollGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             payrollGrid.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
             payrollGrid.BorderStyle = BorderStyle.None;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = SystemColors.Control;
-            dataGridViewCellStyle3.Font = new Font("Ubuntu Mono Medium", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle3.ForeColor = SystemColors.Desktop;
-            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            payrollGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Ubuntu Mono Medium", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = SystemColors.Desktop;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            payrollGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             payrollGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = SystemColors.Window;
-            dataGridViewCellStyle4.Font = new Font("Segoe UI Historic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle4.ForeColor = SystemColors.ControlDarkDark;
-            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
-            payrollGrid.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI Historic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlDarkDark;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            payrollGrid.DefaultCellStyle = dataGridViewCellStyle2;
             payrollGrid.Location = new Point(83, 132);
             payrollGrid.Name = "payrollGrid";
             payrollGrid.ReadOnly = true;
@@ -376,11 +377,22 @@
             // payrollPanel
             // 
             payrollPanel.BackColor = Color.FromArgb(33, 44, 66);
+            payrollPanel.Controls.Add(notePayrollL);
             payrollPanel.Controls.Add(modifyPayrollB);
             payrollPanel.Location = new Point(24, 21);
             payrollPanel.Name = "payrollPanel";
             payrollPanel.Size = new Size(876, 367);
             payrollPanel.TabIndex = 2;
+            // 
+            // notePayrollL
+            // 
+            notePayrollL.AutoSize = true;
+            notePayrollL.ForeColor = Color.Beige;
+            notePayrollL.Location = new Point(256, 342);
+            notePayrollL.Name = "notePayrollL";
+            notePayrollL.Size = new Size(364, 16);
+            notePayrollL.TabIndex = 1;
+            notePayrollL.Text = "NOTE: SEARCH NAME THEN EMPLOYEE ID FOR MODIFICATION";
             // 
             // modifyPayrollB
             // 
@@ -480,6 +492,16 @@
             department.Size = new Size(77, 16);
             department.TabIndex = 14;
             department.Text = "Department";
+            // 
+            // salaryRate
+            // 
+            salaryRate.AutoSize = true;
+            salaryRate.ForeColor = Color.Beige;
+            salaryRate.Location = new Point(120, 184);
+            salaryRate.Name = "salaryRate";
+            salaryRate.Size = new Size(84, 16);
+            salaryRate.TabIndex = 18;
+            salaryRate.Text = "Salary Rate";
             // 
             // role
             // 
@@ -631,16 +653,6 @@
             panel6.Size = new Size(39, 231);
             panel6.TabIndex = 3;
             // 
-            // salaryRate
-            // 
-            salaryRate.AutoSize = true;
-            salaryRate.ForeColor = Color.Beige;
-            salaryRate.Location = new Point(120, 184);
-            salaryRate.Name = "salaryRate";
-            salaryRate.Size = new Size(84, 16);
-            salaryRate.TabIndex = 18;
-            salaryRate.Text = "Salary Rate";
-            // 
             // panel4
             // 
             panel4.Controls.Add(profileNote);
@@ -689,6 +701,7 @@
             payrollSearchPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             payrollPanel.ResumeLayout(false);
+            payrollPanel.PerformLayout();
             profilePage.ResumeLayout(false);
             profilePanel.ResumeLayout(false);
             profileTableLayout.ResumeLayout(false);
@@ -748,5 +761,6 @@
         private Label salaryRate;
         private Panel panel4;
         private Label profileNote;
+        private Label notePayrollL;
     }
 }

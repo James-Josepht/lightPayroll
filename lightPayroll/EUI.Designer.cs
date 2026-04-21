@@ -69,7 +69,7 @@
             label4.AutoSize = true;
             label4.Font = new Font("Ubuntu Mono", 11.9999981F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.Beige;
-            label4.Location = new Point(39, 397);
+            label4.Location = new Point(39, 245);
             label4.Name = "label4";
             label4.Size = new Size(117, 20);
             label4.TabIndex = 22;
@@ -80,7 +80,7 @@
             encourageVerses.AutoSize = true;
             encourageVerses.Font = new Font("Ubuntu Mono", 11.2499981F, FontStyle.Regular, GraphicsUnit.Point, 0);
             encourageVerses.ForeColor = Color.Beige;
-            encourageVerses.Location = new Point(162, 399);
+            encourageVerses.Location = new Point(162, 247);
             encourageVerses.Name = "encourageVerses";
             encourageVerses.Size = new Size(96, 18);
             encourageVerses.TabIndex = 8;
@@ -100,9 +100,9 @@
             // panel2
             // 
             panel2.BackColor = SystemColors.ActiveCaption;
-            panel2.Location = new Point(73, 604);
+            panel2.Location = new Point(73, 478);
             panel2.Name = "panel2";
-            panel2.Size = new Size(783, 80);
+            panel2.Size = new Size(783, 52);
             panel2.TabIndex = 4;
             // 
             // greetingPanel
@@ -159,7 +159,7 @@
             bodyPanel.Controls.Add(toDoPanel);
             bodyPanel.Location = new Point(73, 156);
             bodyPanel.Name = "bodyPanel";
-            bodyPanel.Size = new Size(783, 445);
+            bodyPanel.Size = new Size(783, 286);
             bodyPanel.TabIndex = 2;
             // 
             // eFeaturesPanel
@@ -332,7 +332,7 @@
             pictureBox2.TabIndex = 5;
             pictureBox2.TabStop = false;
             // 
-            // EmployeeUI
+            // EUI
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -341,7 +341,7 @@
             Controls.Add(panel1);
             Controls.Add(panel4);
             Controls.Add(headPanel);
-            Name = "EmployeeUI";
+            Name = "EUI";
             StartPosition = FormStartPosition.CenterScreen;
             Load += EmployeeUI_Load;
             panel1.ResumeLayout(false);

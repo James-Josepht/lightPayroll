@@ -67,6 +67,8 @@ namespace lightPayrollModel
         public string? Role { get; set; }
     }
 
+   
+
     public class AdminUser : Users //used for creating instance for admin
     {
         public override void Validate()
@@ -117,6 +119,16 @@ namespace lightPayrollModel
         }
     }
 
+    public class PayrollInput //used for forms input
+    {
+        public int EmployeeID { get; set; }
+        public decimal HoursWorked { get; set; }
+        public decimal HourlyRate { get; set; }
+        public decimal OvertimeHours { get; set; }
+        public decimal PagIBIG { get; set; } //Other Deductions (Loans, Cash Advance, etc.)
+        public decimal OtherDeductions { get; set; }
+        public int ProcessedBy { get; set; }
+    }
 
 
     public class Payroll : BaseEntity
@@ -217,8 +229,8 @@ namespace lightPayrollModel
         public string? Remarks { get; set; }
 
         // For display only
-        public string TimeInDisplay => TimeIn?.ToLocalTime().ToString("HH:mm");
-        public string TimeOutDisplay => TimeOut?.ToLocalTime().ToString("HH:mm");
+        public string TimeInDisplay => TimeIn?.ToString("HH:mm");
+        public string TimeOutDisplay => TimeOut?.ToString("HH:mm");
 
     }
 

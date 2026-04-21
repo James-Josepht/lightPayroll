@@ -54,7 +54,7 @@ namespace lightPayrollServices
 
         //second month full deductions including government
         public Payroll CalculateSecond (int employeeId, decimal hourlyRate, decimal hoursWorked,
-                                        decimal overtimeHours, decimal pagIbig,int processedBy)
+                                        decimal overtimeHours, decimal pagIbig, decimal otherDeductions, int processedBy)
 
         {
             decimal basicSalary = hourlyRate * hoursWorked;

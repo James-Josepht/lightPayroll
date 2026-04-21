@@ -70,6 +70,7 @@ namespace lightPayrollServices
             else if (role == "Christ-Centered Guidance") return christCenteredGuidance[rand.Next(christCenteredGuidance.Length)];
             else if (role == "Accountant") return accountantGreetings[rand.Next(accountantGreetings.Length)];
             else if (role == "Employee") return employeeGreetings[rand.Next(employeeGreetings.Length)];
+            else if (role == "Manager") return managerGreetings[rand.Next(employeeGreetings.Length)];
 
 
             return "Hello!";
