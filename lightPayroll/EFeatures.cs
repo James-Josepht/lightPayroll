@@ -54,6 +54,7 @@ namespace lighPayrollUI
                 clockStatusReal.Text = "Clock Out";
                 clockStatusReal.ForeColor = Color.IndianRed;
             }
+            else if (clockStatusReal.Text == "Pending") clockStatusReal.ForeColor= Color.FromArgb(255, 255, 128);
             else
             {
                 clockStatusReal.Text = "Clock In";

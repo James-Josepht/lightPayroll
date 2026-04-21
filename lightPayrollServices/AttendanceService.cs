@@ -53,10 +53,10 @@ namespace lightPayrollServices
         {
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
             {
-                string sql = @"
-        INSERT INTO AttendanceTable 
-        (UsersID, FullName, Date, TimeIn, TimeOut, Status, Remarks)
-        VALUES (@UsersID, @FullName, @Date, @TimeIn, @TimeOut, @Status, @Remarks);";
+                    string sql = @"
+            INSERT INTO AttendanceTable 
+            (UsersID, FullName, Date, TimeIn, TimeOut, Status, Remarks)
+            VALUES (@UsersID, @FullName, @Date, @TimeIn, @TimeOut, @Status, @Remarks);";
 
                 conn.Execute(sql, new
                 {
@@ -66,7 +66,7 @@ namespace lightPayrollServices
                     TimeIn = user.TimeIn ?? DateTime.Now,
                     TimeOut = user.TimeOut,
                     Status = user.Status,
-                    Remarks = user.Remarks
+                    Remarks = string.IsNullOrWhiteSpace(user.Remarks) ? "Pending" : user.Remarks
                 });
 
                 //INSERT → SQLite generates AttendanceID
