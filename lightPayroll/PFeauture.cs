@@ -83,22 +83,34 @@ namespace lighPayroll
             {
                 case "Clock In":
                     introLabel.Text = "Clock In";
-                    
+
                     break;
 
                 case "Attendance":
                     introLabel.Text = "Attendance";
-                   
+
                     break;
 
                 case "Payroll":
                     introLabel.Text = "Payroll";
-                    
+
                     break;
             }
         }
 
+        private void logInButton_Click(object sender, EventArgs e)
+        {
+            PLogIn logIn = new PLogIn();
+            logIn.Show();
+            this.Hide();
+        }
 
+        private void signUpButton_Click(object sender, EventArgs e)
+        {
+            PRegister register = new PRegister();
+            register.Show();
+            this.Hide();
+        }
     }
 
     public class ClockInDesignPage

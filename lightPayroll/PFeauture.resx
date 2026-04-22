@@ -128,7 +128,7 @@
         pBiaFEOTYmhSDE2KoUkxNCmGJuUCTEtjAOrjIY0AAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="button2.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="signUpButton.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAApoAAAF3CAYAAAAFPus+AAAABGdBTUEAALGPC/xhBQAARB1JREFUeF7t
         3Qd4W+d97/EsJ86s47ipndEbJ7fNbNOMZjld6Uhvb27be5PumacjibVFbVke8t5LXvGIdxI7lmzLkW0N
@@ -424,7 +424,7 @@
         ovVA9vScqah61Vzvnk5uvZ0rt27XafW+QqBcZPn/2XBM9wAa5rsAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="button1.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="logInButton.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAApoAAAF3CAYAAAAFPus+AAAABGdBTUEAALGPC/xhBQAAduhJREFUeF7t
         3Qd4m9eZJuw/MzuzszOzs7uZxJbE3sQCglVdYpMoSnJJm0x6T2yrsHdRvdiyJPfu2E7iOLbjVDsuklhA
@@ -940,9 +940,6 @@
   <metadata name="menuStrip2.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <metadata name="menuStrip2.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <data name="menuStrip2.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAIAAAABXCAYAAADMBU1cAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
@@ -1227,9 +1224,6 @@
         DBBngDgDxBkg7gFcugMdkMVYmwAAAABJRU5ErkJggg==
 </value>
   </data>
-  <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <data name="panel4.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAALQAAABSCAYAAAD90P6tAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO

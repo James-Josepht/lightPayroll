@@ -31,8 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PFeauture));
             panel1 = new Panel();
             panel6 = new Panel();
-            button2 = new Button();
-            button1 = new Button();
+            signUpButton = new Button();
+            logInButton = new Button();
             panel5 = new Panel();
             menuStrip2 = new MenuStrip();
             toolStripMenuItem8 = new ToolStripMenuItem();
@@ -108,46 +108,48 @@
             // panel6
             // 
             panel6.BackgroundImage = (Image)resources.GetObject("panel6.BackgroundImage");
-            panel6.Controls.Add(button2);
-            panel6.Controls.Add(button1);
+            panel6.Controls.Add(signUpButton);
+            panel6.Controls.Add(logInButton);
             panel6.Font = new Font("Segoe UI", 7.20000029F, FontStyle.Regular, GraphicsUnit.Point, 0);
             panel6.Location = new Point(667, 18);
             panel6.Name = "panel6";
             panel6.Size = new Size(260, 71);
             panel6.TabIndex = 3;
             // 
-            // button2
+            // signUpButton
             // 
-            button2.BackColor = Color.Beige;
-            button2.BackgroundImage = (Image)resources.GetObject("button2.BackgroundImage");
-            button2.BackgroundImageLayout = ImageLayout.Stretch;
-            button2.Cursor = Cursors.Hand;
-            button2.FlatAppearance.BorderSize = 0;
-            button2.FlatStyle = FlatStyle.Flat;
-            button2.Font = new Font("Ubuntu Mono", 7.20000029F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button2.Location = new Point(131, 3);
-            button2.Name = "button2";
-            button2.Size = new Size(126, 64);
-            button2.TabIndex = 2;
-            button2.Text = "Join for FREE";
-            button2.UseVisualStyleBackColor = false;
+            signUpButton.BackColor = Color.Beige;
+            signUpButton.BackgroundImage = (Image)resources.GetObject("signUpButton.BackgroundImage");
+            signUpButton.BackgroundImageLayout = ImageLayout.Stretch;
+            signUpButton.Cursor = Cursors.Hand;
+            signUpButton.FlatAppearance.BorderSize = 0;
+            signUpButton.FlatStyle = FlatStyle.Flat;
+            signUpButton.Font = new Font("Ubuntu Mono", 7.20000029F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            signUpButton.Location = new Point(131, 3);
+            signUpButton.Name = "signUpButton";
+            signUpButton.Size = new Size(126, 64);
+            signUpButton.TabIndex = 2;
+            signUpButton.Text = "Join for FREE";
+            signUpButton.UseVisualStyleBackColor = false;
+            signUpButton.Click += signUpButton_Click;
             // 
-            // button1
+            // logInButton
             // 
-            button1.BackColor = Color.Beige;
-            button1.BackgroundImage = (Image)resources.GetObject("button1.BackgroundImage");
-            button1.BackgroundImageLayout = ImageLayout.Stretch;
-            button1.Cursor = Cursors.Hand;
-            button1.FlatAppearance.BorderSize = 0;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Ubuntu Mono", 7.20000029F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button1.ForeColor = Color.White;
-            button1.Location = new Point(0, 3);
-            button1.Name = "button1";
-            button1.Size = new Size(130, 64);
-            button1.TabIndex = 1;
-            button1.Text = "Log In";
-            button1.UseVisualStyleBackColor = false;
+            logInButton.BackColor = Color.Beige;
+            logInButton.BackgroundImage = (Image)resources.GetObject("logInButton.BackgroundImage");
+            logInButton.BackgroundImageLayout = ImageLayout.Stretch;
+            logInButton.Cursor = Cursors.Hand;
+            logInButton.FlatAppearance.BorderSize = 0;
+            logInButton.FlatStyle = FlatStyle.Flat;
+            logInButton.Font = new Font("Ubuntu Mono", 7.20000029F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            logInButton.ForeColor = Color.White;
+            logInButton.Location = new Point(0, 3);
+            logInButton.Name = "logInButton";
+            logInButton.Size = new Size(130, 64);
+            logInButton.TabIndex = 1;
+            logInButton.Text = "Log In";
+            logInButton.UseVisualStyleBackColor = false;
+            logInButton.Click += logInButton_Click;
             // 
             // panel5
             // 
@@ -351,7 +353,7 @@
             clockInFeatureTab.BackgroundImage = (Image)resources.GetObject("clockInFeatureTab.BackgroundImage");
             clockInFeatureTab.Font = new Font("Ubuntu Mono Medium", 7.20000029F, FontStyle.Bold, GraphicsUnit.Point, 0);
             clockInFeatureTab.Name = "clockInFeatureTab";
-            clockInFeatureTab.Size = new Size(180, 22);
+            clockInFeatureTab.Size = new Size(143, 22);
             clockInFeatureTab.Tag = "Clock In";
             clockInFeatureTab.Text = "Clock In";
             clockInFeatureTab.Click += FeatureTab_Click;
@@ -360,14 +362,14 @@
             // 
             toolStripSeparator4.ForeColor = Color.FromArgb(33, 44, 66);
             toolStripSeparator4.Name = "toolStripSeparator4";
-            toolStripSeparator4.Size = new Size(177, 6);
+            toolStripSeparator4.Size = new Size(140, 6);
             // 
             // attendanceFeatureTab
             // 
             attendanceFeatureTab.BackgroundImage = (Image)resources.GetObject("attendanceFeatureTab.BackgroundImage");
             attendanceFeatureTab.Font = new Font("Ubuntu Mono Medium", 7.20000029F, FontStyle.Bold, GraphicsUnit.Point, 0);
             attendanceFeatureTab.Name = "attendanceFeatureTab";
-            attendanceFeatureTab.Size = new Size(180, 22);
+            attendanceFeatureTab.Size = new Size(143, 22);
             attendanceFeatureTab.Tag = "Attendance";
             attendanceFeatureTab.Text = "Attendance";
             attendanceFeatureTab.Click += FeatureTab_Click;
@@ -376,14 +378,14 @@
             // 
             toolStripSeparator3.BackColor = SystemColors.ActiveCaption;
             toolStripSeparator3.Name = "toolStripSeparator3";
-            toolStripSeparator3.Size = new Size(177, 6);
+            toolStripSeparator3.Size = new Size(140, 6);
             // 
             // payrollFeatureTab
             // 
             payrollFeatureTab.BackColor = Color.Beige;
             payrollFeatureTab.Font = new Font("Ubuntu Mono Medium", 7.20000029F, FontStyle.Bold, GraphicsUnit.Point, 0);
             payrollFeatureTab.Name = "payrollFeatureTab";
-            payrollFeatureTab.Size = new Size(180, 22);
+            payrollFeatureTab.Size = new Size(143, 22);
             payrollFeatureTab.Tag = "Payroll";
             payrollFeatureTab.Text = "Payroll";
             payrollFeatureTab.Click += FeatureTab_Click;
@@ -547,8 +549,8 @@
 
         private Panel panel1;
         private Panel panel6;
-        private Button button2;
-        private Button button1;
+        private Button signUpButton;
+        private Button logInButton;
         private Panel panel5;
         private MenuStrip menuStrip2;
         private ToolStripMenuItem toolStripMenuItem8;

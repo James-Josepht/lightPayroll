@@ -30,7 +30,7 @@ namespace lighPayroll
             }
 
 
-            recentSearches.Margin = new Padding(40, 0, 0, 0); // increase 40 to go left and decrease to put it right
+            recentSearches.Margin = new Padding(17, 0, 0, 0); // increase 40 to go left and decrease to put it right
             toolStripSeparator4.Margin = Padding.Empty;
 
             //starting in here, I am saving the original size and location of the controls to be used in resizing the form
@@ -43,6 +43,41 @@ namespace lighPayroll
             PRegister register = new PRegister();
             register.Show();
             this.Hide();
+        }
+        private void searchBox_Click(object sender, KeyEventArgs e)
+        {
+            AdUI customMessage = new AdUI();
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true; // prevents beep sound
+
+                string searchText = searchBox.Text.ToLower();
+
+                if (string.IsNullOrWhiteSpace(searchText))
+                {
+                    customMessage.CustomMessageBox("Search not found.");
+                }
+                else if (searchText == "payroll")
+                {
+                    PFeauture page = new PFeauture("Payroll");
+                    page.Show();
+                    this.Hide();
+                }
+                else if (searchText == "clock in")
+                {
+                    PFeauture page = new PFeauture("Clock In");
+                    page.Show();
+                    this.Hide();
+                }
+                else if (searchText == "attendance")
+                {
+                    PFeauture page = new PFeauture("Attendance");
+                    page.Show();
+                    this.Hide();
+                }
+
+
+            }
         }
         private void loginHomeBut_Click(object sender, EventArgs e)
         {
