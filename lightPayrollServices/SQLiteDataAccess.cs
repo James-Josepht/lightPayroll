@@ -120,10 +120,10 @@ namespace lightPayrollServices
                 conn.Open();
 
                 string sql = @"
-        INSERT INTO Payroll
-        (EmployeeID, BasicSalary, OvertimePay, SSS, PhilHealth, PagIBIG, WithholdingTax, Deductions, NetSalary, PayrollDate, ProcessedBy)
-        VALUES
-        (@EmployeeID, @BasicSalary, @OvertimePay, @SSS, @PhilHealth, @PagIBIG, @WithholdingTax, @Deductions, @NetSalary, @PayrollDate, @ProcessedBy)";
+                INSERT INTO PayrollTable
+                (EmployeeID, ApprovedBy, BasicSalary, OvertimePay, SSS, PhilHealth, PagIBIG, WithholdingTax, Deductions, NetPay, PayrollDate)
+                VALUES
+                (@EmployeeID, @ApprovedBy, @BasicSalary, @OvertimePay, @SSS, @PhilHealth, @PagIBIG, @WithholdingTax, @Deductions, @NetPay, @PayrollDate)";
 
                 conn.Execute(sql, payroll);
             }

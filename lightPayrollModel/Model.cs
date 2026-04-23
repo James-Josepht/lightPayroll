@@ -131,24 +131,35 @@ namespace lightPayrollModel
     }
 
 
-    public class Payroll : BaseEntity
+    public class Payroll
     {
+        public int PayrollID { get; set; }
+
         public int EmployeeID { get; set; }
-        public decimal? BasicSalary { get; set; }
-        public decimal? OvertimePay { get; set; }
+        public int ApprovedBy { get; set; }
+
+        public decimal BasicSalary { get; set; }
+        public decimal OvertimePay { get; set; }
         public decimal SSS { get; set; }
         public decimal PhilHealth { get; set; }
         public decimal PagIBIG { get; set; }
         public decimal WithholdingTax { get; set; }
-        public decimal? Deductions { get; set; }
-        public decimal? NetSalary { get; set; }
-        public DateTime? PayrollDate { get; set; }
-        public int ProcessedBy { get; set; }
+        public decimal Deductions { get; set; }
 
-        public override void Validate()
+        public decimal NetPay { get; set; }
+
+        public string PayrollDate { get; set; } // matches TEXT
+
+        public void Validate()
         {
             if (EmployeeID <= 0)
                 throw new Exception("Invalid Employee ID");
+
+            if (ApprovedBy <= 0)
+                throw new Exception("Invalid ApprovedBy");
+
+            if (NetPay < 0)
+                throw new Exception("NetPay cannot be negative");
         }
     }
 

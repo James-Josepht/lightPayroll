@@ -23,6 +23,8 @@ namespace lighPayrollUI
         private readonly int user_id;
         private int attendance_id;
         private int employee_id;
+        private int selectedEmployeeID = 0;
+        private string selectedEmployeeName = "";
 
 
         public EFeatures(string role, string username, int userId)
@@ -99,10 +101,10 @@ namespace lighPayrollUI
 
         private void LoadAttendanceList()
         {
-            
+
             clockGrid.DataSource = null;
             clockGrid.Columns.Clear();
-            var employeeID  = SQLiteDataAccess.GetEmployeeIdByUserId(user_id);
+            var employeeID = SQLiteDataAccess.GetEmployeeIdByUserId(user_id);
             var data = AttendanceService.LoadUserAttendanceById(employeeID);
 
             // Project to display properties for the grid
@@ -367,7 +369,7 @@ namespace lighPayrollUI
         {
             if (e.KeyCode == Keys.Enter)
             {
-                e.SuppressKeyPress = true; 
+                e.SuppressKeyPress = true;
                 // prevents "ding" sound
                 // Call your search method here, similar to SearchUser for payroll
                 SearchAttendance();
@@ -409,6 +411,44 @@ namespace lighPayrollUI
             }
         }
 
-       
+        private void modifyPayrollB_Click(object sender, EventArgs e)
+        {
+            if (selectedEmployeeID == 0)
+            {
+                adminUI.CustomMessageBox("Please select an employee first.");
+                return;
+            }
+
+            HPayroll form = new HPayroll();
+            var payroll = form.ShowPayrollForm(selectedEmployeeID);
+
+            if (payroll != null)
+            {
+                SQLiteDataAccess.InsertPayroll(payroll);
+            }
+        }
+
+        private void payrollGrid_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                int tempEmployeeID = Convert.ToInt32(
+                    payrollGrid.Rows[e.RowIndex].Cells["EmployeeID"].Value);
+
+                string tempName = payrollGrid.Rows[e.RowIndex]
+                    .Cells["FullName"].Value.ToString();
+
+                ConfirmForm confirm = new ConfirmForm(
+                $"Confirm to select this employee?\n\n", $"Employee ID: {tempEmployeeID}\nName: {tempName}");
+
+                confirm.ShowDialog();
+
+                if (confirm.Result)
+                {
+                    selectedEmployeeID = tempEmployeeID;
+                    selectedEmployeeName = tempName;
+                }
+            }
+        }
     }
 }

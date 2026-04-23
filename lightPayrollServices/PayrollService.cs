@@ -1,8 +1,16 @@
-﻿using lightPayrollModel;
+﻿using Dapper;
+using lightPayrollModel;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SQLite;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace lightPayrollServices
 {
-    public class PayrollService
+    public class PayrollService: SQLiteDataAccess
     {
         private decimal ComputeTax(decimal taxableIncome)
         {
@@ -46,9 +54,9 @@ namespace lightPayrollServices
                 PagIBIG = 0,
                 WithholdingTax = tax,
                 Deductions = tax,
-                NetSalary = netPay,
-                PayrollDate = DateTime.Now,
-                ProcessedBy = processedBy
+                NetPay = netPay,
+                PayrollDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
+                ApprovedBy = processedBy
             };
         }
 
@@ -93,10 +101,37 @@ namespace lightPayrollServices
                 PagIBIG = pagIbig,
                 WithholdingTax = tax,
                 Deductions = deductions,
-                NetSalary = netPay,
-                PayrollDate = DateTime.Now,
-                ProcessedBy = processedBy
+                NetPay = netPay,
+                PayrollDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
+                ApprovedBy = processedBy
             };
         }
+
+        public static decimal GetTotalHours(int employeeID)
+        {
+            using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
+            {
+                var records = conn.Query<AttendanceUser>(
+                    @"SELECT TimeIn, TimeOut
+              FROM AttendanceTable
+              WHERE EmployeeID = @EmployeeID
+              AND TimeOut IS NOT NULL",
+                    new { EmployeeID = employeeID });
+
+                decimal totalHours = 0;
+
+                foreach (var r in records)
+                {
+                    if (r.TimeIn.HasValue && r.TimeOut.HasValue)
+                    {
+                        totalHours += (decimal)(r.TimeOut.Value - r.TimeIn.Value).TotalHours;
+                    }
+                }
+
+                return totalHours;
+            }
+        }
+
+
     }
 }

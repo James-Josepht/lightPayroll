@@ -1,20 +1,21 @@
 ﻿using lightPayrollModel;
+using lightPayrollServices;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace lighPayrollUI
 {
     internal class HPayroll
     {
-        public PayrollInput ShowPayrollForm()
+        public Payroll ShowPayrollForm(int employeeID)
         {
+            PayrollService service = new PayrollService();
+
             Form form = new Form()
             {
-                Width = 400,
-                Height = 350,
+                Width = 420,
+                Height = 320,
                 Text = "Payroll Input",
                 StartPosition = FormStartPosition.CenterScreen,
                 FormBorderStyle = FormBorderStyle.FixedDialog,
@@ -22,30 +23,80 @@ namespace lighPayrollUI
                 ControlBox = false
             };
 
-            // Controls
-            NumericUpDown hours = CreateNumeric("Hours Worked");
-            NumericUpDown rate = CreateNumeric("Hourly Rate");
-            NumericUpDown otHours = CreateNumeric("Overtime Hours");
-            NumericUpDown otRate = CreateNumeric("Overtime Rate");
-            NumericUpDown deductions = CreateNumeric("Deductions");
+            // MAIN GRID
+            TableLayoutPanel panel = new TableLayoutPanel()
+            {
+                Dock = DockStyle.Fill,
+                ColumnCount = 2,
+                RowCount = 6,
+                Padding = new Padding(15),
+            };
 
+            panel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 40F));
+            panel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 60F));
 
+            // CONTROLS
+            NumericUpDown rate = CreateNumeric();
+            NumericUpDown pagIbig = CreateNumeric();
+            NumericUpDown deductions = CreateNumeric();
 
-           
+            panel.Controls.Add(new Label() { Text = "Hourly Rate", AutoSize = true }, 0, 0);
+            panel.Controls.Add(rate, 1, 0);
 
+            panel.Controls.Add(new Label() { Text = "Pag-IBIG", AutoSize = true }, 0, 1);
+            panel.Controls.Add(pagIbig, 1, 1);
+
+            panel.Controls.Add(new Label() { Text = "Other Deductions", AutoSize = true }, 0, 2);
+            panel.Controls.Add(deductions, 1, 2);
+
+            // BUTTONS
             Button ok = new Button() { Text = "OK", Width = 100 };
             Button cancel = new Button() { Text = "Cancel", Width = 100 };
 
-            PayrollInput result = null;
+            Panel buttons = new Panel()
+            {
+                Height = 50,
+                Dock = DockStyle.Bottom
+            };
 
+            ok.Left = 90;
+            cancel.Left = 220;
+
+            buttons.Controls.Add(ok);
+            buttons.Controls.Add(cancel);
+
+            form.Controls.Add(panel);
+            form.Controls.Add(buttons);
+
+            Payroll result = null;
+
+           
+
+            //decimal overtimeHours = totalHours > 160 ? totalHours - 160 : 0;
+            //for period type
+
+
+            // OK CLICK
             ok.Click += (s, e) =>
             {
-                result = new PayrollInput()
-                {
-                    HourlyRate = rate.Value,
-                    OtherDeductions = deductions.Value, //Other Deductions (Loans, Cash Advance, etc.)
-                };
+              
+                decimal hoursWorked = PayrollService.GetTotalHours(employeeID);
+
+                // temporary only
+                decimal overtimeHours = hoursWorked > 8 ? hoursWorked - 8 : 0;
+
+                Payroll payroll = service.CalculateSecond(
+                    employeeID,
+                    rate.Value,
+                    hoursWorked,
+                    overtimeHours,
+                    pagIbig.Value,        
+                    deductions.Value,     
+                    processedBy: 1
+                );
                 
+
+                result = payroll;
                 form.Close();
             };
 
@@ -55,62 +106,20 @@ namespace lighPayrollUI
                 form.Close();
             };
 
-            FlowLayoutPanel panel = new FlowLayoutPanel()
-            {
-                Dock = DockStyle.Fill,
-                FlowDirection = FlowDirection.TopDown,
-                Padding = new Padding(10),
-                AutoScroll = true
-            };
-
-            panel.Controls.Add(hours);
-            panel.Controls.Add(rate);
-            panel.Controls.Add(otHours);
-            panel.Controls.Add(otRate);
-            panel.Controls.Add(deductions);
-
-
-            Panel buttons = new Panel() { Height = 40, Dock = DockStyle.Bottom };
-            ok.Left = 50;
-            cancel.Left = 200;
-            buttons.Controls.Add(ok);
-            buttons.Controls.Add(cancel);
-
-            form.Controls.Add(panel);
-            form.Controls.Add(buttons);
-
             form.ShowDialog();
-
             return result;
         }
 
-        // Helper method
-        private NumericUpDown CreateNumeric(string labelText)
+        private NumericUpDown CreateNumeric()
         {
-            Panel container = new Panel() { Width = 340, Height = 50 };
-
-            Label label = new Label()
+            return new NumericUpDown()
             {
-                Text = labelText,
-                Dock = DockStyle.Top
-            };
-
-            NumericUpDown num = new NumericUpDown()
-            {
-                Dock = DockStyle.Bottom,
                 DecimalPlaces = 2,
                 Maximum = 1000000,
                 Minimum = 0,
+                Dock = DockStyle.Fill,
                 ThousandsSeparator = true
             };
-
-            container.Controls.Add(label);
-            container.Controls.Add(num);
-
-            // Trick: return NumericUpDown but keep label visually attached
-            num.Tag = container;
-
-            return num;
         }
     }
 }

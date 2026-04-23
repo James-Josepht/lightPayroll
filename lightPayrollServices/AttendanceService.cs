@@ -209,19 +209,5 @@ namespace lightPayrollServices
             }
         }
 
-        public decimal CalculateHours(DateTime timeIn, DateTime timeOut)
-        {
-            TimeSpan total = timeOut - timeIn;
-
-            // convert to decimal hours (e.g., 8.5 hours)
-            return (decimal)total.TotalHours;
-        }
-        public decimal CalculateOvertime(decimal totalHours)
-        {
-            if (totalHours > 8)
-                return totalHours - 8;
-
-            return 0;
-        }
     }
 }
