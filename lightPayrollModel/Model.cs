@@ -199,7 +199,7 @@ namespace lightPayrollModel
     public class AttendanceAdmin : BaseEntity
     {
         public int AttendanceID { get; set; }
-        public int UsersID { get; set; }
+        public int EmployeeID { get; set; }
         public string? FullName { get; set; }
 
         public DateTime? Date { get; set; }
@@ -217,6 +217,20 @@ namespace lightPayrollModel
             if (Date == null)
                 throw new Exception("Date is required");
         }
+    }
+
+
+    public class AttendanceCore
+    {
+        public int EmployeeID { get; set; }
+        public DateTime? Date { get; set; }
+        public DateTime? TimeIn { get; set; }
+        public DateTime? TimeOut { get; set; }
+        public string? Remarks { get; set; }
+
+        // For display only
+        public string TimeInDisplay => TimeIn?.ToString("HH:mm");
+        public string TimeOutDisplay => TimeOut?.ToString("HH:mm");
     }
 
     public class AttendanceUser

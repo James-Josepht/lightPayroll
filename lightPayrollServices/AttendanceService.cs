@@ -12,7 +12,7 @@ namespace lightPayrollServices
 {
     public class AttendanceService:SQLiteDataAccess
     {
-        public static List<AttendanceAdmin> LoadUserAttendance()//used for displaying the user only
+        public static List<AttendanceCore> LoadAttendanceCore()//used for displaying the user only
         {
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
             {
@@ -23,7 +23,7 @@ namespace lightPayrollServices
                 string createTableSql = @"
                CREATE TABLE IF NOT EXISTS AttendanceTable (
 	            AttendanceID	INTEGER NOT NULL UNIQUE,
-	            UsersID	INTEGER NOT NULL,
+	            EmployeeID	INTEGER NOT NULL,
 	            FullName	TEXT NOT NULL,
 	            Date	TEXT NOT NULL,
 	            TimeIn	TEXT NOT NULL,
@@ -31,7 +31,7 @@ namespace lightPayrollServices
 	            Status	TEXT NOT NULL,
 	            Remarks	TEXT NOT NULL,
 	            PRIMARY KEY(AttendanceID AUTOINCREMENT),
-                FOREIGN KEY (UsersID) REFERENCES UsersTable(UsersID) 
+                FOREIGN KEY (EmployeeID) REFERENCES EmployeesTable(EmployeeID) 
 
                 ON DELETE CASCADE
                 ON UPDATE CASCADE
@@ -40,7 +40,7 @@ namespace lightPayrollServices
                 conn.Execute(createTableSql);  // Dapper extension method for non-query commands
 
                 // Step 2: Query the table
-                var output = conn.Query<AttendanceAdmin>("SELECT Date, TimeIn, TimeOut, Status, Remarks FROM AttendanceTable", new DynamicParameters());
+                var output = conn.Query<AttendanceCore>("SELECT EmployeeID, Date, TimeIn, TimeOut, Status, Remarks FROM AttendanceTable", new DynamicParameters());
 
                 var attendances = output.ToList();
 
@@ -49,18 +49,55 @@ namespace lightPayrollServices
             }
         }
 
-        public static int InsertClock(AttendanceUser user, int userId, string fullName)
+        public static List<AttendanceAdmin> LoadAttendanceAdmin()//used for displaying the user only
+        {
+            using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
+            {
+                conn.Open();
+                conn.Execute("PRAGMA foreign_keys = ON;");
+
+                // Step 1: Ensure the table exists
+                string createTableSql = @"
+               CREATE TABLE IF NOT EXISTS AttendanceTable (
+	            AttendanceID	INTEGER NOT NULL UNIQUE,
+	            EmployeeID	INTEGER NOT NULL,
+	            FullName	TEXT NOT NULL,
+	            Date	TEXT NOT NULL,
+	            TimeIn	TEXT NOT NULL,
+	            TimeOut	TEXT NOT NULL,
+	            Status	TEXT NOT NULL,
+	            Remarks	TEXT NOT NULL,
+	            PRIMARY KEY(AttendanceID AUTOINCREMENT),
+                FOREIGN KEY (EmployeeID) REFERENCES EmployeesTable(EmployeeID) 
+
+                ON DELETE CASCADE
+                ON UPDATE CASCADE
+                );";
+
+                conn.Execute(createTableSql);  // Dapper extension method for non-query commands
+
+                // Step 2: Query the table
+                var output = conn.Query<AttendanceAdmin>("SELECT EmployeeID, Date, TimeIn, TimeOut, Status, Remarks FROM AttendanceTable", new DynamicParameters());
+
+                var attendances = output.ToList();
+
+
+                return attendances;
+            }
+        }
+
+        public static int InsertClock(AttendanceUser user, int employeeID, string fullName)
         {
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
             {
                     string sql = @"
             INSERT INTO AttendanceTable 
-            (UsersID, FullName, Date, TimeIn, TimeOut, Status, Remarks)
-            VALUES (@UsersID, @FullName, @Date, @TimeIn, @TimeOut, @Status, @Remarks);";
+            (EmployeeID, FullName, Date, TimeIn, TimeOut, Status, Remarks)
+            VALUES (@EmployeeID, @FullName, @Date, @TimeIn, @TimeOut, @Status, @Remarks);";
 
                 conn.Execute(sql, new
                 {
-                    UsersID = userId,
+                    EmployeeID = employeeID,
                     FullName = fullName,
                     Date = user.Date ?? DateTime.Now,
                     TimeIn = user.TimeIn ?? DateTime.Now,
@@ -80,7 +117,7 @@ namespace lightPayrollServices
            
         }
 
-        public static bool HasClockedInToday(int userId)
+        public static bool HasClockedInToday(int employeeID)
         {
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
             {
@@ -90,13 +127,13 @@ namespace lightPayrollServices
                 var count = conn.ExecuteScalar<int>(
                     @"SELECT COUNT(1)
               FROM AttendanceTable
-              WHERE UsersID = @UsersID
+              WHERE EmployeeID = @EmployeeID
               AND Date >= @Start
               AND Date < @End
               AND TimeIn IS NOT NULL",
                     new
                     {
-                        UsersID = userId,
+                        EmployeeID = employeeID,
                         Start = start,
                         End = end
                     });
@@ -120,41 +157,47 @@ namespace lightPayrollServices
             }
         }
 
-        public static int GetActiveAttendanceId(int userId)
+        public static int GetActiveAttendanceId(int employeeID)
         {
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
             {
                 return conn.ExecuteScalar<int>(
                     @"SELECT AttendanceID
               FROM AttendanceTable
-              WHERE UsersID = @UsersID
+              WHERE EmployeeID = @EmployeeID
               AND TimeOut IS NULL
               ORDER BY Date DESC
               LIMIT 1;",
-                    new { UsersID = userId });
+                    new { EmployeeID = employeeID });
             }
         }
 
-        public static bool HasClockedOutToday(int userId)
+        public static bool HasClockedOutToday(int employeeID)
         {
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
             {
                 return conn.ExecuteScalar<int>(
                     @"SELECT COUNT(1)
               FROM AttendanceTable
-              WHERE UsersID = @UsersID
+              WHERE EmployeeID = @EmployeeID
               AND TimeOut IS NOT NULL
               AND TimeIn IS NOT NULL
               AND DATE(Date) = DATE('now','localtime')",
-                    new { UsersID = userId }) > 0;
+                    new { EmployeeID = employeeID }) > 0;
             }
         }
 
-        public static List<AttendanceUser> LoadUserAttendanceById(int userId)
+        public static List<AttendanceUser> LoadUserAttendanceById(int employeeID)
         {
+
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
             {
-                var output = conn.Query<AttendanceUser>("SELECT Date, TimeIn, TimeOut, Status, Remarks FROM AttendanceTable WHERE UsersID = @UsersID", new { UsersID = userId });
+                var output = conn.Query<AttendanceUser>(
+                 @"SELECT EmployeeID, Date, TimeIn, TimeOut, Status, Remarks
+                  FROM AttendanceTable
+                  WHERE EmployeeID = @EmployeeID",
+                 new { EmployeeID = employeeID });
+
                 var attendances = output.Select(u =>
                 {
                     u.Date = u.Date;

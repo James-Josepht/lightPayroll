@@ -59,11 +59,11 @@ namespace lighPayroll
 
         }
 
-        private void LoadAttendanceList()//used by UsersUI
+        private void LoadAttendanceList()
         {
             //from lightPayrollServices
 
-            users = AttendanceService.LoadUserAttendance(); 
+            users = AttendanceService.LoadAttendanceAdmin(); 
             WireUpAttendanceList();
         }
 

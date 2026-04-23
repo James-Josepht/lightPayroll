@@ -135,6 +135,20 @@ namespace lightPayrollServices
         /// 
         /// 
 
+        public static int GetEmployeeIdByUserId(int usersID)
+        {
+            using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
+            {
+                var employeeId = conn.QueryFirstOrDefault<int>(
+                    @"SELECT EmployeeID 
+              FROM EmployeesTable 
+              WHERE UsersID = @UsersID",
+                    new { UsersID = usersID });
+
+                return employeeId;
+            }
+        }
+
 
         //THE QUERY WILL LAG ONCE USER REACHES HUGE NUMBER, NEED TO OPTIMIZE IN THE FUTURE!
         public static List<EmployeeDisplay> GetEmployeeByName(string fullname)

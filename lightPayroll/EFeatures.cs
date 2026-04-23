@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace lighPayrollUI
@@ -21,6 +22,7 @@ namespace lighPayrollUI
         private readonly string user_role, user_name;
         private readonly int user_id;
         private int attendance_id;
+        private int employee_id;
 
 
         public EFeatures(string role, string username, int userId)
@@ -30,7 +32,9 @@ namespace lighPayrollUI
             user_role = role;
             user_name = username;
             user_id = userId;
+            employee_id = SQLiteDataAccess.GetEmployeeIdByUserId(user_id);
         }
+
         private void EmployeeFeature_Load(object sender, EventArgs e)
         {
             adminUI.panelDesign(statusPanel);
@@ -78,15 +82,28 @@ namespace lighPayrollUI
         {
             attendanceGrid.DataSource = null;
             attendanceGrid.Columns.Clear();
-            var data = AttendanceService.LoadUserAttendance();
-            attendanceGrid.DataSource = data;
+            var data = AttendanceService.LoadAttendanceCore();
+            var displayData = data.Select(a => new
+            {
+                EmployeeID = a.EmployeeID,
+                Date = a.Date?.ToString("yyyy-MM-dd"),
+                TimeIn = a.TimeInDisplay,
+                TimeOut = a.TimeOutDisplay,
+                a.Remarks
+            }).ToList();
+
+            attendanceGrid.DataSource = displayData;
         }
+
+
 
         private void LoadAttendanceList()
         {
+            
             clockGrid.DataSource = null;
             clockGrid.Columns.Clear();
-            var data = AttendanceService.LoadUserAttendanceById(user_id);
+            var employeeID  = SQLiteDataAccess.GetEmployeeIdByUserId(user_id);
+            var data = AttendanceService.LoadUserAttendanceById(employeeID);
 
             // Project to display properties for the grid
             var displayData = data.Select(a => new
@@ -253,7 +270,7 @@ namespace lighPayrollUI
         /// 
         private void clockInButton_Click(object sender, EventArgs e)
         {
-            if (AttendanceService.HasClockedInToday(user_id))
+            if (AttendanceService.HasClockedInToday(employee_id))
             {
                 adminUI.CustomMessageBox("You have already clocked in today.");
                 return;
@@ -270,7 +287,7 @@ namespace lighPayrollUI
                 Remarks = ""
             };
 
-            attendance_id = AttendanceService.InsertClock(attendance, user_id, user_name);
+            attendance_id = AttendanceService.InsertClock(attendance, employee_id, user_name);
 
             LoadAttendanceList();
 
@@ -280,7 +297,7 @@ namespace lighPayrollUI
 
         private void clockOutButton_Click(object sender, EventArgs e)
         {
-            attendance_id = AttendanceService.GetActiveAttendanceId(user_id);
+            attendance_id = AttendanceService.GetActiveAttendanceId(employee_id);
 
             if (attendance_id == null || attendance_id == 0)
             {
@@ -328,13 +345,22 @@ namespace lighPayrollUI
 
             var result = AttendanceService.LoadUserAttendanceById(int.Parse(employeeAtt));
 
+            var displayData = result.Select(a => new
+            {
+                EmployeeID = employeeAtt,
+                Date = a.Date?.ToString("yyyy-MM-dd"),
+                TimeIn = a.TimeInDisplay,
+                TimeOut = a.TimeOutDisplay,
+                a.Remarks
+            }).ToList();
+
             if (result == null || result.Count == 0)
             {
                 adminUI.CustomMessageBox("User not found.");
                 return;
             }
 
-            attendanceGrid.DataSource = result;
+            attendanceGrid.DataSource = displayData;
         }
 
         private void attendanceSearchEnter(object sender, KeyEventArgs e)
