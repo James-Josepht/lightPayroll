@@ -116,6 +116,7 @@ namespace lighPayroll
             headPanel.Name = "headPanel";
             headPanel.Size = new Size(937, 101);
             headPanel.TabIndex = 1;
+          
             // 
             // exitLabel
             // 
@@ -539,7 +540,6 @@ namespace lighPayroll
             pictureBox4.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox4.TabIndex = 10;
             pictureBox4.TabStop = false;
-         
             // 
             // userControlPanel
             // 
@@ -666,7 +666,7 @@ namespace lighPayroll
             panel2.Size = new Size(783, 80);
             panel2.TabIndex = 4;
             // 
-            // AdminUI
+            // AdUI
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -675,7 +675,7 @@ namespace lighPayroll
             Controls.Add(panel4);
             Controls.Add(headPanel);
             Controls.Add(panel1);
-            Name = "AdminUI";
+            Name = "AdUI";
             StartPosition = FormStartPosition.CenterScreen;
             Load += AdminUI_Load;
             headPanel.ResumeLayout(false);

@@ -52,20 +52,20 @@ namespace lighPayroll
         {
             List<string> storedFeatures = new List<string>
             {
-                "Attendance",
-                "Employee Removal",
-                "Payroll",
-                "Reports"
+                "attendance",
+                "employee removal",
+                "payroll",
+                "reports"
             };
 
-            if (e.KeyCode == Keys.Enter && storedFeatures.Any(feature => searchBox.Text.Contains("Attendance")))
+            if (e.KeyCode == Keys.Enter && storedFeatures.Any(feature => searchBox.Text.ToLower().Contains(feature)))
             {
                 e.SuppressKeyPress = true;
                 AdAttendance attRecords = new AdAttendance();
                 attRecords.Show();
                 this.Hide();
             }
-            else if (e.KeyCode == Keys.Enter && !storedFeatures.Any(feature => searchBox.Text.Contains(feature)))
+            else if (e.KeyCode == Keys.Enter && !storedFeatures.Any(feature => searchBox.Text.ToLower().Contains(feature)))
             {
                 CustomMessageBox("No results found\r\n\r\nYou may want to try different keywords or check for any possible typos.");
             }
@@ -144,7 +144,7 @@ namespace lighPayroll
             customMsg.ShowDialog();
         }
 
-        
+
 
 
         private void attendanceToolClick(object sender, EventArgs e)
@@ -161,7 +161,7 @@ namespace lighPayroll
             this.Hide();
         }
 
- 
+
         private void exitButton_Click(object sender, EventArgs e)
         {
             PLogIn messageBox = new PLogIn();
@@ -180,6 +180,7 @@ namespace lighPayroll
 
         }
 
+       
     }
 
 }

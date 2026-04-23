@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace lighPayrollUI
 {
@@ -37,6 +38,7 @@ namespace lighPayrollUI
             LoadAttendanceList();
             LoadEmployeeList();
             LoadProfile();
+            LoadAllAttendanceList();
 
             if (!DesignMode)
             {
@@ -72,7 +74,13 @@ namespace lighPayrollUI
         /// FOR LOADING PART IN TABLES
         /// 
 
-
+        private void LoadAllAttendanceList()
+        {
+            attendanceGrid.DataSource = null;
+            attendanceGrid.Columns.Clear();
+            var data = AttendanceService.LoadUserAttendance();
+            attendanceGrid.DataSource = data;
+        }
 
         private void LoadAttendanceList()
         {
@@ -146,36 +154,6 @@ namespace lighPayrollUI
 
 
 
-        //used for employee in payroll searching
-        private void SearchUser(string name)
-        {
-            string username = searchBox.Text;
-
-            if (string.IsNullOrEmpty(username))
-            {
-                adminUI.CustomMessageBox("Enter valid name.");
-                return;
-            }
-
-            var result = SQLiteDataAccess.GetEmployeeByName(username);
-
-            if (result == null || result.Count == 0)
-            {
-                adminUI.CustomMessageBox("User not found.");
-                return;
-            }
-
-            payrollGrid.DataSource = result;
-        }
-
-        private void searchEnter(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                e.SuppressKeyPress = true; // prevents "ding" sound
-                SearchUser(searchBox.Text);
-            }
-        }
 
 
         private void ConfigureTabsByRole()
@@ -325,6 +303,85 @@ namespace lighPayrollUI
         //// FOR PROFILE PAGE
         ////
         ////
+        ///
+
+        ///
+        /// FOR ATTENDANCE PAGE
+        ///
+
+        private void SearchAttendance()
+        {
+            string employeeAtt = attendanceSearch.Text;
+
+            if (string.IsNullOrEmpty(employeeAtt) || string.IsNullOrWhiteSpace(employeeAtt))
+            {
+                LoadAllAttendanceList();
+                return;
+            }
+
+            // Validate input first
+            else if (!int.TryParse(attendanceSearch.Text, out int userId))
+            {
+                adminUI.CustomMessageBox("Please enter a valid numeric User ID.");
+                return;
+            }
+
+            var result = AttendanceService.LoadUserAttendanceById(int.Parse(employeeAtt));
+
+            if (result == null || result.Count == 0)
+            {
+                adminUI.CustomMessageBox("User not found.");
+                return;
+            }
+
+            attendanceGrid.DataSource = result;
+        }
+
+        private void attendanceSearchEnter(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true; 
+                // prevents "ding" sound
+                // Call your search method here, similar to SearchUser for payroll
+                SearchAttendance();
+
+            }
+        }
+
+        /// 
+        /// FOR PAYROLL PAGE
+        //
+
+        private void SearchEmployee()
+        {
+            string username = searchBox.Text;
+
+            if (string.IsNullOrEmpty(username))
+            {
+                adminUI.CustomMessageBox("Enter valid name.");
+                return;
+            }
+
+            var result = SQLiteDataAccess.GetEmployeeByName(username);
+
+            if (result == null || result.Count == 0)
+            {
+                adminUI.CustomMessageBox("User not found.");
+                return;
+            }
+
+            payrollGrid.DataSource = result;
+        }
+
+        private void searchEnterPayroll(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true; // prevents "ding" sound
+                SearchEmployee();
+            }
+        }
 
        
     }

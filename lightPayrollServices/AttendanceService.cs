@@ -12,7 +12,7 @@ namespace lightPayrollServices
 {
     public class AttendanceService:SQLiteDataAccess
     {
-        public static List<AttendanceUser> LoadUserAttendance()//used for displaying the user only
+        public static List<AttendanceAdmin> LoadUserAttendance()//used for displaying the user only
         {
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
             {
@@ -31,7 +31,7 @@ namespace lightPayrollServices
 	            Status	TEXT NOT NULL,
 	            Remarks	TEXT NOT NULL,
 	            PRIMARY KEY(AttendanceID AUTOINCREMENT),
-                FOREIGN KEY (UserID) REFERENCES UsersTable(UsersID)
+                FOREIGN KEY (UsersID) REFERENCES UsersTable(UsersID) 
 
                 ON DELETE CASCADE
                 ON UPDATE CASCADE
@@ -40,7 +40,7 @@ namespace lightPayrollServices
                 conn.Execute(createTableSql);  // Dapper extension method for non-query commands
 
                 // Step 2: Query the table
-                var output = conn.Query<AttendanceUser>("SELECT  Date, TimeIn, TimeOut, Status, Remarks FROM AttendanceTable", new DynamicParameters());
+                var output = conn.Query<AttendanceAdmin>("SELECT Date, TimeIn, TimeOut, Status, Remarks FROM AttendanceTable", new DynamicParameters());
 
                 var attendances = output.ToList();
 

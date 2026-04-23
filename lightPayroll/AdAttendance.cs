@@ -22,7 +22,7 @@ namespace lighPayroll
 {
     public partial class AdAttendance : Form
     {
-        List<Users> attendance = new List<Users>();
+        List <AttendanceAdmin> users = new List<AttendanceAdmin>();
 
 
         public AdAttendance()
@@ -62,19 +62,20 @@ namespace lighPayroll
         private void LoadAttendanceList()//used by UsersUI
         {
             //from lightPayrollServices
-            // users = SQLiteDataAccess.LoadUsers(); 
+
+            users = AttendanceService.LoadUserAttendance(); 
             WireUpAttendanceList();
         }
 
         private void WireUpAttendanceList()
         {
             attendanceGrid.DataSource = null;
-            attendanceGrid.DataSource = attendance;
+            attendanceGrid.DataSource = users;
         }
 
         private void loadButton_Click(object sender, EventArgs e)
         {
-            //LoadAttendanceList();
+            LoadAttendanceList();
 
         }
 

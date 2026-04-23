@@ -199,7 +199,7 @@ namespace lightPayrollModel
     public class AttendanceAdmin : BaseEntity
     {
         public int AttendanceID { get; set; }
-        public int UserID { get; set; }
+        public int UsersID { get; set; }
         public string? FullName { get; set; }
 
         public DateTime? Date { get; set; }
@@ -211,7 +211,7 @@ namespace lightPayrollModel
 
         public override void Validate()
         {
-            if (UserID <= 0)
+            if (UsersID <= 0)
                 throw new Exception("Invalid User ID");
 
             if (Date == null)

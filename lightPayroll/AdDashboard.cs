@@ -200,7 +200,7 @@ namespace lighPayroll
                 usersB.Enabled = true;
 
             }
-            else if (role == "Manager")
+            else if (role == "Manager" || role == "Accountant")
             {
                 taskB.Visible = true;
                 taskB.Enabled = true;
