@@ -50,6 +50,10 @@
               "target": "Package",
               "version": "[2.1.72, )"
             },
+            "MailKit": {
+              "target": "Package",
+              "version": "[4.16.0, )"
+            },
             "Microsoft.Data.Sqlite": {
               "target": "Package",
               "version": "[10.0.5, )"

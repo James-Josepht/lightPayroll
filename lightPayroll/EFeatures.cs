@@ -1,4 +1,5 @@
 ﻿using lighPayroll;
+using lightPayrollInfrastructure;
 using lightPayrollModel;
 using lightPayrollServices;
 using Microsoft.VisualBasic.ApplicationServices;
@@ -426,6 +427,12 @@ namespace lighPayrollUI
             {
                 SQLiteDataAccess.InsertPayroll(payroll);
             }
+
+            EmailService.SendPayrollEmail(
+                "shalomfromjoseph@gmail.com",
+                "James",
+                 777.00m
+            );
         }
 
         private void payrollGrid_CellClick(object sender, DataGridViewCellEventArgs e)
