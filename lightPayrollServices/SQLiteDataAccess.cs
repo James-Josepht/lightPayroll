@@ -15,6 +15,7 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace lightPayrollServices
 {
+    //this is where the most common sql queries happened
     public class SQLiteDataAccess
     {
 
@@ -276,8 +277,32 @@ namespace lightPayrollServices
             }
         }
 
+        ///
+        /// DELETE PART
+        ///
 
-       
+
+        public static bool DeleteUser(int userId)
+        {
+            using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
+            {
+                // check if user is used
+                int count = conn.ExecuteScalar<int>(
+                    "SELECT COUNT(1) FROM EmployeesTable WHERE UsersID = @UsersID",
+                    new { UsersID = userId });
+
+                if (count > 0)
+                {
+                    return false; // cannot delete
+                }
+
+                string sql = "DELETE FROM UsersTable WHERE UsersID = @UsersID";
+                conn.Execute(sql, new { UsersID = userId });
+
+                return true;
+            }
+        }
+
 
 
 

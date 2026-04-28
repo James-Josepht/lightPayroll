@@ -1,9 +1,10 @@
-﻿using System;
+﻿using lighPayroll;
+using lightPayrollServices;
+using System;
 using System.Data;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Windows.Forms;
-using lighPayroll;
-using lightPayrollServices;
 
 namespace lighPayrollUI
 {
@@ -19,7 +20,9 @@ namespace lighPayrollUI
 
         private void UsersUI_Load(object sender, EventArgs e)
         {
+
             greetingsAndMessageBoxDesign.TypeMessage(label2, "Trust But Always Verify!");
+            panelDesign();
         }
 
         // Load directly from database
@@ -35,6 +38,42 @@ namespace lighPayrollUI
             LoadUserList();
         }
 
+        private void deleteUserButton_Click(object sender, EventArgs e)
+        {
+            // Validate input first
+            if (!int.TryParse(nameOrIDTxtBox.Text, out int userId))
+            {
+                greetingsAndMessageBoxDesign.CustomMessageBox("Please enter a valid numeric User ID.");
+                return;
+            }
+
+
+            if (SQLiteDataAccess.GetUserByIdOrUsername(userId.ToString()) == null)
+            {
+                greetingsAndMessageBoxDesign.CustomMessageBox("User ID not found.");
+                return;
+            }
+
+            var confirm = new ConfirmForm(
+                        "Delete User",
+                        $"Are you sure you want to delete User ID: {userId}?",
+                        true
+                    );
+
+            confirm.ShowDialog();
+
+            if (confirm.Result)
+            {
+                bool success = SQLiteDataAccess.DeleteUser(userId);
+
+                LoadUserList();
+
+                if (!success)
+                {
+                    new ConfirmForm("Error", "User is linked to employee. Cannot delete.", false).ShowDialog();
+                }
+            }
+        }
 
 
         // Update ONLY when button is clicked
@@ -72,13 +111,13 @@ namespace lighPayrollUI
         }
         private void searchUserButton_Click(object sender, EventArgs e)
         {
-           string username = nameOrIDTxtBox.Text;
+            string username = nameOrIDTxtBox.Text;
 
-           if (string.IsNullOrEmpty(username))
-           {
+            if (string.IsNullOrEmpty(username))
+            {
                 greetingsAndMessageBoxDesign.CustomMessageBox("Enter valid name.");
                 return;
-           }
+            }
 
 
             if (SQLiteDataAccess.SearchUsersByUsername(username) == null)
@@ -95,5 +134,30 @@ namespace lighPayrollUI
             this.Hide();
         }
 
+
+        private void panelDesign()
+        {
+            int radius = 30;
+
+            GraphicsPath greetingsPath = new GraphicsPath();
+            greetingsPath.AddArc(0, 0, radius, radius, 180, 90);
+            greetingsPath.AddArc(loadButton.Width - radius, 0, radius, radius, 270, 90);
+            greetingsPath.AddArc(loadButton.Width - radius, loadButton.Height - radius, radius, radius, 0, 90);
+            greetingsPath.AddArc(0, loadButton.Height - radius, radius, radius, 90, 90);
+            greetingsPath.CloseAllFigures();
+
+            GraphicsPath bodyPath = new GraphicsPath();
+            bodyPath.AddArc(0, 0, radius, radius, 180, 90);
+            bodyPath.AddArc(loadButton.Width - radius, 0, radius, radius, 270, 90);
+            bodyPath.AddArc(loadButton.Width - radius, loadButton.Height - radius, radius, radius, 0, 90); //lower right
+            bodyPath.AddArc(0, loadButton.Height - radius, radius, radius, 90, 90);
+            bodyPath.CloseAllFigures();
+
+            loadButton.Region = new Region(greetingsPath);
+            loadButton.Region = new Region(bodyPath);
+
+        }
+
+        
     }
 }

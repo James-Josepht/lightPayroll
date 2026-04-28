@@ -58,6 +58,7 @@ namespace lighPayrollUI
             borderRadius.SetRoundedRegion(attendancePanel, 33);
             borderRadius.SetRoundedRegion(attendanceSearchPnl, 33);
             borderRadius.SetRoundedRegion(profilePanel, 33);
+            borderRadius.SetRoundedRegion(payslipPanel, 33);
 
 
             //borderRadius.SetRoundedRegion(insideProfile, 33);
@@ -426,13 +427,29 @@ namespace lighPayrollUI
             if (payroll != null)
             {
                 SQLiteDataAccess.InsertPayroll(payroll);
+                adminUI.CustomMessageBox("Payroll successfully made.");
             }
 
-            EmailService.SendPayrollEmail(
-                "shalomfromjoseph@gmail.com",
-                "James",
-                 777.00m
-            );
+            try
+            {
+                //modify this in the future
+                EmailService.SendPayrollEmail(
+                    "shalomfromjoseph@gmail.com",
+                    "James",
+                     777.00m
+                );
+            }
+            catch (Exception ex)
+            {
+               var error = new ConfirmForm(
+                   $"Oh no, unable to email the employee\n\n\n\n{ex.Message}",
+                   "",
+                   false
+               );
+
+                error.ShowDialog();
+            }
+            
         }
 
         private void payrollGrid_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -456,6 +473,11 @@ namespace lighPayrollUI
                     selectedEmployeeName = tempName;
                 }
             }
+        }
+
+        private void label15_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -87,6 +87,31 @@
             panel6 = new Panel();
             panel4 = new Panel();
             profileNote = new Label();
+            payslipPanel = new Panel();
+            tableLayoutPanel2 = new TableLayoutPanel();
+            panel8 = new Panel();
+            label2 = new Label();
+            label3 = new Label();
+            label4 = new Label();
+            label5 = new Label();
+            label6 = new Label();
+            label7 = new Label();
+            label8 = new Label();
+            sssLbl = new Label();
+            birLbl = new Label();
+            payrollLbl = new Label();
+            pagIbigLbl = new Label();
+            basicPayLbl = new Label();
+            otPayLbl = new Label();
+            totalHoursLbl = new Label();
+            panel9 = new Panel();
+            panel10 = new Panel();
+            panel11 = new Panel();
+            otherDeductionsLbl = new Label();
+            label9 = new Label();
+            bonusesLbl = new Label();
+            label10 = new Label();
+            deductionsLbl = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             tableLayoutPanel1.SuspendLayout();
@@ -96,6 +121,7 @@
             statusPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)clockGrid).BeginInit();
             panel3.SuspendLayout();
+            payslipPage.SuspendLayout();
             attendancePage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)attendanceGrid).BeginInit();
             attendanceSearchPnl.SuspendLayout();
@@ -111,6 +137,9 @@
             profileTableLayout.SuspendLayout();
             insideProfile.SuspendLayout();
             panel4.SuspendLayout();
+            payslipPanel.SuspendLayout();
+            tableLayoutPanel2.SuspendLayout();
+            panel8.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -294,7 +323,8 @@
             // 
             // payslipPage
             // 
-            payslipPage.BackColor = Color.FromArgb(33, 44, 66);
+            payslipPage.BackColor = SystemColors.ActiveCaption;
+            payslipPage.Controls.Add(payslipPanel);
             payslipPage.Location = new Point(4, 25);
             payslipPage.Name = "payslipPage";
             payslipPage.Padding = new Padding(3);
@@ -771,6 +801,278 @@
             profileNote.TabIndex = 19;
             profileNote.Text = "NOTE:";
             // 
+            // payslipPanel
+            // 
+            payslipPanel.BackColor = Color.FromArgb(33, 44, 66);
+            payslipPanel.Controls.Add(tableLayoutPanel2);
+            payslipPanel.Location = new Point(23, 21);
+            payslipPanel.Name = "payslipPanel";
+            payslipPanel.Size = new Size(876, 367);
+            payslipPanel.TabIndex = 4;
+            // 
+            // tableLayoutPanel2
+            // 
+            tableLayoutPanel2.ColumnCount = 3;
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 5.41516256F));
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 94.58484F));
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 44F));
+            tableLayoutPanel2.Controls.Add(panel8, 1, 1);
+            tableLayoutPanel2.Controls.Add(panel9, 2, 1);
+            tableLayoutPanel2.Controls.Add(panel10, 0, 1);
+            tableLayoutPanel2.Controls.Add(panel11, 1, 2);
+            tableLayoutPanel2.Dock = DockStyle.Fill;
+            tableLayoutPanel2.Location = new Point(0, 0);
+            tableLayoutPanel2.Name = "tableLayoutPanel2";
+            tableLayoutPanel2.RowCount = 3;
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 10.1265821F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 89.87342F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 30F));
+            tableLayoutPanel2.Size = new Size(876, 367);
+            tableLayoutPanel2.TabIndex = 0;
+            // 
+            // panel8
+            // 
+            panel8.BackColor = Color.FromArgb(60, 80, 110);
+            panel8.Controls.Add(label10);
+            panel8.Controls.Add(deductionsLbl);
+            panel8.Controls.Add(bonusesLbl);
+            panel8.Controls.Add(label9);
+            panel8.Controls.Add(otherDeductionsLbl);
+            panel8.Controls.Add(label2);
+            panel8.Controls.Add(label3);
+            panel8.Controls.Add(label4);
+            panel8.Controls.Add(label5);
+            panel8.Controls.Add(label6);
+            panel8.Controls.Add(label7);
+            panel8.Controls.Add(label8);
+            panel8.Controls.Add(sssLbl);
+            panel8.Controls.Add(birLbl);
+            panel8.Controls.Add(payrollLbl);
+            panel8.Controls.Add(pagIbigLbl);
+            panel8.Controls.Add(basicPayLbl);
+            panel8.Controls.Add(otPayLbl);
+            panel8.Controls.Add(totalHoursLbl);
+            panel8.Dock = DockStyle.Fill;
+            panel8.Location = new Point(48, 37);
+            panel8.Name = "panel8";
+            panel8.Size = new Size(780, 296);
+            panel8.TabIndex = 1;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.ForeColor = Color.Beige;
+            label2.Location = new Point(528, 47);
+            label2.Name = "label2";
+            label2.Size = new Size(77, 16);
+            label2.TabIndex = 14;
+            label2.Text = "Department";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.ForeColor = Color.Beige;
+            label3.Location = new Point(528, 74);
+            label3.Name = "label3";
+            label3.Size = new Size(84, 16);
+            label3.TabIndex = 18;
+            label3.Text = "Salary Rate";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.ForeColor = Color.Beige;
+            label4.Location = new Point(528, 22);
+            label4.Name = "label4";
+            label4.Size = new Size(35, 16);
+            label4.TabIndex = 17;
+            label4.Text = "Role";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.ForeColor = Color.Beige;
+            label5.Location = new Point(120, 74);
+            label5.Name = "label5";
+            label5.Size = new Size(84, 16);
+            label5.TabIndex = 16;
+            label5.Text = "Middle Name";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.ForeColor = Color.Beige;
+            label6.Location = new Point(120, 48);
+            label6.Name = "label6";
+            label6.Size = new Size(77, 16);
+            label6.TabIndex = 15;
+            label6.Text = "First Name";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.ForeColor = Color.Beige;
+            label7.Location = new Point(120, 104);
+            label7.Name = "label7";
+            label7.Size = new Size(70, 16);
+            label7.TabIndex = 13;
+            label7.Text = "Last Name";
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.ForeColor = Color.Beige;
+            label8.Location = new Point(120, 22);
+            label8.Name = "label8";
+            label8.Size = new Size(56, 16);
+            label8.TabIndex = 12;
+            label8.Text = "User ID";
+            // 
+            // sssLbl
+            // 
+            sssLbl.AutoSize = true;
+            sssLbl.ForeColor = Color.Beige;
+            sssLbl.Location = new Point(438, 47);
+            sssLbl.Name = "sssLbl";
+            sssLbl.Size = new Size(35, 16);
+            sssLbl.TabIndex = 6;
+            sssLbl.Text = "SSS:";
+            // 
+            // birLbl
+            // 
+            birLbl.AutoSize = true;
+            birLbl.ForeColor = Color.Beige;
+            birLbl.Location = new Point(438, 74);
+            birLbl.Name = "birLbl";
+            birLbl.Size = new Size(35, 16);
+            birLbl.TabIndex = 5;
+            birLbl.Text = "BIR:";
+            // 
+            // payrollLbl
+            // 
+            payrollLbl.AutoSize = true;
+            payrollLbl.ForeColor = Color.Beige;
+            payrollLbl.Location = new Point(12, 22);
+            payrollLbl.Name = "payrollLbl";
+            payrollLbl.Size = new Size(84, 16);
+            payrollLbl.TabIndex = 4;
+            payrollLbl.Text = "Payroll ID:";
+            // 
+            // pagIbigLbl
+            // 
+            pagIbigLbl.AutoSize = true;
+            pagIbigLbl.ForeColor = Color.Beige;
+            pagIbigLbl.Location = new Point(438, 22);
+            pagIbigLbl.Name = "pagIbigLbl";
+            pagIbigLbl.Size = new Size(70, 16);
+            pagIbigLbl.TabIndex = 3;
+            pagIbigLbl.Text = "Pag-Ibig:";
+            // 
+            // basicPayLbl
+            // 
+            basicPayLbl.AutoSize = true;
+            basicPayLbl.ForeColor = Color.Beige;
+            basicPayLbl.Location = new Point(12, 104);
+            basicPayLbl.Name = "basicPayLbl";
+            basicPayLbl.Size = new Size(77, 16);
+            basicPayLbl.TabIndex = 2;
+            basicPayLbl.Text = "Basic Pay:";
+            // 
+            // otPayLbl
+            // 
+            otPayLbl.AutoSize = true;
+            otPayLbl.ForeColor = Color.Beige;
+            otPayLbl.Location = new Point(12, 74);
+            otPayLbl.Name = "otPayLbl";
+            otPayLbl.Size = new Size(98, 16);
+            otPayLbl.TabIndex = 1;
+            otPayLbl.Text = "Overtime Pay:";
+            // 
+            // totalHoursLbl
+            // 
+            totalHoursLbl.AutoSize = true;
+            totalHoursLbl.ForeColor = Color.Beige;
+            totalHoursLbl.Location = new Point(12, 48);
+            totalHoursLbl.Name = "totalHoursLbl";
+            totalHoursLbl.Size = new Size(91, 16);
+            totalHoursLbl.TabIndex = 0;
+            totalHoursLbl.Text = "Total Hours:";
+            totalHoursLbl.Click += label15_Click;
+            // 
+            // panel9
+            // 
+            panel9.Dock = DockStyle.Fill;
+            panel9.Location = new Point(834, 37);
+            panel9.Name = "panel9";
+            panel9.Size = new Size(39, 296);
+            panel9.TabIndex = 2;
+            // 
+            // panel10
+            // 
+            panel10.Dock = DockStyle.Fill;
+            panel10.Location = new Point(3, 37);
+            panel10.Name = "panel10";
+            panel10.Size = new Size(39, 296);
+            panel10.TabIndex = 3;
+            // 
+            // panel11
+            // 
+            panel11.Dock = DockStyle.Fill;
+            panel11.Location = new Point(48, 339);
+            panel11.Name = "panel11";
+            panel11.Size = new Size(780, 25);
+            panel11.TabIndex = 4;
+            // 
+            // otherDeductionsLbl
+            // 
+            otherDeductionsLbl.AutoSize = true;
+            otherDeductionsLbl.ForeColor = Color.Beige;
+            otherDeductionsLbl.Location = new Point(438, 100);
+            otherDeductionsLbl.Name = "otherDeductionsLbl";
+            otherDeductionsLbl.Size = new Size(56, 16);
+            otherDeductionsLbl.TabIndex = 19;
+            otherDeductionsLbl.Text = "Others:";
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.ForeColor = Color.Beige;
+            label9.Location = new Point(528, 99);
+            label9.Name = "label9";
+            label9.Size = new Size(84, 16);
+            label9.TabIndex = 20;
+            label9.Text = "Salary Rate";
+            // 
+            // bonusesLbl
+            // 
+            bonusesLbl.AutoSize = true;
+            bonusesLbl.ForeColor = Color.Beige;
+            bonusesLbl.Location = new Point(12, 140);
+            bonusesLbl.Name = "bonusesLbl";
+            bonusesLbl.Size = new Size(63, 16);
+            bonusesLbl.TabIndex = 21;
+            bonusesLbl.Text = "Bonuses:";
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.ForeColor = Color.Beige;
+            label10.Location = new Point(528, 140);
+            label10.Name = "label10";
+            label10.Size = new Size(84, 16);
+            label10.TabIndex = 23;
+            label10.Text = "Salary Rate";
+            // 
+            // deductionsLbl
+            // 
+            deductionsLbl.AutoSize = true;
+            deductionsLbl.ForeColor = Color.Beige;
+            deductionsLbl.Location = new Point(438, 140);
+            deductionsLbl.Name = "deductionsLbl";
+            deductionsLbl.Size = new Size(84, 16);
+            deductionsLbl.TabIndex = 22;
+            deductionsLbl.Text = "Deductions:";
+            // 
             // EFeatures
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
@@ -793,6 +1095,7 @@
             ((System.ComponentModel.ISupportInitialize)clockGrid).EndInit();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
+            payslipPage.ResumeLayout(false);
             attendancePage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)attendanceGrid).EndInit();
             attendanceSearchPnl.ResumeLayout(false);
@@ -814,6 +1117,10 @@
             insideProfile.PerformLayout();
             panel4.ResumeLayout(false);
             panel4.PerformLayout();
+            payslipPanel.ResumeLayout(false);
+            tableLayoutPanel2.ResumeLayout(false);
+            panel8.ResumeLayout(false);
+            panel8.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -873,5 +1180,30 @@
         private PictureBox searchAttendancePic;
         private Panel attendancePanel;
         private Label attendanceNoteLbl;
+        private Panel payslipPanel;
+        private TableLayoutPanel tableLayoutPanel2;
+        private Panel panel8;
+        private Label label2;
+        private Label label3;
+        private Label label4;
+        private Label label5;
+        private Label label6;
+        private Label label7;
+        private Label label8;
+        private Label sssLbl;
+        private Label birLbl;
+        private Label payrollLbl;
+        private Label pagIbigLbl;
+        private Label basicPayLbl;
+        private Label otPayLbl;
+        private Label totalHoursLbl;
+        private Panel panel9;
+        private Panel panel10;
+        private Panel panel11;
+        private Label label9;
+        private Label otherDeductionsLbl;
+        private Label bonusesLbl;
+        private Label label10;
+        private Label deductionsLbl;
     }
 }

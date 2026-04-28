@@ -8,7 +8,7 @@ namespace lighPayrollUI
     {
         public bool Result { get; private set; }
 
-        public ConfirmForm(string head, string body)
+        public ConfirmForm(string head, string body, bool isConfirmation = true)
         {
 
             this.Text = " ";
@@ -47,6 +47,17 @@ namespace lighPayrollUI
 
             Button yes = new Button() { Text = "Yes", Width = 80 };
             Button no = new Button() { Text = "No", Width = 80 };
+
+            if (isConfirmation)
+            {
+                yes.Text = "Yes";
+                no.Text = "No";
+            }
+            else
+            {
+                yes.Text = "OK";
+                no.Visible = false; // hide No button
+            }
 
             FlowLayoutPanel panel = new FlowLayoutPanel()
             {

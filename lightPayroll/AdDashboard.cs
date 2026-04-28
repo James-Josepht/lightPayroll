@@ -4,8 +4,10 @@ using lightPayrollModel;
 using lightPayrollServices;
 using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView;
+using LiveChartsCore.SkiaSharpView.Painting;
 using LiveChartsCore.SkiaSharpView.WinForms;
 using Microsoft.VisualBasic;
+using SkiaSharp;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -140,38 +142,52 @@ namespace lighPayroll
                 {
                     new PieSeries<int>
                     {
+                        //this is via hovering
+                        //Values = new[] { adminCount },
+                        //Name = "Admin",
+                        //DataLabelsSize = 14,
+                        //DataLabelsPosition = LiveChartsCore.Measure.PolarLabelsPosition.Middle,
+                        //DataLabelsFormatter = point => $"{point.Coordinate.PrimaryValue} ({point.StackedValue.Share:P})"
+
+
                         Values = new[] { adminCount },
                         Name = "Admin",
-                        DataLabelsSize = 14,
+                        DataLabelsSize = 11, // slightly bigger
                         DataLabelsPosition = LiveChartsCore.Measure.PolarLabelsPosition.Middle,
-                        DataLabelsFormatter = point => $"{point.StackedValue} ({point.StackedValue.Share:P})"
-
+                        DataLabelsPaint = new SolidColorPaint(SKColors.Beige), // label color
+                        //Fill = new SolidColorPaint(SKColors.Cyan), // pie color
+                        DataLabelsFormatter = point => $"Admin \n{point.Coordinate.PrimaryValue} ({point.StackedValue.Share:P0})"
                     },
                     new PieSeries<int>
                     {
-                        Values = new[] { accountantCount },
+                         Values = new[] { accountantCount },
                         Name = "Accountant",
-                        DataLabelsSize = 14,
+                        DataLabelsSize = 11, // slightly bigger
                         DataLabelsPosition = LiveChartsCore.Measure.PolarLabelsPosition.Middle,
-                        DataLabelsFormatter = point => $"{point.StackedValue} ({point.StackedValue.Share:P})"
+                        DataLabelsPaint = new SolidColorPaint(SKColors.Beige), // label color
+                        DataLabelsFormatter = point => $"Accountant \n{point.Coordinate.PrimaryValue} ({point.StackedValue.Share:P0})"
+
+
 
                     },
                     new PieSeries<int>
                     {
-                        Values = new[] { managerCount },
+                         Values = new[] { managerCount },
                         Name = "Manager",
-                        DataLabelsSize = 14,
+                        DataLabelsSize = 11, // slightly bigger
                         DataLabelsPosition = LiveChartsCore.Measure.PolarLabelsPosition.Middle,
-                        DataLabelsFormatter = point => $"{point.StackedValue} ({point.StackedValue.Share:P})"
-
+                        DataLabelsPaint = new SolidColorPaint(SKColors.Beige), // label color
+                        DataLabelsFormatter = point => $"Manager \n{point.Coordinate.PrimaryValue} ({point.StackedValue.Share:P0})"
                     },
                     new PieSeries<int>
                     {
                         Values = new[] { employeeCount },
                         Name = "Employee",
-                        DataLabelsSize = 14,
+                        DataLabelsSize = 11, 
                         DataLabelsPosition = LiveChartsCore.Measure.PolarLabelsPosition.Middle,
-                        DataLabelsFormatter = point => $"{point.StackedValue} ({point.StackedValue.Share:P})"
+                        DataLabelsPaint = new SolidColorPaint(SKColors.Beige), //label color
+                        Fill = new SolidColorPaint(SKColors.Orange), // pie color
+                        DataLabelsFormatter = point => $"Employee \n{point.Coordinate.PrimaryValue} ({point.StackedValue.Share:P0})"
                     }
                 };
             }
@@ -186,6 +202,10 @@ namespace lighPayroll
             
         }
 
+        ///
+        /// Dashboard based on role
+        ///
+        ///
 
         private void ApplyRole(string role)
         {
@@ -206,7 +226,16 @@ namespace lighPayroll
                 taskB.Enabled = true;
                 attendanceB.Visible = true;
                 attendanceB.Enabled = true;
-                attendanceB.Location = new Point(14, 152);
+                attendanceB.Location = new Point(14, 168);
+                attendanceDashboard.Visible = true;
+                attendanceDashboard.Enabled = true;
+                attendanceDashboard.Location = new Point(16, 228);
+
+                usersDashboard.Visible = false;
+                usersDashboard.Enabled = false;
+                
+
+
             }
             else if (role == "Employee")
             {

@@ -46,6 +46,9 @@ namespace lighPayroll
             homeButton = new PictureBox();
             bodyPanel = new Panel();
             panel3 = new Panel();
+            attendanceDashboard = new Label();
+            usersDashboard = new Label();
+            profileDashboard = new Label();
             Dashboard = new Label();
             attendanceB = new Button();
             usersB = new Button();
@@ -58,12 +61,15 @@ namespace lighPayroll
             usersChart = new LiveChartsCore.SkiaSharpView.WinForms.PieChart();
             profileChart = new LiveChartsCore.SkiaSharpView.WinForms.PieChart();
             countPanel = new Panel();
+            panel5 = new Panel();
             headPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)homeButton).BeginInit();
             bodyPanel.SuspendLayout();
             panel3.SuspendLayout();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
+            countPanel.SuspendLayout();
+            panel5.SuspendLayout();
             SuspendLayout();
             // 
             // delORmod
@@ -115,6 +121,9 @@ namespace lighPayroll
             // panel3
             // 
             panel3.BackColor = Color.FromArgb(25, 35, 55);
+            panel3.Controls.Add(attendanceDashboard);
+            panel3.Controls.Add(usersDashboard);
+            panel3.Controls.Add(profileDashboard);
             panel3.Controls.Add(Dashboard);
             panel3.Controls.Add(attendanceB);
             panel3.Controls.Add(usersB);
@@ -124,6 +133,39 @@ namespace lighPayroll
             panel3.Name = "panel3";
             panel3.Size = new Size(200, 426);
             panel3.TabIndex = 0;
+            // 
+            // attendanceDashboard
+            // 
+            attendanceDashboard.AutoSize = true;
+            attendanceDashboard.Font = new Font("Ubuntu Mono Medium", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            attendanceDashboard.ForeColor = Color.Beige;
+            attendanceDashboard.Location = new Point(16, 315);
+            attendanceDashboard.Name = "attendanceDashboard";
+            attendanceDashboard.Size = new Size(77, 16);
+            attendanceDashboard.TabIndex = 9;
+            attendanceDashboard.Text = "Attendance";
+            // 
+            // usersDashboard
+            // 
+            usersDashboard.AutoSize = true;
+            usersDashboard.Font = new Font("Ubuntu Mono Medium", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            usersDashboard.ForeColor = Color.Beige;
+            usersDashboard.Location = new Point(16, 228);
+            usersDashboard.Name = "usersDashboard";
+            usersDashboard.Size = new Size(42, 16);
+            usersDashboard.TabIndex = 8;
+            usersDashboard.Text = "Users";
+            // 
+            // profileDashboard
+            // 
+            profileDashboard.AutoSize = true;
+            profileDashboard.Font = new Font("Ubuntu Mono Medium", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            profileDashboard.ForeColor = Color.Beige;
+            profileDashboard.Location = new Point(14, 142);
+            profileDashboard.Name = "profileDashboard";
+            profileDashboard.Size = new Size(63, 16);
+            profileDashboard.TabIndex = 7;
+            profileDashboard.Text = "Personal";
             // 
             // Dashboard
             // 
@@ -145,7 +187,7 @@ namespace lighPayroll
             attendanceB.FlatAppearance.BorderColor = Color.Beige;
             attendanceB.FlatAppearance.MouseDownBackColor = Color.Beige;
             attendanceB.FlatStyle = FlatStyle.Flat;
-            attendanceB.Location = new Point(14, 225);
+            attendanceB.Location = new Point(14, 255);
             attendanceB.Name = "attendanceB";
             attendanceB.Size = new Size(172, 57);
             attendanceB.TabIndex = 2;
@@ -163,7 +205,7 @@ namespace lighPayroll
             usersB.FlatAppearance.MouseDownBackColor = Color.Beige;
             usersB.FlatStyle = FlatStyle.Flat;
             usersB.ForeColor = SystemColors.Control;
-            usersB.Location = new Point(14, 152);
+            usersB.Location = new Point(14, 168);
             usersB.Name = "usersB";
             usersB.Size = new Size(172, 57);
             usersB.TabIndex = 1;
@@ -200,10 +242,9 @@ namespace lighPayroll
             // panel2
             // 
             panel2.BackColor = Color.FromArgb(33, 44, 66);
+            panel2.Controls.Add(panel5);
             panel2.Controls.Add(label3);
             panel2.Controls.Add(labelTaskCount);
-            panel2.Controls.Add(labelUserCount);
-            panel2.Controls.Add(usersChart);
             panel2.Controls.Add(profileChart);
             panel2.Controls.Add(countPanel);
             panel2.Dock = DockStyle.Bottom;
@@ -229,7 +270,7 @@ namespace lighPayroll
             labelTaskCount.Enabled = false;
             labelTaskCount.Font = new Font("Ubuntu Mono", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             labelTaskCount.ForeColor = Color.Beige;
-            labelTaskCount.Location = new Point(267, 240);
+            labelTaskCount.Location = new Point(80, 202);
             labelTaskCount.Name = "labelTaskCount";
             labelTaskCount.Size = new Size(65, 23);
             labelTaskCount.TabIndex = 4;
@@ -242,7 +283,7 @@ namespace lighPayroll
             labelUserCount.Enabled = false;
             labelUserCount.Font = new Font("Ubuntu Mono", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             labelUserCount.ForeColor = Color.Beige;
-            labelUserCount.Location = new Point(502, 241);
+            labelUserCount.Location = new Point(3, 3);
             labelUserCount.Name = "labelUserCount";
             labelUserCount.Size = new Size(84, 16);
             labelUserCount.TabIndex = 3;
@@ -255,6 +296,7 @@ namespace lighPayroll
             usersChart.BackColor = Color.FromArgb(33, 44, 66);
             usersChart.BorderStyle = BorderStyle.FixedSingle;
             usersChart.ChartTheme = null;
+            usersChart.Dock = DockStyle.Fill;
             usersChart.Enabled = false;
             skDefaultLegend1.AnimationsSpeed = TimeSpan.Parse("00:00:00.1500000");
             skDefaultLegend1.Content = null;
@@ -270,9 +312,9 @@ namespace lighPayroll
             skDefaultLegend1.X = 0F;
             skDefaultLegend1.Y = 0F;
             usersChart.Legend = skDefaultLegend1;
-            usersChart.Location = new Point(497, 31);
+            usersChart.Location = new Point(0, 0);
             usersChart.Name = "usersChart";
-            usersChart.Size = new Size(200, 200);
+            usersChart.Size = new Size(290, 275);
             usersChart.TabIndex = 1;
             skDefaultTooltip1.AnimationsSpeed = TimeSpan.Parse("00:00:00.1500000");
             skDefaultTooltip1.Content = null;
@@ -312,7 +354,7 @@ namespace lighPayroll
             skDefaultLegend2.X = 0F;
             skDefaultLegend2.Y = 0F;
             profileChart.Legend = skDefaultLegend2;
-            profileChart.Location = new Point(228, 31);
+            profileChart.Location = new Point(22, 31);
             profileChart.Name = "profileChart";
             profileChart.Size = new Size(150, 150);
             profileChart.TabIndex = 0;
@@ -337,12 +379,21 @@ namespace lighPayroll
             // countPanel
             // 
             countPanel.BorderStyle = BorderStyle.FixedSingle;
+            countPanel.Controls.Add(labelUserCount);
             countPanel.Enabled = false;
-            countPanel.Location = new Point(497, 238);
+            countPanel.Location = new Point(425, 308);
             countPanel.Name = "countPanel";
-            countPanel.Size = new Size(200, 23);
+            countPanel.Size = new Size(290, 23);
             countPanel.TabIndex = 6;
             countPanel.Visible = false;
+            // 
+            // panel5
+            // 
+            panel5.Controls.Add(usersChart);
+            panel5.Location = new Point(425, 21);
+            panel5.Name = "panel5";
+            panel5.Size = new Size(290, 275);
+            panel5.TabIndex = 7;
             // 
             // AdDashboard
             // 
@@ -364,6 +415,9 @@ namespace lighPayroll
             panel1.ResumeLayout(false);
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
+            countPanel.ResumeLayout(false);
+            countPanel.PerformLayout();
+            panel5.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -399,5 +453,9 @@ namespace lighPayroll
         private Label labelUserCount;
         private Label label3;
         private Panel countPanel;
+        private Label attendanceDashboard;
+        private Label usersDashboard;
+        private Label profileDashboard;
+        private Panel panel5;
     }
 }

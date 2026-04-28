@@ -196,6 +196,7 @@
             deleteUserButton.Size = new Size(43, 25);
             deleteUserButton.TabIndex = 1;
             deleteUserButton.UseVisualStyleBackColor = false;
+            deleteUserButton.Click += deleteUserButton_Click;
             // 
             // addUserButton
             // 
@@ -308,7 +309,7 @@
             loadButton.UseVisualStyleBackColor = false;
             loadButton.Click += loadButton_Click;
             // 
-            // UserModification
+            // AdUserMod
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -316,7 +317,7 @@
             ClientSize = new Size(937, 548);
             Controls.Add(bodyPanel);
             Controls.Add(headPanel);
-            Name = "UserModification";
+            Name = "AdUserMod";
             StartPosition = FormStartPosition.CenterScreen;
             Load += UsersUI_Load;
             headPanel.ResumeLayout(false);
