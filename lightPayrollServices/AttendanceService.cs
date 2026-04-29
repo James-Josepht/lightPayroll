@@ -17,7 +17,7 @@ namespace lightPayrollServices
         /// PART
         /// 
 
-        public static List<AttendanceCore> LoadAttendanceCore()//used for displaying the user only
+        public List<AttendanceCore> LoadAttendanceCore()//used for displaying the user only
         {
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
             {
@@ -54,7 +54,7 @@ namespace lightPayrollServices
             }
         }
 
-        public static List<AttendanceAdmin> LoadAttendanceAdmin()//used for displaying the user only
+        public List<AttendanceAdmin> LoadAttendanceAdmin()//used for displaying the user only
         {
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
             {
@@ -91,7 +91,7 @@ namespace lightPayrollServices
             }
         }
 
-        public static List<AttendanceUser> LoadUserAttendanceById(int employeeID)
+        public List<AttendanceUser> LoadUserAttendanceById(int employeeID)
         {
 
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
@@ -119,7 +119,7 @@ namespace lightPayrollServices
         /// 
 
 
-        public static int InsertClock(AttendanceUser user, int employeeID, string fullName)
+        public int InsertClock(AttendanceUser user, int employeeID, string fullName)
         {
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
             {
@@ -157,7 +157,7 @@ namespace lightPayrollServices
         /// PART
         /// 
         
-        public static void UpdateClockOut(int attendanceId, DateTime timeOut)
+        public void UpdateClockOut(int attendanceId, DateTime timeOut)
         {
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
             {
@@ -177,7 +177,8 @@ namespace lightPayrollServices
         //
         // GETTING / SEARCHING
         //
-        public static int GetAttendanceCountToday()
+
+        public int GetAttendanceCountToday()
         {
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
             {
@@ -189,7 +190,7 @@ namespace lightPayrollServices
             }
         }
 
-        public static int GetAttendanceCountByStatus(string status)
+        public int GetAttendanceCountByStatus(string status)
         {
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
             {
@@ -202,7 +203,7 @@ namespace lightPayrollServices
                 return conn.ExecuteScalar<int>(sql, new { Status = status });
             }
         }
-        public static int GetActiveAttendanceId(int employeeID)
+        public int GetActiveAttendanceId(int employeeID)
         {
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
             {
@@ -218,7 +219,7 @@ namespace lightPayrollServices
         }
 
 
-        public static bool HasClockedInToday(int employeeID)
+        public bool HasClockedInToday(int employeeID)
         {
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
             {
@@ -243,7 +244,7 @@ namespace lightPayrollServices
             }
         }
 
-        public static bool HasClockedOutToday(int employeeID)
+        public bool HasClockedOutToday(int employeeID)
         {
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
             {

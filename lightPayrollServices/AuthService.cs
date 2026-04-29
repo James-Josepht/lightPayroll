@@ -13,6 +13,7 @@ namespace lightPayrollServices
 {
     public class AuthService
     {
+        SQLiteDataAccess dataAccess = new SQLiteDataAccess();
 
         private List<string> reservedUsernames = new List<string>
         {
@@ -28,7 +29,7 @@ namespace lightPayrollServices
         //used to send in the log in UI, whether thier acc ready to login or not
         public string ValidateCredentials(string username, string password)
         {
-            var user = SQLiteDataAccess.GetUserByIdOrUsername(username);
+            var user = dataAccess.GetUserByIdOrUsername(username);
 
             if (username == "admin" && password == "admin")
             {
@@ -66,7 +67,7 @@ namespace lightPayrollServices
             
             //check if username already exists
 
-            var existingUser = SQLiteDataAccess.GetUserByIdOrUsername(username);
+            var existingUser = dataAccess.GetUserByIdOrUsername(username);
 
             if (existingUser != null)
                 return false;
@@ -83,7 +84,7 @@ namespace lightPayrollServices
             };
 
             //Save to DB
-            SQLiteDataAccess.InsertUser(newUser);
+            dataAccess.InsertUser(newUser);
 
             return true;
         }

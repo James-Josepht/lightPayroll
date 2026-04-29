@@ -20,6 +20,9 @@ namespace lighPayrollUI
     public partial class EFeatures : Form
     {
         AdUI adminUI = new AdUI(); //used for getting panel design and greeting service
+        SQLiteDataAccess dataAccess = new SQLiteDataAccess();
+        AttendanceService attendanceDataAccess = new AttendanceService();
+
         private readonly string user_role, user_name;
         private readonly int user_id;
         private int attendance_id;
@@ -35,7 +38,7 @@ namespace lighPayrollUI
             user_role = role;
             user_name = username;
             user_id = userId;
-            employee_id = SQLiteDataAccess.GetEmployeeIdByUserId(user_id);
+            employee_id = dataAccess.GetEmployeeIdByUserId(user_id);
         }
 
         private void EmployeeFeature_Load(object sender, EventArgs e)
@@ -63,7 +66,7 @@ namespace lighPayrollUI
 
             //borderRadius.SetRoundedRegion(insideProfile, 33);
 
-            if (AttendanceService.HasClockedOutToday(user_id))
+            if (attendanceDataAccess.HasClockedOutToday(user_id))
             {
                 clockStatusReal.Text = "Clock Out";
                 clockStatusReal.ForeColor = Color.IndianRed;
@@ -86,7 +89,7 @@ namespace lighPayrollUI
         {
             attendanceGrid.DataSource = null;
             attendanceGrid.Columns.Clear();
-            var data = AttendanceService.LoadAttendanceCore();
+            var data = attendanceDataAccess.LoadAttendanceCore();
             var displayData = data.Select(a => new
             {
                 EmployeeID = a.EmployeeID,
@@ -106,8 +109,8 @@ namespace lighPayrollUI
 
             clockGrid.DataSource = null;
             clockGrid.Columns.Clear();
-            var employeeID = SQLiteDataAccess.GetEmployeeIdByUserId(user_id);
-            var data = AttendanceService.LoadUserAttendanceById(employeeID);
+            var employeeID = dataAccess.GetEmployeeIdByUserId(user_id);
+            var data = attendanceDataAccess.LoadUserAttendanceById(employeeID);
 
             // Project to display properties for the grid
             var displayData = data.Select(a => new
@@ -128,7 +131,7 @@ namespace lighPayrollUI
         {
             payrollGrid.DataSource = null;
             payrollGrid.Columns.Clear();
-            var data = SQLiteDataAccess.LoadEmployeeWithUser();
+            var data = dataAccess.LoadEmployeeWithUser();
 
 
             payrollGrid.DataSource = data;
@@ -136,7 +139,7 @@ namespace lighPayrollUI
 
         private void LoadProfile()
         {
-            var employee = SQLiteDataAccess.GetEmployeeByID(user_id);
+            var employee = dataAccess.GetEmployeeByID(user_id);
             if (employee != null)
             {
                 userID.Text = employee.EmployeeID.ToString();
@@ -274,7 +277,7 @@ namespace lighPayrollUI
         /// 
         private void clockInButton_Click(object sender, EventArgs e)
         {
-            if (AttendanceService.HasClockedInToday(employee_id))
+            if (attendanceDataAccess.HasClockedInToday(employee_id))
             {
                 adminUI.CustomMessageBox("You have already clocked in today.");
                 return;
@@ -291,7 +294,7 @@ namespace lighPayrollUI
                 Remarks = ""
             };
 
-            attendance_id = AttendanceService.InsertClock(attendance, employee_id, user_name);
+            attendance_id = attendanceDataAccess.InsertClock(attendance, employee_id, user_name);
 
             LoadAttendanceList();
 
@@ -301,7 +304,7 @@ namespace lighPayrollUI
 
         private void clockOutButton_Click(object sender, EventArgs e)
         {
-            attendance_id = AttendanceService.GetActiveAttendanceId(employee_id);
+            attendance_id = attendanceDataAccess.GetActiveAttendanceId(employee_id);
 
             if (attendance_id == null || attendance_id == 0)
             {
@@ -310,7 +313,7 @@ namespace lighPayrollUI
             }
 
 
-            AttendanceService.UpdateClockOut(attendance_id, DateTime.Now);
+            attendanceDataAccess.UpdateClockOut(attendance_id, DateTime.Now);
 
             LoadAttendanceList(); // refresh grid
             clockStatusReal.Text = "Clock Out";
@@ -347,7 +350,7 @@ namespace lighPayrollUI
                 return;
             }
 
-            var result = AttendanceService.LoadUserAttendanceById(int.Parse(employeeAtt));
+            var result = attendanceDataAccess.LoadUserAttendanceById(int.Parse(employeeAtt));
 
             var displayData = result.Select(a => new
             {
@@ -393,7 +396,7 @@ namespace lighPayrollUI
                 return;
             }
 
-            var result = SQLiteDataAccess.GetEmployeeByName(username);
+            var result = dataAccess.GetEmployeeByName(username);
 
             if (result == null || result.Count == 0)
             {
@@ -426,7 +429,7 @@ namespace lighPayrollUI
 
             if (payroll != null)
             {
-                SQLiteDataAccess.InsertPayroll(payroll);
+                dataAccess.InsertPayroll(payroll);
                 adminUI.CustomMessageBox("Payroll successfully made.");
             }
 

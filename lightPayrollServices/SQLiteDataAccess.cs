@@ -26,7 +26,7 @@ namespace lightPayrollServices
         ///                LOAD SECTION
         /// 
 
-        public static List<UserDisplay> LoadUsers()//used for displaying the users, not for authentication
+        public List<UserDisplay> LoadUsers()//used for displaying the users, not for authentication
         {
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
             {
@@ -60,7 +60,7 @@ namespace lightPayrollServices
         }
 
 
-        public static List<EmployeeDisplay> LoadEmployeeWithUser()
+        public List<EmployeeDisplay> LoadEmployeeWithUser()
         {
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
             {
@@ -87,7 +87,7 @@ namespace lightPayrollServices
         /// 
         /// 
 
-        public static void InsertUser(Users user)
+        public  void InsertUser(Users user)
         {
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
             {
@@ -100,7 +100,7 @@ namespace lightPayrollServices
             }
         }
 
-        public static void InsertEmployee(Employee employee)
+        public  void InsertEmployee(Employee employee)
         {
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
             {
@@ -114,7 +114,7 @@ namespace lightPayrollServices
             }
         }
 
-        public static void InsertPayroll(Payroll payroll)
+        public void InsertPayroll(Payroll payroll)
         {
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
             {
@@ -136,7 +136,7 @@ namespace lightPayrollServices
         /// 
         /// 
 
-        public static int GetEmployeeIdByUserId(int usersID)
+        public int GetEmployeeIdByUserId(int usersID)
         {
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
             {
@@ -152,7 +152,7 @@ namespace lightPayrollServices
 
 
         //THE QUERY WILL LAG ONCE USER REACHES HUGE NUMBER, NEED TO OPTIMIZE IN THE FUTURE!
-        public static List<EmployeeDisplay> GetEmployeeByName(string fullname)
+        public List<EmployeeDisplay> GetEmployeeByName(string fullname)
         {
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
             {
@@ -182,7 +182,7 @@ namespace lightPayrollServices
             }
         }
 
-        public static Employee GetEmployeeByID(int id)
+        public Employee GetEmployeeByID(int id)
         {
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
             {
@@ -204,7 +204,7 @@ namespace lightPayrollServices
             }
         }
 
-        public static int GetUserIdByUsername(string username)
+        public int GetUserIdByUsername(string username)
         {
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
             {
@@ -217,7 +217,7 @@ namespace lightPayrollServices
             }
         }
 
-        public static AdminUser GetUserByIdOrUsername(string input)
+        public AdminUser GetUserByIdOrUsername(string input)
         {
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
             {
@@ -231,7 +231,7 @@ namespace lightPayrollServices
                 return conn.QueryFirstOrDefault<AdminUser>(sql, new { Input = isNumeric ? (object)id : input });
             }
         }
-        public static List<UserDisplay> SearchUsersByUsername(string input)
+        public List<UserDisplay> SearchUsersByUsername(string input)
         {
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
             {
@@ -245,7 +245,7 @@ namespace lightPayrollServices
 
         
 
-        public static string GetUserRoleByUsername(string username)
+        public string GetUserRoleByUsername(string username)
         {
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
             {
@@ -255,7 +255,27 @@ namespace lightPayrollServices
             }
         }
 
-        
+        public IEnumerable<(int Month, int Total)> GetRegistrationsPerMonth()
+        {
+            using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
+            {
+                var sql = @"
+                    SELECT 
+                        strftime('%m', DateCreated) AS Month,
+                        COUNT(*) AS Total
+                    FROM UsersTable
+                    WHERE strftime('%Y', DateCreated) = strftime('%Y', 'now')
+                    GROUP BY Month
+                    ORDER BY Month;
+                ";
+
+                return conn.Query<(string Month, int Total)>(sql)
+                    .Select(x => (int.Parse(x.Month), x.Total));
+            }
+
+        }
+
+
 
         /// 
         /// UPDATE PART
@@ -263,7 +283,7 @@ namespace lightPayrollServices
 
 
 
-        public static void UpdateUserStatus(int userId, string status, string role)
+        public void UpdateUserStatus(int userId, string status, string role)
         {
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
             {
@@ -282,7 +302,7 @@ namespace lightPayrollServices
         ///
 
 
-        public static bool DeleteUser(int userId)
+        public bool DeleteUser(int userId)
         {
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
             {
@@ -311,7 +331,7 @@ namespace lightPayrollServices
         /// 
         /// I DECIDE HOW TO COMMENT HEHEHEHE
         ////////////////////////////////////////////////////////////////////////////////////
-        public static int GetUserCount()
+        public int GetUserCount()
         {
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
             {
@@ -320,7 +340,7 @@ namespace lightPayrollServices
             }
         }
 
-        public static int GetUserCountByRole(string role)
+        public int GetUserCountByRole(string role)
         {
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
             {

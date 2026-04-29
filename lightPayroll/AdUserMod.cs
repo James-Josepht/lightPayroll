@@ -11,7 +11,8 @@ namespace lighPayrollUI
     public partial class AdUserMod : Form
     {
         PLogIn greetingsAndMessageBoxDesign = new PLogIn();
-
+        SQLiteDataAccess dataAccess = new SQLiteDataAccess();
+        AttendanceService attendanceDataAccess = new AttendanceService();
 
         public AdUserMod()
         {
@@ -28,7 +29,7 @@ namespace lighPayrollUI
         // Load directly from database
         private void LoadUserList()
         {
-            attendanceGrid.DataSource = SQLiteDataAccess.LoadUsers();
+            attendanceGrid.DataSource = dataAccess.LoadUsers();
             attendanceGrid.Columns["UsersID"].DisplayIndex = 0;       // move to first
 
         }
@@ -48,7 +49,7 @@ namespace lighPayrollUI
             }
 
 
-            if (SQLiteDataAccess.GetUserByIdOrUsername(userId.ToString()) == null)
+            if (dataAccess.GetUserByIdOrUsername(userId.ToString()) == null)
             {
                 greetingsAndMessageBoxDesign.CustomMessageBox("User ID not found.");
                 return;
@@ -64,7 +65,7 @@ namespace lighPayrollUI
 
             if (confirm.Result)
             {
-                bool success = SQLiteDataAccess.DeleteUser(userId);
+                bool success = dataAccess.DeleteUser(userId);
 
                 LoadUserList();
 
@@ -86,7 +87,7 @@ namespace lighPayrollUI
                 return;
             }
 
-            if (SQLiteDataAccess.GetUserByIdOrUsername(userId.ToString()) == null)
+            if (dataAccess.GetUserByIdOrUsername(userId.ToString()) == null)
             {
                 greetingsAndMessageBoxDesign.CustomMessageBox("User ID not found.");
                 return;
@@ -102,7 +103,7 @@ namespace lighPayrollUI
                 return;
             }
 
-            SQLiteDataAccess.UpdateUserStatus(userId, status, role);
+            dataAccess.UpdateUserStatus(userId, status, role);
 
             greetingsAndMessageBoxDesign.CustomMessageBox("User updated successfully!");
 
@@ -120,10 +121,10 @@ namespace lighPayrollUI
             }
 
 
-            if (SQLiteDataAccess.SearchUsersByUsername(username) == null)
+            if (dataAccess.SearchUsersByUsername(username) == null)
                 greetingsAndMessageBoxDesign.CustomMessageBox("User not found.");
             else
-                attendanceGrid.DataSource = SQLiteDataAccess.SearchUsersByUsername(username);
+                attendanceGrid.DataSource = dataAccess.SearchUsersByUsername(username);
 
         }
 

@@ -33,6 +33,8 @@ namespace lighPayroll
     public partial class AdDashboard : Form
     {
         List<Users> attendance = new List<Users>();
+        AttendanceService attendanceService = new AttendanceService();
+        SQLiteDataAccess dataAccess = new SQLiteDataAccess();
 
         private string user_role, user_name;
         private int user_id;
@@ -78,19 +80,79 @@ namespace lighPayroll
 
         private int LoadUserCount()
         {
-            int count = SQLiteDataAccess.GetUserCount();
+            int count = dataAccess.GetUserCount();
             labelCount.Text = $"User Count: {count.ToString()}";
 
             return count;
         }
 
+        private void LoadRegisteredCount()
+        {
+            var data = attendanceService.GetRegistrationsPerMonth();
+
+            //Your method returns:
+
+            // IEnumerable<(int Month, int Total)>
+
+            //  So I need:
+
+            //X axis → months
+            //Y axis → totals
+
+            double[] values = new double[12];
+
+            foreach (var item in data)
+            {
+                values[item.Month - 1] = item.Total;
+            }
+
+           
+            leftCartesianChart.Series = new ISeries[]
+            {
+                new LineSeries<double>
+                {
+                    Values = values
+                }
+            };
+
+            leftCartesianChart.YAxes = new[]
+           {
+                new Axis
+                {
+                    Name = "Registered Users",
+
+                     LabelsPaint = new SolidColorPaint(SKColors.Beige),
+
+                    NamePaint = new SolidColorPaint(SKColors.DarkGray)
+                }
+
+            };
+
+            leftCartesianChart.XAxes = new[]
+            {
+                new Axis
+                {
+                    Labels = new[]
+                    {
+                        "Jan","Feb","Mar","Apr","May","Jun",
+                        "Jul","Aug","Sep","Oct","Nov","Dec"
+                    },
+
+                    LabelsPaint = new SolidColorPaint(SKColors.Beige),
+                    TextSize = 10,
+                    NamePaint = new SolidColorPaint(SKColors.DarkGray)
+                }
+            };
+        }
+
         private int LoadAttendanceCount()
         {
-            int count = AttendanceService.GetAttendanceCountToday();
+            int count = attendanceService.GetAttendanceCountToday();
             labelCount.Text = $"Attendance Count: {count.ToString()}";
 
             return count;
         }
+
 
 
         /// 
@@ -103,6 +165,10 @@ namespace lighPayroll
         {
             rightPieChart.Visible = true;
             rightPieChart.Enabled = true;
+
+
+            leftCartesianChart.Visible = true;
+            cartesianPlane.Visible = true;
 
             labelCount.Enabled = true;
             labelCount.Visible = true;
@@ -122,6 +188,7 @@ namespace lighPayroll
             else
             {
                 LoadUserPieChart("user");
+                LoadRegisteredCount();
                 noDataLabel.Visible = false;
                 noDataLabel.Enabled = false;
             }
@@ -134,6 +201,10 @@ namespace lighPayroll
             LoadUserPieChart("task");
             rightPieChart.Visible = false;
             rightPieChart.Enabled = false;
+
+            leftCartesianChart.Visible = false;
+            cartesianPlane.Visible = false;
+
 
             labelCount.Enabled = false;
             labelCount.Visible = false;
@@ -148,6 +219,9 @@ namespace lighPayroll
         {
             rightPieChart.Visible = true;
             rightPieChart.Enabled = true;
+
+            leftCartesianChart.Visible = false;
+            cartesianPlane.Visible = false;
 
             labelCount.Enabled = true;
             labelCount.Visible = true;
@@ -183,10 +257,10 @@ namespace lighPayroll
         {
             if (button == "user")
             {
-                int adminCount = SQLiteDataAccess.GetUserCountByRole("Admin");
-                int managerCount = SQLiteDataAccess.GetUserCountByRole("Manager");
-                int accountantCount = SQLiteDataAccess.GetUserCountByRole("Accountant");
-                int employeeCount = SQLiteDataAccess.GetUserCountByRole("Employee");
+                int adminCount = dataAccess.GetUserCountByRole("Admin");
+                int managerCount = dataAccess.GetUserCountByRole("Manager");
+                int accountantCount = dataAccess.GetUserCountByRole("Accountant");
+                int employeeCount = dataAccess.GetUserCountByRole("Employee");
 
                 rightPieChart.Series = new ISeries[]
                 {
@@ -247,9 +321,9 @@ namespace lighPayroll
             }
             else if (button == "attendance")
             {
-                int present = AttendanceService.GetAttendanceCountByStatus("Present");
-                int late = AttendanceService.GetAttendanceCountByStatus("Late");
-                int onLeave = AttendanceService.GetAttendanceCountByStatus("Leave");
+                int present = attendanceService.GetAttendanceCountByStatus("Present");
+                int late = attendanceService.GetAttendanceCountByStatus("Late");
+                int onLeave = attendanceService.GetAttendanceCountByStatus("Leave");
 
                 rightPieChart.Series = new ISeries[]
                 {

@@ -20,7 +20,8 @@ namespace lighPayroll
 
     public partial class PLogIn : Form
     {
-
+        SQLiteDataAccess dataAccess = new SQLiteDataAccess();
+        AttendanceService attendanceDataAccess = new AttendanceService();
         public PLogIn()
         {
             InitializeComponent();
@@ -57,7 +58,7 @@ namespace lighPayroll
             AuthService validator = new AuthService();
 
             string status = validator.ValidateCredentials(email, password);
-            string role = SQLiteDataAccess.GetUserRoleByUsername(email);
+            string role = dataAccess.GetUserRoleByUsername(email);
             int userID = 0;
 
 
@@ -69,7 +70,7 @@ namespace lighPayroll
 
             if (email.ToLower() != "admin" )
             {
-                userID = SQLiteDataAccess.GetUserIdByUsername(email);
+                userID = dataAccess.GetUserIdByUsername(email);
                 string usernamePart = email.Split('@')[0]; // "first.last"
                 string[] parts = usernamePart.Split('.');
 

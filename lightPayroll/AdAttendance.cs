@@ -22,6 +22,8 @@ namespace lighPayroll
 {
     public partial class AdAttendance : Form
     {
+        SQLiteDataAccess dataAccess = new SQLiteDataAccess();
+        AttendanceService attendanceDataAccess = new AttendanceService();
         List <AttendanceAdmin> users = new List<AttendanceAdmin>();
 
 
@@ -63,7 +65,7 @@ namespace lighPayroll
         {
             //from lightPayrollServices
 
-            users = AttendanceService.LoadAttendanceAdmin(); 
+            users = attendanceDataAccess.LoadAttendanceAdmin(); 
             WireUpAttendanceList();
         }
 
@@ -87,7 +89,7 @@ namespace lighPayroll
                 Password = fNameTxtBox.Text,
             };
 
-            SQLiteDataAccess.InsertUser(user);
+            dataAccess.InsertUser(user);
             nameTxtBox.Text = "";
             fNameTxtBox.Text = "";
         }
