@@ -3,8 +3,10 @@ using lighPayrollUI.Properties;
 using lightPayrollModel;
 using lightPayrollServices;
 using LiveChartsCore;
+using LiveChartsCore.Kernel;
 using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.Painting;
+using LiveChartsCore.SkiaSharpView.VisualElements;
 using LiveChartsCore.SkiaSharpView.WinForms;
 using Microsoft.VisualBasic;
 using SkiaSharp;
@@ -20,6 +22,7 @@ using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
@@ -69,14 +72,24 @@ namespace lighPayroll
 
         private void AdminDashboard_Load(object sender, EventArgs e)
         {
-            
+
             ApplyRole(user_role);
         }
 
-        private void LoadUserCount()
+        private int LoadUserCount()
         {
             int count = SQLiteDataAccess.GetUserCount();
-            labelUserCount.Text = $"User Count: {count.ToString()}";
+            labelCount.Text = $"User Count: {count.ToString()}";
+
+            return count;
+        }
+
+        private int LoadAttendanceCount()
+        {
+            int count = AttendanceService.GetAttendanceCountToday();
+            labelCount.Text = $"Attendance Count: {count.ToString()}";
+
+            return count;
         }
 
 
@@ -88,43 +101,80 @@ namespace lighPayroll
 
         private void usersB_Click(object sender, EventArgs e)
         {
-            LoadUserPieChart("user");
-            usersChart.Visible = true;
-            usersChart.Enabled = true;
+            rightPieChart.Visible = true;
+            rightPieChart.Enabled = true;
 
-            labelUserCount.Enabled = true;
-            labelUserCount.Visible = true;
-            
+            labelCount.Enabled = true;
+            labelCount.Visible = true;
+
             countPanel.Visible = true;
             countPanel.Enabled = true;
-            LoadUserCount();
+
+            int count = LoadUserCount();
+
+            if(count == 0)
+            {
+                LoadUserPieChart("empty");
+                noDataLabel.Visible = true;
+                noDataLabel.Enabled = true;
+                return;
+            }
+            else
+            {
+                LoadUserPieChart("user");
+                noDataLabel.Visible = false;
+                noDataLabel.Enabled = false;
+            }
+
 
         }
 
         private void taskB_Click(object sender, EventArgs e)
         {
             LoadUserPieChart("task");
-            usersChart.Visible = false;
-            usersChart.Enabled = false;
+            rightPieChart.Visible = false;
+            rightPieChart.Enabled = false;
 
-            labelUserCount.Enabled = false;
-            labelUserCount.Visible = false;
+            labelCount.Enabled = false;
+            labelCount.Visible = false;
 
             countPanel.Visible = false;
             countPanel.Enabled = false;
+
+
         }
 
         private void attendanceB_Click(object sender, EventArgs e)
         {
-            LoadUserPieChart("attendance");
-            usersChart.Visible = false;
-            usersChart.Enabled = false;
+            rightPieChart.Visible = true;
+            rightPieChart.Enabled = true;
 
-            labelUserCount.Enabled = false;
-            labelUserCount.Visible = false;
+            labelCount.Enabled = true;
+            labelCount.Visible = true;
+            labelCount.Text = "Attendance Count: ";
 
-            countPanel.Visible = false;
-            countPanel.Enabled = false;
+            countPanel.Visible = true;
+            countPanel.Enabled = true;
+
+            int count = LoadAttendanceCount();
+            //only load and modify the count text after clicking the button
+
+            if (count == 0)
+            {
+                LoadUserPieChart("empty");
+                noDataLabel.Visible = true;
+                noDataLabel.Enabled = true;
+                return;
+            }
+            else
+            {
+                LoadUserPieChart("attendance");
+                noDataLabel.Visible = false;
+                noDataLabel.Enabled = false;
+            }
+
+           
+
         }
 
 
@@ -138,11 +188,11 @@ namespace lighPayroll
                 int accountantCount = SQLiteDataAccess.GetUserCountByRole("Accountant");
                 int employeeCount = SQLiteDataAccess.GetUserCountByRole("Employee");
 
-                usersChart.Series = new ISeries[]
+                rightPieChart.Series = new ISeries[]
                 {
                     new PieSeries<int>
                     {
-                        //this is via hovering
+                        //this is without text inside
                         //Values = new[] { adminCount },
                         //Name = "Admin",
                         //DataLabelsSize = 14,
@@ -152,7 +202,7 @@ namespace lighPayroll
 
                         Values = new[] { adminCount },
                         Name = "Admin",
-                        DataLabelsSize = 11, // slightly bigger
+                        DataLabelsSize = 11, 
                         DataLabelsPosition = LiveChartsCore.Measure.PolarLabelsPosition.Middle,
                         DataLabelsPaint = new SolidColorPaint(SKColors.Beige), // label color
                         //Fill = new SolidColorPaint(SKColors.Cyan), // pie color
@@ -162,7 +212,7 @@ namespace lighPayroll
                     {
                          Values = new[] { accountantCount },
                         Name = "Accountant",
-                        DataLabelsSize = 11, // slightly bigger
+                        DataLabelsSize = 11,
                         DataLabelsPosition = LiveChartsCore.Measure.PolarLabelsPosition.Middle,
                         DataLabelsPaint = new SolidColorPaint(SKColors.Beige), // label color
                         DataLabelsFormatter = point => $"Accountant \n{point.Coordinate.PrimaryValue} ({point.StackedValue.Share:P0})"
@@ -174,7 +224,7 @@ namespace lighPayroll
                     {
                          Values = new[] { managerCount },
                         Name = "Manager",
-                        DataLabelsSize = 11, // slightly bigger
+                        DataLabelsSize = 11,
                         DataLabelsPosition = LiveChartsCore.Measure.PolarLabelsPosition.Middle,
                         DataLabelsPaint = new SolidColorPaint(SKColors.Beige), // label color
                         DataLabelsFormatter = point => $"Manager \n{point.Coordinate.PrimaryValue} ({point.StackedValue.Share:P0})"
@@ -183,7 +233,7 @@ namespace lighPayroll
                     {
                         Values = new[] { employeeCount },
                         Name = "Employee",
-                        DataLabelsSize = 11, 
+                        DataLabelsSize = 11,
                         DataLabelsPosition = LiveChartsCore.Measure.PolarLabelsPosition.Middle,
                         DataLabelsPaint = new SolidColorPaint(SKColors.Beige), //label color
                         Fill = new SolidColorPaint(SKColors.Orange), // pie color
@@ -191,16 +241,56 @@ namespace lighPayroll
                     }
                 };
             }
-            else if (button == "attendance")
-            {
-               
-            }
-            else
+            else if (button == "leave")
             {
 
             }
-            
+            else if (button == "attendance")
+            {
+                int present = AttendanceService.GetAttendanceCountByStatus("Present");
+                int late = AttendanceService.GetAttendanceCountByStatus("Late");
+                int onLeave = AttendanceService.GetAttendanceCountByStatus("Leave");
+
+                rightPieChart.Series = new ISeries[]
+                {
+                    new PieSeries<int> { Values = new[] { present }, Name = "Present",
+                        Fill = new SolidColorPaint(new SKColor(102, 187, 106)), // pie color
+                        DataLabelsSize = 11,
+                        DataLabelsPosition = LiveChartsCore.Measure.PolarLabelsPosition.Middle,
+                        DataLabelsFormatter = p => $"Present ({p.Model})" },
+
+                    new PieSeries<int> { Values = new[] { late }, Name = "Late",
+                        Fill = new SolidColorPaint(SKColors.Orange), // pie color
+                        DataLabelsSize = 11,
+                        DataLabelsPosition = LiveChartsCore.Measure.PolarLabelsPosition.Middle,
+                        DataLabelsFormatter = p => $"Late ({p.Model})" },
+
+                    new PieSeries<int> { Values = new[] { onLeave }, Name = "Leave",
+                        Fill = new SolidColorPaint(SKColors.IndianRed), // pie color
+                         DataLabelsSize = 11, // slightly bigger
+                        DataLabelsPosition = LiveChartsCore.Measure.PolarLabelsPosition.Middle,
+                        DataLabelsFormatter = p => $"Leave ({p.Model})" }
+                };
+            }
+            else //if there is no count
+            {
+                rightPieChart.Series = Array.Empty<ISeries>();
+
+                rightPieChart.Series = new ISeries[]
+                {
+                    new PieSeries<double>
+                    {
+                        Values = new double[] { 1 }, // must be greater than 0 man daw
+                        Fill = new SolidColorPaint(SKColors.Gray),
+                        InnerRadius = 70, // create a hole in pie for me to put a label
+                        IsHoverable = false
+                    }
+                };
+
+            }
+
         }
+
 
         ///
         /// Dashboard based on role
@@ -233,7 +323,7 @@ namespace lighPayroll
 
                 usersDashboard.Visible = false;
                 usersDashboard.Enabled = false;
-                
+
 
 
             }
@@ -257,8 +347,13 @@ namespace lighPayroll
                 home.Show();
 
             }
-            
+
             this.Hide();
+        }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 

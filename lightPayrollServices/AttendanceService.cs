@@ -12,6 +12,11 @@ namespace lightPayrollServices
 {
     public class AttendanceService:SQLiteDataAccess
     {
+        /// 
+        /// LOADING
+        /// PART
+        /// 
+
         public static List<AttendanceCore> LoadAttendanceCore()//used for displaying the user only
         {
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
@@ -86,6 +91,34 @@ namespace lightPayrollServices
             }
         }
 
+        public static List<AttendanceUser> LoadUserAttendanceById(int employeeID)
+        {
+
+            using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
+            {
+                var output = conn.Query<AttendanceUser>(
+                 @"SELECT EmployeeID, Date, TimeIn, TimeOut, Status, Remarks
+                  FROM AttendanceTable
+                  WHERE EmployeeID = @EmployeeID",
+                 new { EmployeeID = employeeID });
+
+                var attendances = output.Select(u =>
+                {
+                    u.Date = u.Date;
+                    u.TimeIn = u.TimeIn;
+                    u.TimeOut = u.TimeOut;
+                    return u;
+                }).ToList();
+                return attendances;
+            }
+        }
+        
+
+        /// 
+        /// INSERTING PART 
+        /// 
+
+
         public static int InsertClock(AttendanceUser user, int employeeID, string fullName)
         {
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
@@ -117,6 +150,74 @@ namespace lightPayrollServices
            
         }
 
+
+        /// 
+        /// 
+        /// UPDATING
+        /// PART
+        /// 
+        
+        public static void UpdateClockOut(int attendanceId, DateTime timeOut)
+        {
+            using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
+            {
+                conn.Execute(
+                    @"UPDATE AttendanceTable
+              SET TimeOut = @TimeOut
+              WHERE AttendanceID = @AttendanceID;",
+                    new
+                    {
+                        TimeOut = timeOut,
+                        AttendanceID = attendanceId
+                    });
+            }
+        }
+
+
+        //
+        // GETTING / SEARCHING
+        //
+        public static int GetAttendanceCountToday()
+        {
+            using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
+            {
+                string sql =
+                @"SELECT COUNT(*) FROM AttendanceTable
+                WHERE date(Date) = date('now','localtime')";
+                
+                return conn.ExecuteScalar<int>(sql);
+            }
+        }
+
+        public static int GetAttendanceCountByStatus(string status)
+        {
+            using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
+            {
+                string sql = @"
+                SELECT COUNT(*) 
+                FROM AttendanceTable 
+                WHERE Status = @Status 
+                AND date(Date) = date('now','localtime')";
+
+                return conn.ExecuteScalar<int>(sql, new { Status = status });
+            }
+        }
+        public static int GetActiveAttendanceId(int employeeID)
+        {
+            using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
+            {
+                return conn.ExecuteScalar<int>(
+                    @"SELECT AttendanceID
+              FROM AttendanceTable
+              WHERE EmployeeID = @EmployeeID
+              AND TimeOut IS NULL
+              ORDER BY Date DESC
+              LIMIT 1;",
+                    new { EmployeeID = employeeID });
+            }
+        }
+
+
         public static bool HasClockedInToday(int employeeID)
         {
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
@@ -141,36 +242,6 @@ namespace lightPayrollServices
                 return count > 0;
             }
         }
-        public static void UpdateClockOut(int attendanceId, DateTime timeOut)
-        {
-            using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
-            {
-                conn.Execute(
-                    @"UPDATE AttendanceTable
-              SET TimeOut = @TimeOut
-              WHERE AttendanceID = @AttendanceID;",
-                    new
-                    {
-                        TimeOut = timeOut,
-                        AttendanceID = attendanceId
-                    });
-            }
-        }
-
-        public static int GetActiveAttendanceId(int employeeID)
-        {
-            using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
-            {
-                return conn.ExecuteScalar<int>(
-                    @"SELECT AttendanceID
-              FROM AttendanceTable
-              WHERE EmployeeID = @EmployeeID
-              AND TimeOut IS NULL
-              ORDER BY Date DESC
-              LIMIT 1;",
-                    new { EmployeeID = employeeID });
-            }
-        }
 
         public static bool HasClockedOutToday(int employeeID)
         {
@@ -187,27 +258,6 @@ namespace lightPayrollServices
             }
         }
 
-        public static List<AttendanceUser> LoadUserAttendanceById(int employeeID)
-        {
-
-            using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
-            {
-                var output = conn.Query<AttendanceUser>(
-                 @"SELECT EmployeeID, Date, TimeIn, TimeOut, Status, Remarks
-                  FROM AttendanceTable
-                  WHERE EmployeeID = @EmployeeID",
-                 new { EmployeeID = employeeID });
-
-                var attendances = output.Select(u =>
-                {
-                    u.Date = u.Date;
-                    u.TimeIn = u.TimeIn;
-                    u.TimeOut = u.TimeOut;
-                    return u;
-                }).ToList();
-                return attendances;
-            }
-        }
-
+       
     }
 }

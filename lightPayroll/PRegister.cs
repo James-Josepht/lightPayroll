@@ -86,9 +86,9 @@ namespace lighPayroll
             else if (authService.RegisterAccount(userName, userPass))
             {
                 loginDesigns.CustomMessageBox("Registration successful! You can now log in.");
-                PLogIn login = new PLogIn();
-                login.Show();
-                this.Hide();
+                //PLogIn login = new PLogIn();
+                //login.Show();
+                //this.Hide();
             }
             else
             {
