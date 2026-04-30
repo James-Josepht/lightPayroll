@@ -32,12 +32,17 @@ namespace lighPayroll
 {
     public partial class AdDashboard : Form
     {
+        AdUI customMessages = new AdUI();
         List<Users> attendance = new List<Users>();
         AttendanceService attendanceService = new AttendanceService();
         SQLiteDataAccess dataAccess = new SQLiteDataAccess();
+        HBorderRadius borderRadius = new HBorderRadius();
 
         private string user_role, user_name;
         private int user_id;
+        private int currentYear, minYear, maxYear;
+
+
         public AdDashboard(string role, string username, int id)
         {
             InitializeComponent();
@@ -48,29 +53,6 @@ namespace lighPayroll
         }
 
 
-        //future usage for rounded panel borders and it is not related to drop down
-        private void panelDesign()
-        {
-            int radius = 30;
-
-            GraphicsPath greetingsPath = new GraphicsPath();
-            greetingsPath.AddArc(0, 0, radius, radius, 180, 90);
-            greetingsPath.AddArc(loadButton.Width - radius, 0, radius, radius, 270, 90);
-            greetingsPath.AddArc(loadButton.Width - radius, loadButton.Height - radius, radius, radius, 0, 90);
-            greetingsPath.AddArc(0, loadButton.Height - radius, radius, radius, 90, 90);
-            greetingsPath.CloseAllFigures();
-
-            GraphicsPath bodyPath = new GraphicsPath();
-            bodyPath.AddArc(0, 0, radius, radius, 180, 90);
-            bodyPath.AddArc(loadButton.Width - radius, 0, radius, radius, 270, 90);
-            bodyPath.AddArc(loadButton.Width - radius, loadButton.Height - radius, radius, radius, 0, 90); //lower right
-            bodyPath.AddArc(0, loadButton.Height - radius, radius, radius, 90, 90);
-            bodyPath.CloseAllFigures();
-
-            loadButton.Region = new Region(greetingsPath);
-            loadButton.Region = new Region(bodyPath);
-
-        }
 
         private void AdminDashboard_Load(object sender, EventArgs e)
         {
@@ -81,15 +63,33 @@ namespace lighPayroll
         private int LoadUserCount()
         {
             int count = dataAccess.GetUserCount();
-            labelCount.Text = $"User Count: {count.ToString()}";
+            int approvedCount =
+                dataAccess.GetUserCountByRole("Admin") +
+                dataAccess.GetUserCountByRole("Manager") +
+                dataAccess.GetUserCountByRole("Accountant") +
+                dataAccess.GetUserCountByRole("Employee");
+
+
+            int pendingCount = count - approvedCount;
+
+            totalUsersLbl.Text = $"Total Count: {count.ToString()}";
+            approvedCountLbl.Text = $"Approved Count: {approvedCount.ToString()}";
+            pendingUsersLbl.Text = $"Pending Count: {pendingCount.ToString()}";
+
+            approvedCountLbl.Visible = true;
+            approvedCountLbl.Enabled = true;
+
+            pendingUsersLbl.Visible = true;
+            pendingUsersLbl.Enabled = true;
 
             return count;
         }
 
-        private void LoadRegisteredCount()
+        private void LoadRegisteredCount() //line chart
         {
-            var data = attendanceService.GetRegistrationsPerMonth();
 
+            var data = attendanceService.GetRegistrationsPerMonth(currentYear);
+            yearLbl.Text = currentYear.ToString();
             //Your method returns:
 
             // IEnumerable<(int Month, int Total)>
@@ -106,7 +106,7 @@ namespace lighPayroll
                 values[item.Month - 1] = item.Total;
             }
 
-           
+
             leftCartesianChart.Series = new ISeries[]
             {
                 new LineSeries<double>
@@ -148,7 +148,7 @@ namespace lighPayroll
         private int LoadAttendanceCount()
         {
             int count = attendanceService.GetAttendanceCountToday();
-            labelCount.Text = $"Attendance Count: {count.ToString()}";
+            totalUsersLbl.Text = $"Attendance Count: {count.ToString()}";
 
             return count;
         }
@@ -161,6 +161,26 @@ namespace lighPayroll
         ///  IT WILL SHOW DIFFERENT CHART
         /// 
 
+        private void taskB_Click(object sender, EventArgs e)
+        {
+            LoadUserPieChart("task");
+            rightPieChart.Visible = false;
+            rightPieChart.Enabled = false;
+
+            leftCartesianChart.Visible = false;
+            cartesianPlane.Visible = false;
+
+            nextButton.Visible = false;
+            backButton.Visible = false;
+
+            totalUsersLbl.Enabled = false;
+            totalUsersLbl.Visible = false;
+
+            countPanel.Visible = false;
+            countPanel.Enabled = false;
+
+        }
+
         private void usersB_Click(object sender, EventArgs e)
         {
             rightPieChart.Visible = true;
@@ -170,15 +190,26 @@ namespace lighPayroll
             leftCartesianChart.Visible = true;
             cartesianPlane.Visible = true;
 
-            labelCount.Enabled = true;
-            labelCount.Visible = true;
+            totalUsersLbl.Enabled = true;
+            totalUsersLbl.Visible = true;
 
             countPanel.Visible = true;
             countPanel.Enabled = true;
 
+            nextButton.Visible = true;
+            backButton.Visible = true;
+            yearLbl.Enabled = true;
+            yearLbl.Visible = true;
+
+            var range = dataAccess.GetRegistrationYearRange();
+            minYear = range.MinYear;
+            maxYear = range.MaxYear;
+
+            currentYear = maxYear; // start at latest year
+
             int count = LoadUserCount();
 
-            if(count == 0)
+            if (count == 0)
             {
                 LoadUserPieChart("empty");
                 noDataLabel.Visible = true;
@@ -196,36 +227,20 @@ namespace lighPayroll
 
         }
 
-        private void taskB_Click(object sender, EventArgs e)
-        {
-            LoadUserPieChart("task");
-            rightPieChart.Visible = false;
-            rightPieChart.Enabled = false;
-
-            leftCartesianChart.Visible = false;
-            cartesianPlane.Visible = false;
-
-
-            labelCount.Enabled = false;
-            labelCount.Visible = false;
-
-            countPanel.Visible = false;
-            countPanel.Enabled = false;
-
-
-        }
-
         private void attendanceB_Click(object sender, EventArgs e)
         {
             rightPieChart.Visible = true;
             rightPieChart.Enabled = true;
 
+            nextButton.Visible = false;
+            backButton.Visible = false;
+
             leftCartesianChart.Visible = false;
             cartesianPlane.Visible = false;
 
-            labelCount.Enabled = true;
-            labelCount.Visible = true;
-            labelCount.Text = "Attendance Count: ";
+            totalUsersLbl.Enabled = true;
+            totalUsersLbl.Visible = true;
+            totalUsersLbl.Text = "Attendance Count: ";
 
             countPanel.Visible = true;
             countPanel.Enabled = true;
@@ -247,8 +262,51 @@ namespace lighPayroll
                 noDataLabel.Enabled = false;
             }
 
-           
 
+
+        }
+
+        private void backButton_Click(object sender, EventArgs e)
+        {
+            if (currentYear > minYear)
+            {
+                currentYear--;
+                LoadRegisteredCount();
+            }
+            else
+            {
+                customMessages.CustomMessageBox("No previous year available.");
+            }
+        }
+
+        private void nextButton_Click(object sender, EventArgs e)
+        {
+            if (currentYear < maxYear)
+            {
+                currentYear++;
+                LoadRegisteredCount();
+            }
+            else
+            {
+                customMessages.CustomMessageBox("You are already at the latest year.");
+            }
+        }
+
+        private void homeButton_Click(object sender, EventArgs e)
+        {
+            if (user_role != "Admin")
+            {
+                EUI home = new EUI(user_role, user_name, user_id);
+                home.Show();
+            }
+            else
+            {
+                AdUI home = new AdUI();
+                home.Show();
+
+            }
+
+            this.Hide();
         }
 
 
@@ -276,7 +334,7 @@ namespace lighPayroll
 
                         Values = new[] { adminCount },
                         Name = "Admin",
-                        DataLabelsSize = 11, 
+                        DataLabelsSize = 11,
                         DataLabelsPosition = LiveChartsCore.Measure.PolarLabelsPosition.Middle,
                         DataLabelsPaint = new SolidColorPaint(SKColors.Beige), // label color
                         //Fill = new SolidColorPaint(SKColors.Cyan), // pie color
@@ -408,27 +466,8 @@ namespace lighPayroll
             }
         }
 
-        private void homeButton_Click(object sender, EventArgs e)
-        {
-            if (user_role != "Admin")
-            {
-                EUI home = new EUI(user_role, user_name, user_id);
-                home.Show();
-            }
-            else
-            {
-                AdUI home = new AdUI();
-                home.Show();
-
-            }
-
-            this.Hide();
-        }
-
-        private void panel3_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
+       
+ 
     }
 
 

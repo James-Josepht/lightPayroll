@@ -178,6 +178,8 @@ namespace lightPayrollServices
         // GETTING / SEARCHING
         //
 
+      
+
         public int GetAttendanceCountToday()
         {
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))

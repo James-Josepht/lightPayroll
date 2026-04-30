@@ -255,26 +255,60 @@ namespace lightPayrollServices
             }
         }
 
-        public IEnumerable<(int Month, int Total)> GetRegistrationsPerMonth()
+        public (int MinYear, int MaxYear) GetRegistrationYearRange()
+        {
+            using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
+            {
+                string sql = @"
+                SELECT 
+                    MIN(strftime('%Y', DateCreated)) AS MinYear,
+                    MAX(strftime('%Y', DateCreated)) AS MaxYear
+                FROM UsersTable";
+
+                var result = conn.QueryFirstOrDefault<(string MinYear, string MaxYear)>(sql);
+
+                return (int.Parse(result.MinYear), int.Parse(result.MaxYear));
+            }
+        }
+
+        public IEnumerable<(int Month, int Total)> GetRegistrationsPerMonth(int year)
         {
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
             {
                 var sql = @"
-                    SELECT 
-                        strftime('%m', DateCreated) AS Month,
-                        COUNT(*) AS Total
-                    FROM UsersTable
-                    WHERE strftime('%Y', DateCreated) = strftime('%Y', 'now')
-                    GROUP BY Month
-                    ORDER BY Month;
-                ";
+                SELECT 
+                    strftime('%m', DateCreated) AS Month,
+                    COUNT(*) AS Total
+                FROM UsersTable
+                WHERE strftime('%Y', DateCreated) = @Year
+                GROUP BY Month
+                ORDER BY Month;";
 
-                return conn.Query<(string Month, int Total)>(sql)
+                return conn.Query<(string Month, int Total)>(sql, new { Year = year.ToString() })
                     .Select(x => (int.Parse(x.Month), x.Total));
             }
-
         }
 
+
+        public int GetUserCount() 
+        {
+            using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
+            {
+                string sql = "SELECT COUNT(*) FROM UsersTable";
+                return conn.ExecuteScalar<int>(sql);
+            }
+        }
+
+        public int GetUserCountByRole(string role)
+        {
+            using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
+            {
+                string sql = "SELECT COUNT(*) FROM UsersTable WHERE Role = @Role";
+                return conn.ExecuteScalar<int>(sql, new { Role = role });
+            }
+        }
+
+        
 
 
         /// 
@@ -325,29 +359,6 @@ namespace lightPayrollServices
 
 
 
-
-        ////////////////////////////////////////////////////////////////////// //////////////
-        /// FOR GETTING THE TOTAL NUMBER OF USERS IN THE DATABASE, USED IN ADMIN DASHBOARD 
-        /// 
-        /// I DECIDE HOW TO COMMENT HEHEHEHE
-        ////////////////////////////////////////////////////////////////////////////////////
-        public int GetUserCount()
-        {
-            using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
-            {
-                string sql = "SELECT COUNT(*) FROM UsersTable";
-                return conn.ExecuteScalar<int>(sql);
-            }
-        }
-
-        public int GetUserCountByRole(string role)
-        {
-            using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
-            {
-                string sql = "SELECT COUNT(*) FROM UsersTable WHERE Role = @Role";
-                return conn.ExecuteScalar<int>(sql, new { Role = role });
-            }
-        }
 
 
 

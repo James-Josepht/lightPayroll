@@ -444,15 +444,15 @@ namespace lighPayrollUI
             }
             catch (Exception ex)
             {
-               var error = new ConfirmForm(
-                   $"Oh no, unable to email the employee\n\n\n\n{ex.Message}",
-                   "",
-                   false
-               );
+                var error = new ConfirmForm(
+                    $"Oh no, unable to email the employee\n\n\n\n{ex.Message}",
+                    "",
+                    false
+                );
 
                 error.ShowDialog();
             }
-            
+
         }
 
         private void payrollGrid_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -479,6 +479,11 @@ namespace lighPayrollUI
         }
 
         private void label15_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void payrollPanel_Paint(object sender, PaintEventArgs e)
         {
 
         }
