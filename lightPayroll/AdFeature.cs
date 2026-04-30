@@ -1,43 +1,89 @@
 ﻿using lighPayroll;
 using lightPayrollServices;
+using Microsoft.VisualBasic.Logging;
 using System;
 using System.Data;
 using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Windows.Forms;
+using WinFormsTimer = System.Windows.Forms.Timer;
+//timer is having conflict between System.Windows.Forms and System.Thread.Tasks, so I am using an alias
 
 namespace lighPayrollUI
 {
-    public partial class AdUserMod : Form
+    public partial class AdFeature : Form
     {
         PLogIn greetingsAndMessageBoxDesign = new PLogIn();
         SQLiteDataAccess dataAccess = new SQLiteDataAccess();
         AttendanceService attendanceDataAccess = new AttendanceService();
+        HBorderRadius borderRadius = new HBorderRadius();
 
-        public AdUserMod()
+        private string feature_button;
+
+        public AdFeature(string feature)
         {
             InitializeComponent();
+            feature_button = feature;
+
+
         }
 
         private void UsersUI_Load(object sender, EventArgs e)
         {
 
-            greetingsAndMessageBoxDesign.TypeMessage(label2, "Trust But Always Verify!");
             panelDesign();
+
+            if (feature_button == "Attendance")
+                greetingsAndMessageBoxDesign.TypeMessage(titleMessage, "You will discover some day!");
+            else if (feature_button == "UserControl")
+                greetingsAndMessageBoxDesign.TypeMessage(titleMessage, "Trust But Always Verify!");
+
+            ApplyFeaturePermissions();
         }
 
         // Load directly from database
-        private void LoadUserList()
+        private void LoadList()
         {
-            attendanceGrid.DataSource = dataAccess.LoadUsers();
-            attendanceGrid.Columns["UsersID"].DisplayIndex = 0;       // move to first
-
+            if (feature_button == "UserControl")
+            {
+                dataGrid.DataSource = dataAccess.LoadUsers();
+                dataGrid.Columns["UsersID"].DisplayIndex = 0;       // move to first column of grid
+            }
+            else
+            {
+                dataGrid.DataSource = attendanceDataAccess.LoadAttendanceAdmin();
+                dataGrid.Columns["UsersID"].DisplayIndex = 0;
+            }
+            
         }
 
         private void loadButton_Click(object sender, EventArgs e)
         {
-            LoadUserList();
+            LoadList();
+
         }
+        private void AdFeature_Shown(object sender, EventArgs e)
+        {
+            if (feature_button == "Requests")
+            {
+                WinFormsTimer t = new WinFormsTimer();
+                t.Interval = 50; // small delay so layout finishes
+                t.Tick += (s, args) =>
+                {
+                    t.Stop();
+                    t.Dispose();
+
+                    bodyPanel.AutoScroll = true;
+
+                    // Force scroll position (more reliable than ScrollControlIntoView)
+                    bodyPanel.VerticalScroll.Value = requestsPanel.Top;
+                    bodyPanel.PerformLayout();
+                };
+
+                t.Start();
+            }
+        }
+
 
         private void deleteUserButton_Click(object sender, EventArgs e)
         {
@@ -67,7 +113,7 @@ namespace lighPayrollUI
             {
                 bool success = dataAccess.DeleteUser(userId);
 
-                LoadUserList();
+                LoadList();
 
                 if (!success)
                 {
@@ -108,7 +154,7 @@ namespace lighPayrollUI
             greetingsAndMessageBoxDesign.CustomMessageBox("User updated successfully!");
 
             // Refresh grid
-            LoadUserList();
+            LoadList();
         }
         private void searchUserButton_Click(object sender, EventArgs e)
         {
@@ -124,7 +170,7 @@ namespace lighPayrollUI
             if (dataAccess.SearchUsersByUsername(username) == null)
                 greetingsAndMessageBoxDesign.CustomMessageBox("User not found.");
             else
-                attendanceGrid.DataSource = dataAccess.SearchUsersByUsername(username);
+                dataGrid.DataSource = dataAccess.SearchUsersByUsername(username);
 
         }
 
@@ -135,30 +181,41 @@ namespace lighPayrollUI
             this.Hide();
         }
 
+ 
+
+        private void ApplyFeaturePermissions()
+        {
+            switch (feature_button)
+            {
+                case "Attendance":
+
+                    titleLabel.Text = "Attendance";
+                   
+                    //btnApprove.Enabled = true;
+                    //btnPayroll.Enabled = true;
+                    break;
+
+                case "UserCount":
+
+                    //btnPayroll.Enabled = true;
+                    //btnApprove.Enabled = false;
+                    break;
+            }
+        }
 
         private void panelDesign()
         {
-            int radius = 30;
+            int radius = 17;
 
-            GraphicsPath greetingsPath = new GraphicsPath();
-            greetingsPath.AddArc(0, 0, radius, radius, 180, 90);
-            greetingsPath.AddArc(loadButton.Width - radius, 0, radius, radius, 270, 90);
-            greetingsPath.AddArc(loadButton.Width - radius, loadButton.Height - radius, radius, radius, 0, 90);
-            greetingsPath.AddArc(0, loadButton.Height - radius, radius, radius, 90, 90);
-            greetingsPath.CloseAllFigures();
+            GraphicsPath path = new GraphicsPath();
 
-            GraphicsPath bodyPath = new GraphicsPath();
-            bodyPath.AddArc(0, 0, radius, radius, 180, 90);
-            bodyPath.AddArc(loadButton.Width - radius, 0, radius, radius, 270, 90);
-            bodyPath.AddArc(loadButton.Width - radius, loadButton.Height - radius, radius, radius, 0, 90); //lower right
-            bodyPath.AddArc(0, loadButton.Height - radius, radius, radius, 90, 90);
-            bodyPath.CloseAllFigures();
+            path.AddArc(0, 0, radius, radius, 180, 90);
+            path.AddArc(loadButton.Width - radius, 0, radius, radius, 270, 90);
+            path.AddArc(loadButton.Width - radius, loadButton.Height - radius, radius, radius, 0, 90);
+            path.AddArc(0, loadButton.Height - radius, radius, radius, 90, 90);
+            path.CloseAllFigures();
 
-            loadButton.Region = new Region(greetingsPath);
-            loadButton.Region = new Region(bodyPath);
-
+            loadButton.Region = new Region(path);
         }
-
-        
     }
 }

@@ -1,6 +1,7 @@
 ﻿using lighPayrollUI;
 using lighPayrollUI.Properties;
 using lightPayrollServices;
+using Microsoft.Win32.SafeHandles;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -42,11 +43,56 @@ namespace lighPayroll
 
             HColorPanel.AddPanelGroupHover(taskPanel, Color.FromArgb(60, 75, 100), Color.FromArgb(33, 44, 66));
             HColorPanel.AddPanelGroupHover(userControlPanel, Color.FromArgb(60, 75, 100), Color.FromArgb(33, 44, 66));
-            HColorPanel.AddPanelGroupHover(attendanceTool, Color.FromArgb(60, 75, 100), Color.FromArgb(33, 44, 66));
-            HColorPanel.AddPanelGroupHover(payrollTool, Color.FromArgb(60, 75, 100), Color.FromArgb(33, 44, 66));
+            HColorPanel.AddPanelGroupHover(attendancePanel, Color.FromArgb(60, 75, 100), Color.FromArgb(33, 44, 66));
+
 
         }
 
+
+
+        private void attendanceToolClick(object sender, EventArgs e)
+        {
+            AdFeature home = new AdFeature("Attendance");
+            home.Show();
+            this.Hide();
+        }
+
+        private void userControlPanel_Click(object sender, EventArgs e)
+        {
+            AdFeature userModification = new AdFeature("UserControl");
+            userModification.Show();
+            this.Hide();
+        }
+
+
+
+        private void toDoPanel_Click(object sender, EventArgs e)
+        {
+            AdDashboard dashboard = new AdDashboard("Admin", "null", 0);
+            dashboard.Show();
+            this.Hide();
+
+        }
+
+        private void requestsPanel_Click(object sender, EventArgs e)
+        {
+
+            AdFeature home = new AdFeature("Requests");
+            home.Show();
+            this.Hide();
+
+
+        }
+
+        private void exitButton_Click(object sender, EventArgs e)
+        {
+            PLogIn messageBox = new PLogIn();
+
+            messageBox.CustomMessageBox("Signing out.");
+            PHome homepage = new PHome();
+            homepage.Show();
+            this.Hide();
+        }
 
         private void searchBox_Click(object sender, KeyEventArgs e) //incase user want to search for a feature
         {
@@ -61,7 +107,7 @@ namespace lighPayroll
             if (e.KeyCode == Keys.Enter && storedFeatures.Any(feature => searchBox.Text.ToLower().Contains(feature)))
             {
                 e.SuppressKeyPress = true;
-                AdAttendance attRecords = new AdAttendance();
+                AdFeature attRecords = new AdFeature("Attendance");
                 attRecords.Show();
                 this.Hide();
             }
@@ -142,42 +188,6 @@ namespace lighPayroll
             customMsg.Controls.Add(okButton);
 
             customMsg.ShowDialog();
-        }
-
-
-
-
-        private void attendanceToolClick(object sender, EventArgs e)
-        {
-            AdAttendance home = new AdAttendance();
-            home.Show();
-            this.Hide();
-        }
-
-        private void userControlPanel_Click(object sender, EventArgs e)
-        {
-            AdUserMod userModification = new AdUserMod();
-            userModification.Show();
-            this.Hide();
-        }
-
-
-        private void exitButton_Click(object sender, EventArgs e)
-        {
-            PLogIn messageBox = new PLogIn();
-
-            messageBox.CustomMessageBox("Signing out.");
-            PHome homepage = new PHome();
-            homepage.Show();
-            this.Hide();
-        }
-
-        private void toDoPanel_Click(object sender, EventArgs e)
-        {
-            AdDashboard dashboard = new AdDashboard("Admin", "null", 0);
-            dashboard.Show();
-            this.Hide();
-
         }
 
        

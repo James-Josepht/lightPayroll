@@ -179,6 +179,10 @@ namespace lighPayroll
             countPanel.Visible = false;
             countPanel.Enabled = false;
 
+            yearRangeLbl.Visible = false;
+            noDataLabel.Visible = false;
+            yearLbl.Visible = false;
+
         }
 
         private void usersB_Click(object sender, EventArgs e)
@@ -198,12 +202,21 @@ namespace lighPayroll
 
             nextButton.Visible = true;
             backButton.Visible = true;
+
             yearLbl.Enabled = true;
             yearLbl.Visible = true;
 
             var range = dataAccess.GetRegistrationYearRange();
             minYear = range.MinYear;
             maxYear = range.MaxYear;
+
+            //after getting year range
+            yearRangeLbl.Text = $"{minYear} - {maxYear}";
+            yearRangeLbl.Visible = true;
+            yearRangeLbl.Enabled = true;
+            yearRangePanel.Visible = true;
+            yearRangePanel.Enabled = true;
+
 
             currentYear = maxYear; // start at latest year
 
@@ -434,8 +447,8 @@ namespace lighPayroll
 
             if (role == "Admin")
             {
-                taskB.Visible = true;
-                taskB.Enabled = true;
+                payrollBtn.Visible = true;
+                payrollBtn.Enabled = true;
                 attendanceB.Visible = true;
                 attendanceB.Enabled = true;
                 usersB.Visible = true;
@@ -444,8 +457,8 @@ namespace lighPayroll
             }
             else if (role == "Manager" || role == "Accountant")
             {
-                taskB.Visible = true;
-                taskB.Enabled = true;
+                payrollBtn.Visible = true;
+                payrollBtn.Enabled = true;
                 attendanceB.Visible = true;
                 attendanceB.Enabled = true;
                 attendanceB.Location = new Point(14, 168);
@@ -461,13 +474,15 @@ namespace lighPayroll
             }
             else if (role == "Employee")
             {
-                taskB.Visible = true;
-                taskB.Enabled = true;
+                payrollBtn.Visible = true;
+                payrollBtn.Enabled = true;
             }
         }
 
-       
- 
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 
 

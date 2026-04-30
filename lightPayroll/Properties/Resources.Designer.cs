@@ -63,6 +63,16 @@ namespace lighPayrollUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap approval {
+            get {
+                object obj = ResourceManager.GetObject("approval", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap attendance {
             get {
                 object obj = ResourceManager.GetObject("attendance", resourceCulture);

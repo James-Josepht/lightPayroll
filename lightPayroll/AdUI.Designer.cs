@@ -59,21 +59,16 @@ namespace lighPayroll
             bodyPanel = new Panel();
             label4 = new Label();
             encourageVerses = new Label();
-            attendanceTool = new Panel();
-            pictureBox3 = new PictureBox();
-            label3 = new Label();
-            label2 = new Label();
+            attendancePanel = new Panel();
+            attendancePic = new PictureBox();
+            attendanceHeadLbl = new Label();
+            attendanceBodyLbl = new Label();
             taskPanel = new Panel();
             taskListsWordLabel = new Label();
             toDoLabel = new Label();
             toDoPicture = new PictureBox();
             label6 = new Label();
-            label7 = new Label();
             taskLabel = new Label();
-            payrollTool = new Panel();
-            label9 = new Label();
-            label8 = new Label();
-            pictureBox4 = new PictureBox();
             userControlPanel = new Panel();
             userModificationLabel = new Label();
             userModificationPic = new PictureBox();
@@ -85,23 +80,28 @@ namespace lighPayroll
             panel4 = new Panel();
             panel1 = new Panel();
             panel2 = new Panel();
+            requestsPanel = new Panel();
+            approvalPic = new PictureBox();
+            requestHeadLbl = new Label();
+            requestBodyLbl = new Label();
+            label9 = new Label();
             headPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             panel5.SuspendLayout();
             searchMenuStrip.SuspendLayout();
             panel6.SuspendLayout();
             bodyPanel.SuspendLayout();
-            attendanceTool.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
+            attendancePanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)attendancePic).BeginInit();
             taskPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)toDoPicture).BeginInit();
-            payrollTool.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             userControlPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)userModificationPic).BeginInit();
             greetingPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
+            requestsPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)approvalPic).BeginInit();
             SuspendLayout();
             // 
             // headPanel
@@ -116,7 +116,6 @@ namespace lighPayroll
             headPanel.Name = "headPanel";
             headPanel.Size = new Size(937, 101);
             headPanel.TabIndex = 1;
-          
             // 
             // exitLabel
             // 
@@ -312,14 +311,14 @@ namespace lighPayroll
             // bodyPanel
             // 
             bodyPanel.BackColor = Color.FromArgb(33, 44, 66);
+            bodyPanel.Controls.Add(requestsPanel);
+            bodyPanel.Controls.Add(label9);
             bodyPanel.Controls.Add(label4);
             bodyPanel.Controls.Add(encourageVerses);
-            bodyPanel.Controls.Add(attendanceTool);
+            bodyPanel.Controls.Add(attendancePanel);
             bodyPanel.Controls.Add(taskPanel);
             bodyPanel.Controls.Add(label6);
-            bodyPanel.Controls.Add(label7);
             bodyPanel.Controls.Add(taskLabel);
-            bodyPanel.Controls.Add(payrollTool);
             bodyPanel.Controls.Add(userControlPanel);
             bodyPanel.Location = new Point(73, 156);
             bodyPanel.Name = "bodyPanel";
@@ -348,58 +347,58 @@ namespace lighPayroll
             encourageVerses.TabIndex = 8;
             encourageVerses.Text = "Bible Verse";
             // 
-            // attendanceTool
+            // attendancePanel
             // 
-            attendanceTool.BorderStyle = BorderStyle.FixedSingle;
-            attendanceTool.Controls.Add(pictureBox3);
-            attendanceTool.Controls.Add(label3);
-            attendanceTool.Controls.Add(label2);
-            attendanceTool.Cursor = Cursors.Hand;
-            attendanceTool.Location = new Point(32, 232);
-            attendanceTool.Name = "attendanceTool";
-            attendanceTool.Size = new Size(724, 56);
-            attendanceTool.TabIndex = 16;
-            attendanceTool.Click += attendanceToolClick;
+            attendancePanel.BorderStyle = BorderStyle.FixedSingle;
+            attendancePanel.Controls.Add(attendancePic);
+            attendancePanel.Controls.Add(attendanceHeadLbl);
+            attendancePanel.Controls.Add(attendanceBodyLbl);
+            attendancePanel.Cursor = Cursors.Hand;
+            attendancePanel.Location = new Point(32, 226);
+            attendancePanel.Name = "attendancePanel";
+            attendancePanel.Size = new Size(724, 56);
+            attendancePanel.TabIndex = 16;
+            attendancePanel.Click += attendanceToolClick;
             // 
-            // pictureBox3
+            // attendancePic
             // 
-            pictureBox3.Cursor = Cursors.Hand;
-            pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
-            pictureBox3.Location = new Point(28, 4);
-            pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(67, 50);
-            pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox3.TabIndex = 9;
-            pictureBox3.TabStop = false;
-            pictureBox3.Click += attendanceToolClick;
+            attendancePic.Cursor = Cursors.Hand;
+            attendancePic.Image = (Image)resources.GetObject("attendancePic.Image");
+            attendancePic.Location = new Point(28, 4);
+            attendancePic.Name = "attendancePic";
+            attendancePic.Size = new Size(67, 50);
+            attendancePic.SizeMode = PictureBoxSizeMode.StretchImage;
+            attendancePic.TabIndex = 9;
+            attendancePic.TabStop = false;
+            attendancePic.Click += attendanceToolClick;
             // 
-            // label3
+            // attendanceHeadLbl
             // 
-            label3.AutoSize = true;
-            label3.BackColor = Color.FromArgb(33, 44, 66);
-            label3.Cursor = Cursors.Hand;
-            label3.Font = new Font("Ubuntu Mono", 16.1999989F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.ForeColor = Color.Beige;
-            label3.Location = new Point(139, 5);
-            label3.Name = "label3";
-            label3.Size = new Size(132, 27);
-            label3.TabIndex = 9;
-            label3.Text = "Attendance";
-            label3.Click += attendanceToolClick;
+            attendanceHeadLbl.AutoSize = true;
+            attendanceHeadLbl.BackColor = Color.FromArgb(33, 44, 66);
+            attendanceHeadLbl.Cursor = Cursors.Hand;
+            attendanceHeadLbl.Font = new Font("Ubuntu Mono", 16.1999989F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            attendanceHeadLbl.ForeColor = Color.Beige;
+            attendanceHeadLbl.Location = new Point(139, 5);
+            attendanceHeadLbl.Name = "attendanceHeadLbl";
+            attendanceHeadLbl.Size = new Size(132, 27);
+            attendanceHeadLbl.TabIndex = 9;
+            attendanceHeadLbl.Text = "Attendance";
+            attendanceHeadLbl.Click += attendanceToolClick;
             // 
-            // label2
+            // attendanceBodyLbl
             // 
-            label2.AutoSize = true;
-            label2.BackColor = Color.FromArgb(33, 44, 66);
-            label2.Cursor = Cursors.Hand;
-            label2.Font = new Font("Ubuntu Mono", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.ForeColor = Color.Beige;
-            label2.Location = new Point(141, 32);
-            label2.Name = "label2";
-            label2.Size = new Size(296, 17);
-            label2.TabIndex = 10;
-            label2.Text = "Verify and modify attendance records";
-            label2.Click += attendanceToolClick;
+            attendanceBodyLbl.AutoSize = true;
+            attendanceBodyLbl.BackColor = Color.FromArgb(33, 44, 66);
+            attendanceBodyLbl.Cursor = Cursors.Hand;
+            attendanceBodyLbl.Font = new Font("Ubuntu Mono", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            attendanceBodyLbl.ForeColor = Color.Beige;
+            attendanceBodyLbl.Location = new Point(141, 32);
+            attendanceBodyLbl.Name = "attendanceBodyLbl";
+            attendanceBodyLbl.Size = new Size(296, 17);
+            attendanceBodyLbl.TabIndex = 10;
+            attendanceBodyLbl.Text = "Verify and modify attendance records";
+            attendanceBodyLbl.Click += attendanceToolClick;
             // 
             // taskPanel
             // 
@@ -439,7 +438,7 @@ namespace lighPayroll
             toDoLabel.Name = "toDoLabel";
             toDoLabel.Size = new Size(120, 27);
             toDoLabel.TabIndex = 22;
-            toDoLabel.Text = "Task List";
+            toDoLabel.Text = "Dashboard";
             toDoLabel.Click += toDoPanel_Click;
             // 
             // toDoPicture
@@ -467,19 +466,6 @@ namespace lighPayroll
             label6.TabIndex = 14;
             label6.Text = "Payroll Logs";
             // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.BackColor = Color.FromArgb(33, 44, 66);
-            label7.Cursor = Cursors.Hand;
-            label7.Font = new Font("Ubuntu Mono", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label7.ForeColor = Color.Beige;
-            label7.Location = new Point(168, 271);
-            label7.Name = "label7";
-            label7.Size = new Size(232, 17);
-            label7.TabIndex = 15;
-            label7.Text = "Look and secure payroll logs";
-            // 
             // taskLabel
             // 
             taskLabel.AutoSize = true;
@@ -491,55 +477,6 @@ namespace lighPayroll
             taskLabel.Size = new Size(108, 27);
             taskLabel.TabIndex = 9;
             taskLabel.Text = "My Tools";
-            // 
-            // payrollTool
-            // 
-            payrollTool.BorderStyle = BorderStyle.FixedSingle;
-            payrollTool.Controls.Add(label9);
-            payrollTool.Controls.Add(label8);
-            payrollTool.Controls.Add(pictureBox4);
-            payrollTool.Cursor = Cursors.Hand;
-            payrollTool.Location = new Point(32, 312);
-            payrollTool.Name = "payrollTool";
-            payrollTool.Size = new Size(724, 56);
-            payrollTool.TabIndex = 17;
-            // 
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.BackColor = Color.FromArgb(33, 44, 66);
-            label9.Cursor = Cursors.Hand;
-            label9.Font = new Font("Ubuntu Mono", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label9.ForeColor = Color.Beige;
-            label9.Location = new Point(133, 33);
-            label9.Name = "label9";
-            label9.Size = new Size(232, 17);
-            label9.TabIndex = 21;
-            label9.Text = "Look and secure payroll logs";
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.BackColor = Color.FromArgb(33, 44, 66);
-            label8.Cursor = Cursors.Hand;
-            label8.Font = new Font("Ubuntu Mono", 16.1999989F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label8.ForeColor = Color.Beige;
-            label8.Location = new Point(133, 8);
-            label8.Name = "label8";
-            label8.Size = new Size(156, 27);
-            label8.TabIndex = 20;
-            label8.Text = "Payroll Logs";
-            // 
-            // pictureBox4
-            // 
-            pictureBox4.Cursor = Cursors.Hand;
-            pictureBox4.Image = (Image)resources.GetObject("pictureBox4.Image");
-            pictureBox4.Location = new Point(28, 0);
-            pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(67, 50);
-            pictureBox4.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox4.TabIndex = 10;
-            pictureBox4.TabStop = false;
             // 
             // userControlPanel
             // 
@@ -666,6 +603,71 @@ namespace lighPayroll
             panel2.Size = new Size(783, 80);
             panel2.TabIndex = 4;
             // 
+            // requestsPanel
+            // 
+            requestsPanel.BorderStyle = BorderStyle.FixedSingle;
+            requestsPanel.Controls.Add(approvalPic);
+            requestsPanel.Controls.Add(requestHeadLbl);
+            requestsPanel.Controls.Add(requestBodyLbl);
+            requestsPanel.Cursor = Cursors.Hand;
+            requestsPanel.Location = new Point(32, 305);
+            requestsPanel.Name = "requestsPanel";
+            requestsPanel.Size = new Size(724, 56);
+            requestsPanel.TabIndex = 19;
+            requestsPanel.Click += requestsPanel_Click;
+            // 
+            // approvalPic
+            // 
+            approvalPic.Cursor = Cursors.Hand;
+            approvalPic.Image = Resources.approval;
+            approvalPic.Location = new Point(28, 4);
+            approvalPic.Name = "approvalPic";
+            approvalPic.Size = new Size(67, 50);
+            approvalPic.SizeMode = PictureBoxSizeMode.StretchImage;
+            approvalPic.TabIndex = 9;
+            approvalPic.TabStop = false;
+            approvalPic.Click += requestsPanel_Click;
+            // 
+            // requestHeadLbl
+            // 
+            requestHeadLbl.AutoSize = true;
+            requestHeadLbl.BackColor = Color.FromArgb(33, 44, 66);
+            requestHeadLbl.Cursor = Cursors.Hand;
+            requestHeadLbl.Font = new Font("Ubuntu Mono", 16.1999989F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            requestHeadLbl.ForeColor = Color.Beige;
+            requestHeadLbl.Location = new Point(139, 5);
+            requestHeadLbl.Name = "requestHeadLbl";
+            requestHeadLbl.Size = new Size(108, 27);
+            requestHeadLbl.TabIndex = 9;
+            requestHeadLbl.Text = "Requests";
+            requestHeadLbl.Click += requestsPanel_Click;
+            // 
+            // requestBodyLbl
+            // 
+            requestBodyLbl.AutoSize = true;
+            requestBodyLbl.BackColor = Color.FromArgb(33, 44, 66);
+            requestBodyLbl.Cursor = Cursors.Hand;
+            requestBodyLbl.Font = new Font("Ubuntu Mono", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            requestBodyLbl.ForeColor = Color.Beige;
+            requestBodyLbl.Location = new Point(141, 32);
+            requestBodyLbl.Name = "requestBodyLbl";
+            requestBodyLbl.Size = new Size(208, 17);
+            requestBodyLbl.TabIndex = 10;
+            requestBodyLbl.Text = "Check employee's requests";
+            requestBodyLbl.Click += requestsPanel_Click;
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.BackColor = Color.FromArgb(33, 44, 66);
+            label9.Cursor = Cursors.Hand;
+            label9.Font = new Font("Ubuntu Mono", 16.1999989F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label9.ForeColor = Color.Beige;
+            label9.Location = new Point(165, 324);
+            label9.Name = "label9";
+            label9.Size = new Size(156, 27);
+            label9.TabIndex = 17;
+            label9.Text = "Payroll Logs";
+            // 
             // AdUI
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
@@ -688,15 +690,12 @@ namespace lighPayroll
             panel6.ResumeLayout(false);
             bodyPanel.ResumeLayout(false);
             bodyPanel.PerformLayout();
-            attendanceTool.ResumeLayout(false);
-            attendanceTool.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
+            attendancePanel.ResumeLayout(false);
+            attendancePanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)attendancePic).EndInit();
             taskPanel.ResumeLayout(false);
             taskPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)toDoPicture).EndInit();
-            payrollTool.ResumeLayout(false);
-            payrollTool.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             userControlPanel.ResumeLayout(false);
             userControlPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)userModificationPic).EndInit();
@@ -704,6 +703,9 @@ namespace lighPayroll
             greetingPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel1.ResumeLayout(false);
+            requestsPanel.ResumeLayout(false);
+            requestsPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)approvalPic).EndInit();
             ResumeLayout(false);
         }
 
@@ -745,21 +747,16 @@ namespace lighPayroll
         private Label taskLabel;
         private ToolStripTextBox searchBox;
         private PictureBox userModificationPic;
-        private PictureBox pictureBox4;
-        private PictureBox pictureBox3;
+        private PictureBox attendancePic;
         private Label label6;
-        private Label label7;
         private Label userModificationLabel;
         private Label userModificationShort;
-        private Label label3;
-        private Label label2;
-        private Panel attendanceTool;
+        private Label attendanceHeadLbl;
+        private Label attendanceBodyLbl;
+        private Panel attendancePanel;
         private Panel userControlPanel;
-        private Panel payrollTool;
         private PictureBox toDoPicture;
         private Panel taskPanel;
-        private Label label9;
-        private Label label8;
         private Label taskListsWordLabel;
         private Label toDoLabel;
         private Label encourageVerses;
@@ -767,5 +764,10 @@ namespace lighPayroll
         private Button exitButton;
         private Label exitLabel;
         private Panel panel6;
+        private Panel requestsPanel;
+        private PictureBox approvalPic;
+        private Label requestHeadLbl;
+        private Label requestBodyLbl;
+        private Label label9;
     }
 }

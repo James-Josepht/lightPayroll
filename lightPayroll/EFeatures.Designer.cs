@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
             panel1 = new Panel();
             pictureBox2 = new PictureBox();
             tableLayoutPanel1 = new TableLayoutPanel();
@@ -88,7 +88,7 @@
             payrollPanel = new Panel();
             notePayrollL = new Label();
             modifyPayrollB = new Button();
-            overTimePage = new TabPage();
+            requestPage = new TabPage();
             profilePage = new TabPage();
             profilePanel = new Panel();
             profileTableLayout = new TableLayoutPanel();
@@ -185,7 +185,7 @@
             employeeFeatures.Controls.Add(payslipPage);
             employeeFeatures.Controls.Add(attendancePage);
             employeeFeatures.Controls.Add(payrollPage);
-            employeeFeatures.Controls.Add(overTimePage);
+            employeeFeatures.Controls.Add(requestPage);
             employeeFeatures.Controls.Add(profilePage);
             employeeFeatures.Font = new Font("Ubuntu Mono Medium", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             employeeFeatures.Location = new Point(3, 107);
@@ -624,23 +624,23 @@
             attendanceGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             attendanceGrid.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
             attendanceGrid.BorderStyle = BorderStyle.None;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = SystemColors.Control;
-            dataGridViewCellStyle1.Font = new Font("Ubuntu Mono Medium", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle1.ForeColor = SystemColors.Desktop;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            attendanceGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = SystemColors.Control;
+            dataGridViewCellStyle5.Font = new Font("Ubuntu Mono Medium", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle5.ForeColor = SystemColors.Desktop;
+            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
+            attendanceGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             attendanceGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = SystemColors.Window;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI Historic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle2.ForeColor = SystemColors.ControlDarkDark;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            attendanceGrid.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = SystemColors.Window;
+            dataGridViewCellStyle6.Font = new Font("Segoe UI Historic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle6.ForeColor = SystemColors.ControlDarkDark;
+            dataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.False;
+            attendanceGrid.DefaultCellStyle = dataGridViewCellStyle6;
             attendanceGrid.Location = new Point(82, 132);
             attendanceGrid.Name = "attendanceGrid";
             attendanceGrid.ReadOnly = true;
@@ -718,23 +718,23 @@
             payrollGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             payrollGrid.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
             payrollGrid.BorderStyle = BorderStyle.None;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = SystemColors.Control;
-            dataGridViewCellStyle3.Font = new Font("Ubuntu Mono Medium", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle3.ForeColor = SystemColors.Desktop;
-            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            payrollGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = SystemColors.Control;
+            dataGridViewCellStyle7.Font = new Font("Ubuntu Mono Medium", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle7.ForeColor = SystemColors.Desktop;
+            dataGridViewCellStyle7.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
+            payrollGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             payrollGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = SystemColors.Window;
-            dataGridViewCellStyle4.Font = new Font("Segoe UI Historic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle4.ForeColor = SystemColors.ControlDarkDark;
-            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
-            payrollGrid.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = SystemColors.Window;
+            dataGridViewCellStyle8.Font = new Font("Segoe UI Historic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle8.ForeColor = SystemColors.ControlDarkDark;
+            dataGridViewCellStyle8.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.False;
+            payrollGrid.DefaultCellStyle = dataGridViewCellStyle8;
             payrollGrid.Location = new Point(83, 132);
             payrollGrid.Name = "payrollGrid";
             payrollGrid.ReadOnly = true;
@@ -810,15 +810,15 @@
             modifyPayrollB.UseVisualStyleBackColor = true;
             modifyPayrollB.Click += modifyPayrollB_Click;
             // 
-            // overTimePage
+            // requestPage
             // 
-            overTimePage.BackColor = Color.FromArgb(33, 44, 66);
-            overTimePage.Location = new Point(4, 25);
-            overTimePage.Name = "overTimePage";
-            overTimePage.Padding = new Padding(3);
-            overTimePage.Size = new Size(923, 409);
-            overTimePage.TabIndex = 4;
-            overTimePage.Text = "Overtime";
+            requestPage.BackColor = Color.FromArgb(33, 44, 66);
+            requestPage.Location = new Point(4, 25);
+            requestPage.Name = "requestPage";
+            requestPage.Padding = new Padding(3);
+            requestPage.Size = new Size(923, 409);
+            requestPage.TabIndex = 4;
+            requestPage.Text = "Requests";
             // 
             // profilePage
             // 
@@ -1144,7 +1144,7 @@
         private Panel panel3;
         private DataGridView clockGrid;
         private TabPage payrollPage;
-        private TabPage overTimePage;
+        private TabPage requestPage;
         private TabPage profilePage;
         private Panel payrollSearchPanel;
         private PictureBox pictureBox1;
