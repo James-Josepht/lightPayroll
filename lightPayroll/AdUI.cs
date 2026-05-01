@@ -44,6 +44,7 @@ namespace lighPayroll
             HColorPanel.AddPanelGroupHover(taskPanel, Color.FromArgb(60, 75, 100), Color.FromArgb(33, 44, 66));
             HColorPanel.AddPanelGroupHover(userControlPanel, Color.FromArgb(60, 75, 100), Color.FromArgb(33, 44, 66));
             HColorPanel.AddPanelGroupHover(attendancePanel, Color.FromArgb(60, 75, 100), Color.FromArgb(33, 44, 66));
+            HColorPanel.AddPanelGroupHover(requestsPanel, Color.FromArgb(60, 75, 100), Color.FromArgb(33, 44, 66));
 
 
         }

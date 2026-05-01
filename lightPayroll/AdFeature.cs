@@ -37,8 +37,14 @@ namespace lighPayrollUI
                 greetingsAndMessageBoxDesign.TypeMessage(titleMessage, "You will discover some day!");
             else if (feature_button == "UserControl")
                 greetingsAndMessageBoxDesign.TypeMessage(titleMessage, "Trust But Always Verify!");
+            else if (feature_button == "Requests")
+                dataGrid.Visible = false;
+
+
 
             ApplyFeaturePermissions();
+            
+
         }
 
         // Load directly from database
@@ -67,21 +73,32 @@ namespace lighPayrollUI
             if (feature_button == "Requests")
             {
                 WinFormsTimer t = new WinFormsTimer();
-                t.Interval = 50; // small delay so layout finishes
+                t.Interval = 111; // small delay so layout finishes
                 t.Tick += (s, args) =>
                 {
                     t.Stop();
                     t.Dispose();
 
-                    bodyPanel.AutoScroll = true;
-
                     // Force scroll position (more reliable than ScrollControlIntoView)
                     bodyPanel.VerticalScroll.Value = requestsPanel.Top;
                     bodyPanel.PerformLayout();
+
+
+                    //show the attendance tools after scroll
+                    dataGrid.Visible = true;
+                    upperBodyPanel.Visible = true;
+                    
                 };
 
                 t.Start();
             }
+            else
+            {
+                dataGrid.Visible = true;
+                upperBodyPanel.Visible = true;
+            }
+
+            
         }
 
 
