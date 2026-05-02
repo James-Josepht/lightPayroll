@@ -173,6 +173,25 @@ namespace lightPayrollServices
             }
         }
 
+        public void UpdateEmployeeProfile(int id, string middleName = null, string email = null)
+        {
+            using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
+            {
+                conn.Execute(
+                    @"UPDATE EmployeesTable
+              SET MiddleName = @MiddleName, Email = @Email
+              WHERE UsersID = @UsersID;",
+                    new
+                    {
+                        Email = email,
+                        MiddleName = middleName,
+                        UsersID = id
+                    });
+            }
+        }
+
+
+
 
         //
         // GETTING / SEARCHING

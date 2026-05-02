@@ -146,7 +146,7 @@ namespace lighPayrollUI
             var confirm = new ConfirmForm(
                         "Delete User",
                         $"Are you sure you want to delete User ID: {userId}?",
-                        true
+                        true, false
                     );
 
             confirm.ShowDialog();
@@ -159,7 +159,7 @@ namespace lighPayrollUI
 
                 if (!success)
                 {
-                    new ConfirmForm("Error", "User is linked to employee. Cannot delete.", false).ShowDialog();
+                    new ConfirmForm("Error", "User is linked to employee. Cannot delete.", false, false).ShowDialog();
                 }
             }
         }

@@ -105,7 +105,6 @@ namespace lightPayrollModel
             .Where(s => !string.IsNullOrWhiteSpace(s)));
 
         public string? Position { get; set; }
-        public string? Department { get; set; }
         public DateTime? DateHired { get; set; }
 
         private double? salaryRate;

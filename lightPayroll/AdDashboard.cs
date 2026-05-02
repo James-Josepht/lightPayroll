@@ -58,6 +58,7 @@ namespace lighPayroll
         {
 
             ApplyRole(user_role);
+           
         }
 
         private int LoadUserCount()
@@ -77,10 +78,8 @@ namespace lighPayroll
             pendingUsersLbl.Text = $"Pending Count: {pendingCount.ToString()}";
 
             approvedCountLbl.Visible = true;
-            approvedCountLbl.Enabled = true;
 
             pendingUsersLbl.Visible = true;
-            pendingUsersLbl.Enabled = true;
 
             return count;
         }
@@ -148,6 +147,7 @@ namespace lighPayroll
         private int LoadAttendanceCount()
         {
             int count = attendanceService.GetAttendanceCountToday();
+            dataLbl.Text = DateTime.Now.ToString("MMMM dd, yyyy");
             totalUsersLbl.Text = $"Attendance Count: {count.ToString()}";
 
             return count;
@@ -163,59 +163,47 @@ namespace lighPayroll
 
         private void taskB_Click(object sender, EventArgs e)
         {
+            //right focus
             LoadUserPieChart("task");
             rightPieChart.Visible = false;
-            rightPieChart.Enabled = false;
+            yearRangePanel.Visible = false;
+            totalUsersLbl.Visible = false;
+            countPanel.Visible = false;
+            noDataLabel.Visible = false;
+            dataLbl.Visible = false;
+            yearLbl.Visible = false;
 
+
+            //left focus
             leftCartesianChart.Visible = false;
             cartesianPlane.Visible = false;
-
-            nextButton.Visible = false;
-            backButton.Visible = false;
-
-            totalUsersLbl.Enabled = false;
-            totalUsersLbl.Visible = false;
-
-            countPanel.Visible = false;
-            countPanel.Enabled = false;
-
-            yearRangeLbl.Visible = false;
-            noDataLabel.Visible = false;
-            yearLbl.Visible = false;
+            modifyYearPanel.Visible = false;
 
         }
 
         private void usersB_Click(object sender, EventArgs e)
         {
+            //right chart focus
             rightPieChart.Visible = true;
-            rightPieChart.Enabled = true;
+            totalUsersLbl.Visible = true;
+            countPanel.Visible = true;
+            yearLbl.Visible = true;
 
-
+            //left chart focus
             leftCartesianChart.Visible = true;
             cartesianPlane.Visible = true;
-
-            totalUsersLbl.Enabled = true;
-            totalUsersLbl.Visible = true;
-
-            countPanel.Visible = true;
-            countPanel.Enabled = true;
-
-            nextButton.Visible = true;
-            backButton.Visible = true;
-
-            yearLbl.Enabled = true;
-            yearLbl.Visible = true;
+            modifyYearPanel.Visible = true;
+          
 
             var range = dataAccess.GetRegistrationYearRange();
             minYear = range.MinYear;
             maxYear = range.MaxYear;
 
             //after getting year range
-            yearRangeLbl.Text = $"{minYear} - {maxYear}";
-            yearRangeLbl.Visible = true;
-            yearRangeLbl.Enabled = true;
+            dataLbl.Text = $"{minYear} - {maxYear}";
+            dataLbl.Visible = true;
             yearRangePanel.Visible = true;
-            yearRangePanel.Enabled = true;
+
 
 
             currentYear = maxYear; // start at latest year
@@ -226,7 +214,6 @@ namespace lighPayroll
             {
                 LoadUserPieChart("empty");
                 noDataLabel.Visible = true;
-                noDataLabel.Enabled = true;
                 return;
             }
             else
@@ -234,7 +221,6 @@ namespace lighPayroll
                 LoadUserPieChart("user");
                 LoadRegisteredCount();
                 noDataLabel.Visible = false;
-                noDataLabel.Enabled = false;
             }
 
 
@@ -242,21 +228,20 @@ namespace lighPayroll
 
         private void attendanceB_Click(object sender, EventArgs e)
         {
+            //focus on right chart
             rightPieChart.Visible = true;
-            rightPieChart.Enabled = true;
-
-            nextButton.Visible = false;
-            backButton.Visible = false;
-
-            leftCartesianChart.Visible = false;
-            cartesianPlane.Visible = false;
-
-            totalUsersLbl.Enabled = true;
+            yearRangePanel.Visible = true;
             totalUsersLbl.Visible = true;
             totalUsersLbl.Text = "Attendance Count: ";
-
             countPanel.Visible = true;
-            countPanel.Enabled = true;
+
+            //focus on left chart
+            leftCartesianChart.Visible = true;
+            cartesianPlane.Visible = true;
+            modifyYearPanel.Visible = true;
+
+
+
 
             int count = LoadAttendanceCount();
             //only load and modify the count text after clicking the button
@@ -274,9 +259,6 @@ namespace lighPayroll
                 noDataLabel.Visible = false;
                 noDataLabel.Enabled = false;
             }
-
-
-
         }
 
         private void backButton_Click(object sender, EventArgs e)

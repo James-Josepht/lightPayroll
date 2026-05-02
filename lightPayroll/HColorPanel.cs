@@ -2,37 +2,13 @@
 using System.Drawing;
 using System.Windows.Forms;
 
-public static class HColorPanel
+public static class HColorPanel //basically  this is commonly used for hovering panel in AdUI / EUI
 {
-    // =========================
-    // SET PANEL COLOR
-    // =========================
-    public static void SetPanelColor(Panel panel, Color color)
-    {
-        panel.BackColor = color;
-    }
-
-    // =========================
-    // SIMPLE HOVER (single control)
-    // =========================
-    public static void AddHoverColor(Control control, Color hoverColor, Color normalColor)
-    {
-        control.BackColor = normalColor;
-
-        control.MouseEnter += (s, e) =>
-        {
-            control.BackColor = hoverColor;
-        };
-
-        control.MouseLeave += (s, e) =>
-        {
-            control.BackColor = normalColor;
-        };
-    }
+   
 
     // =========================
     // GROUP HOVER (PANEL + CHILDREN)
-    // FIXED VERSION (no recursion bugs, no duplicate events)
+    // 
     // =========================
     public static void AddPanelGroupHover(Panel panel, Color hoverColor, Color normalColor)
     {
@@ -105,19 +81,4 @@ public static class HColorPanel
         return ctrl.ClientRectangle.Contains(ctrl.PointToClient(Cursor.Position));
     }
 
-    // =========================
-    // MATCH BACK COLOR
-    // =========================
-    public static void MatchBackColor(Control control, Panel panel)
-    {
-        control.BackColor = panel.BackColor;
-    }
-
-    // =========================
-    // APPLY THEME (simple flat version)
-    // =========================
-    public static void ApplyPanelTheme(Panel panel)
-    {
-        SetPanelAndChildren(panel, panel.BackColor);
-    }
 }

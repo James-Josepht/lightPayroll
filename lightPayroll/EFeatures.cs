@@ -72,11 +72,15 @@ namespace lighPayrollUI
                 clockStatusReal.Text = "Clock Out";
                 clockStatusReal.ForeColor = Color.IndianRed;
             }
-            else if (clockStatusReal.Text == "Pending") clockStatusReal.ForeColor = Color.FromArgb(255, 255, 128);
-            else
+            else if (attendanceDataAccess.HasClockedInToday(user_id))
             {
                 clockStatusReal.Text = "Clock In";
                 clockStatusReal.ForeColor = Color.FromArgb(0, 192, 0);
+            }
+            else
+            {
+                clockStatusReal.Text = "Pending";
+                clockStatusReal.ForeColor = Color.FromArgb(255, 255, 128);
             }
 
         }
@@ -144,35 +148,20 @@ namespace lighPayrollUI
             if (employee != null)
             {
                 userID.Text = employee.EmployeeID.ToString();
-                // Update UI elements with employee information
                 firstName.Text = employee.FirstName;
-
-                if (string.IsNullOrEmpty(employee.MiddleName))
-                {
-                    middleName.Text = "-";
-                }
-                else middleName.Text = employee.MiddleName;
-
                 lastName.Text = employee.LastName;
                 role.Text = employee.Position;
 
-
-                if (string.IsNullOrEmpty(employee.Department))
-                {
-                    department.Text = "-";
-                }
-                if (string.IsNullOrEmpty(employee.SalaryRate?.ToString("C")))
-                {
-                    salaryRate.Text = "-";
-                }
-                if (!string.IsNullOrEmpty(employee.Department) && !string.IsNullOrEmpty(employee.SalaryRate?.ToString("C")))
-                {
-                    department.Text = employee.Department;
-                    salaryRate.Text = employee.SalaryRate?.ToString("C");
-
-                }
+                if (employee.MiddleName == null)
+                     middleName.Text = "-";
+                else
+                    middleName.Text = employee.MiddleName;
 
 
+                if (employee.Email == null)
+                    email.Text = "-";
+                else
+                    email.Text = employee.Email;
             }
         }
 
@@ -276,6 +265,7 @@ namespace lighPayrollUI
         /// FOR CLOCK IN PAGE
         /// 
         /// 
+
         private void clockInButton_Click(object sender, EventArgs e)
         {
             if (attendanceDataAccess.HasClockedInToday(employee_id))
@@ -325,10 +315,32 @@ namespace lighPayrollUI
 
 
         ////
-        //// FOR PROFILE PAGE
+        //// FOR PROFILE PAGE (others are in load - the top)
         ////
         ////
         ///
+
+        
+        private void modifyProfile_Click(object sender, EventArgs e)
+        {
+            ConfirmForm form = new ConfirmForm("Modify Profile", "", true, true);
+            form.ShowDialog();
+
+            if (form.Result)
+            {
+                string email = form.Email;
+                string middle = form.MiddleName;
+
+                if (string.IsNullOrEmpty(email) || string.IsNullOrWhiteSpace(email))
+                    email = null;
+                if (string.IsNullOrEmpty(middle) || string.IsNullOrWhiteSpace(middle))
+                    middle = null;
+                
+
+                attendanceDataAccess.UpdateEmployeeProfile(user_id, middle, email);
+                LoadProfile();
+            }
+        }
 
         ///
         /// FOR ATTENDANCE PAGE
@@ -436,10 +448,12 @@ namespace lighPayrollUI
 
             try
             {
-                //modify this in the future
+                var employee = dataAccess.GetEmployeeByID(employeeID: selectedEmployeeID);
+
+
                 EmailService.SendPayrollEmail(
-                    "shalomfromjoseph@gmail.com",
-                    "James",
+                   employee.Email,
+                    selectedEmployeeName,
                      777.00m
                 );
             }
@@ -473,11 +487,13 @@ namespace lighPayrollUI
 
                 if (confirm.Result)
                 {
+                    adminUI.CustomMessageBox("Employee ID saved. Please click modify button");
                     selectedEmployeeID = tempEmployeeID;
                     selectedEmployeeName = tempName;
                 }
             }
         }
 
+      
     }
 }

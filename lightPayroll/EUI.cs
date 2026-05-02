@@ -1,4 +1,7 @@
 ﻿using lighPayroll;
+using lightPayrollModel;
+using lightPayrollServices;
+using LiveChartsCore.VisualElements;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,8 +11,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using lightPayrollModel;
-using lightPayrollServices;
 
 namespace lighPayrollUI
 {
@@ -64,6 +65,9 @@ namespace lighPayrollUI
 
             ApplyRolePermissions();
             adminUI.panelDesign(greetingPanel, bodyPanel);
+
+            HColorPanel.AddPanelGroupHover(toDoPanel, Color.FromArgb(60, 75, 100), Color.FromArgb(33, 44, 66));
+            HColorPanel.AddPanelGroupHover(eFeaturesPanel, Color.FromArgb(60, 75, 100), Color.FromArgb(33, 44, 66));
         }
 
 

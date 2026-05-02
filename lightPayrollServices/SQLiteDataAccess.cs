@@ -142,7 +142,7 @@ namespace lightPayrollServices
         /// 
         /// 
 
-        public int GetEmployeeIdByUserId(int usersID)
+        public int GetEmployeeIdByUserId(int usersID) //used to get id not employee itself
         {
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
             {
@@ -188,7 +188,7 @@ namespace lightPayrollServices
             }
         }
 
-        public Employee GetEmployeeByID(int id) //using userid
+        public Employee GetEmployeeByID(int? usersId = null, int? employeeID = null) 
         {
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
             {
@@ -197,16 +197,36 @@ namespace lightPayrollServices
                     e.EmployeeID,
                     e.UsersID,
                     e.FirstName,
+                    e.MiddleName,
                     e.LastName,
                     e.Position,
+                    e.Email,
                     u.Username,
                     u.Role
                 FROM EmployeesTable e
                 INNER JOIN UsersTable u ON e.UsersID = u.UsersID
-                WHERE e.UsersID = @UsersID
-                LIMIT 1;";
+                WHERE 1=1";
 
-                return conn.QueryFirstOrDefault<Employee>(sql, new { UsersID = id });
+                if (usersId.HasValue)
+                {
+                    sql += " AND e.UsersID = @UsersID";
+                }
+                else if (employeeID.HasValue)
+                {
+                    sql += " AND e.EmployeeID = @EmployeeID";
+                }
+                else
+                {
+                    return null; // nothing to search
+                }
+
+                sql += " LIMIT 1;";
+
+                return conn.QueryFirstOrDefault<Employee>(sql, new
+                {
+                    UsersID = usersId,
+                    EmployeeID = employeeID
+                });
             }
         }
 
