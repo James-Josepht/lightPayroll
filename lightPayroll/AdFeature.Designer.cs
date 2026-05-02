@@ -28,6 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             headPanel = new Panel();
             pictureBox2 = new PictureBox();
             pictureBox1 = new PictureBox();
@@ -35,9 +38,9 @@
             requestsPanel = new Panel();
             dataGrid = new DataGridView();
             noteLabel = new Label();
+            upperBodyPanel = new Panel();
             loadPanel = new Panel();
             loadButton = new Button();
-            upperBodyPanel = new Panel();
             titleMessage = new Label();
             titleLabel = new Label();
             nameOrIDLabel = new Label();
@@ -56,8 +59,8 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             bodyPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGrid).BeginInit();
-            loadPanel.SuspendLayout();
             upperBodyPanel.SuspendLayout();
+            loadPanel.SuspendLayout();
             buttonsPanel.SuspendLayout();
             SuspendLayout();
             // 
@@ -108,21 +111,48 @@
             // 
             // requestsPanel
             // 
+            requestsPanel.BorderStyle = BorderStyle.FixedSingle;
             requestsPanel.Dock = DockStyle.Bottom;
             requestsPanel.Location = new Point(0, 430);
             requestsPanel.Name = "requestsPanel";
-            requestsPanel.Size = new Size(920, 450);
+            requestsPanel.Size = new Size(920, 495);
             requestsPanel.TabIndex = 36;
             // 
             // dataGrid
             // 
             dataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGrid.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(60, 80, 100);
+            dataGridViewCellStyle1.Font = new Font("Ubuntu Mono Medium", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = SystemColors.ScrollBar;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.ControlDark;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI Historic", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = Color.FromArgb(68, 68, 68);
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.ScrollBar;
+            dataGridViewCellStyle2.SelectionForeColor = Color.FromArgb(40, 40, 40);
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dataGrid.DefaultCellStyle = dataGridViewCellStyle2;
             dataGrid.Location = new Point(96, 167);
             dataGrid.Name = "dataGrid";
+            dataGrid.ReadOnly = true;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.FromArgb(60, 80, 100);
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9.75F);
+            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.ControlDark;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dataGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dataGrid.RowHeadersWidth = 51;
-            dataGrid.Size = new Size(758, 210);
+            dataGrid.RowTemplate.Height = 40;
+            dataGrid.Size = new Size(758, 243);
             dataGrid.TabIndex = 23;
             // 
             // noteLabel
@@ -137,6 +167,25 @@
             noteLabel.Size = new Size(400, 17);
             noteLabel.TabIndex = 25;
             noteLabel.Text = "                                                 ";
+            // 
+            // upperBodyPanel
+            // 
+            upperBodyPanel.Controls.Add(loadPanel);
+            upperBodyPanel.Controls.Add(titleMessage);
+            upperBodyPanel.Controls.Add(titleLabel);
+            upperBodyPanel.Controls.Add(nameOrIDLabel);
+            upperBodyPanel.Controls.Add(roleComboBox);
+            upperBodyPanel.Controls.Add(nameLabel);
+            upperBodyPanel.Controls.Add(statusComboBox);
+            upperBodyPanel.Controls.Add(lastNameLabel);
+            upperBodyPanel.Controls.Add(nameOrIDTxtBox);
+            upperBodyPanel.Controls.Add(buttonsPanel);
+            upperBodyPanel.Dock = DockStyle.Top;
+            upperBodyPanel.Location = new Point(0, 0);
+            upperBodyPanel.Name = "upperBodyPanel";
+            upperBodyPanel.Size = new Size(920, 161);
+            upperBodyPanel.TabIndex = 38;
+            upperBodyPanel.Visible = false;
             // 
             // loadPanel
             // 
@@ -161,25 +210,6 @@
             loadButton.Text = "Load";
             loadButton.UseVisualStyleBackColor = false;
             loadButton.Click += loadButton_Click;
-            // 
-            // upperBodyPanel
-            // 
-            upperBodyPanel.Controls.Add(loadPanel);
-            upperBodyPanel.Controls.Add(titleMessage);
-            upperBodyPanel.Controls.Add(titleLabel);
-            upperBodyPanel.Controls.Add(nameOrIDLabel);
-            upperBodyPanel.Controls.Add(roleComboBox);
-            upperBodyPanel.Controls.Add(nameLabel);
-            upperBodyPanel.Controls.Add(statusComboBox);
-            upperBodyPanel.Controls.Add(lastNameLabel);
-            upperBodyPanel.Controls.Add(nameOrIDTxtBox);
-            upperBodyPanel.Controls.Add(buttonsPanel);
-            upperBodyPanel.Dock = DockStyle.Top;
-            upperBodyPanel.Location = new Point(0, 0);
-            upperBodyPanel.Name = "upperBodyPanel";
-            upperBodyPanel.Size = new Size(920, 161);
-            upperBodyPanel.TabIndex = 38;
-            upperBodyPanel.Visible = false;
             // 
             // titleMessage
             // 
@@ -361,9 +391,9 @@
             bodyPanel.ResumeLayout(false);
             bodyPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGrid).EndInit();
-            loadPanel.ResumeLayout(false);
             upperBodyPanel.ResumeLayout(false);
             upperBodyPanel.PerformLayout();
+            loadPanel.ResumeLayout(false);
             buttonsPanel.ResumeLayout(false);
             ResumeLayout(false);
         }

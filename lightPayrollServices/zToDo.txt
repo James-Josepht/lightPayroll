@@ -15,5 +15,5 @@
 
 [x]Make a logic where one form with different roles!
 [x]Make ClockIn usable
-[]Make Payroll and Payslip usable
-[]Use multiple interface
+[x]Make Payroll and Payslip usable
+[x]Use multiple interface

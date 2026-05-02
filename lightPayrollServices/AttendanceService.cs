@@ -54,7 +54,7 @@ namespace lightPayrollServices
             }
         }
 
-        public List<AttendanceAdmin> LoadAttendanceAdmin()//used for displaying the user only
+        public List<AttendanceAdmin> LoadAttendanceAdmin()//used for displaying all attendance
         {
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
             {
@@ -82,7 +82,7 @@ namespace lightPayrollServices
                 conn.Execute(createTableSql);  // Dapper extension method for non-query commands
 
                 // Step 2: Query the table
-                var output = conn.Query<AttendanceAdmin>("SELECT EmployeeID, Date, TimeIn, TimeOut, Status, Remarks FROM AttendanceTable", new DynamicParameters());
+                var output = conn.Query<AttendanceAdmin>("SELECT AttendanceID, EmployeeID, Date, TimeIn, TimeOut, Status, Remarks FROM AttendanceTable", new DynamicParameters());
 
                 var attendances = output.ToList();
 

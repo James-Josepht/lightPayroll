@@ -100,18 +100,24 @@ namespace lightPayrollServices
             }
         }
 
-        public  void InsertEmployee(Employee employee)
+        public  bool InsertEmployee(Employee employee) //look into insertUser reference to know the process
         {
+            var existingEmployee = GetEmployeeByID(employee.EmployeeID);
+
+            if (existingEmployee != null)
+                return false;
+
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
             {
                 string sql = @"
-        INSERT INTO EmployeeTable
-        (UsersID, FirstName, MiddleName, LastName, Position, Department, DateHired, SalaryRate)
-        VALUES
-        (@UsersID, @FirstName, @MiddleName, @LastName, @Position, @Department, @DateHired, @SalaryRate);";
+                INSERT INTO EmployeesTable
+                (UsersID, FirstName, LastName, Position, DateHired)
+                VALUES
+                (@UsersID, @FirstName, @LastName, @Position, @DateHired);";
 
                 conn.Execute(sql, employee);
             }
+            return true;
         }
 
         public void InsertPayroll(Payroll payroll)
@@ -182,7 +188,7 @@ namespace lightPayrollServices
             }
         }
 
-        public Employee GetEmployeeByID(int id)
+        public Employee GetEmployeeByID(int id) //using userid
         {
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
             {
@@ -330,6 +336,21 @@ namespace lightPayrollServices
                 conn.Execute(sql, new { Status = status, Role = role, UsersID = userId });
             }
         }
+        public void UpdateEmployeeStatus(string role, int id)
+        {
+            using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
+            {
+                string sql = @"
+                UPDATE EmployeesTable 
+                SET Position = @Position
+                WHERE UsersID = @UsersID";
+
+
+                conn.Execute(sql, new { Position = role, UsersID = id});
+            }
+        }
+
+      
 
         ///
         /// DELETE PART

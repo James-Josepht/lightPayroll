@@ -1,4 +1,5 @@
 ﻿using lighPayroll;
+using lightPayrollModel;
 using lightPayrollServices;
 using Microsoft.VisualBasic.Logging;
 using System;
@@ -6,6 +7,8 @@ using System.Data;
 using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using WinFormsTimer = System.Windows.Forms.Timer;
 //timer is having conflict between System.Windows.Forms and System.Thread.Tasks, so I am using an alias
 
@@ -17,6 +20,8 @@ namespace lighPayrollUI
         SQLiteDataAccess dataAccess = new SQLiteDataAccess();
         AttendanceService attendanceDataAccess = new AttendanceService();
         HBorderRadius borderRadius = new HBorderRadius();
+        AdminUser users = new AdminUser();
+        AdUI messageCustom = new AdUI();
 
         private string feature_button;
 
@@ -36,9 +41,15 @@ namespace lighPayrollUI
             if (feature_button == "Attendance")
                 greetingsAndMessageBoxDesign.TypeMessage(titleMessage, "You will discover some day!");
             else if (feature_button == "UserControl")
+            {
                 greetingsAndMessageBoxDesign.TypeMessage(titleMessage, "Trust But Always Verify!");
+                requestsPanel.Visible = false;
+            }
             else if (feature_button == "Requests")
+            {
+                greetingsAndMessageBoxDesign.TypeMessage(titleMessage, "You will discover some day!");
                 dataGrid.Visible = false;
+            }
 
 
 
@@ -52,19 +63,33 @@ namespace lighPayrollUI
         {
             if (feature_button == "UserControl")
             {
+                dataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                 dataGrid.DataSource = dataAccess.LoadUsers();
                 dataGrid.Columns["UsersID"].DisplayIndex = 0;       // move to first column of grid
             }
             else
             {
-                dataGrid.DataSource = attendanceDataAccess.LoadAttendanceAdmin();
-                dataGrid.Columns["UsersID"].DisplayIndex = 0;
+                dataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill; //might modify in the future if daghan
+                var data = attendanceDataAccess.LoadAttendanceAdmin();
+                var displayData = data.Select(a => new
+                {
+                    AttendanceID = a.AttendanceID,
+                    EmployeeID = a.EmployeeID,
+                    Date = a.Date?.ToString("yyyy-MM-dd"),
+                    TimeIn = a.TimeInDisplay,
+                    TimeOut = a.TimeOutDisplay,
+                    Status = a.Status,
+                    Remarks = a.Remarks
+                }).ToList();
+
+                dataGrid.DataSource = displayData;
             }
             
         }
 
         private void loadButton_Click(object sender, EventArgs e)
         {
+
             LoadList();
 
         }
@@ -143,6 +168,7 @@ namespace lighPayrollUI
         // Update ONLY when button is clicked
         private void modifyRowButton_Click(object sender, EventArgs e)
         {
+
             // Validate input first
             if (!int.TryParse(nameOrIDTxtBox.Text, out int userId))
             {
@@ -155,8 +181,19 @@ namespace lighPayrollUI
                 greetingsAndMessageBoxDesign.CustomMessageBox("User ID not found.");
                 return;
             }
+            else
+            {
+               users = dataAccess.GetUserByIdOrUsername(userId.ToString());
+            }
 
-            // Optional: get status from another control (example)
+            string usernamePart = users.Username.Split('@')[0]; // "first.last"
+            string[] parts = usernamePart.Split('.');
+
+            //capitalizing first letter of each word in username
+            parts[0] = char.ToUpper(parts[0][0]) + parts[0].Substring(1);
+            parts[1] = char.ToUpper(parts[1][0]) + parts[1].Substring(1);
+
+ 
             string status = statusComboBox.Text;
             string role = roleComboBox.Text;
 
@@ -167,6 +204,33 @@ namespace lighPayrollUI
             }
 
             dataAccess.UpdateUserStatus(userId, status, role);
+
+            var employee = dataAccess.GetEmployeeByID(userId);
+
+            if ((employee) == null)
+            {
+                //Create user object
+                NewEmployee newEmployee = new NewEmployee
+                {
+                    UsersID = userId,
+                    FirstName = parts[0],
+                    LastName = parts[1],
+                    Position = role,
+                    DateHired = DateTime.Now
+                };
+
+                dataAccess.InsertEmployee(newEmployee);
+
+            }
+            else
+            {
+                dataAccess.UpdateEmployeeStatus(role, userId);
+                
+            }
+
+
+            
+
 
             greetingsAndMessageBoxDesign.CustomMessageBox("User updated successfully!");
 
@@ -212,10 +276,13 @@ namespace lighPayrollUI
                     //btnPayroll.Enabled = true;
                     break;
 
-                case "UserCount":
+                case "UserControl":
+                    titleLabel.Text = "User Modification";
+                    break;
 
-                    //btnPayroll.Enabled = true;
-                    //btnApprove.Enabled = false;
+                default:
+
+                    titleLabel.Text = "Attendance";
                     break;
             }
         }

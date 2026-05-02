@@ -84,6 +84,13 @@ namespace lightPayrollModel
             base.Validate();
         }
     }
+    public class NewEmployee : Employee //used for creating instance for users
+    {
+        public override void Validate()
+        {
+            base.Validate();
+        }
+    }
 
 
     public class Employee : BaseEntity //used for getting employee complete info not for display
@@ -208,7 +215,7 @@ namespace lightPayrollModel
         }
     }
 
-    public class AttendanceAdmin : BaseEntity
+    public class AttendanceAdmin
     {
         public int AttendanceID { get; set; }
         public int EmployeeID { get; set; }
@@ -221,14 +228,10 @@ namespace lightPayrollModel
         public string? Status { get; set; }
         public string? Remarks { get; set; }
 
-        public override void Validate()
-        {
-            if (UsersID <= 0)
-                throw new Exception("Invalid User ID");
+        // For display only
+        public string TimeInDisplay => TimeIn?.ToString("HH:mm");
+        public string TimeOutDisplay => TimeOut?.ToString("HH:mm");
 
-            if (Date == null)
-                throw new Exception("Date is required");
-        }
     }
 
 

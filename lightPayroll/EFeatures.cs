@@ -62,6 +62,7 @@ namespace lighPayrollUI
             borderRadius.SetRoundedRegion(attendanceSearchPnl, 33);
             borderRadius.SetRoundedRegion(profilePanel, 33);
             borderRadius.SetRoundedRegion(payslipPanel, 33);
+            borderRadius.SetRoundedRegion(payslipInnerPanel, 33);
 
 
             //borderRadius.SetRoundedRegion(insideProfile, 33);
@@ -478,14 +479,5 @@ namespace lighPayrollUI
             }
         }
 
-        private void label15_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void payrollPanel_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
     }
 }
