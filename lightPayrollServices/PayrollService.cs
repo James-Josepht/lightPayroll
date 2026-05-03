@@ -55,14 +55,15 @@ namespace lightPayrollServices
                 WithholdingTax = tax,
                 Deductions = tax,
                 NetPay = netPay,
-                PayrollDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
+                PayrollCreated = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
                 ApprovedBy = processedBy
             };
         }
 
         //second month full deductions including government
         public Payroll CalculateSecond (int employeeId, decimal hourlyRate, decimal hoursWorked,
-                                        decimal overtimeHours, decimal pagIbig, decimal otherDeductions, int processedBy)
+                                        decimal overtimeHours, decimal pagIbig, decimal otherDeductions, int processedBy,
+                                        DateTime periodStart, DateTime periodEnd, DateTime payrollDate)
 
         {
             decimal basicSalary = hourlyRate * hoursWorked;
@@ -94,6 +95,7 @@ namespace lightPayrollServices
             return new Payroll
             {
                 EmployeeID = employeeId,
+                ApprovedBy = processedBy,
                 BasicSalary = basicSalary,
                 OvertimePay = overtimePay,
                 SSS = sss,
@@ -102,8 +104,11 @@ namespace lightPayrollServices
                 WithholdingTax = tax,
                 Deductions = deductions,
                 NetPay = netPay,
-                PayrollDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
-                ApprovedBy = processedBy
+                PayrollDate = payrollDate.ToString("yyyy-MM-dd"),
+                PayrollCreated = DateTime.Now.ToString("yyyy-MM-dd"),
+                Period = $"{periodStart:yyyy-MM-dd} to {periodEnd:yyyy-MM-dd}"
+                
+
             };
         }
 

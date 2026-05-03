@@ -1,5 +1,4 @@
 ﻿using lighPayroll;
-using lightPayrollInfrastructure;
 using lightPayrollModel;
 using lightPayrollServices;
 using Microsoft.VisualBasic.ApplicationServices;
@@ -9,6 +8,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -438,35 +438,61 @@ namespace lighPayrollUI
             }
 
             HPayroll form = new HPayroll();
-            var payroll = form.ShowPayrollForm(selectedEmployeeID);
+
+            Payroll payroll = new Payroll();
+            try
+            {
+               payroll = form.ShowPayrollForm(selectedEmployeeID, user_id);
+
+            }
+            catch (Exception ex)
+            {
+                adminUI.CustomMessageBox($"{ex.Message}");
+            }
+
+            
 
             if (payroll != null)
             {
                 dataAccess.InsertPayroll(payroll);
                 adminUI.CustomMessageBox("Payroll successfully made.");
+
+                try
+                {
+                    var employee = dataAccess.GetEmployeeByID(employeeID: selectedEmployeeID);
+
+                    if (employee.Email == null)
+                        throw new Exception("       The user has not modified the email.");
+
+
+                    EmailService.SendPayrollEmail(
+                       employee.Email,
+                        selectedEmployeeName
+
+                    );
+                }
+                catch (SocketException ex)
+                {
+                    var error = new ConfirmForm(
+                        $"\n\n\n\n{ex.Message}",
+                        "",
+                        false
+                    );
+                    error.ShowDialog();
+                }
+                catch (Exception ex)
+                {
+                    var error = new ConfirmForm(
+                        $"Unable to email the employee\n\n\n\n",
+                        $"{ex.Message}",
+                        false
+                    );
+
+                    error.ShowDialog();
+                }
             }
 
-            try
-            {
-                var employee = dataAccess.GetEmployeeByID(employeeID: selectedEmployeeID);
-
-
-                EmailService.SendPayrollEmail(
-                   employee.Email,
-                    selectedEmployeeName,
-                     777.00m
-                );
-            }
-            catch (Exception ex)
-            {
-                var error = new ConfirmForm(
-                    $"Oh no, unable to email the employee\n\n\n\n{ex.Message}",
-                    "",
-                    false
-                );
-
-                error.ShowDialog();
-            }
+           
 
         }
 

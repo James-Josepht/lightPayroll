@@ -1,49 +1,101 @@
 ﻿using MailKit.Net.Smtp;
 using MimeKit;
 using System.Net.Sockets;
+using lightPayrollServices.Properties;
+using System.Drawing.Imaging;
+using System.Drawing;
+using System.IO;    
 
-namespace lightPayrollInfrastructure
+namespace lightPayrollServices
 {
-    public class EmailService
+    public class EmailService 
     {
-        public static void SendPayrollEmail(string toEmail, string employeeName, decimal netPay)
+
+        private static byte[] ImageToByteArray(System.Drawing.Image image)
         {
+            using var ms = new MemoryStream();
+            image.Save(ms, image.RawFormat);
+            return ms.ToArray();
+        }
+
+        public static void SendPayrollEmail(string toEmail, string employeeName)
+        {
+            var emailUser = Environment.GetEnvironmentVariable("EMAIL_USER");
+            var emailPassword = Environment.GetEnvironmentVariable("EMAIL_PASSWORD");
+
+            if (string.IsNullOrEmpty(emailUser) || string.IsNullOrEmpty(emailPassword))
+            {
+                throw new Exception("Email credentials are not set in environment variables.");
+            }
+
             try
             {
                 var message = new MimeMessage();
 
                 // Gmail sender
-                message.From.Add(new MailboxAddress("Payroll System", "jjcabilan1@gmail.com"));
+                message.From.Add(new MailboxAddress("Payroll System", "schoollightpayroll@gmail.com"));
                 message.To.Add(new MailboxAddress(employeeName, toEmail));
 
                 message.Subject = "Payroll Notification";
 
-                message.Body = new TextPart("plain")
-                {
-                    Text =
-                    $@"Hello {employeeName},
+                var builder = new BodyBuilder();
 
-                Your payroll has been processed successfully.
+                // convert resource image to bytes
+                var imageBytes = ImageToByteArray(Properties.Resources.companyLogo);
 
-                Net Pay: ₱{netPay:N2}
+                // attach image properly
+                var image = builder.LinkedResources.Add("companyLogo.png", imageBytes);
+                image.ContentId = "companyLogo";
 
-                Thank you."
-                };
+                builder.HtmlBody = $@"
+                <html>
+                <body style='margin:0; padding:0; background-color:#f5f0e6; font-family:Arial; color:#000000;'>
+
+                    <div style='background-color:#f5f0e6; padding:20px;'>
+
+                        <div style='max-width:500px; margin:auto; background-color:#ffffff; border-radius:10px; overflow:hidden;'>
+
+                            <!-- HEADER LOGO -->
+                            <img src='cid:companyLogo' style='width:100%; display:block;' />
+
+                            <div style='padding:20px; background-color:#ffffff; color:#000000;'>
+
+                                <p style='color:#000000;'>Hello {employeeName},</p>
+
+                                <p style='color:#000000;'>
+                                    Your payslip is now available to view.
+                                </p>
+
+                                <div style='background-color:#f5eadb; padding:15px; text-align:center; border-radius:8px; margin:20px 0;'>
+                                    <b style='color:#000000;'>Thank You!</b>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </body>
+                </html>";
+
+                // IMPORTANT: use builder
+                message.Body = builder.ToMessageBody();
 
                 using var client = new SmtpClient();
 
                 // IMPORTANT: Gmail SMTP settings
                 client.Connect("smtp.gmail.com", 587, MailKit.Security.SecureSocketOptions.StartTls);
 
-                // IMPORTANT: USE APP PASSWORD (NOT your Gmail password)
-                client.Authenticate("jjcabilan1@gmail.com", "dzck ixlx rgkt wmtn");
+                // IMPORTANT: USE GMAIL APP PASSWORD (NOT your Gmail password)
+                client.Authenticate(emailUser, emailPassword);
 
                 client.Send(message);
                 client.Disconnect(true);
             }
             catch (SocketException)
             {
-                throw new Exception("Failed to conect to the internet.");
+                throw new Exception("Failed to connect to the internet.");
             }
 
         }

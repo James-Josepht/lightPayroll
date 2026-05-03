@@ -8,7 +8,7 @@ namespace lighPayrollUI
 {
     internal class HPayroll
     {
-        public Payroll ShowPayrollForm(int employeeID)
+        public Payroll ShowPayrollForm(int employeeID, int accountantID)
         {
             PayrollService service = new PayrollService();
 
@@ -23,14 +23,33 @@ namespace lighPayrollUI
                 ControlBox = false
             };
 
-            // MAIN GRID
+            // MAIN GRID DESIGN
             TableLayoutPanel panel = new TableLayoutPanel()
             {
                 Dock = DockStyle.Fill,
                 ColumnCount = 2,
-                RowCount = 6,
+                RowCount = 9,
                 Padding = new Padding(15),
             };
+
+            DateTimePicker periodStart = new DateTimePicker()
+            {
+                Format = DateTimePickerFormat.Short,
+                Dock = DockStyle.Fill
+            };
+
+            DateTimePicker periodEnd = new DateTimePicker()
+            {
+                Format = DateTimePickerFormat.Short,
+                Dock = DockStyle.Fill
+            };
+
+            DateTimePicker payrollDate = new DateTimePicker()
+            {
+                Format = DateTimePickerFormat.Short,
+                Dock = DockStyle.Fill
+            };
+
 
             panel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 40F));
             panel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 60F));
@@ -49,9 +68,27 @@ namespace lighPayrollUI
             panel.Controls.Add(new Label() { Text = "Other Deductions", AutoSize = true }, 0, 2);
             panel.Controls.Add(deductions, 1, 2);
 
+            panel.Controls.Add(new Label() { Text = "Period Start", AutoSize = true }, 0, 3);
+            panel.Controls.Add(periodStart, 1, 3);
+
+            panel.Controls.Add(new Label() { Text = "Period End", AutoSize = true }, 0, 4);
+            panel.Controls.Add(periodEnd, 1, 4);
+
+            panel.Controls.Add(new Label() { Text = "Payroll Date", AutoSize = true }, 0, 5);
+            panel.Controls.Add(payrollDate, 1, 5);
+
+
             // BUTTONS
             Button ok = new Button() { Text = "OK", Width = 100 };
             Button cancel = new Button() { Text = "Cancel", Width = 100 };
+            DateTime start = periodStart.Value;
+            DateTime end = periodEnd.Value;
+            DateTime payDate = payrollDate.Value;
+
+            if (periodEnd.Value < periodStart.Value)
+            {
+                throw new Exception("Period End cannot be earlier than Period Start.");
+            }
 
             Panel buttons = new Panel()
             {
@@ -92,7 +129,10 @@ namespace lighPayrollUI
                     overtimeHours,
                     pagIbig.Value,        
                     deductions.Value,     
-                    processedBy: 1
+                    processedBy: accountantID,
+                    periodStart.Value,
+                    periodEnd.Value,
+                    payrollDate.Value
                 );
                 
 

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "D98k11mjdmM=",
+  "dgSpecHash": "aY4/+VUkl9Y=",
   "success": true,
   "projectFilePath": "C:\\Users\\James\\source\\repos\\lightPayrollServices\\lightPayrollServices.csproj",
   "expectedPackageFiles": [
@@ -10,6 +10,7 @@
     "C:\\Users\\James\\.nuget\\packages\\mailkit\\4.16.0\\mailkit.4.16.0.nupkg.sha512",
     "C:\\Users\\James\\.nuget\\packages\\microsoft.data.sqlite\\10.0.6\\microsoft.data.sqlite.10.0.6.nupkg.sha512",
     "C:\\Users\\James\\.nuget\\packages\\microsoft.data.sqlite.core\\10.0.6\\microsoft.data.sqlite.core.10.0.6.nupkg.sha512",
+    "C:\\Users\\James\\.nuget\\packages\\microsoft.win32.systemevents\\10.0.7\\microsoft.win32.systemevents.10.0.7.nupkg.sha512",
     "C:\\Users\\James\\.nuget\\packages\\mimekit\\4.16.0\\mimekit.4.16.0.nupkg.sha512",
     "C:\\Users\\James\\.nuget\\packages\\sqlite\\3.13.0\\sqlite.3.13.0.nupkg.sha512",
     "C:\\Users\\James\\.nuget\\packages\\sqlitepclraw.bundle_e_sqlite3\\2.1.11\\sqlitepclraw.bundle_e_sqlite3.2.1.11.nupkg.sha512",
@@ -17,11 +18,16 @@
     "C:\\Users\\James\\.nuget\\packages\\sqlitepclraw.lib.e_sqlite3\\2.1.11\\sqlitepclraw.lib.e_sqlite3.2.1.11.nupkg.sha512",
     "C:\\Users\\James\\.nuget\\packages\\sqlitepclraw.provider.e_sqlite3\\2.1.11\\sqlitepclraw.provider.e_sqlite3.2.1.11.nupkg.sha512",
     "C:\\Users\\James\\.nuget\\packages\\stub.system.data.sqlite.core.netstandard\\1.0.119\\stub.system.data.sqlite.core.netstandard.1.0.119.nupkg.sha512",
+    "C:\\Users\\James\\.nuget\\packages\\system.collections.immutable\\10.0.7\\system.collections.immutable.10.0.7.nupkg.sha512",
     "C:\\Users\\James\\.nuget\\packages\\system.configuration.configurationmanager\\10.0.6\\system.configuration.configurationmanager.10.0.6.nupkg.sha512",
     "C:\\Users\\James\\.nuget\\packages\\system.data.sqlite.core\\1.0.119\\system.data.sqlite.core.1.0.119.nupkg.sha512",
     "C:\\Users\\James\\.nuget\\packages\\system.diagnostics.eventlog\\10.0.6\\system.diagnostics.eventlog.10.0.6.nupkg.sha512",
+    "C:\\Users\\James\\.nuget\\packages\\system.drawing.common\\10.0.7\\system.drawing.common.10.0.7.nupkg.sha512",
     "C:\\Users\\James\\.nuget\\packages\\system.formats.asn1\\8.0.1\\system.formats.asn1.8.0.1.nupkg.sha512",
+    "C:\\Users\\James\\.nuget\\packages\\system.formats.nrbf\\10.0.7\\system.formats.nrbf.10.0.7.nupkg.sha512",
     "C:\\Users\\James\\.nuget\\packages\\system.memory\\4.5.3\\system.memory.4.5.3.nupkg.sha512",
+    "C:\\Users\\James\\.nuget\\packages\\system.reflection.metadata\\10.0.7\\system.reflection.metadata.10.0.7.nupkg.sha512",
+    "C:\\Users\\James\\.nuget\\packages\\system.resources.extensions\\10.0.7\\system.resources.extensions.10.0.7.nupkg.sha512",
     "C:\\Users\\James\\.nuget\\packages\\system.security.cryptography.pkcs\\8.0.1\\system.security.cryptography.pkcs.8.0.1.nupkg.sha512",
     "C:\\Users\\James\\.nuget\\packages\\system.security.cryptography.protecteddata\\10.0.6\\system.security.cryptography.protecteddata.10.0.6.nupkg.sha512"
   ],

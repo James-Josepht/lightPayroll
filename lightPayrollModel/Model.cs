@@ -156,6 +156,8 @@ namespace lightPayrollModel
         public decimal NetPay { get; set; }
 
         public string PayrollDate { get; set; } // matches TEXT
+        public string Period { get; set; } // matches TEXT
+        public string PayrollCreated { get; set; } // matches TEXT
 
         public void Validate()
         {
