@@ -136,6 +136,38 @@ namespace lightPayrollServices
             }
         }
 
+        public void InsertLeave(int employeeId, string date, string reason)
+        {
+            using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
+            {
+                string sql = @"INSERT INTO LeaveTable (EmployeeID, Date, Reason)
+                       VALUES (@EmployeeID, @Date, @Reason)";
+
+                conn.Execute(sql, new
+                {
+                    EmployeeID = employeeId,
+                    Date = date,
+                    Reason = reason
+                });
+            }
+        }
+
+        public void InsertOvertime(int employeeId, string date, string type)
+        {
+            using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
+            {
+                string sql = @"INSERT INTO OvertimeTable (EmployeeID, Date, Type)
+                       VALUES (@EmployeeID, @Date, @Type)";
+
+                conn.Execute(sql, new
+                {
+                    EmployeeID = employeeId,
+                    Date = date,
+                    Type = type
+                });
+            }
+        }
+
 
         /// 
         /// SEARCHING PART

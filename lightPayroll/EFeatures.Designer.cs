@@ -28,13 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle12 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle13 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle14 = new DataGridViewCellStyle();
             panel1 = new Panel();
             pictureBox2 = new PictureBox();
             tableLayoutPanel1 = new TableLayoutPanel();
@@ -55,6 +55,14 @@
             tableLayoutPanel2 = new TableLayoutPanel();
             payslipInnerPanel = new Panel();
             headPayslipPanel = new Panel();
+            label13 = new Label();
+            label14 = new Label();
+            label15 = new Label();
+            label12 = new Label();
+            label11 = new Label();
+            label10 = new Label();
+            label9 = new Label();
+            label8 = new Label();
             payslipSmallLbl = new Label();
             companyPayslip = new Label();
             payslipBodyPanel = new Panel();
@@ -78,6 +86,28 @@
             notePayrollL = new Label();
             modifyPayrollB = new Button();
             requestPage = new TabPage();
+            requestsInsidePanel = new Panel();
+            requestCalendarPanel = new Panel();
+            requestsCalendar = new MonthCalendar();
+            requestHeadPanel = new Panel();
+            smallRequestsLbl = new Label();
+            label2 = new Label();
+            requestFormPanel = new Panel();
+            requestsTabPage = new TabControl();
+            leaveTabPage = new TabPage();
+            label4 = new Label();
+            leaveButton = new Button();
+            leaveDateBox = new TextBox();
+            label3 = new Label();
+            leaveReasonsLbl = new Label();
+            leaveReasonBox = new ComboBox();
+            overtimeTabPage = new TabPage();
+            overtimeButton = new Button();
+            label5 = new Label();
+            overtimeDateBox = new TextBox();
+            label6 = new Label();
+            label7 = new Label();
+            overtimeBox = new ComboBox();
             profilePage = new TabPage();
             profilePanel = new Panel();
             profileTableLayout = new TableLayoutPanel();
@@ -101,6 +131,9 @@
             panel6 = new Panel();
             panel4 = new Panel();
             profileNote = new Label();
+            pictureBox3 = new PictureBox();
+            label16 = new Label();
+            label17 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             tableLayoutPanel1.SuspendLayout();
@@ -127,11 +160,20 @@
             payrollSearchPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             payrollPanel.SuspendLayout();
+            requestPage.SuspendLayout();
+            requestsInsidePanel.SuspendLayout();
+            requestCalendarPanel.SuspendLayout();
+            requestHeadPanel.SuspendLayout();
+            requestFormPanel.SuspendLayout();
+            requestsTabPage.SuspendLayout();
+            leaveTabPage.SuspendLayout();
+            overtimeTabPage.SuspendLayout();
             profilePage.SuspendLayout();
             profilePanel.SuspendLayout();
             profileTableLayout.SuspendLayout();
             insideProfile.SuspendLayout();
             panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -230,14 +272,14 @@
             clockGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             clockGrid.BorderStyle = BorderStyle.None;
             clockGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = SystemColors.Window;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI Historic", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle1.ForeColor = Color.FromArgb(33, 44, 66);
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.ScrollBar;
-            dataGridViewCellStyle1.SelectionForeColor = Color.FromArgb(40, 40, 40);
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
-            clockGrid.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = SystemColors.Window;
+            dataGridViewCellStyle8.Font = new Font("Segoe UI Historic", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle8.ForeColor = Color.FromArgb(33, 44, 66);
+            dataGridViewCellStyle8.SelectionBackColor = SystemColors.ScrollBar;
+            dataGridViewCellStyle8.SelectionForeColor = Color.FromArgb(40, 40, 40);
+            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.False;
+            clockGrid.DefaultCellStyle = dataGridViewCellStyle8;
             clockGrid.GridColor = SystemColors.ActiveBorder;
             clockGrid.Location = new Point(43, 137);
             clockGrid.Name = "clockGrid";
@@ -363,7 +405,6 @@
             // 
             // payslipInnerPanel
             // 
-            payslipInnerPanel.AutoScroll = true;
             payslipInnerPanel.BackColor = Color.FromArgb(33, 44, 66);
             payslipInnerPanel.Controls.Add(headPayslipPanel);
             payslipInnerPanel.Controls.Add(payslipBodyPanel);
@@ -375,15 +416,106 @@
             // 
             // headPayslipPanel
             // 
+            headPayslipPanel.AutoScroll = true;
             headPayslipPanel.BackColor = Color.FromArgb(60, 80, 100);
+            headPayslipPanel.Controls.Add(label17);
+            headPayslipPanel.Controls.Add(label16);
+            headPayslipPanel.Controls.Add(pictureBox3);
+            headPayslipPanel.Controls.Add(label13);
+            headPayslipPanel.Controls.Add(label14);
+            headPayslipPanel.Controls.Add(label15);
+            headPayslipPanel.Controls.Add(label12);
+            headPayslipPanel.Controls.Add(label11);
+            headPayslipPanel.Controls.Add(label10);
+            headPayslipPanel.Controls.Add(label9);
+            headPayslipPanel.Controls.Add(label8);
             headPayslipPanel.Controls.Add(payslipSmallLbl);
             headPayslipPanel.Controls.Add(companyPayslip);
             headPayslipPanel.Dock = DockStyle.Top;
             headPayslipPanel.Location = new Point(0, 0);
             headPayslipPanel.Name = "headPayslipPanel";
-            headPayslipPanel.Size = new Size(780, 76);
+            headPayslipPanel.Size = new Size(780, 313);
             headPayslipPanel.TabIndex = 25;
-            headPayslipPanel.Paint += headPayslipPanel_Paint;
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.ForeColor = Color.Beige;
+            label13.Location = new Point(548, 109);
+            label13.Name = "label13";
+            label13.Size = new Size(98, 16);
+            label13.TabIndex = 37;
+            label13.Text = "Payroll Date:";
+            // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.ForeColor = Color.Beige;
+            label14.Location = new Point(548, 137);
+            label14.Name = "label14";
+            label14.Size = new Size(98, 16);
+            label14.TabIndex = 36;
+            label14.Text = "Date Covered:";
+            // 
+            // label15
+            // 
+            label15.AutoSize = true;
+            label15.ForeColor = Color.Beige;
+            label15.Location = new Point(548, 169);
+            label15.Name = "label15";
+            label15.Size = new Size(70, 16);
+            label15.TabIndex = 35;
+            label15.Text = "Position:";
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.ForeColor = Color.Beige;
+            label12.Location = new Point(64, 109);
+            label12.Name = "label12";
+            label12.Size = new Size(42, 16);
+            label12.TabIndex = 32;
+            label12.Text = "Name:";
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.ForeColor = Color.Beige;
+            label11.Location = new Point(64, 137);
+            label11.Name = "label11";
+            label11.Size = new Size(35, 16);
+            label11.TabIndex = 31;
+            label11.Text = "TIN:";
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.ForeColor = Color.Beige;
+            label10.Location = new Point(64, 169);
+            label10.Name = "label10";
+            label10.Size = new Size(56, 16);
+            label10.TabIndex = 30;
+            label10.Text = "SSS NO:";
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.ForeColor = Color.Beige;
+            label9.Location = new Point(64, 200);
+            label9.Name = "label9";
+            label9.Size = new Size(105, 16);
+            label9.TabIndex = 29;
+            label9.Text = "PHILHEALTH NO:";
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.ForeColor = Color.Beige;
+            label8.Location = new Point(64, 228);
+            label8.Name = "label8";
+            label8.Size = new Size(42, 16);
+            label8.TabIndex = 28;
+            label8.Text = "HDMF:";
             // 
             // payslipSmallLbl
             // 
@@ -408,6 +540,7 @@
             // 
             // payslipBodyPanel
             // 
+            payslipBodyPanel.AutoScroll = true;
             payslipBodyPanel.Controls.Add(paySlipRecords);
             payslipBodyPanel.Dock = DockStyle.Bottom;
             payslipBodyPanel.Location = new Point(0, 109);
@@ -422,24 +555,23 @@
             paySlipRecords.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             paySlipRecords.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
             paySlipRecords.BorderStyle = BorderStyle.None;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = SystemColors.Control;
-            dataGridViewCellStyle2.Font = new Font("Ubuntu Mono Medium", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle2.ForeColor = SystemColors.Desktop;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            paySlipRecords.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = SystemColors.Control;
+            dataGridViewCellStyle9.Font = new Font("Ubuntu Mono Medium", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle9.ForeColor = SystemColors.Desktop;
+            dataGridViewCellStyle9.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = DataGridViewTriState.True;
+            paySlipRecords.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
             paySlipRecords.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = SystemColors.Window;
-            dataGridViewCellStyle3.Font = new Font("Segoe UI Historic", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle3.ForeColor = Color.FromArgb(68, 68, 68);
-            dataGridViewCellStyle3.SelectionBackColor = SystemColors.ScrollBar;
-            dataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(40, 40, 40);
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
-            paySlipRecords.DefaultCellStyle = dataGridViewCellStyle3;
-            paySlipRecords.Dock = DockStyle.Fill;
+            dataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = SystemColors.Window;
+            dataGridViewCellStyle10.Font = new Font("Segoe UI Historic", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle10.ForeColor = Color.FromArgb(68, 68, 68);
+            dataGridViewCellStyle10.SelectionBackColor = SystemColors.ScrollBar;
+            dataGridViewCellStyle10.SelectionForeColor = Color.FromArgb(40, 40, 40);
+            dataGridViewCellStyle10.WrapMode = DataGridViewTriState.False;
+            paySlipRecords.DefaultCellStyle = dataGridViewCellStyle10;
             paySlipRecords.Location = new Point(0, 0);
             paySlipRecords.Name = "paySlipRecords";
             paySlipRecords.ReadOnly = true;
@@ -491,23 +623,23 @@
             attendanceGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             attendanceGrid.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
             attendanceGrid.BorderStyle = BorderStyle.None;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = SystemColors.Control;
-            dataGridViewCellStyle4.Font = new Font("Ubuntu Mono Medium", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle4.ForeColor = SystemColors.Desktop;
-            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-            attendanceGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle11.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = SystemColors.Control;
+            dataGridViewCellStyle11.Font = new Font("Ubuntu Mono Medium", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle11.ForeColor = SystemColors.Desktop;
+            dataGridViewCellStyle11.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = DataGridViewTriState.True;
+            attendanceGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
             attendanceGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = SystemColors.Window;
-            dataGridViewCellStyle5.Font = new Font("Segoe UI Historic", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle5.ForeColor = Color.FromArgb(68, 68, 68);
-            dataGridViewCellStyle5.SelectionBackColor = SystemColors.ScrollBar;
-            dataGridViewCellStyle5.SelectionForeColor = Color.FromArgb(40, 40, 40);
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
-            attendanceGrid.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle12.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = SystemColors.Window;
+            dataGridViewCellStyle12.Font = new Font("Segoe UI Historic", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle12.ForeColor = Color.FromArgb(68, 68, 68);
+            dataGridViewCellStyle12.SelectionBackColor = SystemColors.ScrollBar;
+            dataGridViewCellStyle12.SelectionForeColor = Color.FromArgb(40, 40, 40);
+            dataGridViewCellStyle12.WrapMode = DataGridViewTriState.False;
+            attendanceGrid.DefaultCellStyle = dataGridViewCellStyle12;
             attendanceGrid.Location = new Point(82, 132);
             attendanceGrid.Name = "attendanceGrid";
             attendanceGrid.ReadOnly = true;
@@ -585,23 +717,23 @@
             payrollGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             payrollGrid.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
             payrollGrid.BorderStyle = BorderStyle.None;
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = SystemColors.Control;
-            dataGridViewCellStyle6.Font = new Font("Ubuntu Mono Medium", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle6.ForeColor = SystemColors.Desktop;
-            dataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
-            payrollGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle13.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle13.BackColor = SystemColors.Control;
+            dataGridViewCellStyle13.Font = new Font("Ubuntu Mono Medium", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle13.ForeColor = SystemColors.Desktop;
+            dataGridViewCellStyle13.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle13.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle13.WrapMode = DataGridViewTriState.True;
+            payrollGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
             payrollGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = SystemColors.Window;
-            dataGridViewCellStyle7.Font = new Font("Segoe UI Historic", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle7.ForeColor = Color.FromArgb(68, 68, 68);
-            dataGridViewCellStyle7.SelectionBackColor = SystemColors.ScrollBar;
-            dataGridViewCellStyle7.SelectionForeColor = Color.FromArgb(40, 40, 40);
-            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.False;
-            payrollGrid.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle14.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = SystemColors.Window;
+            dataGridViewCellStyle14.Font = new Font("Segoe UI Historic", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle14.ForeColor = Color.FromArgb(68, 68, 68);
+            dataGridViewCellStyle14.SelectionBackColor = SystemColors.ScrollBar;
+            dataGridViewCellStyle14.SelectionForeColor = Color.FromArgb(40, 40, 40);
+            dataGridViewCellStyle14.WrapMode = DataGridViewTriState.False;
+            payrollGrid.DefaultCellStyle = dataGridViewCellStyle14;
             payrollGrid.Location = new Point(83, 132);
             payrollGrid.Name = "payrollGrid";
             payrollGrid.ReadOnly = true;
@@ -678,13 +810,258 @@
             // 
             // requestPage
             // 
-            requestPage.BackColor = Color.FromArgb(33, 44, 66);
+            requestPage.BackColor = SystemColors.ActiveCaption;
+            requestPage.Controls.Add(requestsInsidePanel);
             requestPage.Location = new Point(4, 25);
             requestPage.Name = "requestPage";
             requestPage.Padding = new Padding(3);
             requestPage.Size = new Size(923, 409);
             requestPage.TabIndex = 4;
             requestPage.Text = "Requests";
+            // 
+            // requestsInsidePanel
+            // 
+            requestsInsidePanel.BackColor = Color.FromArgb(33, 44, 66);
+            requestsInsidePanel.Controls.Add(requestCalendarPanel);
+            requestsInsidePanel.Controls.Add(requestHeadPanel);
+            requestsInsidePanel.Controls.Add(requestFormPanel);
+            requestsInsidePanel.Location = new Point(24, 21);
+            requestsInsidePanel.Name = "requestsInsidePanel";
+            requestsInsidePanel.Size = new Size(876, 367);
+            requestsInsidePanel.TabIndex = 3;
+            // 
+            // requestCalendarPanel
+            // 
+            requestCalendarPanel.BackColor = Color.FromArgb(60, 80, 100);
+            requestCalendarPanel.Controls.Add(requestsCalendar);
+            requestCalendarPanel.Location = new Point(578, 117);
+            requestCalendarPanel.Name = "requestCalendarPanel";
+            requestCalendarPanel.Size = new Size(253, 224);
+            requestCalendarPanel.TabIndex = 13;
+            // 
+            // requestsCalendar
+            // 
+            requestsCalendar.BackColor = Color.DimGray;
+            requestsCalendar.Cursor = Cursors.Hand;
+            requestsCalendar.ForeColor = Color.Beige;
+            requestsCalendar.Location = new Point(13, 21);
+            requestsCalendar.Name = "requestsCalendar";
+            requestsCalendar.TabIndex = 10;
+            requestsCalendar.TitleBackColor = SystemColors.ControlDarkDark;
+            requestsCalendar.DateSelected += requestsCalendar_DateSelected;
+            // 
+            // requestHeadPanel
+            // 
+            requestHeadPanel.BackColor = Color.FromArgb(60, 80, 100);
+            requestHeadPanel.Controls.Add(smallRequestsLbl);
+            requestHeadPanel.Controls.Add(label2);
+            requestHeadPanel.Location = new Point(51, 22);
+            requestHeadPanel.Name = "requestHeadPanel";
+            requestHeadPanel.Size = new Size(780, 76);
+            requestHeadPanel.TabIndex = 4;
+            // 
+            // smallRequestsLbl
+            // 
+            smallRequestsLbl.AutoSize = true;
+            smallRequestsLbl.ForeColor = Color.Beige;
+            smallRequestsLbl.Location = new Point(362, 51);
+            smallRequestsLbl.Name = "smallRequestsLbl";
+            smallRequestsLbl.Size = new Size(63, 16);
+            smallRequestsLbl.TabIndex = 29;
+            smallRequestsLbl.Text = "Requests";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Ubuntu Mono", 20.2499981F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.ForeColor = Color.Beige;
+            label2.Location = new Point(248, 11);
+            label2.Name = "label2";
+            label2.Size = new Size(270, 34);
+            label2.TabIndex = 28;
+            label2.Text = "Light Payroll Inc";
+            // 
+            // requestFormPanel
+            // 
+            requestFormPanel.BackColor = Color.FromArgb(60, 80, 100);
+            requestFormPanel.Controls.Add(requestsTabPage);
+            requestFormPanel.Location = new Point(51, 117);
+            requestFormPanel.Name = "requestFormPanel";
+            requestFormPanel.Size = new Size(504, 224);
+            requestFormPanel.TabIndex = 14;
+            // 
+            // requestsTabPage
+            // 
+            requestsTabPage.Controls.Add(leaveTabPage);
+            requestsTabPage.Controls.Add(overtimeTabPage);
+            requestsTabPage.Dock = DockStyle.Fill;
+            requestsTabPage.Font = new Font("Segoe UI Historic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            requestsTabPage.Location = new Point(0, 0);
+            requestsTabPage.Name = "requestsTabPage";
+            requestsTabPage.SelectedIndex = 0;
+            requestsTabPage.Size = new Size(504, 224);
+            requestsTabPage.TabIndex = 3;
+            // 
+            // leaveTabPage
+            // 
+            leaveTabPage.BackColor = Color.FromArgb(60, 80, 100);
+            leaveTabPage.Controls.Add(label4);
+            leaveTabPage.Controls.Add(leaveButton);
+            leaveTabPage.Controls.Add(leaveDateBox);
+            leaveTabPage.Controls.Add(label3);
+            leaveTabPage.Controls.Add(leaveReasonsLbl);
+            leaveTabPage.Controls.Add(leaveReasonBox);
+            leaveTabPage.Location = new Point(4, 26);
+            leaveTabPage.Name = "leaveTabPage";
+            leaveTabPage.Padding = new Padding(3);
+            leaveTabPage.Size = new Size(496, 194);
+            leaveTabPage.TabIndex = 0;
+            leaveTabPage.Text = "Leave";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.ForeColor = Color.Beige;
+            label4.Location = new Point(51, 166);
+            label4.Name = "label4";
+            label4.Size = new Size(250, 17);
+            label4.TabIndex = 30;
+            label4.Text = "NOTE: SELECT A DATE IN THE CALENDAR";
+            // 
+            // leaveButton
+            // 
+            leaveButton.BackColor = Color.PaleGreen;
+            leaveButton.BackgroundImage = Properties.Resources.send1;
+            leaveButton.BackgroundImageLayout = ImageLayout.None;
+            leaveButton.Cursor = Cursors.Hand;
+            leaveButton.FlatAppearance.BorderColor = Color.FromArgb(60, 80, 100);
+            leaveButton.Font = new Font("Ubuntu Mono Medium", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            leaveButton.ForeColor = Color.Beige;
+            leaveButton.Location = new Point(382, 23);
+            leaveButton.Name = "leaveButton";
+            leaveButton.Size = new Size(97, 45);
+            leaveButton.TabIndex = 12;
+            leaveButton.Text = "SUBMIT";
+            leaveButton.UseVisualStyleBackColor = false;
+            leaveButton.Click += leaveButton_Click;
+            // 
+            // leaveDateBox
+            // 
+            leaveDateBox.Location = new Point(120, 69);
+            leaveDateBox.Name = "leaveDateBox";
+            leaveDateBox.Size = new Size(149, 25);
+            leaveDateBox.TabIndex = 32;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.ForeColor = Color.Beige;
+            label3.Location = new Point(51, 69);
+            label3.Name = "label3";
+            label3.Size = new Size(38, 17);
+            label3.TabIndex = 31;
+            label3.Text = "Date:";
+            // 
+            // leaveReasonsLbl
+            // 
+            leaveReasonsLbl.AutoSize = true;
+            leaveReasonsLbl.ForeColor = Color.Beige;
+            leaveReasonsLbl.Location = new Point(51, 26);
+            leaveReasonsLbl.Name = "leaveReasonsLbl";
+            leaveReasonsLbl.Size = new Size(60, 17);
+            leaveReasonsLbl.TabIndex = 30;
+            leaveReasonsLbl.Text = "Reasons:";
+            // 
+            // leaveReasonBox
+            // 
+            leaveReasonBox.Font = new Font("Segoe UI Historic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            leaveReasonBox.ForeColor = Color.FromArgb(68, 68, 68);
+            leaveReasonBox.FormattingEnabled = true;
+            leaveReasonBox.Items.AddRange(new object[] { "Sick", "Maternity / Paternity", "Vacation", "Emergency" });
+            leaveReasonBox.Location = new Point(120, 23);
+            leaveReasonBox.Name = "leaveReasonBox";
+            leaveReasonBox.Size = new Size(149, 25);
+            leaveReasonBox.TabIndex = 1;
+            // 
+            // overtimeTabPage
+            // 
+            overtimeTabPage.BackColor = Color.FromArgb(60, 80, 100);
+            overtimeTabPage.Controls.Add(overtimeButton);
+            overtimeTabPage.Controls.Add(label5);
+            overtimeTabPage.Controls.Add(overtimeDateBox);
+            overtimeTabPage.Controls.Add(label6);
+            overtimeTabPage.Controls.Add(label7);
+            overtimeTabPage.Controls.Add(overtimeBox);
+            overtimeTabPage.Location = new Point(4, 26);
+            overtimeTabPage.Name = "overtimeTabPage";
+            overtimeTabPage.Padding = new Padding(3);
+            overtimeTabPage.Size = new Size(496, 194);
+            overtimeTabPage.TabIndex = 1;
+            overtimeTabPage.Text = "Overtime";
+            // 
+            // overtimeButton
+            // 
+            overtimeButton.BackColor = Color.PaleGreen;
+            overtimeButton.BackgroundImage = Properties.Resources.send1;
+            overtimeButton.BackgroundImageLayout = ImageLayout.None;
+            overtimeButton.Cursor = Cursors.Hand;
+            overtimeButton.FlatAppearance.BorderColor = Color.FromArgb(60, 80, 100);
+            overtimeButton.Font = new Font("Ubuntu Mono Medium", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            overtimeButton.ForeColor = Color.Beige;
+            overtimeButton.Location = new Point(382, 23);
+            overtimeButton.Name = "overtimeButton";
+            overtimeButton.Size = new Size(97, 45);
+            overtimeButton.TabIndex = 38;
+            overtimeButton.Text = "SUBMIT";
+            overtimeButton.UseVisualStyleBackColor = false;
+            overtimeButton.Click += overtimeButton_Click;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.ForeColor = Color.Beige;
+            label5.Location = new Point(51, 166);
+            label5.Name = "label5";
+            label5.Size = new Size(250, 17);
+            label5.TabIndex = 34;
+            label5.Text = "NOTE: SELECT A DATE IN THE CALENDAR";
+            // 
+            // overtimeDateBox
+            // 
+            overtimeDateBox.Location = new Point(120, 69);
+            overtimeDateBox.Name = "overtimeDateBox";
+            overtimeDateBox.Size = new Size(149, 25);
+            overtimeDateBox.TabIndex = 37;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.ForeColor = Color.Beige;
+            label6.Location = new Point(51, 69);
+            label6.Name = "label6";
+            label6.Size = new Size(38, 17);
+            label6.TabIndex = 36;
+            label6.Text = "Date:";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.ForeColor = Color.Beige;
+            label7.Location = new Point(51, 26);
+            label7.Name = "label7";
+            label7.Size = new Size(60, 17);
+            label7.TabIndex = 35;
+            label7.Text = "Reasons:";
+            // 
+            // overtimeBox
+            // 
+            overtimeBox.ForeColor = Color.FromArgb(68, 68, 68);
+            overtimeBox.FormattingEnabled = true;
+            overtimeBox.Items.AddRange(new object[] { "Deadlines", "Urgent" });
+            overtimeBox.Location = new Point(120, 23);
+            overtimeBox.Name = "overtimeBox";
+            overtimeBox.Size = new Size(149, 25);
+            overtimeBox.TabIndex = 33;
             // 
             // profilePage
             // 
@@ -941,6 +1318,36 @@
             profileNote.TabIndex = 19;
             profileNote.Text = "NOTE:";
             // 
+            // pictureBox3
+            // 
+            pictureBox3.Location = new Point(64, 491);
+            pictureBox3.Name = "pictureBox3";
+            pictureBox3.Size = new Size(620, 195);
+            pictureBox3.TabIndex = 38;
+            pictureBox3.TabStop = false;
+            // 
+            // label16
+            // 
+            label16.AutoSize = true;
+            label16.Font = new Font("Ubuntu Mono", 11.2499981F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label16.ForeColor = Color.Beige;
+            label16.Location = new Point(64, 292);
+            label16.Name = "label16";
+            label16.Size = new Size(112, 18);
+            label16.TabIndex = 39;
+            label16.Text = "Compensations";
+            // 
+            // label17
+            // 
+            label17.AutoSize = true;
+            label17.Font = new Font("Ubuntu Mono", 11.2499981F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label17.ForeColor = Color.Beige;
+            label17.Location = new Point(548, 292);
+            label17.Name = "label17";
+            label17.Size = new Size(88, 18);
+            label17.TabIndex = 40;
+            label17.Text = "Deductions";
+            // 
             // EFeatures
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
@@ -985,6 +1392,17 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             payrollPanel.ResumeLayout(false);
             payrollPanel.PerformLayout();
+            requestPage.ResumeLayout(false);
+            requestsInsidePanel.ResumeLayout(false);
+            requestCalendarPanel.ResumeLayout(false);
+            requestHeadPanel.ResumeLayout(false);
+            requestHeadPanel.PerformLayout();
+            requestFormPanel.ResumeLayout(false);
+            requestsTabPage.ResumeLayout(false);
+            leaveTabPage.ResumeLayout(false);
+            leaveTabPage.PerformLayout();
+            overtimeTabPage.ResumeLayout(false);
+            overtimeTabPage.PerformLayout();
             profilePage.ResumeLayout(false);
             profilePanel.ResumeLayout(false);
             profileTableLayout.ResumeLayout(false);
@@ -992,6 +1410,7 @@
             insideProfile.PerformLayout();
             panel4.ResumeLayout(false);
             panel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ResumeLayout(false);
         }
 
@@ -1062,5 +1481,38 @@
         private Label companyPayslip;
         private Label payslipSmallLbl;
         private DataGridView paySlipRecords;
+        private Panel requestsInsidePanel;
+        private Panel requestHeadPanel;
+        private Label label2;
+        private MonthCalendar requestsCalendar;
+        private Label smallRequestsLbl;
+        private Button leaveButton;
+        private Panel requestCalendarPanel;
+        private Panel requestFormPanel;
+        private ComboBox leaveReasonBox;
+        private TabControl requestsTabPage;
+        private TabPage leaveTabPage;
+        private TabPage overtimeTabPage;
+        private Label leaveReasonsLbl;
+        private Label label3;
+        private TextBox leaveDateBox;
+        private Label label4;
+        private Label label5;
+        private TextBox overtimeDateBox;
+        private Label label6;
+        private Label label7;
+        private ComboBox overtimeBox;
+        private Button overtimeButton;
+        private Label label12;
+        private Label label11;
+        private Label label10;
+        private Label label9;
+        private Label label8;
+        private Label label13;
+        private Label label14;
+        private Label label15;
+        private Label label17;
+        private Label label16;
+        private PictureBox pictureBox3;
     }
 }

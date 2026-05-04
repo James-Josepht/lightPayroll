@@ -33,10 +33,10 @@ namespace lightPayrollServices
                 var message = new MimeMessage();
 
                 // Gmail sender
-                message.From.Add(new MailboxAddress("Payroll System", "schoollightpayroll@gmail.com"));
+                message.From.Add(new MailboxAddress("Light Payroll", emailUser));
                 message.To.Add(new MailboxAddress(employeeName, toEmail));
 
-                message.Subject = "Payroll Notification";
+                message.Subject = "Payslip Notification";
 
                 var builder = new BodyBuilder();
 
@@ -56,7 +56,7 @@ namespace lightPayrollServices
                         <div style='max-width:500px; margin:auto; background-color:#ffffff; border-radius:10px; overflow:hidden;'>
 
                             <!-- HEADER LOGO -->
-                            <img src='cid:companyLogo' style='width:100%; display:block;' />
+                           <img src='cid:companyLogo' style='width:180px; display:block; margin:0 auto; padding:20px 0;' />
 
                             <div style='padding:20px; background-color:#ffffff; color:#000000;'>
 

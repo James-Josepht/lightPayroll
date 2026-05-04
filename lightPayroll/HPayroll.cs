@@ -65,27 +65,22 @@ namespace lighPayrollUI
 
             // CONTROLS
             NumericUpDown rate = CreateNumeric();
-            NumericUpDown pagIbig = CreateNumeric();
             NumericUpDown deductions = CreateNumeric();
 
             panel.Controls.Add(new Label() { Text = "Hourly Rate", AutoSize = true }, 0, 0);
             panel.Controls.Add(rate, 1, 0);
 
-            panel.Controls.Add(new Label() { Text = "Pag-IBIG", AutoSize = true }, 0, 1);
-            panel.Controls.Add(pagIbig, 1, 1);
+            panel.Controls.Add(new Label() { Text = "Other Deductions", AutoSize = true }, 0, 1);
+            panel.Controls.Add(deductions, 1, 1);
 
-            panel.Controls.Add(new Label() { Text = "Other Deductions", AutoSize = true }, 0, 2);
-            panel.Controls.Add(deductions, 1, 2);
+            panel.Controls.Add(new Label() { Text = "Period Start", AutoSize = true }, 0, 2);
+            panel.Controls.Add(periodStart, 1, 2);
 
-            panel.Controls.Add(new Label() { Text = "Period Start", AutoSize = true }, 0, 3);
-            panel.Controls.Add(periodStart, 1, 3);
+            panel.Controls.Add(new Label() { Text = "Period End", AutoSize = true }, 0, 3);
+            panel.Controls.Add(periodEnd, 1, 3);
 
-            panel.Controls.Add(new Label() { Text = "Period End", AutoSize = true }, 0, 4);
-            panel.Controls.Add(periodEnd, 1, 4);
-
-            panel.Controls.Add(new Label() { Text = "Payroll Date", AutoSize = true }, 0, 5);
-            panel.Controls.Add(payrollDate, 1, 5);
-
+            panel.Controls.Add(new Label() { Text = "Payroll Date", AutoSize = true }, 0, 4);
+            panel.Controls.Add(payrollDate, 1, 4);
 
             // BUTTONS
             Button ok = new Button() { Text = "OK", Width = 100 };
@@ -160,7 +155,6 @@ namespace lighPayrollUI
                         payroll = service.CalculateSecond(
                         employeeID,
                         rate.Value,
-                        pagIbig.Value,
                         deductions.Value,
                         accountantID,
                         start,

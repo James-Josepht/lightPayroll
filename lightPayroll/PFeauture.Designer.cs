@@ -77,8 +77,22 @@
             featureLabel = new Label();
             panel3 = new Panel();
             introLabel = new Label();
-            flowLayoutPanel1 = new FlowLayoutPanel();
-            bodyPic = new PictureBox();
+            featurePanel = new Panel();
+            panel10 = new Panel();
+            label6 = new Label();
+            label3 = new Label();
+            panel11 = new Panel();
+            label2 = new Label();
+            label5 = new Label();
+            panel9 = new Panel();
+            label4 = new Label();
+            label1 = new Label();
+            panel8 = new Panel();
+            phase1Pic = new PictureBox();
+            panel7 = new Panel();
+            phase2Pic = new PictureBox();
+            headFeaturePanel = new Panel();
+            phase3pic = new PictureBox();
             panel1.SuspendLayout();
             panel6.SuspendLayout();
             panel5.SuspendLayout();
@@ -87,8 +101,16 @@
             menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)homepageButton).BeginInit();
             panel2.SuspendLayout();
-            flowLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)bodyPic).BeginInit();
+            featurePanel.SuspendLayout();
+            panel10.SuspendLayout();
+            panel11.SuspendLayout();
+            panel9.SuspendLayout();
+            panel8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)phase1Pic).BeginInit();
+            panel7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)phase2Pic).BeginInit();
+            headFeaturePanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)phase3pic).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -458,7 +480,7 @@
             panel2.Controls.Add(featureLabel);
             panel2.Controls.Add(panel3);
             panel2.Controls.Add(introLabel);
-            panel2.Controls.Add(flowLayoutPanel1);
+            panel2.Controls.Add(featurePanel);
             panel2.Dock = DockStyle.Fill;
             panel2.Location = new Point(0, 109);
             panel2.Name = "panel2";
@@ -479,9 +501,9 @@
             // 
             // panel3
             // 
-            panel3.Location = new Point(46, 833);
+            panel3.Location = new Point(46, 864);
             panel3.Name = "panel3";
-            panel3.Size = new Size(839, 57);
+            panel3.Size = new Size(839, 56);
             panel3.TabIndex = 4;
             // 
             // introLabel
@@ -496,24 +518,176 @@
             introLabel.TabIndex = 0;
             introLabel.Text = "Clock In";
             // 
-            // flowLayoutPanel1
+            // featurePanel
             // 
-            flowLayoutPanel1.Controls.Add(bodyPic);
-            flowLayoutPanel1.Location = new Point(46, 21);
-            flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(839, 802);
-            flowLayoutPanel1.TabIndex = 2;
+            featurePanel.BackColor = Color.FromArgb(33, 44, 66);
+            featurePanel.Controls.Add(panel10);
+            featurePanel.Controls.Add(panel11);
+            featurePanel.Controls.Add(panel9);
+            featurePanel.Controls.Add(panel8);
+            featurePanel.Controls.Add(panel7);
+            featurePanel.Controls.Add(headFeaturePanel);
+            featurePanel.Location = new Point(46, 21);
+            featurePanel.Name = "featurePanel";
+            featurePanel.Size = new Size(839, 837);
+            featurePanel.TabIndex = 6;
             // 
-            // bodyPic
+            // panel10
             // 
-            bodyPic.BackColor = Color.FromArgb(33, 44, 66);
-            bodyPic.BackgroundImageLayout = ImageLayout.Stretch;
-            bodyPic.Location = new Point(6, 6);
-            bodyPic.Margin = new Padding(6);
-            bodyPic.Name = "bodyPic";
-            bodyPic.Size = new Size(842, 801);
-            bodyPic.TabIndex = 1;
-            bodyPic.TabStop = false;
+            panel10.Controls.Add(label6);
+            panel10.Controls.Add(label3);
+            panel10.Location = new Point(462, 610);
+            panel10.Name = "panel10";
+            panel10.Size = new Size(330, 204);
+            panel10.TabIndex = 4;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.BackColor = Color.FromArgb(33, 44, 66);
+            label6.Font = new Font("Ubuntu Mono", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label6.ForeColor = Color.Beige;
+            label6.Location = new Point(21, 71);
+            label6.Name = "label6";
+            label6.Size = new Size(252, 48);
+            label6.TabIndex = 10;
+            label6.Text = "The employee has finished work and \r\nrecorded their time-out.\r\n\r\n";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.BackColor = Color.FromArgb(33, 44, 66);
+            label3.Font = new Font("Ubuntu Mono", 16.1999989F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.ForeColor = Color.Beige;
+            label3.Location = new Point(21, 23);
+            label3.Name = "label3";
+            label3.Size = new Size(228, 27);
+            label3.TabIndex = 8;
+            label3.Text = "Phase 3: Clock Out";
+            // 
+            // panel11
+            // 
+            panel11.Controls.Add(label2);
+            panel11.Controls.Add(label5);
+            panel11.Location = new Point(462, 384);
+            panel11.Name = "panel11";
+            panel11.Size = new Size(330, 204);
+            panel11.TabIndex = 4;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.BackColor = Color.FromArgb(33, 44, 66);
+            label2.Font = new Font("Ubuntu Mono", 16.1999989F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.ForeColor = Color.Beige;
+            label2.Location = new Point(21, 23);
+            label2.Name = "label2";
+            label2.Size = new Size(216, 27);
+            label2.TabIndex = 8;
+            label2.Text = "Phase 2: Clock In";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.BackColor = Color.FromArgb(33, 44, 66);
+            label5.Font = new Font("Ubuntu Mono", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label5.ForeColor = Color.Beige;
+            label5.Location = new Point(21, 70);
+            label5.Name = "label5";
+            label5.Size = new Size(245, 32);
+            label5.TabIndex = 9;
+            label5.Text = "The employee has started work and \r\nrecorded their time-in.";
+            // 
+            // panel9
+            // 
+            panel9.Controls.Add(label4);
+            panel9.Controls.Add(label1);
+            panel9.Location = new Point(462, 157);
+            panel9.Name = "panel9";
+            panel9.Size = new Size(330, 204);
+            panel9.TabIndex = 3;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.BackColor = Color.FromArgb(33, 44, 66);
+            label4.Font = new Font("Ubuntu Mono", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label4.ForeColor = Color.Beige;
+            label4.Location = new Point(21, 70);
+            label4.Name = "label4";
+            label4.Size = new Size(273, 32);
+            label4.TabIndex = 8;
+            label4.Text = "The employee is scheduled or expected \r\nto clock in, but hasn’t started yet.";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.BackColor = Color.FromArgb(33, 44, 66);
+            label1.Font = new Font("Ubuntu Mono", 16.1999989F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.Beige;
+            label1.Location = new Point(21, 21);
+            label1.Name = "label1";
+            label1.Size = new Size(204, 27);
+            label1.TabIndex = 7;
+            label1.Text = "Phase 1: Pending";
+            // 
+            // panel8
+            // 
+            panel8.BackColor = Color.FromArgb(60, 80, 100);
+            panel8.Controls.Add(phase1Pic);
+            panel8.Location = new Point(53, 157);
+            panel8.Name = "panel8";
+            panel8.Size = new Size(391, 204);
+            panel8.TabIndex = 2;
+            // 
+            // phase1Pic
+            // 
+            phase1Pic.BackgroundImage = lighPayrollUI.Properties.Resources.pending_clock;
+            phase1Pic.BackgroundImageLayout = ImageLayout.Stretch;
+            phase1Pic.Location = new Point(16, 12);
+            phase1Pic.Name = "phase1Pic";
+            phase1Pic.Size = new Size(362, 178);
+            phase1Pic.TabIndex = 0;
+            phase1Pic.TabStop = false;
+            // 
+            // panel7
+            // 
+            panel7.BackColor = Color.FromArgb(60, 80, 100);
+            panel7.Controls.Add(phase2Pic);
+            panel7.Location = new Point(53, 384);
+            panel7.Name = "panel7";
+            panel7.Size = new Size(391, 204);
+            panel7.TabIndex = 2;
+            // 
+            // phase2Pic
+            // 
+            phase2Pic.BackgroundImage = (Image)resources.GetObject("phase2Pic.BackgroundImage");
+            phase2Pic.BackgroundImageLayout = ImageLayout.Stretch;
+            phase2Pic.Location = new Point(16, 12);
+            phase2Pic.Name = "phase2Pic";
+            phase2Pic.Size = new Size(362, 178);
+            phase2Pic.TabIndex = 0;
+            phase2Pic.TabStop = false;
+            // 
+            // headFeaturePanel
+            // 
+            headFeaturePanel.BackColor = Color.FromArgb(60, 80, 100);
+            headFeaturePanel.Controls.Add(phase3pic);
+            headFeaturePanel.Location = new Point(53, 610);
+            headFeaturePanel.Name = "headFeaturePanel";
+            headFeaturePanel.Size = new Size(391, 204);
+            headFeaturePanel.TabIndex = 1;
+            // 
+            // phase3pic
+            // 
+            phase3pic.BackgroundImage = lighPayrollUI.Properties.Resources.clock_out_feature;
+            phase3pic.BackgroundImageLayout = ImageLayout.Stretch;
+            phase3pic.Location = new Point(16, 12);
+            phase3pic.Name = "phase3pic";
+            phase3pic.Size = new Size(362, 178);
+            phase3pic.TabIndex = 0;
+            phase3pic.TabStop = false;
+            phase3pic.Click += headFeaturePic_Click;
             // 
             // PFeauture
             // 
@@ -540,8 +714,19 @@
             ((System.ComponentModel.ISupportInitialize)homepageButton).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
-            flowLayoutPanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)bodyPic).EndInit();
+            featurePanel.ResumeLayout(false);
+            panel10.ResumeLayout(false);
+            panel10.PerformLayout();
+            panel11.ResumeLayout(false);
+            panel11.PerformLayout();
+            panel9.ResumeLayout(false);
+            panel9.PerformLayout();
+            panel8.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)phase1Pic).EndInit();
+            panel7.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)phase2Pic).EndInit();
+            headFeaturePanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)phase3pic).EndInit();
             ResumeLayout(false);
         }
 
@@ -593,11 +778,24 @@
         private ToolStripMenuItem toolStripMenuItem24;
         private Panel panel2;
         private Label introLabel;
-        private PictureBox bodyPic;
-        private FlowLayoutPanel flowLayoutPanel1;
         private Label label2;
         private Label featureLabel;
         private Panel panel3;
         private PictureBox pictureBox3;
+        private Panel featurePanel;
+        private Panel headFeaturePanel;
+        private PictureBox phase3pic;
+        private Panel panel8;
+        private PictureBox phase1Pic;
+        private Panel panel7;
+        private PictureBox phase2Pic;
+        private Panel panel9;
+        private Panel panel10;
+        private Label label3;
+        private Panel panel11;
+        private Label label1;
+        private Label label6;
+        private Label label5;
+        private Label label4;
     }
 }

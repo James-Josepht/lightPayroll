@@ -82,7 +82,6 @@ namespace lighPayroll
             home.Show();
             this.Hide();
 
-
         }
 
         private void exitButton_Click(object sender, EventArgs e)
@@ -191,7 +190,6 @@ namespace lighPayroll
             customMsg.ShowDialog();
         }
 
-       
     }
 
 }

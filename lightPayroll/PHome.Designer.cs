@@ -221,6 +221,7 @@
             searchBox.Name = "searchBox";
             searchBox.Size = new Size(100, 25);
             searchBox.KeyDown += searchBox_Click;
+           
             // 
             // toolStripSeparator5
             // 

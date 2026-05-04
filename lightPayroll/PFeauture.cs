@@ -1,4 +1,6 @@
-﻿using System;
+﻿using lighPayrollUI;
+using lighPayrollUI.Properties;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +17,7 @@ namespace lighPayroll
     {
         //class below this, used for designing only
         ClockInDesignPage design = new ClockInDesignPage();
+        HBorderRadius curveBorder = new HBorderRadius();
 
         private string page_feature;
         public PFeauture(string feature)
@@ -38,7 +41,10 @@ namespace lighPayroll
                 dd.Padding = Padding.Empty;
             }
 
-            design.SetRoundedRegion(flowLayoutPanel1, 20); // 20 = curve radius
+            curveBorder.SetRoundedRegion(featurePanel, 11);
+            curveBorder.SetRoundedRegion(panel7, 11);
+            curveBorder.SetRoundedRegion(panel8, 11);
+            curveBorder.SetRoundedRegion(headFeaturePanel, 11);
 
             recentSearches.Margin = new Padding(40, 0, 0, 0); // increase 40 to go left and decrease to put it right
             toolStripSeparator4.Margin = Padding.Empty;
@@ -83,7 +89,6 @@ namespace lighPayroll
             {
                 case "Clock In":
                     introLabel.Text = "Clock In";
-
                     break;
 
                 case "Attendance":
@@ -93,6 +98,20 @@ namespace lighPayroll
 
                 case "Payroll":
                     introLabel.Text = "Payroll";
+                    label1.Text = "Phase 1: Search Name";
+                    label4.Text = "The user searches for an employee by \nname to locate their record.";
+                    phase1Pic.Image = Resources.payrollPhase1;
+                    phase1Pic.SizeMode = PictureBoxSizeMode.StretchImage;
+
+                    label2.Text = "Phase 2: Click ID";
+                    label5.Text = "The user selects the employee by clicking \ntheir ID from the results.";
+                    phase2Pic.Image = Resources.payrollPhase2;
+                    phase2Pic.SizeMode = PictureBoxSizeMode.StretchImage;
+
+                    label3.Text = "Phase 3: Calculate";
+                    label6.Text = "The system computes the payroll based on \nthe employee’s attendance, overtime, \nand deductions.";
+                    phase3pic.Image = Resources.payrollPhase3;
+                    phase3pic.SizeMode = PictureBoxSizeMode.StretchImage;
 
                     break;
             }
@@ -110,6 +129,11 @@ namespace lighPayroll
             PRegister register = new PRegister();
             register.Show();
             this.Hide();
+        }
+
+        private void headFeaturePic_Click(object sender, EventArgs e)
+        {
+
         }
     }
 

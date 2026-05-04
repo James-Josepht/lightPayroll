@@ -10,12 +10,24 @@ using System.Threading.Tasks;
 
 namespace lightPayrollServices
 {
-    public class PayrollService: SQLiteDataAccess
+    public class PayrollService : SQLiteDataAccess
     {
-        public static bool IsSecondPayroll(DateTime payrollDate)
+
+        private decimal ComputePagIbig(decimal monthlySalary)
         {
-            return payrollDate.Day > 15;
+            decimal cappedSalary = monthlySalary > 10000 ? 10000 : monthlySalary;
+
+            decimal rate = cappedSalary <= 1500 ? 0.01m : 0.02m;
+
+            decimal employeeShare = cappedSalary * rate;
+
+            // Cap rule from your table
+            if (cappedSalary > 10000)
+                return 200m;
+
+            return employeeShare;
         }
+
         private decimal ComputeTax(decimal taxableIncome)
         {
             if (taxableIncome <= 10417)
@@ -72,8 +84,8 @@ namespace lightPayrollServices
         }
 
         //second month full deductions including government
-        public Payroll CalculateSecond (int employeeId, decimal hourlyRate,
-                                         decimal pagIbig, decimal otherDeductions, int processedBy,
+        public Payroll CalculateSecond(int employeeId, decimal hourlyRate,
+                                          decimal otherDeductions, int processedBy,
                                         DateTime periodStart, DateTime periodEnd, DateTime payrollDate)
 
         {
@@ -83,9 +95,10 @@ namespace lightPayrollServices
 
             decimal basicSalary = hourlyRate * hoursWorked;
             decimal overtimePay = overtimeHours * hourlyRate * 1.25m;
-            decimal leavePay =0;
+            decimal leavePay = 0;
 
-            decimal monthlyRate = basicSalary * 2;
+            decimal monthlyRate = (basicSalary + overtimePay) * 2; // Assuming this is the monthly equivalent for deductions
+            decimal pagIbig = ComputePagIbig(monthlyRate);
 
             // SSS
             decimal msc = monthlyRate < 5000 ? 5000 :
@@ -131,30 +144,7 @@ namespace lightPayrollServices
             };
         }
 
-        public static decimal GetTotalHours(int employeeID)
-        {
-            using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
-            {
-                var records = conn.Query<AttendanceUser>(
-                    @"SELECT TimeIn, TimeOut
-              FROM AttendanceTable
-              WHERE EmployeeID = @EmployeeID
-              AND TimeOut IS NOT NULL",
-                    new { EmployeeID = employeeID });
 
-                decimal totalHours = 0;
-
-                foreach (var r in records)
-                {
-                    if (r.TimeIn.HasValue && r.TimeOut.HasValue)
-                    {
-                        totalHours += (decimal)(r.TimeOut.Value - r.TimeIn.Value).TotalHours;
-                    }
-                }
-
-                return totalHours;
-            }
-        }
 
         /// 
         ///     GETTING PART    
@@ -249,6 +239,27 @@ namespace lightPayrollServices
         }
 
 
+        //i change user date to stick to the right datetime
+        public static (DateTime start, DateTime end) NormalizeSemiMonthly(DateTime start, DateTime end)
+        {
+            DateTime normalizedStart;
+            DateTime normalizedEnd;
+
+            // FIRST HALF
+            if (start.Day <= 15)
+            {
+                normalizedStart = new DateTime(start.Year, start.Month, 1);
+                normalizedEnd = new DateTime(start.Year, start.Month, 15);
+            }
+            else
+            {
+                int lastDay = DateTime.DaysInMonth(start.Year, start.Month);
+                normalizedStart = new DateTime(start.Year, start.Month, 16);
+                normalizedEnd = new DateTime(start.Year, start.Month, lastDay);
+            }
+
+            return (normalizedStart, normalizedEnd);
+        }
 
         //
         //  INSERTING
@@ -296,27 +307,7 @@ namespace lightPayrollServices
                 }
             }
         }
-
-        //i change user date to stick to the right datetime
-        public static (DateTime start, DateTime end) NormalizeSemiMonthly(DateTime start, DateTime end)
-        {
-            DateTime normalizedStart;
-            DateTime normalizedEnd;
-
-            // FIRST HALF
-            if (start.Day <= 15)
-            {
-                normalizedStart = new DateTime(start.Year, start.Month, 1);
-                normalizedEnd = new DateTime(start.Year, start.Month, 15);
-            }
-            else
-            {
-                int lastDay = DateTime.DaysInMonth(start.Year, start.Month);
-                normalizedStart = new DateTime(start.Year, start.Month, 16);
-                normalizedEnd = new DateTime(start.Year, start.Month, lastDay);
-            }
-
-            return (normalizedStart, normalizedEnd);
-        }
     }
+
+       
 }

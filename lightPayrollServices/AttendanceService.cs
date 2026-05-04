@@ -45,7 +45,11 @@ namespace lightPayrollServices
                 conn.Execute(createTableSql);  // Dapper extension method for non-query commands
 
                 // Step 2: Query the table
-                var output = conn.Query<AttendanceCore>("SELECT EmployeeID, Date, TimeIn, TimeOut, Status, Remarks FROM AttendanceTable", new DynamicParameters());
+                var output = conn.Query<AttendanceCore>(
+                 @"SELECT EmployeeID, Date, TimeIn, TimeOut, Status, Remarks
+                  FROM AttendanceTable
+                  ORDER BY Date DESC",
+                 new DynamicParameters());
 
                 var attendances = output.ToList();
 
@@ -82,7 +86,11 @@ namespace lightPayrollServices
                 conn.Execute(createTableSql);  // Dapper extension method for non-query commands
 
                 // Step 2: Query the table
-                var output = conn.Query<AttendanceAdmin>("SELECT AttendanceID, EmployeeID, Date, TimeIn, TimeOut, Status, Remarks FROM AttendanceTable", new DynamicParameters());
+                var output = conn.Query<AttendanceAdmin>(
+                 @"SELECT AttendanceID, EmployeeID, Date, TimeIn, TimeOut, Status, Remarks
+                  FROM AttendanceTable
+                  ORDER BY Date DESC",
+                 new DynamicParameters());
 
                 var attendances = output.ToList();
 
@@ -98,8 +106,9 @@ namespace lightPayrollServices
             {
                 var output = conn.Query<AttendanceUser>(
                  @"SELECT EmployeeID, Date, TimeIn, TimeOut, Status, Remarks
-                  FROM AttendanceTable
-                  WHERE EmployeeID = @EmployeeID",
+                  FROM AttendanceTable       
+                  WHERE EmployeeID = @EmployeeID
+                     ORDER BY Date DESC",
                  new { EmployeeID = employeeID });
 
                 var attendances = output.Select(u =>

@@ -252,7 +252,7 @@
             toDoLabel.Name = "toDoLabel";
             toDoLabel.Size = new Size(120, 27);
             toDoLabel.TabIndex = 22;
-            toDoLabel.Text = "Task List";
+            toDoLabel.Text = "Dashboard";
             toDoLabel.Click += toDoPanel_Click;
             // 
             // toDoPic

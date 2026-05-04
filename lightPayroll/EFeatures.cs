@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Net.Sockets;
 using System.Text;
@@ -47,16 +48,13 @@ namespace lighPayrollUI
             adminUI.panelDesign(statusPanel);
             ConfigureTabsByRole();
             LoadAttendanceList();
-            LoadEmployeeList();
-            LoadProfile();
-            LoadAllAttendanceList();
-            LoadPayslip();
 
             if (!DesignMode)
             {
                 employeeFeatures.DrawMode = TabDrawMode.OwnerDrawFixed;
             }
 
+            //focus on modifying borders
             HBorderRadius borderRadius = new HBorderRadius();
             borderRadius.SetRoundedRegion(payrollSearchPanel, 37);
             borderRadius.SetRoundedRegion(payrollPanel, 33);
@@ -65,10 +63,13 @@ namespace lighPayrollUI
             borderRadius.SetRoundedRegion(profilePanel, 33);
             borderRadius.SetRoundedRegion(payslipPanel, 33);
             borderRadius.SetRoundedRegion(headPayslipPanel, 33);
+            borderRadius.SetRoundedRegion(requestsInsidePanel, 33);
+            borderRadius.SetRoundedRegion(requestCalendarPanel, 33);
+            borderRadius.SetRoundedRegion(requestHeadPanel, 33);
 
 
-            //borderRadius.SetRoundedRegion(insideProfile, 33);
 
+            //clock In
             if (attendanceDataAccess.HasClockedOutToday(user_id))
             {
                 clockStatusReal.Text = "Clock Out";
@@ -84,6 +85,37 @@ namespace lighPayrollUI
                 clockStatusReal.Text = "Pending";
                 clockStatusReal.ForeColor = Color.FromArgb(255, 255, 128);
             }
+
+            //tab pages
+
+            if (user_role != "Manager" || user_role != "Admin")
+            {
+                TabPage page = null;
+
+                foreach (TabPage tab in employeeFeatures.TabPages)
+                {
+                    if (tab.Name == "requestPage")
+                    {
+                        page = tab;
+                        break;
+                    }
+                }
+
+                if (page != null)
+                {
+                    employeeFeatures.TabPages.Remove(page);
+                    employeeFeatures.TabPages.Insert(2, page); // move to 3rd position
+                }
+                else
+                {
+                    MessageBox.Show("requestPage not found!");
+                }
+            }
+
+
+
+
+            // requests
 
         }
 
@@ -200,7 +232,7 @@ namespace lighPayrollUI
                 //this depend on role
                 var allowedTabs = new List<string>
                 {
-                    "payslipPage", "clockPage", "profilePage"
+                    "payslipPage", "clockPage", "profilePage", "requestPage"
 
                 };
 
@@ -216,7 +248,7 @@ namespace lighPayrollUI
             {
                 var allowedTabs = new List<string>
                 {
-                    "payslipPage", "clockPage", "profilePage", "overTimePage", "attendancePage"
+                    "payslipPage", "clockPage", "profilePage", "attendancePage"
 
                 };
 
@@ -232,7 +264,7 @@ namespace lighPayrollUI
             {
                 var allowedTabs = new List<string>
                 {
-                    "payslipPage", "clockPage", "profilePage", "payrollPage", "attendancePage"
+                    "payslipPage", "clockPage", "profilePage", "payrollPage", "attendancePage", "requestPage"
 
                 };
 
@@ -283,17 +315,20 @@ namespace lighPayrollUI
             {
                 LoadAttendanceList();
             }
-             else if (tabPage.Name == "attendancePage")
+            else if (tabPage.Name == "attendancePage")
             {
                 LoadAllAttendanceList();
             }
-             else if (tabPage.Name == "payrollPage")
-             {
+            else if (tabPage.Name == "payrollPage")
+            {
                 LoadEmployeeList();
-             }
-             else if (tabPage.Name == "payslipPage")
-             {
+            }
+            else if (tabPage.Name == "payslipPage")
+            {
                 LoadPayslip();
+                headPayslipPanel.Size = new System.Drawing.Size(780, 76);
+                headPayslipPanel.AutoScroll = false;
+
             }
         }
 
@@ -588,7 +623,62 @@ namespace lighPayrollUI
             }
         }
 
-        private void headPayslipPanel_Paint(object sender, PaintEventArgs e)
+        /// 
+        ///     REQUESTS    
+        ///     PAGE
+        /// 
+
+
+        private void leaveButton_Click(object sender, EventArgs e)
+        {
+            string date = leaveDateBox.Text;
+            string type = leaveReasonBox.Text;
+
+            ConfirmForm confirm = new ConfirmForm(
+               $"Confirm to submit this leave request?\n\n", $"\t\tDate: {date}\n\t\tReason: {type}");
+            confirm.ShowDialog();
+
+            if (confirm.Result)
+            {
+                SQLiteDataAccess db = new SQLiteDataAccess();
+
+                int employeeId = db.GetEmployeeIdByUserId(user_id);
+
+                db.InsertLeave(employeeId, date, type);
+
+                MessageBox.Show("Leave request submitted!");
+            }
+
+        }
+        private void overtimeButton_Click(object sender, EventArgs e)
+        {
+            string date = overtimeDateBox.Text;
+            string type = overtimeBox.Text;
+
+            ConfirmForm confirm = new ConfirmForm(
+               $"Confirm to submit this overtime request?\n\n", $"\t\tDate: {date}\n\t\tType: {type}");
+            confirm.ShowDialog();
+
+            if (confirm.Result)
+            {
+                SQLiteDataAccess db = new SQLiteDataAccess();
+
+                int employeeId = db.GetEmployeeIdByUserId(user_id);
+
+                db.InsertOvertime(employeeId, date, type);
+
+                MessageBox.Show("Overtime request submitted!");
+            }
+
+        }
+
+        private void requestsCalendar_DateSelected(object sender, DateRangeEventArgs e)
+        {
+            leaveDateBox.Text = e.Start.ToString("yyyy-MM-dd");
+            overtimeDateBox.Text = e.End.ToString("yyyy-MM-dd");
+        }
+
+        private void label17_Click(object sender, EventArgs e)
         {
 
         }

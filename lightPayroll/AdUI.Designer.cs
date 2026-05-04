@@ -57,6 +57,11 @@ namespace lighPayroll
             panel6 = new Panel();
             exitButton = new Button();
             bodyPanel = new Panel();
+            requestsPanel = new Panel();
+            approvalPic = new PictureBox();
+            requestHeadLbl = new Label();
+            otherFeaturesLbl = new Label();
+            label9 = new Label();
             label4 = new Label();
             encourageVerses = new Label();
             attendancePanel = new Panel();
@@ -80,17 +85,14 @@ namespace lighPayroll
             panel4 = new Panel();
             panel1 = new Panel();
             panel2 = new Panel();
-            requestsPanel = new Panel();
-            approvalPic = new PictureBox();
-            requestHeadLbl = new Label();
-            requestBodyLbl = new Label();
-            label9 = new Label();
             headPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             panel5.SuspendLayout();
             searchMenuStrip.SuspendLayout();
             panel6.SuspendLayout();
             bodyPanel.SuspendLayout();
+            requestsPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)approvalPic).BeginInit();
             attendancePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)attendancePic).BeginInit();
             taskPanel.SuspendLayout();
@@ -100,8 +102,6 @@ namespace lighPayroll
             greetingPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
-            requestsPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)approvalPic).BeginInit();
             SuspendLayout();
             // 
             // headPanel
@@ -324,6 +324,73 @@ namespace lighPayroll
             bodyPanel.Name = "bodyPanel";
             bodyPanel.Size = new Size(783, 445);
             bodyPanel.TabIndex = 2;
+            // 
+            // requestsPanel
+            // 
+            requestsPanel.BorderStyle = BorderStyle.FixedSingle;
+            requestsPanel.Controls.Add(approvalPic);
+            requestsPanel.Controls.Add(requestHeadLbl);
+            requestsPanel.Controls.Add(otherFeaturesLbl);
+            requestsPanel.Cursor = Cursors.Hand;
+            requestsPanel.Location = new Point(32, 305);
+            requestsPanel.Name = "requestsPanel";
+            requestsPanel.Size = new Size(724, 56);
+            requestsPanel.TabIndex = 19;
+            requestsPanel.Click += requestsPanel_Click;
+
+            // 
+            // approvalPic
+            // 
+            approvalPic.Cursor = Cursors.Hand;
+            approvalPic.Image = Resources.approval;
+            approvalPic.Location = new Point(28, 4);
+            approvalPic.Name = "approvalPic";
+            approvalPic.Size = new Size(67, 50);
+            approvalPic.SizeMode = PictureBoxSizeMode.StretchImage;
+            approvalPic.TabIndex = 9;
+            approvalPic.TabStop = false;
+            approvalPic.Click += requestsPanel_Click;
+            // 
+            // requestHeadLbl
+            // 
+            requestHeadLbl.AutoSize = true;
+            requestHeadLbl.BackColor = Color.FromArgb(33, 44, 66);
+            requestHeadLbl.Cursor = Cursors.Hand;
+            requestHeadLbl.Font = new Font("Ubuntu Mono", 16.1999989F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            requestHeadLbl.ForeColor = Color.Beige;
+            requestHeadLbl.Location = new Point(139, 5);
+            requestHeadLbl.Name = "requestHeadLbl";
+            requestHeadLbl.Size = new Size(180, 27);
+            requestHeadLbl.TabIndex = 9;
+            requestHeadLbl.Text = "Other Features";
+            requestHeadLbl.Click += requestsPanel_Click;
+            // 
+            // otherFeaturesLbl
+            // 
+            otherFeaturesLbl.AutoSize = true;
+            otherFeaturesLbl.BackColor = Color.FromArgb(33, 44, 66);
+            otherFeaturesLbl.Cursor = Cursors.Hand;
+            otherFeaturesLbl.Font = new Font("Ubuntu Mono", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            otherFeaturesLbl.ForeColor = Color.Beige;
+            otherFeaturesLbl.Location = new Point(141, 32);
+            otherFeaturesLbl.Name = "otherFeaturesLbl";
+            otherFeaturesLbl.Size = new Size(208, 17);
+            otherFeaturesLbl.TabIndex = 10;
+            otherFeaturesLbl.Text = "Check employee's requests";
+            otherFeaturesLbl.Click += requestsPanel_Click;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.BackColor = Color.FromArgb(33, 44, 66);
+            label9.Cursor = Cursors.Hand;
+            label9.Font = new Font("Ubuntu Mono", 16.1999989F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label9.ForeColor = Color.Beige;
+            label9.Location = new Point(165, 324);
+            label9.Name = "label9";
+            label9.Size = new Size(156, 27);
+            label9.TabIndex = 17;
+            label9.Text = "Payroll Logs";
             // 
             // label4
             // 
@@ -603,71 +670,6 @@ namespace lighPayroll
             panel2.Size = new Size(783, 80);
             panel2.TabIndex = 4;
             // 
-            // requestsPanel
-            // 
-            requestsPanel.BorderStyle = BorderStyle.FixedSingle;
-            requestsPanel.Controls.Add(approvalPic);
-            requestsPanel.Controls.Add(requestHeadLbl);
-            requestsPanel.Controls.Add(requestBodyLbl);
-            requestsPanel.Cursor = Cursors.Hand;
-            requestsPanel.Location = new Point(32, 305);
-            requestsPanel.Name = "requestsPanel";
-            requestsPanel.Size = new Size(724, 56);
-            requestsPanel.TabIndex = 19;
-            requestsPanel.Click += requestsPanel_Click;
-            // 
-            // approvalPic
-            // 
-            approvalPic.Cursor = Cursors.Hand;
-            approvalPic.Image = Resources.approval;
-            approvalPic.Location = new Point(28, 4);
-            approvalPic.Name = "approvalPic";
-            approvalPic.Size = new Size(67, 50);
-            approvalPic.SizeMode = PictureBoxSizeMode.StretchImage;
-            approvalPic.TabIndex = 9;
-            approvalPic.TabStop = false;
-            approvalPic.Click += requestsPanel_Click;
-            // 
-            // requestHeadLbl
-            // 
-            requestHeadLbl.AutoSize = true;
-            requestHeadLbl.BackColor = Color.FromArgb(33, 44, 66);
-            requestHeadLbl.Cursor = Cursors.Hand;
-            requestHeadLbl.Font = new Font("Ubuntu Mono", 16.1999989F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            requestHeadLbl.ForeColor = Color.Beige;
-            requestHeadLbl.Location = new Point(139, 5);
-            requestHeadLbl.Name = "requestHeadLbl";
-            requestHeadLbl.Size = new Size(108, 27);
-            requestHeadLbl.TabIndex = 9;
-            requestHeadLbl.Text = "Requests";
-            requestHeadLbl.Click += requestsPanel_Click;
-            // 
-            // requestBodyLbl
-            // 
-            requestBodyLbl.AutoSize = true;
-            requestBodyLbl.BackColor = Color.FromArgb(33, 44, 66);
-            requestBodyLbl.Cursor = Cursors.Hand;
-            requestBodyLbl.Font = new Font("Ubuntu Mono", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            requestBodyLbl.ForeColor = Color.Beige;
-            requestBodyLbl.Location = new Point(141, 32);
-            requestBodyLbl.Name = "requestBodyLbl";
-            requestBodyLbl.Size = new Size(208, 17);
-            requestBodyLbl.TabIndex = 10;
-            requestBodyLbl.Text = "Check employee's requests";
-            requestBodyLbl.Click += requestsPanel_Click;
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.BackColor = Color.FromArgb(33, 44, 66);
-            label9.Cursor = Cursors.Hand;
-            label9.Font = new Font("Ubuntu Mono", 16.1999989F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label9.ForeColor = Color.Beige;
-            label9.Location = new Point(165, 324);
-            label9.Name = "label9";
-            label9.Size = new Size(156, 27);
-            label9.TabIndex = 17;
-            label9.Text = "Payroll Logs";
-            // 
             // AdUI
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
@@ -690,6 +692,9 @@ namespace lighPayroll
             panel6.ResumeLayout(false);
             bodyPanel.ResumeLayout(false);
             bodyPanel.PerformLayout();
+            requestsPanel.ResumeLayout(false);
+            requestsPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)approvalPic).EndInit();
             attendancePanel.ResumeLayout(false);
             attendancePanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)attendancePic).EndInit();
@@ -703,9 +708,6 @@ namespace lighPayroll
             greetingPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel1.ResumeLayout(false);
-            requestsPanel.ResumeLayout(false);
-            requestsPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)approvalPic).EndInit();
             ResumeLayout(false);
         }
 
@@ -767,7 +769,7 @@ namespace lighPayroll
         private Panel requestsPanel;
         private PictureBox approvalPic;
         private Label requestHeadLbl;
-        private Label requestBodyLbl;
+        private Label otherFeaturesLbl;
         private Label label9;
     }
 }
