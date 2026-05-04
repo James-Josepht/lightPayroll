@@ -28,11 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
             panel1 = new Panel();
             pictureBox2 = new PictureBox();
             tableLayoutPanel1 = new TableLayoutPanel();
@@ -53,18 +55,10 @@
             tableLayoutPanel2 = new TableLayoutPanel();
             payslipInnerPanel = new Panel();
             headPayslipPanel = new Panel();
-            button1 = new Button();
             payslipSmallLbl = new Label();
             companyPayslip = new Label();
-            bottomPayslipPanel = new Panel();
             payslipBodyPanel = new Panel();
-            panel8 = new Panel();
-            label6 = new Label();
-            label5 = new Label();
-            label4 = new Label();
-            label3 = new Label();
-            label2 = new Label();
-            panel7 = new Panel();
+            paySlipRecords = new DataGridView();
             panel9 = new Panel();
             panel10 = new Panel();
             panel11 = new Panel();
@@ -122,6 +116,7 @@
             payslipInnerPanel.SuspendLayout();
             headPayslipPanel.SuspendLayout();
             payslipBodyPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)paySlipRecords).BeginInit();
             attendancePage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)attendanceGrid).BeginInit();
             attendanceSearchPnl.SuspendLayout();
@@ -235,14 +230,14 @@
             clockGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             clockGrid.BorderStyle = BorderStyle.None;
             clockGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = SystemColors.Window;
-            dataGridViewCellStyle6.Font = new Font("Segoe UI Historic", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle6.ForeColor = Color.FromArgb(33, 44, 66);
-            dataGridViewCellStyle6.SelectionBackColor = SystemColors.ScrollBar;
-            dataGridViewCellStyle6.SelectionForeColor = Color.FromArgb(40, 40, 40);
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.False;
-            clockGrid.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Window;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI Historic", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = Color.FromArgb(33, 44, 66);
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.ScrollBar;
+            dataGridViewCellStyle1.SelectionForeColor = Color.FromArgb(40, 40, 40);
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
+            clockGrid.DefaultCellStyle = dataGridViewCellStyle1;
             clockGrid.GridColor = SystemColors.ActiveBorder;
             clockGrid.Location = new Point(43, 137);
             clockGrid.Name = "clockGrid";
@@ -360,8 +355,8 @@
             tableLayoutPanel2.Location = new Point(0, 0);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
             tableLayoutPanel2.RowCount = 3;
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 10.1265821F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 89.87342F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 5.05952358F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 94.9404755F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 30F));
             tableLayoutPanel2.Size = new Size(876, 367);
             tableLayoutPanel2.TabIndex = 0;
@@ -369,40 +364,26 @@
             // payslipInnerPanel
             // 
             payslipInnerPanel.AutoScroll = true;
-            payslipInnerPanel.BackColor = Color.FromArgb(60, 80, 110);
+            payslipInnerPanel.BackColor = Color.FromArgb(33, 44, 66);
             payslipInnerPanel.Controls.Add(headPayslipPanel);
-            payslipInnerPanel.Controls.Add(bottomPayslipPanel);
             payslipInnerPanel.Controls.Add(payslipBodyPanel);
             payslipInnerPanel.Dock = DockStyle.Fill;
-            payslipInnerPanel.Location = new Point(48, 37);
+            payslipInnerPanel.Location = new Point(48, 20);
             payslipInnerPanel.Name = "payslipInnerPanel";
-            payslipInnerPanel.Size = new Size(780, 296);
+            payslipInnerPanel.Size = new Size(780, 313);
             payslipInnerPanel.TabIndex = 1;
             // 
             // headPayslipPanel
             // 
-            headPayslipPanel.Controls.Add(button1);
+            headPayslipPanel.BackColor = Color.FromArgb(60, 80, 100);
             headPayslipPanel.Controls.Add(payslipSmallLbl);
             headPayslipPanel.Controls.Add(companyPayslip);
             headPayslipPanel.Dock = DockStyle.Top;
             headPayslipPanel.Location = new Point(0, 0);
             headPayslipPanel.Name = "headPayslipPanel";
-            headPayslipPanel.Size = new Size(763, 76);
+            headPayslipPanel.Size = new Size(780, 76);
             headPayslipPanel.TabIndex = 25;
-            // 
-            // button1
-            // 
-            button1.BackgroundImage = Properties.Resources.download;
-            button1.BackgroundImageLayout = ImageLayout.Zoom;
-            button1.Cursor = Cursors.Hand;
-            button1.FlatAppearance.BorderColor = Color.FromArgb(60, 80, 110);
-            button1.FlatAppearance.MouseDownBackColor = Color.FromArgb(60, 80, 110);
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Location = new Point(684, 13);
-            button1.Name = "button1";
-            button1.Size = new Size(52, 46);
-            button1.TabIndex = 28;
-            button1.UseVisualStyleBackColor = true;
+            headPayslipPanel.Paint += headPayslipPanel_Paint;
             // 
             // payslipSmallLbl
             // 
@@ -425,106 +406,61 @@
             companyPayslip.TabIndex = 27;
             companyPayslip.Text = "Light Payroll Inc";
             // 
-            // bottomPayslipPanel
-            // 
-            bottomPayslipPanel.Dock = DockStyle.Bottom;
-            bottomPayslipPanel.Location = new Point(0, 288);
-            bottomPayslipPanel.Name = "bottomPayslipPanel";
-            bottomPayslipPanel.Size = new Size(763, 326);
-            bottomPayslipPanel.TabIndex = 24;
-            // 
             // payslipBodyPanel
             // 
-            payslipBodyPanel.Controls.Add(panel8);
-            payslipBodyPanel.Controls.Add(label6);
-            payslipBodyPanel.Controls.Add(label5);
-            payslipBodyPanel.Controls.Add(label4);
-            payslipBodyPanel.Controls.Add(label3);
-            payslipBodyPanel.Controls.Add(label2);
-            payslipBodyPanel.Controls.Add(panel7);
-            payslipBodyPanel.Location = new Point(0, 77);
+            payslipBodyPanel.Controls.Add(paySlipRecords);
+            payslipBodyPanel.Dock = DockStyle.Bottom;
+            payslipBodyPanel.Location = new Point(0, 109);
             payslipBodyPanel.Name = "payslipBodyPanel";
-            payslipBodyPanel.Size = new Size(763, 211);
+            payslipBodyPanel.Size = new Size(780, 204);
             payslipBodyPanel.TabIndex = 26;
             // 
-            // panel8
+            // paySlipRecords
             // 
-            panel8.Location = new Point(389, 18);
-            panel8.Name = "panel8";
-            panel8.Size = new Size(365, 178);
-            panel8.TabIndex = 33;
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.ForeColor = Color.Beige;
-            label6.Location = new Point(31, 53);
-            label6.Name = "label6";
-            label6.Size = new Size(35, 16);
-            label6.TabIndex = 31;
-            label6.Text = "TIN:";
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.ForeColor = Color.Beige;
-            label5.Location = new Point(31, 86);
-            label5.Name = "label5";
-            label5.Size = new Size(56, 16);
-            label5.TabIndex = 30;
-            label5.Text = "SSS NO:";
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.ForeColor = Color.Beige;
-            label4.Location = new Point(31, 117);
-            label4.Name = "label4";
-            label4.Size = new Size(105, 16);
-            label4.TabIndex = 29;
-            label4.Text = "PHILHEALTH NO:";
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.ForeColor = Color.Beige;
-            label3.Location = new Point(31, 147);
-            label3.Name = "label3";
-            label3.Size = new Size(42, 16);
-            label3.TabIndex = 28;
-            label3.Text = "HDMF:";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.ForeColor = Color.Beige;
-            label2.Location = new Point(31, 23);
-            label2.Name = "label2";
-            label2.Size = new Size(42, 16);
-            label2.TabIndex = 27;
-            label2.Text = "Name:";
-            // 
-            // panel7
-            // 
-            panel7.Location = new Point(10, 18);
-            panel7.Name = "panel7";
-            panel7.Size = new Size(365, 178);
-            panel7.TabIndex = 32;
+            paySlipRecords.AllowUserToAddRows = false;
+            paySlipRecords.AllowUserToDeleteRows = false;
+            paySlipRecords.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            paySlipRecords.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
+            paySlipRecords.BorderStyle = BorderStyle.None;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Control;
+            dataGridViewCellStyle2.Font = new Font("Ubuntu Mono Medium", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = SystemColors.Desktop;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            paySlipRecords.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            paySlipRecords.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.Window;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI Historic", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle3.ForeColor = Color.FromArgb(68, 68, 68);
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.ScrollBar;
+            dataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(40, 40, 40);
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            paySlipRecords.DefaultCellStyle = dataGridViewCellStyle3;
+            paySlipRecords.Dock = DockStyle.Fill;
+            paySlipRecords.Location = new Point(0, 0);
+            paySlipRecords.Name = "paySlipRecords";
+            paySlipRecords.ReadOnly = true;
+            paySlipRecords.Size = new Size(780, 204);
+            paySlipRecords.TabIndex = 2;
+            paySlipRecords.CellClick += paySlipRecords_CellClick;
             // 
             // panel9
             // 
             panel9.Dock = DockStyle.Fill;
-            panel9.Location = new Point(834, 37);
+            panel9.Location = new Point(834, 20);
             panel9.Name = "panel9";
-            panel9.Size = new Size(39, 296);
+            panel9.Size = new Size(39, 313);
             panel9.TabIndex = 2;
             // 
             // panel10
             // 
             panel10.Dock = DockStyle.Fill;
-            panel10.Location = new Point(3, 37);
+            panel10.Location = new Point(3, 20);
             panel10.Name = "panel10";
-            panel10.Size = new Size(39, 296);
+            panel10.Size = new Size(39, 313);
             panel10.TabIndex = 3;
             // 
             // panel11
@@ -555,23 +491,23 @@
             attendanceGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             attendanceGrid.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
             attendanceGrid.BorderStyle = BorderStyle.None;
-            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = SystemColors.Control;
-            dataGridViewCellStyle7.Font = new Font("Ubuntu Mono Medium", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle7.ForeColor = SystemColors.Desktop;
-            dataGridViewCellStyle7.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
-            attendanceGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = SystemColors.Control;
+            dataGridViewCellStyle4.Font = new Font("Ubuntu Mono Medium", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle4.ForeColor = SystemColors.Desktop;
+            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            attendanceGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             attendanceGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = SystemColors.Window;
-            dataGridViewCellStyle8.Font = new Font("Segoe UI Historic", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle8.ForeColor = Color.FromArgb(68, 68, 68);
-            dataGridViewCellStyle8.SelectionBackColor = SystemColors.ScrollBar;
-            dataGridViewCellStyle8.SelectionForeColor = Color.FromArgb(40, 40, 40);
-            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.False;
-            attendanceGrid.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = SystemColors.Window;
+            dataGridViewCellStyle5.Font = new Font("Segoe UI Historic", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle5.ForeColor = Color.FromArgb(68, 68, 68);
+            dataGridViewCellStyle5.SelectionBackColor = SystemColors.ScrollBar;
+            dataGridViewCellStyle5.SelectionForeColor = Color.FromArgb(40, 40, 40);
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
+            attendanceGrid.DefaultCellStyle = dataGridViewCellStyle5;
             attendanceGrid.Location = new Point(82, 132);
             attendanceGrid.Name = "attendanceGrid";
             attendanceGrid.ReadOnly = true;
@@ -649,23 +585,23 @@
             payrollGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             payrollGrid.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
             payrollGrid.BorderStyle = BorderStyle.None;
-            dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = SystemColors.Control;
-            dataGridViewCellStyle9.Font = new Font("Ubuntu Mono Medium", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle9.ForeColor = SystemColors.Desktop;
-            dataGridViewCellStyle9.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = DataGridViewTriState.True;
-            payrollGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = SystemColors.Control;
+            dataGridViewCellStyle6.Font = new Font("Ubuntu Mono Medium", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle6.ForeColor = SystemColors.Desktop;
+            dataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
+            payrollGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             payrollGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = SystemColors.Window;
-            dataGridViewCellStyle10.Font = new Font("Segoe UI Historic", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle10.ForeColor = Color.FromArgb(68, 68, 68);
-            dataGridViewCellStyle10.SelectionBackColor = SystemColors.ScrollBar;
-            dataGridViewCellStyle10.SelectionForeColor = Color.FromArgb(40, 40, 40);
-            dataGridViewCellStyle10.WrapMode = DataGridViewTriState.False;
-            payrollGrid.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = SystemColors.Window;
+            dataGridViewCellStyle7.Font = new Font("Segoe UI Historic", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle7.ForeColor = Color.FromArgb(68, 68, 68);
+            dataGridViewCellStyle7.SelectionBackColor = SystemColors.ScrollBar;
+            dataGridViewCellStyle7.SelectionForeColor = Color.FromArgb(40, 40, 40);
+            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.False;
+            payrollGrid.DefaultCellStyle = dataGridViewCellStyle7;
             payrollGrid.Location = new Point(83, 132);
             payrollGrid.Name = "payrollGrid";
             payrollGrid.ReadOnly = true;
@@ -1034,7 +970,7 @@
             headPayslipPanel.ResumeLayout(false);
             headPayslipPanel.PerformLayout();
             payslipBodyPanel.ResumeLayout(false);
-            payslipBodyPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)paySlipRecords).EndInit();
             attendancePage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)attendanceGrid).EndInit();
             attendanceSearchPnl.ResumeLayout(false);
@@ -1121,18 +1057,10 @@
         private Panel panel9;
         private Panel panel10;
         private Panel panel11;
-        private Panel bottomPayslipPanel;
         private Panel headPayslipPanel;
         private Panel payslipBodyPanel;
         private Label companyPayslip;
         private Label payslipSmallLbl;
-        private Label label2;
-        private Button button1;
-        private Label label6;
-        private Label label5;
-        private Label label4;
-        private Label label3;
-        private Panel panel7;
-        private Panel panel8;
+        private DataGridView paySlipRecords;
     }
 }

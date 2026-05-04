@@ -128,9 +128,9 @@ namespace lightPayrollServices
 
                 string sql = @"
                 INSERT INTO PayrollTable
-                (EmployeeID, ApprovedBy, BasicSalary, OvertimePay, SSS, PhilHealth, PagIBIG, WithholdingTax, Deductions, NetPay, PayrollDate, Period, PayrollCreated)
+                (EmployeeID, ApprovedBy, BasicSalary, OvertimePay, SSS, PhilHealth, PagIBIG, WithholdingTax, Deductions, NetPay, PayrollDate, PeriodStart, PeriodEnd, PayrollCreated)
                 VALUES
-                (@EmployeeID, @ApprovedBy, @BasicSalary, @OvertimePay, @SSS, @PhilHealth, @PagIBIG, @WithholdingTax, @Deductions, @NetPay, @PayrollDate, @Period, @PayrollCreated)";
+                (@EmployeeID, @ApprovedBy, @BasicSalary, @OvertimePay, @SSS, @PhilHealth, @PagIBIG, @WithholdingTax, @Deductions, @NetPay, @PayrollDate, @PeriodStart, @PeriodEnd, @PayrollCreated)";
 
                 conn.Execute(sql, payroll);
             }

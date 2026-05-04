@@ -147,6 +147,7 @@ namespace lightPayrollModel
 
         public decimal BasicSalary { get; set; }
         public decimal OvertimePay { get; set; }
+        public decimal LeavePay { get; set; } = 0;
         public decimal SSS { get; set; }
         public decimal PhilHealth { get; set; }
         public decimal PagIBIG { get; set; }
@@ -155,9 +156,10 @@ namespace lightPayrollModel
 
         public decimal NetPay { get; set; }
 
-        public string PayrollDate { get; set; } // matches TEXT
-        public string Period { get; set; } // matches TEXT
-        public string PayrollCreated { get; set; } // matches TEXT
+        public string PayrollDate { get; set; } 
+        public string PeriodStart { get; set; } 
+        public string PeriodEnd { get; set; }
+        public string PayrollCreated { get; set; } 
 
         public void Validate()
         {

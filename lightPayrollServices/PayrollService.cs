@@ -12,6 +12,10 @@ namespace lightPayrollServices
 {
     public class PayrollService: SQLiteDataAccess
     {
+        public static bool IsSecondPayroll(DateTime payrollDate)
+        {
+            return payrollDate.Day > 15;
+        }
         private decimal ComputeTax(decimal taxableIncome)
         {
             if (taxableIncome <= 10417)
@@ -29,12 +33,16 @@ namespace lightPayrollServices
         }
 
         public Payroll CalculateFirst(
-            int employeeId,
-            decimal hourlyRate,
-            decimal hoursWorked,
-            decimal overtimeHours,
-            int processedBy)
+                    int employeeId,
+                    decimal hourlyRate,
+                    int processedBy,
+                    DateTime periodStart,
+                    DateTime periodEnd,
+                    DateTime payrollDate)
         {
+            var (hoursWorked, overtimeHours) =
+                GetHoursWithOvertime(employeeId, periodStart, periodEnd);
+
             decimal basicSalary = hourlyRate * hoursWorked;
             decimal overtimePay = overtimeHours * hourlyRate * 1.25m;
 
@@ -55,19 +63,27 @@ namespace lightPayrollServices
                 WithholdingTax = tax,
                 Deductions = tax,
                 NetPay = netPay,
-                PayrollCreated = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
-                ApprovedBy = processedBy
+                PayrollDate = payrollDate.ToString("yyyy-MM-dd"),
+                PayrollCreated = DateTime.Now.ToString("yyyy-MM-dd HH:mm tt"),
+                ApprovedBy = processedBy,
+                PeriodStart = periodStart.ToString("yyyy-MM-dd"),
+                PeriodEnd = periodEnd.ToString("yyyy-MM-dd")
             };
         }
 
         //second month full deductions including government
-        public Payroll CalculateSecond (int employeeId, decimal hourlyRate, decimal hoursWorked,
-                                        decimal overtimeHours, decimal pagIbig, decimal otherDeductions, int processedBy,
+        public Payroll CalculateSecond (int employeeId, decimal hourlyRate,
+                                         decimal pagIbig, decimal otherDeductions, int processedBy,
                                         DateTime periodStart, DateTime periodEnd, DateTime payrollDate)
 
         {
+            // compute hours based on selected period
+            var (hoursWorked, overtimeHours) =
+                GetHoursWithOvertime(employeeId, periodStart, periodEnd);
+
             decimal basicSalary = hourlyRate * hoursWorked;
             decimal overtimePay = overtimeHours * hourlyRate * 1.25m;
+            decimal leavePay =0;
 
             decimal monthlyRate = basicSalary * 2;
 
@@ -83,12 +99,13 @@ namespace lightPayrollServices
 
             decimal philHealth = (salaryPH * 0.05m) / 2;
 
-            decimal grossPay = basicSalary + overtimePay;
+            decimal grossPay = basicSalary + overtimePay + leavePay;
             decimal taxableIncome = grossPay - (sss + philHealth + pagIbig);
 
             decimal tax = ComputeTax(taxableIncome);
 
-            decimal deductions = tax + sss + philHealth + pagIbig;
+
+            decimal deductions = tax + sss + philHealth + pagIbig + otherDeductions;
             decimal netPay = grossPay - deductions;
             if (netPay < 0) netPay = 0;
 
@@ -98,6 +115,7 @@ namespace lightPayrollServices
                 ApprovedBy = processedBy,
                 BasicSalary = basicSalary,
                 OvertimePay = overtimePay,
+                LeavePay = leavePay,
                 SSS = sss,
                 PhilHealth = philHealth,
                 PagIBIG = pagIbig,
@@ -105,9 +123,10 @@ namespace lightPayrollServices
                 Deductions = deductions,
                 NetPay = netPay,
                 PayrollDate = payrollDate.ToString("yyyy-MM-dd"),
-                PayrollCreated = DateTime.Now.ToString("yyyy-MM-dd"),
-                Period = $"{periodStart:yyyy-MM-dd} to {periodEnd:yyyy-MM-dd}"
-                
+                PayrollCreated = DateTime.Now.ToString("yyyy-MM-dd HH:mm tt"),
+                PeriodStart = periodStart.ToString("yyyy-MM-dd"),
+                PeriodEnd = periodEnd.ToString("yyyy-MM-dd"),
+
 
             };
         }
@@ -137,6 +156,167 @@ namespace lightPayrollServices
             }
         }
 
+        /// 
+        ///     GETTING PART    
+        /// 
 
+        public List<Payroll> GetPayrollsByEmployee(int employeeId)
+        {
+            using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
+            {
+                return conn.Query<Payroll>(
+                    @"SELECT * FROM PayrollTable 
+              WHERE EmployeeID = @EmployeeID
+              ORDER BY PayrollDate DESC",
+                    new { EmployeeID = employeeId }).ToList();
+            }
+        }
+
+        public static (DateTime start, DateTime end) GetSemiMonthlyPeriod(DateTime payrollDate)
+        {
+            if (payrollDate.Day <= 15)
+            {
+                return (
+                    new DateTime(payrollDate.Year, payrollDate.Month, 1),
+                    new DateTime(payrollDate.Year, payrollDate.Month, 15)
+                );
+            }
+            else
+            {
+                int lastDay = DateTime.DaysInMonth(payrollDate.Year, payrollDate.Month);
+
+                return (
+                    new DateTime(payrollDate.Year, payrollDate.Month, 16),
+                    new DateTime(payrollDate.Year, payrollDate.Month, lastDay)
+                );
+            }
+        }
+
+        public static (decimal totalHours, decimal overtimeHours) GetHoursWithOvertime(
+    int employeeID, DateTime start, DateTime end)
+        {
+            using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
+            {
+                DateTime endExclusive = end.AddDays(1);
+
+                var records = conn.Query<AttendanceUser>(
+                    @"SELECT TimeIn, TimeOut, Remarks
+              FROM AttendanceTable
+              WHERE EmployeeID = @EmployeeID
+              AND TimeOut IS NOT NULL
+              AND TimeIn >= @Start
+              AND TimeIn < @EndExclusive",
+                    new
+                    {
+                        EmployeeID = employeeID,
+                        Start = start,
+                        EndExclusive = endExclusive
+                    });
+
+                decimal totalHours = 0;
+                decimal overtimeHours = 0;
+
+                foreach (var r in records)
+                {
+                    if (r.TimeIn.HasValue && r.TimeOut.HasValue)
+                    {
+                        decimal dailyHours = (decimal)(r.TimeOut.Value - r.TimeIn.Value).TotalHours;
+
+                        decimal regularHours = Math.Min(dailyHours, 8);
+                        totalHours += regularHours;
+
+                        if (r.Remarks?.Equals("Approved", StringComparison.OrdinalIgnoreCase) == true
+                            && dailyHours > 8)
+                        {
+                            overtimeHours += (dailyHours - 8);
+                        }
+                    }
+                }
+
+                return (totalHours, overtimeHours);
+            }
+        }
+
+        public bool PayrollExists(IDbConnection conn, int employeeID, string periodStart, string periodEnd)
+        {
+            return conn.ExecuteScalar<int>(
+                @"SELECT COUNT(1)
+          FROM PayrollTable
+          WHERE EmployeeID = @EmployeeID
+          AND PeriodStart = @PeriodStart
+          AND PeriodEnd = @PeriodEnd",
+                new { EmployeeID = employeeID, PeriodStart = periodStart, PeriodEnd = periodEnd }) > 0;
+        }
+
+
+
+        //
+        //  INSERTING
+        //
+
+        public void InsertOrUpdatePayroll(Payroll payroll)
+        {
+            using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
+            {
+                conn.Open();
+
+                if (PayrollExists(conn, payroll.EmployeeID, payroll.PeriodStart, payroll.PeriodEnd))
+                {
+                    // UPDATE instead of INSERT
+                    string updateSql = @"
+            UPDATE PayrollTable
+            SET ApprovedBy = @ApprovedBy,
+                BasicSalary = @BasicSalary,
+                OvertimePay = @OvertimePay,
+                LeavePay = @LeavePay,
+                SSS = @SSS,
+                PhilHealth = @PhilHealth,
+                PagIBIG = @PagIBIG,
+                WithholdingTax = @WithholdingTax,
+                Deductions = @Deductions,
+                NetPay = @NetPay,
+                PayrollDate = @PayrollDate,
+                PayrollCreated = @PayrollCreated
+            WHERE EmployeeID = @EmployeeID
+              AND PeriodStart = @PeriodStart
+              AND PeriodEnd = @PeriodEnd";
+
+                    conn.Execute(updateSql, payroll);
+                }
+                else
+                {
+                    // INSERT new
+                    string insertSql = @"
+            INSERT INTO PayrollTable
+            (EmployeeID, ApprovedBy, BasicSalary, OvertimePay, LeavePay, SSS, PhilHealth, PagIBIG, WithholdingTax, Deductions, NetPay, PayrollDate, PeriodStart, PeriodEnd, PayrollCreated)
+            VALUES
+            (@EmployeeID, @ApprovedBy, @BasicSalary, @OvertimePay, @LeavePay, @SSS, @PhilHealth, @PagIBIG, @WithholdingTax, @Deductions, @NetPay, @PayrollDate, @PeriodStart, @PeriodEnd, @PayrollCreated)";
+
+                    conn.Execute(insertSql, payroll);
+                }
+            }
+        }
+
+        //i change user date to stick to the right datetime
+        public static (DateTime start, DateTime end) NormalizeSemiMonthly(DateTime start, DateTime end)
+        {
+            DateTime normalizedStart;
+            DateTime normalizedEnd;
+
+            // FIRST HALF
+            if (start.Day <= 15)
+            {
+                normalizedStart = new DateTime(start.Year, start.Month, 1);
+                normalizedEnd = new DateTime(start.Year, start.Month, 15);
+            }
+            else
+            {
+                int lastDay = DateTime.DaysInMonth(start.Year, start.Month);
+                normalizedStart = new DateTime(start.Year, start.Month, 16);
+                normalizedEnd = new DateTime(start.Year, start.Month, lastDay);
+            }
+
+            return (normalizedStart, normalizedEnd);
+        }
     }
 }

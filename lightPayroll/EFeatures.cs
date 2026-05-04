@@ -22,6 +22,7 @@ namespace lighPayrollUI
         AdUI adminUI = new AdUI(); //used for getting panel design and greeting service
         SQLiteDataAccess dataAccess = new SQLiteDataAccess();
         AttendanceService attendanceDataAccess = new AttendanceService();
+        PayrollService payrollService = new PayrollService();
 
         private readonly string user_role, user_name;
         private readonly int user_id;
@@ -49,6 +50,7 @@ namespace lighPayrollUI
             LoadEmployeeList();
             LoadProfile();
             LoadAllAttendanceList();
+            LoadPayslip();
 
             if (!DesignMode)
             {
@@ -62,7 +64,7 @@ namespace lighPayrollUI
             borderRadius.SetRoundedRegion(attendanceSearchPnl, 33);
             borderRadius.SetRoundedRegion(profilePanel, 33);
             borderRadius.SetRoundedRegion(payslipPanel, 33);
-            borderRadius.SetRoundedRegion(payslipInnerPanel, 33);
+            borderRadius.SetRoundedRegion(headPayslipPanel, 33);
 
 
             //borderRadius.SetRoundedRegion(insideProfile, 33);
@@ -105,6 +107,26 @@ namespace lighPayrollUI
             }).ToList();
 
             attendanceGrid.DataSource = displayData;
+        }
+
+        private void LoadPayslip()
+        {
+            paySlipRecords.DataSource = null;
+            paySlipRecords.Columns.Clear();
+
+            var employeeRole = dataAccess.GetUserRoleByUsername(user_name);
+            var employeeID = dataAccess.GetEmployeeIdByUserId(user_id);
+            var data = payrollService.GetPayrollsByEmployee(employeeID);
+
+            var displayData = data.Select(a => new
+            {
+                a.PeriodStart,
+                a.PeriodEnd,
+                a.PayrollDate,
+                NetPay = a.NetPay.ToString("F2")
+            }).ToList();
+
+            paySlipRecords.DataSource = displayData;
         }
 
 
@@ -153,7 +175,7 @@ namespace lighPayrollUI
                 role.Text = employee.Position;
 
                 if (employee.MiddleName == null)
-                     middleName.Text = "-";
+                    middleName.Text = "-";
                 else
                     middleName.Text = employee.MiddleName;
 
@@ -252,6 +274,27 @@ namespace lighPayrollUI
                 textColor,
                 TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter
             );
+
+            if (tabPage.Name == "profilePage")
+            {
+                LoadProfile();
+            }
+            else if (tabPage.Name == "clockPage")
+            {
+                LoadAttendanceList();
+            }
+             else if (tabPage.Name == "attendancePage")
+            {
+                LoadAllAttendanceList();
+            }
+             else if (tabPage.Name == "payrollPage")
+             {
+                LoadEmployeeList();
+             }
+             else if (tabPage.Name == "payslipPage")
+             {
+                LoadPayslip();
+            }
         }
 
         private void HomeUser_Click(object sender, EventArgs e)
@@ -320,7 +363,7 @@ namespace lighPayrollUI
         ////
         ///
 
-        
+
         private void modifyProfile_Click(object sender, EventArgs e)
         {
             ConfirmForm form = new ConfirmForm("Modify Profile", "", true, true);
@@ -335,7 +378,7 @@ namespace lighPayrollUI
                     email = null;
                 if (string.IsNullOrEmpty(middle) || string.IsNullOrWhiteSpace(middle))
                     middle = null;
-                
+
 
                 attendanceDataAccess.UpdateEmployeeProfile(user_id, middle, email);
                 LoadProfile();
@@ -442,7 +485,8 @@ namespace lighPayrollUI
             Payroll payroll = new Payroll();
             try
             {
-               payroll = form.ShowPayrollForm(selectedEmployeeID, user_id);
+                payroll = form.ShowPayrollForm(selectedEmployeeID, user_id);
+
 
             }
             catch (Exception ex)
@@ -450,11 +494,12 @@ namespace lighPayrollUI
                 adminUI.CustomMessageBox($"{ex.Message}");
             }
 
-            
+
 
             if (payroll != null)
             {
-                dataAccess.InsertPayroll(payroll);
+
+                payrollService.InsertOrUpdatePayroll(payroll);
                 adminUI.CustomMessageBox("Payroll successfully made.");
 
                 try
@@ -492,12 +537,13 @@ namespace lighPayrollUI
                 }
             }
 
-           
+
 
         }
 
         private void payrollGrid_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+
             if (e.RowIndex >= 0)
             {
                 int tempEmployeeID = Convert.ToInt32(
@@ -520,6 +566,31 @@ namespace lighPayrollUI
             }
         }
 
-      
+        ///
+        /// PAYSLIP PAGE
+        ///
+
+        private void paySlipRecords_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+            if (e.RowIndex >= 0)
+            {
+                string tempEmployeePayslip = paySlipRecords.Rows[e.RowIndex].Cells["PayrollDate"].Value.ToString();
+
+                ConfirmForm confirm = new ConfirmForm(
+                $"Confirm to select this payslip?\n\n", $"\t\tPayroll Date: {tempEmployeePayslip}");
+                confirm.ShowDialog();
+
+                if (confirm.Result)
+                {
+
+                }
+            }
+        }
+
+        private void headPayslipPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

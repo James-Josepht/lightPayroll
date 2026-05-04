@@ -1,4 +1,5 @@
-﻿using lightPayrollModel;
+﻿using lighPayroll;
+using lightPayrollModel;
 using lightPayrollServices;
 using System;
 using System.Drawing;
@@ -50,6 +51,14 @@ namespace lighPayrollUI
                 Dock = DockStyle.Fill
             };
 
+            payrollDate.ValueChanged += (s, e) =>
+            {
+                var (start, end) = PayrollService.GetSemiMonthlyPeriod(payrollDate.Value);
+
+                periodStart.Value = start;
+                periodEnd.Value = end;
+            };
+
 
             panel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 40F));
             panel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 60F));
@@ -83,12 +92,8 @@ namespace lighPayrollUI
             Button cancel = new Button() { Text = "Cancel", Width = 100 };
             DateTime start = periodStart.Value;
             DateTime end = periodEnd.Value;
-            DateTime payDate = payrollDate.Value;
 
-            if (periodEnd.Value < periodStart.Value)
-            {
-                throw new Exception("Period End cannot be earlier than Period Start.");
-            }
+
 
             Panel buttons = new Panel()
             {
@@ -116,28 +121,63 @@ namespace lighPayrollUI
             // OK CLICK
             ok.Click += (s, e) =>
             {
-              
-                decimal hoursWorked = PayrollService.GetTotalHours(employeeID);
+                AdUI message = new AdUI();
 
-                // temporary only
-                decimal overtimeHours = hoursWorked > 8 ? hoursWorked - 8 : 0;
+                if (periodEnd.Value < periodStart.Value)
+                {
+                    message.CustomMessageBox("Period End cannot be earlier than Period Start.");
+                    return;
+                }
 
-                Payroll payroll = service.CalculateSecond(
-                    employeeID,
-                    rate.Value,
-                    hoursWorked,
-                    overtimeHours,
-                    pagIbig.Value,        
-                    deductions.Value,     
-                    processedBy: accountantID,
-                    periodStart.Value,
-                    periodEnd.Value,
-                    payrollDate.Value
-                );
+
                 
+                try
+                {
 
-                result = payroll;
-                form.Close();
+                    //I want the user input must follow to rules, so trust but verify
+                    var (start, end) = PayrollService.NormalizeSemiMonthly(
+                    periodStart.Value,
+                    periodEnd.Value
+
+                    );
+
+                    Payroll payroll;
+
+                    if (start.Day < 16)
+                    {
+
+                         payroll = service.CalculateFirst(
+                            employeeID,
+                            rate.Value,
+                            accountantID,
+                            start,
+                            end,
+                            payrollDate.Value
+                        );
+                    }
+                    else
+                    {
+                        payroll = service.CalculateSecond(
+                        employeeID,
+                        rate.Value,
+                        pagIbig.Value,
+                        deductions.Value,
+                        accountantID,
+                        start,
+                        end,
+                        payrollDate.Value
+                         );
+                    }
+
+                     
+
+                    result = payroll;
+                    form.Close();
+                }
+                catch (Exception ex)
+                {
+                    message.CustomMessageBox("Error: " + ex.Message);
+                }
             };
 
             cancel.Click += (s, e) =>
@@ -161,5 +201,7 @@ namespace lighPayrollUI
                 ThousandsSeparator = true
             };
         }
+
+      
     }
 }
