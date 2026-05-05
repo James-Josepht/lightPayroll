@@ -120,27 +120,13 @@ namespace lightPayrollServices
             return true;
         }
 
-        public void InsertPayroll(Payroll payroll)
-        {
-            using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
-            {
-                conn.Open();
 
-                string sql = @"
-                INSERT INTO PayrollTable
-                (EmployeeID, ApprovedBy, BasicSalary, OvertimePay, SSS, PhilHealth, PagIBIG, WithholdingTax, Deductions, NetPay, PayrollDate, PeriodStart, PeriodEnd, PayrollCreated)
-                VALUES
-                (@EmployeeID, @ApprovedBy, @BasicSalary, @OvertimePay, @SSS, @PhilHealth, @PagIBIG, @WithholdingTax, @Deductions, @NetPay, @PayrollDate, @PeriodStart, @PeriodEnd, @PayrollCreated)";
-
-                conn.Execute(sql, payroll);
-            }
-        }
 
         public void InsertLeave(int employeeId, string date, string reason)
         {
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
             {
-                string sql = @"INSERT INTO LeaveTable (EmployeeID, Date, Reason)
+                string sql = @"INSERT INTO LeaveRequestsTable (EmployeeID, Date, Reason)
                        VALUES (@EmployeeID, @Date, @Reason)";
 
                 conn.Execute(sql, new
@@ -156,7 +142,7 @@ namespace lightPayrollServices
         {
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
             {
-                string sql = @"INSERT INTO OvertimeTable (EmployeeID, Date, Type)
+                string sql = @"INSERT INTO OvertimeRequestsTable (EmployeeID, Date, Type)
                        VALUES (@EmployeeID, @Date, @Type)";
 
                 conn.Execute(sql, new

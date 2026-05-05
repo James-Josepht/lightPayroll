@@ -1,4 +1,8 @@
-﻿using lighPayroll;
+﻿using iText.Kernel.Pdf;
+using iText.Layout;
+using iText.Layout.Element;
+using iText.IO.Image;
+using lighPayroll;
 using lightPayrollModel;
 using lightPayrollServices;
 using Microsoft.VisualBasic.ApplicationServices;
@@ -618,9 +622,79 @@ namespace lighPayrollUI
 
                 if (confirm.Result)
                 {
+                    headPayslipPanel.Size = new System.Drawing.Size(780, 313);
+                    headPayslipPanel.AutoScroll = true;
+
+                    pdfPayslipButton.Visible = true;
+                    returnPaySlipButton.Visible = true;
+
+
+                    var employeeID = dataAccess.GetEmployeeIdByUserId(user_id);
+                    var payroll = payrollService.GetPayrollByDate(employeeID, tempEmployeePayslip);
 
                 }
             }
+        }
+
+        private void returnPaySlipButton_Click(object sender, EventArgs e)
+        {
+            headPayslipPanel.Size = new System.Drawing.Size(780, 76);
+            headPayslipPanel.AutoScroll = false;
+
+            pdfPayslipButton.Visible = false;
+            returnPaySlipButton.Visible = false;
+        }
+        private void pdfPayslipButton_Click(object sender, EventArgs e)
+        {
+            //open file explorer than you can choose nga isave hehe
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "PDF files (*.pdf)|*.pdf";
+            sfd.FileName = "Payslip.pdf";
+
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                string filePath = sfd.FileName;
+
+                //  Hide buttons BEFORE capture
+                pdfPayslipButton.Visible = false;
+                returnPaySlipButton.Visible = false;
+
+                int originalHeight = headPayslipPanel.Height;
+
+                headPayslipPanel.Height = headPayslipPanel.DisplayRectangle.Height;
+
+                Bitmap bmp = new Bitmap(headPayslipPanel.Width, headPayslipPanel.Height);
+                headPayslipPanel.DrawToBitmap(bmp, new Rectangle(0, 0, bmp.Width, bmp.Height));
+
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    PdfWriter writer = new PdfWriter(stream);
+                    PdfDocument pdf = new PdfDocument(writer);
+                    Document doc = new Document(pdf);
+
+                    using (MemoryStream ms = new MemoryStream())
+                    {
+                        bmp.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+
+                        var imgData = iText.IO.Image.ImageDataFactory.Create(ms.ToArray());
+                        var img = new iText.Layout.Element.Image(imgData);
+
+                        img.SetAutoScale(true);
+                        doc.Add(img);
+                    }
+
+                    doc.Close();
+                }
+
+                //  Restore buttons AFTER capture
+                pdfPayslipButton.Visible = true;
+                returnPaySlipButton.Visible = true;
+                headPayslipPanel.Height = originalHeight;
+
+                adminUI.CustomMessageBox("PDF saved successfully!");
+            }
+
+
         }
 
         /// 
@@ -638,15 +712,21 @@ namespace lighPayrollUI
                $"Confirm to submit this leave request?\n\n", $"\t\tDate: {date}\n\t\tReason: {type}");
             confirm.ShowDialog();
 
+
+
             if (confirm.Result)
             {
+                if (string.IsNullOrEmpty(date) || string.IsNullOrEmpty(type))
+                {
+                    adminUI.CustomMessageBox("Empty input. Try again");
+                    return;
+                }
+
                 SQLiteDataAccess db = new SQLiteDataAccess();
 
                 int employeeId = db.GetEmployeeIdByUserId(user_id);
 
                 db.InsertLeave(employeeId, date, type);
-
-                MessageBox.Show("Leave request submitted!");
             }
 
         }
@@ -655,19 +735,33 @@ namespace lighPayrollUI
             string date = overtimeDateBox.Text;
             string type = overtimeBox.Text;
 
+
             ConfirmForm confirm = new ConfirmForm(
                $"Confirm to submit this overtime request?\n\n", $"\t\tDate: {date}\n\t\tType: {type}");
             confirm.ShowDialog();
 
+            if (string.IsNullOrEmpty(date) || string.IsNullOrEmpty(type))
+            {
+                adminUI.CustomMessageBox("Empty input. Try again");
+                return;
+            }
+
             if (confirm.Result)
             {
+                if (string.IsNullOrEmpty(date) || string.IsNullOrEmpty(type))
+                {
+                    adminUI.CustomMessageBox("Empty input. Try again");
+                    return;
+                }
+
                 SQLiteDataAccess db = new SQLiteDataAccess();
 
                 int employeeId = db.GetEmployeeIdByUserId(user_id);
 
                 db.InsertOvertime(employeeId, date, type);
 
-                MessageBox.Show("Overtime request submitted!");
+
+
             }
 
         }
@@ -682,5 +776,7 @@ namespace lighPayrollUI
         {
 
         }
+
+       
     }
 }

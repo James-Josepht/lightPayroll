@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("lightPayrollModel")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4422717169e6dcbd3785c0dd47ab098030a9cce0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fcb63b513329f3fe9da0a8039f3d86a82d880312")]
 [assembly: System.Reflection.AssemblyProductAttribute("lightPayrollModel")]
 [assembly: System.Reflection.AssemblyTitleAttribute("lightPayrollModel")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

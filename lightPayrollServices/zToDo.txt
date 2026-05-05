@@ -17,4 +17,4 @@
 [x]Make ClockIn usable
 [x]Make Payroll and Payslip usable
 [x]Use multiple interface
-[]fix the program to able use overtime properly 
+[x]fix the program to able use overtime properly 

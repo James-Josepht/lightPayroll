@@ -126,16 +126,7 @@ namespace lightPayrollModel
         }
     }
 
-    public class PayrollInput //used for forms input
-    {
-        public int EmployeeID { get; set; }
-        public decimal HoursWorked { get; set; }
-        public decimal HourlyRate { get; set; }
-        public decimal OvertimeHours { get; set; }
-        public decimal PagIBIG { get; set; } //Other Deductions (Loans, Cash Advance, etc.)
-        public decimal OtherDeductions { get; set; }
-        public int ProcessedBy { get; set; }
-    }
+  
 
 
     public class Payroll
@@ -144,6 +135,7 @@ namespace lightPayrollModel
 
         public int EmployeeID { get; set; }
         public int ApprovedBy { get; set; }
+        public decimal HourlyRate { get; set; }
 
         public decimal BasicSalary { get; set; }
         public decimal OvertimePay { get; set; }

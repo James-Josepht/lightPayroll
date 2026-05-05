@@ -1,4 +1,6 @@
-﻿using lighPayroll;
+﻿using iText.IO.Image;
+using iText.Kernel.Pdf;
+using lighPayroll;
 using lightPayrollModel;
 using lightPayrollServices;
 using System;
@@ -107,7 +109,7 @@ namespace lighPayrollUI
 
             Payroll result = null;
 
-           
+
 
             //decimal overtimeHours = totalHours > 160 ? totalHours - 160 : 0;
             //for period type
@@ -125,7 +127,7 @@ namespace lighPayrollUI
                 }
 
 
-                
+
                 try
                 {
 
@@ -141,14 +143,14 @@ namespace lighPayrollUI
                     if (start.Day < 16)
                     {
 
-                         payroll = service.CalculateFirst(
-                            employeeID,
-                            rate.Value,
-                            accountantID,
-                            start,
-                            end,
-                            payrollDate.Value
-                        );
+                        payroll = service.CalculateFirst(
+                           employeeID,
+                           rate.Value,
+                           accountantID,
+                           start,
+                           end,
+                           payrollDate.Value
+                       );
                     }
                     else
                     {
@@ -163,7 +165,7 @@ namespace lighPayrollUI
                          );
                     }
 
-                     
+
 
                     result = payroll;
                     form.Close();
@@ -196,6 +198,7 @@ namespace lighPayrollUI
             };
         }
 
-      
+        //for pdf
     }
+      
 }

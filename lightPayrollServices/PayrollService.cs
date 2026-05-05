@@ -4,9 +4,14 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SQLite;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using iText.Kernel.Pdf;
+using iText.Layout;
+using iText.Layout.Element;
+using iText.IO.Image;
 
 namespace lightPayrollServices
 {
@@ -67,6 +72,7 @@ namespace lightPayrollServices
             return new Payroll
             {
                 EmployeeID = employeeId,
+                HourlyRate = hourlyRate,
                 BasicSalary = basicSalary,
                 OvertimePay = overtimePay,
                 SSS = 0,
@@ -126,6 +132,7 @@ namespace lightPayrollServices
             {
                 EmployeeID = employeeId,
                 ApprovedBy = processedBy,
+                HourlyRate = hourlyRate,
                 BasicSalary = basicSalary,
                 OvertimePay = overtimePay,
                 LeavePay = leavePay,
@@ -149,6 +156,24 @@ namespace lightPayrollServices
         /// 
         ///     GETTING PART    
         /// 
+        public Payroll GetPayrollByDate(int employeeId, string payrollDate)
+        {
+            using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
+            {
+                string sql = @"
+        SELECT *
+        FROM PayrollTable
+        WHERE EmployeeID = @EmployeeID
+        AND PayrollDate = @PayrollDate
+        LIMIT 1";
+
+                return conn.QueryFirstOrDefault<Payroll>(sql, new
+                {
+                    EmployeeID = employeeId,
+                    PayrollDate = payrollDate
+                });
+            }
+        }
 
         public List<Payroll> GetPayrollsByEmployee(int employeeId)
         {
@@ -277,6 +302,7 @@ namespace lightPayrollServices
                     string updateSql = @"
             UPDATE PayrollTable
             SET ApprovedBy = @ApprovedBy,
+                HourlyRate = @HourlyRate,
                 BasicSalary = @BasicSalary,
                 OvertimePay = @OvertimePay,
                 LeavePay = @LeavePay,
@@ -299,14 +325,20 @@ namespace lightPayrollServices
                     // INSERT new
                     string insertSql = @"
             INSERT INTO PayrollTable
-            (EmployeeID, ApprovedBy, BasicSalary, OvertimePay, LeavePay, SSS, PhilHealth, PagIBIG, WithholdingTax, Deductions, NetPay, PayrollDate, PeriodStart, PeriodEnd, PayrollCreated)
+            (EmployeeID, ApprovedBy, HourlyRate, BasicSalary, OvertimePay, LeavePay, SSS, PhilHealth, PagIBIG, WithholdingTax, Deductions, NetPay, PayrollDate, PeriodStart, PeriodEnd, PayrollCreated)
             VALUES
-            (@EmployeeID, @ApprovedBy, @BasicSalary, @OvertimePay, @LeavePay, @SSS, @PhilHealth, @PagIBIG, @WithholdingTax, @Deductions, @NetPay, @PayrollDate, @PeriodStart, @PeriodEnd, @PayrollCreated)";
+            (@EmployeeID, @ApprovedBy, @HourlyRate, @BasicSalary, @OvertimePay, @LeavePay, @SSS, @PhilHealth, @PagIBIG, @WithholdingTax, @Deductions, @NetPay, @PayrollDate, @PeriodStart, @PeriodEnd, @PayrollCreated)";
 
                     conn.Execute(insertSql, payroll);
                 }
             }
         }
+
+
+        // PDF
+
+
+
     }
 
        
