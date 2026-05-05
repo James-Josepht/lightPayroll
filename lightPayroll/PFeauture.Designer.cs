@@ -697,6 +697,8 @@
             ClientSize = new Size(937, 548);
             Controls.Add(panel2);
             Controls.Add(panel1);
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "PFeauture";
             StartPosition = FormStartPosition.CenterScreen;
             Load += ClockInFeaturePage_Load;

@@ -55,6 +55,8 @@ namespace lighPayroll
             toolStripMenuItem21 = new ToolStripMenuItem();
             toolStripMenuItem22 = new ToolStripMenuItem();
             panel6 = new Panel();
+            label2 = new Label();
+            chatButton = new Button();
             exitButton = new Button();
             bodyPanel = new Panel();
             requestsPanel = new Panel();
@@ -146,7 +148,7 @@ namespace lighPayroll
             panel5.BackgroundImageLayout = ImageLayout.Stretch;
             panel5.Controls.Add(searchMenuStrip);
             panel5.Cursor = Cursors.Hand;
-            panel5.Location = new Point(761, 34);
+            panel5.Location = new Point(626, 34);
             panel5.Name = "panel5";
             panel5.Size = new Size(58, 33);
             panel5.TabIndex = 3;
@@ -287,11 +289,39 @@ namespace lighPayroll
             // 
             // panel6
             // 
+            panel6.Controls.Add(label2);
+            panel6.Controls.Add(chatButton);
             panel6.Controls.Add(exitButton);
-            panel6.Location = new Point(840, 20);
+            panel6.Location = new Point(756, 20);
             panel6.Name = "panel6";
-            panel6.Size = new Size(85, 67);
+            panel6.Size = new Size(169, 67);
             panel6.TabIndex = 8;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Ubuntu Mono", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label2.ForeColor = Color.FromArgb(33, 44, 66);
+            label2.Location = new Point(27, 39);
+            label2.Name = "label2";
+            label2.Size = new Size(42, 16);
+            label2.TabIndex = 9;
+            label2.Text = "Chats";
+            // 
+            // chatButton
+            // 
+            chatButton.BackgroundImage = Resources.chatting;
+            chatButton.BackgroundImageLayout = ImageLayout.Zoom;
+            chatButton.Cursor = Cursors.Hand;
+            chatButton.FlatAppearance.BorderColor = Color.White;
+            chatButton.FlatAppearance.BorderSize = 0;
+            chatButton.FlatStyle = FlatStyle.Flat;
+            chatButton.Location = new Point(32, 10);
+            chatButton.Name = "chatButton";
+            chatButton.Size = new Size(31, 30);
+            chatButton.TabIndex = 7;
+            chatButton.UseVisualStyleBackColor = true;
+            chatButton.Click += chatButton_Click;
             // 
             // exitButton
             // 
@@ -301,7 +331,7 @@ namespace lighPayroll
             exitButton.FlatAppearance.BorderColor = Color.White;
             exitButton.FlatAppearance.BorderSize = 0;
             exitButton.FlatStyle = FlatStyle.Flat;
-            exitButton.Location = new Point(26, 14);
+            exitButton.Location = new Point(106, 14);
             exitButton.Name = "exitButton";
             exitButton.Size = new Size(40, 23);
             exitButton.TabIndex = 6;
@@ -337,7 +367,6 @@ namespace lighPayroll
             requestsPanel.Size = new Size(724, 56);
             requestsPanel.TabIndex = 19;
             requestsPanel.Click += requestsPanel_Click;
-
             // 
             // approvalPic
             // 
@@ -679,6 +708,8 @@ namespace lighPayroll
             Controls.Add(panel4);
             Controls.Add(headPanel);
             Controls.Add(panel1);
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "AdUI";
             StartPosition = FormStartPosition.CenterScreen;
             Load += AdminUI_Load;
@@ -690,6 +721,7 @@ namespace lighPayroll
             searchMenuStrip.ResumeLayout(false);
             searchMenuStrip.PerformLayout();
             panel6.ResumeLayout(false);
+            panel6.PerformLayout();
             bodyPanel.ResumeLayout(false);
             bodyPanel.PerformLayout();
             requestsPanel.ResumeLayout(false);
@@ -771,5 +803,7 @@ namespace lighPayroll
         private Label requestHeadLbl;
         private Label otherFeaturesLbl;
         private Label label9;
+        private Button chatButton;
+        private Label label2;
     }
 }

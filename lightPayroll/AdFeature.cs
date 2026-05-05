@@ -39,16 +39,27 @@ namespace lighPayrollUI
             panelDesign();
 
             if (feature_button == "Attendance")
+            {
                 greetingsAndMessageBoxDesign.TypeMessage(titleMessage, "You will discover some day!");
+                addUserButton.Visible = false;
+                deleteUserButton.Visible = false;
+                searchUserButton.Location = new Point(187, 7);
+            }
             else if (feature_button == "UserControl")
             {
                 greetingsAndMessageBoxDesign.TypeMessage(titleMessage, "Trust But Always Verify!");
                 requestsPanel.Visible = false;
+
+                addUserButton.Visible = true;
+                deleteUserButton.Visible = true;
             }
             else if (feature_button == "Requests")
             {
                 greetingsAndMessageBoxDesign.TypeMessage(titleMessage, "You will discover some day!");
                 dataGrid.Visible = false;
+                addUserButton.Visible = false;
+                deleteUserButton.Visible = false;
+                searchUserButton.Location = new Point(187, 7);
             }
 
 

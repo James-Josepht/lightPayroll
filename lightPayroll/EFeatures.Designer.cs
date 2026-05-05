@@ -55,6 +55,35 @@
             tableLayoutPanel2 = new TableLayoutPanel();
             payslipInnerPanel = new Panel();
             headPayslipPanel = new Panel();
+            netPayLbl = new Label();
+            label22 = new Label();
+            label21 = new Label();
+            othersDLbl = new Label();
+            label34 = new Label();
+            label33 = new Label();
+            label32 = new Label();
+            taxDLbl = new Label();
+            label30 = new Label();
+            philHealthDLabel = new Label();
+            pagIbigDLabl = new Label();
+            sssDeducLbl = new Label();
+            label27 = new Label();
+            label28 = new Label();
+            label29 = new Label();
+            overTimeLbl = new Label();
+            leavePayLbl = new Label();
+            basicPayLbl = new Label();
+            label20 = new Label();
+            label19 = new Label();
+            label18 = new Label();
+            tinLbl = new Label();
+            sssLbl = new Label();
+            philHealthLbl = new Label();
+            hmdfLbl = new Label();
+            payrollDateLbl = new Label();
+            periodLbl = new Label();
+            roleLbl = new Label();
+            nameLbl = new Label();
             pdfPayslipButton = new Button();
             returnPaySlipButton = new Button();
             label17 = new Label();
@@ -187,6 +216,7 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(937, 109);
             panel1.TabIndex = 25;
+            panel1.Paint += panel1_Paint;
             // 
             // pictureBox2
             // 
@@ -420,6 +450,35 @@
             // 
             headPayslipPanel.AutoScroll = true;
             headPayslipPanel.BackColor = Color.FromArgb(60, 80, 100);
+            headPayslipPanel.Controls.Add(netPayLbl);
+            headPayslipPanel.Controls.Add(label22);
+            headPayslipPanel.Controls.Add(label21);
+            headPayslipPanel.Controls.Add(othersDLbl);
+            headPayslipPanel.Controls.Add(label34);
+            headPayslipPanel.Controls.Add(label33);
+            headPayslipPanel.Controls.Add(label32);
+            headPayslipPanel.Controls.Add(taxDLbl);
+            headPayslipPanel.Controls.Add(label30);
+            headPayslipPanel.Controls.Add(philHealthDLabel);
+            headPayslipPanel.Controls.Add(pagIbigDLabl);
+            headPayslipPanel.Controls.Add(sssDeducLbl);
+            headPayslipPanel.Controls.Add(label27);
+            headPayslipPanel.Controls.Add(label28);
+            headPayslipPanel.Controls.Add(label29);
+            headPayslipPanel.Controls.Add(overTimeLbl);
+            headPayslipPanel.Controls.Add(leavePayLbl);
+            headPayslipPanel.Controls.Add(basicPayLbl);
+            headPayslipPanel.Controls.Add(label20);
+            headPayslipPanel.Controls.Add(label19);
+            headPayslipPanel.Controls.Add(label18);
+            headPayslipPanel.Controls.Add(tinLbl);
+            headPayslipPanel.Controls.Add(sssLbl);
+            headPayslipPanel.Controls.Add(philHealthLbl);
+            headPayslipPanel.Controls.Add(hmdfLbl);
+            headPayslipPanel.Controls.Add(payrollDateLbl);
+            headPayslipPanel.Controls.Add(periodLbl);
+            headPayslipPanel.Controls.Add(roleLbl);
+            headPayslipPanel.Controls.Add(nameLbl);
             headPayslipPanel.Controls.Add(pdfPayslipButton);
             headPayslipPanel.Controls.Add(returnPaySlipButton);
             headPayslipPanel.Controls.Add(label17);
@@ -440,6 +499,300 @@
             headPayslipPanel.Name = "headPayslipPanel";
             headPayslipPanel.Size = new Size(780, 313);
             headPayslipPanel.TabIndex = 25;
+            // 
+            // netPayLbl
+            // 
+            netPayLbl.AutoSize = true;
+            netPayLbl.Font = new Font("Ubuntu Mono", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            netPayLbl.ForeColor = Color.Beige;
+            netPayLbl.Location = new Point(168, 542);
+            netPayLbl.Name = "netPayLbl";
+            netPayLbl.Size = new Size(21, 23);
+            netPayLbl.TabIndex = 71;
+            netPayLbl.Text = "-";
+            // 
+            // label22
+            // 
+            label22.AutoSize = true;
+            label22.Font = new Font("Ubuntu Mono", 15.7499981F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label22.ForeColor = Color.Beige;
+            label22.Location = new Point(64, 539);
+            label22.Name = "label22";
+            label22.Size = new Size(96, 26);
+            label22.TabIndex = 70;
+            label22.Text = "NETPAY:";
+            // 
+            // label21
+            // 
+            label21.AutoSize = true;
+            label21.ForeColor = Color.Beige;
+            label21.Location = new Point(6, 507);
+            label21.Name = "label21";
+            label21.Size = new Size(742, 16);
+            label21.TabIndex = 69;
+            label21.Text = "---------------------------------------------------------------------------------------------------------";
+            // 
+            // othersDLbl
+            // 
+            othersDLbl.AutoSize = true;
+            othersDLbl.ForeColor = Color.Beige;
+            othersDLbl.Location = new Point(561, 481);
+            othersDLbl.Name = "othersDLbl";
+            othersDLbl.Size = new Size(14, 16);
+            othersDLbl.TabIndex = 68;
+            othersDLbl.Text = "-";
+            // 
+            // label34
+            // 
+            label34.AutoSize = true;
+            label34.ForeColor = Color.Beige;
+            label34.Location = new Point(558, 200);
+            label34.Name = "label34";
+            label34.Size = new Size(14, 16);
+            label34.TabIndex = 67;
+            label34.Text = "-";
+            // 
+            // label33
+            // 
+            label33.AutoSize = true;
+            label33.ForeColor = Color.Beige;
+            label33.Location = new Point(453, 200);
+            label33.Name = "label33";
+            label33.Size = new Size(91, 16);
+            label33.TabIndex = 66;
+            label33.Text = "Hourly Rate:";
+            // 
+            // label32
+            // 
+            label32.AutoSize = true;
+            label32.ForeColor = Color.Beige;
+            label32.Location = new Point(456, 481);
+            label32.Name = "label32";
+            label32.Size = new Size(84, 16);
+            label32.TabIndex = 65;
+            label32.Text = "Deductions:";
+            // 
+            // taxDLbl
+            // 
+            taxDLbl.AutoSize = true;
+            taxDLbl.ForeColor = Color.Beige;
+            taxDLbl.Location = new Point(581, 446);
+            taxDLbl.Name = "taxDLbl";
+            taxDLbl.Size = new Size(14, 16);
+            taxDLbl.TabIndex = 64;
+            taxDLbl.Text = "-";
+            // 
+            // label30
+            // 
+            label30.AutoSize = true;
+            label30.ForeColor = Color.Beige;
+            label30.Location = new Point(456, 446);
+            label30.Name = "label30";
+            label30.Size = new Size(119, 16);
+            label30.TabIndex = 63;
+            label30.Text = "Withholding Tax:";
+            // 
+            // philHealthDLabel
+            // 
+            philHealthDLabel.AutoSize = true;
+            philHealthDLabel.ForeColor = Color.Beige;
+            philHealthDLabel.Location = new Point(546, 369);
+            philHealthDLabel.Name = "philHealthDLabel";
+            philHealthDLabel.Size = new Size(14, 16);
+            philHealthDLabel.TabIndex = 62;
+            philHealthDLabel.Text = "-";
+            // 
+            // pagIbigDLabl
+            // 
+            pagIbigDLabl.AutoSize = true;
+            pagIbigDLabl.ForeColor = Color.Beige;
+            pagIbigDLabl.Location = new Point(540, 406);
+            pagIbigDLabl.Name = "pagIbigDLabl";
+            pagIbigDLabl.Size = new Size(14, 16);
+            pagIbigDLabl.TabIndex = 61;
+            pagIbigDLabl.Text = "-";
+            // 
+            // sssDeducLbl
+            // 
+            sssDeducLbl.AutoSize = true;
+            sssDeducLbl.ForeColor = Color.Beige;
+            sssDeducLbl.Location = new Point(497, 336);
+            sssDeducLbl.Name = "sssDeducLbl";
+            sssDeducLbl.Size = new Size(14, 16);
+            sssDeducLbl.TabIndex = 60;
+            sssDeducLbl.Text = "-";
+            // 
+            // label27
+            // 
+            label27.AutoSize = true;
+            label27.ForeColor = Color.Beige;
+            label27.Location = new Point(456, 336);
+            label27.Name = "label27";
+            label27.Size = new Size(35, 16);
+            label27.TabIndex = 59;
+            label27.Text = "SSS:";
+            label27.Click += label27_Click;
+            // 
+            // label28
+            // 
+            label28.AutoSize = true;
+            label28.ForeColor = Color.Beige;
+            label28.Location = new Point(456, 369);
+            label28.Name = "label28";
+            label28.Size = new Size(84, 16);
+            label28.TabIndex = 58;
+            label28.Text = "PhilHealth:";
+            label28.Click += label28_Click;
+            // 
+            // label29
+            // 
+            label29.AutoSize = true;
+            label29.ForeColor = Color.Beige;
+            label29.Location = new Point(456, 406);
+            label29.Name = "label29";
+            label29.Size = new Size(70, 16);
+            label29.TabIndex = 57;
+            label29.Text = "Pag-Ibig:";
+            // 
+            // overTimeLbl
+            // 
+            overTimeLbl.AutoSize = true;
+            overTimeLbl.ForeColor = Color.Beige;
+            overTimeLbl.Location = new Point(168, 369);
+            overTimeLbl.Name = "overTimeLbl";
+            overTimeLbl.Size = new Size(14, 16);
+            overTimeLbl.TabIndex = 56;
+            overTimeLbl.Text = "-";
+            // 
+            // leavePayLbl
+            // 
+            leavePayLbl.AutoSize = true;
+            leavePayLbl.ForeColor = Color.Beige;
+            leavePayLbl.Location = new Point(148, 406);
+            leavePayLbl.Name = "leavePayLbl";
+            leavePayLbl.Size = new Size(14, 16);
+            leavePayLbl.TabIndex = 55;
+            leavePayLbl.Text = "-";
+            // 
+            // basicPayLbl
+            // 
+            basicPayLbl.AutoSize = true;
+            basicPayLbl.ForeColor = Color.Beige;
+            basicPayLbl.Location = new Point(147, 336);
+            basicPayLbl.Name = "basicPayLbl";
+            basicPayLbl.Size = new Size(14, 16);
+            basicPayLbl.TabIndex = 54;
+            basicPayLbl.Text = "-";
+            // 
+            // label20
+            // 
+            label20.AutoSize = true;
+            label20.ForeColor = Color.Beige;
+            label20.Location = new Point(64, 336);
+            label20.Name = "label20";
+            label20.Size = new Size(77, 16);
+            label20.TabIndex = 53;
+            label20.Text = "Basic Pay:";
+            // 
+            // label19
+            // 
+            label19.AutoSize = true;
+            label19.ForeColor = Color.Beige;
+            label19.Location = new Point(64, 369);
+            label19.Name = "label19";
+            label19.Size = new Size(98, 16);
+            label19.TabIndex = 52;
+            label19.Text = "Overtime Pay:";
+            // 
+            // label18
+            // 
+            label18.AutoSize = true;
+            label18.ForeColor = Color.Beige;
+            label18.Location = new Point(64, 406);
+            label18.Name = "label18";
+            label18.Size = new Size(77, 16);
+            label18.TabIndex = 51;
+            label18.Text = "Leave Pay:";
+            // 
+            // tinLbl
+            // 
+            tinLbl.AutoSize = true;
+            tinLbl.ForeColor = Color.Beige;
+            tinLbl.Location = new Point(127, 137);
+            tinLbl.Name = "tinLbl";
+            tinLbl.Size = new Size(14, 16);
+            tinLbl.TabIndex = 50;
+            tinLbl.Text = "-";
+            // 
+            // sssLbl
+            // 
+            sssLbl.AutoSize = true;
+            sssLbl.ForeColor = Color.Beige;
+            sssLbl.Location = new Point(126, 169);
+            sssLbl.Name = "sssLbl";
+            sssLbl.Size = new Size(14, 16);
+            sssLbl.TabIndex = 49;
+            sssLbl.Text = "-";
+            // 
+            // philHealthLbl
+            // 
+            philHealthLbl.AutoSize = true;
+            philHealthLbl.ForeColor = Color.Beige;
+            philHealthLbl.Location = new Point(175, 200);
+            philHealthLbl.Name = "philHealthLbl";
+            philHealthLbl.Size = new Size(14, 16);
+            philHealthLbl.TabIndex = 48;
+            philHealthLbl.Text = "-";
+            // 
+            // hmdfLbl
+            // 
+            hmdfLbl.AutoSize = true;
+            hmdfLbl.ForeColor = Color.Beige;
+            hmdfLbl.Location = new Point(127, 228);
+            hmdfLbl.Name = "hmdfLbl";
+            hmdfLbl.Size = new Size(14, 16);
+            hmdfLbl.TabIndex = 47;
+            hmdfLbl.Text = "-";
+            // 
+            // payrollDateLbl
+            // 
+            payrollDateLbl.AutoSize = true;
+            payrollDateLbl.ForeColor = Color.Beige;
+            payrollDateLbl.Location = new Point(557, 109);
+            payrollDateLbl.Name = "payrollDateLbl";
+            payrollDateLbl.Size = new Size(14, 16);
+            payrollDateLbl.TabIndex = 46;
+            payrollDateLbl.Text = "-";
+            // 
+            // periodLbl
+            // 
+            periodLbl.AutoSize = true;
+            periodLbl.ForeColor = Color.Beige;
+            periodLbl.Location = new Point(557, 137);
+            periodLbl.Name = "periodLbl";
+            periodLbl.Size = new Size(14, 16);
+            periodLbl.TabIndex = 45;
+            periodLbl.Text = "-";
+            // 
+            // roleLbl
+            // 
+            roleLbl.AutoSize = true;
+            roleLbl.ForeColor = Color.Beige;
+            roleLbl.Location = new Point(557, 169);
+            roleLbl.Name = "roleLbl";
+            roleLbl.Size = new Size(14, 16);
+            roleLbl.TabIndex = 44;
+            roleLbl.Text = "-";
+            // 
+            // nameLbl
+            // 
+            nameLbl.AutoSize = true;
+            nameLbl.ForeColor = Color.Beige;
+            nameLbl.Location = new Point(127, 109);
+            nameLbl.Name = "nameLbl";
+            nameLbl.Size = new Size(14, 16);
+            nameLbl.TabIndex = 43;
+            nameLbl.Text = "-";
             // 
             // pdfPayslipButton
             // 
@@ -478,7 +831,7 @@
             label17.AutoSize = true;
             label17.Font = new Font("Ubuntu Mono", 11.2499981F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label17.ForeColor = Color.Beige;
-            label17.Location = new Point(548, 292);
+            label17.Location = new Point(456, 292);
             label17.Name = "label17";
             label17.Size = new Size(88, 18);
             label17.TabIndex = 40;
@@ -497,9 +850,9 @@
             // 
             // pictureBox3
             // 
-            pictureBox3.Location = new Point(64, 491);
+            pictureBox3.Location = new Point(64, 599);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(620, 195);
+            pictureBox3.Size = new Size(620, 104);
             pictureBox3.TabIndex = 38;
             pictureBox3.TabStop = false;
             // 
@@ -507,7 +860,7 @@
             // 
             label13.AutoSize = true;
             label13.ForeColor = Color.Beige;
-            label13.Location = new Point(548, 109);
+            label13.Location = new Point(453, 109);
             label13.Name = "label13";
             label13.Size = new Size(98, 16);
             label13.TabIndex = 37;
@@ -517,7 +870,7 @@
             // 
             label14.AutoSize = true;
             label14.ForeColor = Color.Beige;
-            label14.Location = new Point(548, 137);
+            label14.Location = new Point(453, 137);
             label14.Name = "label14";
             label14.Size = new Size(98, 16);
             label14.TabIndex = 36;
@@ -527,7 +880,7 @@
             // 
             label15.AutoSize = true;
             label15.ForeColor = Color.Beige;
-            label15.Location = new Point(548, 169);
+            label15.Location = new Point(453, 169);
             label15.Name = "label15";
             label15.Size = new Size(70, 16);
             label15.TabIndex = 35;
@@ -1392,6 +1745,8 @@
             ClientSize = new Size(937, 548);
             Controls.Add(panel1);
             Controls.Add(tableLayoutPanel1);
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "EFeatures";
             StartPosition = FormStartPosition.CenterScreen;
             Load += EmployeeFeature_Load;
@@ -1552,5 +1907,34 @@
         private PictureBox pictureBox3;
         private Button pdfPayslipButton;
         private Button returnPaySlipButton;
+        private Label tinLbl;
+        private Label sssLbl;
+        private Label philHealthLbl;
+        private Label hmdfLbl;
+        private Label payrollDateLbl;
+        private Label periodLbl;
+        private Label roleLbl;
+        private Label nameLbl;
+        private Label label20;
+        private Label label19;
+        private Label label18;
+        private Label philHealthDLabel;
+        private Label pagIbigDLabl;
+        private Label sssDeducLbl;
+        private Label label27;
+        private Label label28;
+        private Label label29;
+        private Label overTimeLbl;
+        private Label leavePayLbl;
+        private Label basicPayLbl;
+        private Label label30;
+        private Label taxDLbl;
+        private Label label34;
+        private Label label33;
+        private Label label32;
+        private Label othersDLbl;
+        private Label label21;
+        private Label netPayLbl;
+        private Label label22;
     }
 }

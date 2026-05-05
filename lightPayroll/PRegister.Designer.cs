@@ -204,7 +204,7 @@ namespace lighPayroll
             backHomeButton.TabStop = false;
             backHomeButton.Click += backHomeButtonClick;
             // 
-            // Register
+            // PRegister
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -213,7 +213,9 @@ namespace lighPayroll
             Controls.Add(backHomeButton);
             Controls.Add(panel2);
             Controls.Add(panel1);
-            Name = "Register";
+            MaximizeBox = false;
+            MinimizeBox = false;
+            Name = "PRegister";
             StartPosition = FormStartPosition.CenterScreen;
             Load += Register_Load;
             panel1.ResumeLayout(false);

@@ -174,7 +174,7 @@ namespace lighPayroll
             userLogBox.Size = new Size(238, 25);
             userLogBox.TabIndex = 0;
             // 
-            // LogIn
+            // PLogIn
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -183,7 +183,9 @@ namespace lighPayroll
             Controls.Add(panel2);
             Controls.Add(backHomeButton);
             Controls.Add(panel1);
-            Name = "LogIn";
+            MaximizeBox = false;
+            MinimizeBox = false;
+            Name = "PLogIn";
             StartPosition = FormStartPosition.CenterScreen;
             Load += LogIn_Load;
             panel1.ResumeLayout(false);

@@ -381,6 +381,8 @@
             ClientSize = new Size(937, 548);
             Controls.Add(bodyPanel);
             Controls.Add(headPanel);
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "AdFeature";
             StartPosition = FormStartPosition.CenterScreen;
             Load += UsersUI_Load;

@@ -628,14 +628,48 @@ namespace lighPayrollUI
                     pdfPayslipButton.Visible = true;
                     returnPaySlipButton.Visible = true;
 
+                    var employee = dataAccess.GetEmployeeByID(user_id);
 
                     var employeeID = dataAccess.GetEmployeeIdByUserId(user_id);
                     var payroll = payrollService.GetPayrollByDate(employeeID, tempEmployeePayslip);
+
+                    nameLbl.Text = employee.FullName;
+                    tinLbl.Text = GenerateGov();
+                    sssLbl.Text = GenerateGov();
+                    philHealthLbl.Text = GenerateGov();
+                    hmdfLbl.Text = GenerateGov();
+
+                    payrollDateLbl.Text = payroll.PayrollDate;
+                    periodLbl.Text = $"{payroll.PeriodStart} to {payroll.PeriodEnd}";
+                    roleLbl.Text = employee.Position;
+                    label34.Text = payroll.HourlyRate.ToString();
+
+
+
+                    basicPayLbl.Text = payroll.BasicSalary.ToString();
+                    sssDeducLbl.Text = payroll.SSS.ToString();
+                    philHealthDLabel.Text = payroll.PhilHealth.ToString();
+                    taxDLbl.Text = payroll.WithholdingTax.ToString();
+                    
+                    pagIbigDLabl.Text = payroll.PagIBIG.ToString();
+                    othersDLbl.Text = payroll.Deductions.ToString();
+
+                    netPayLbl.Text = payroll.NetPay.ToString();
+                    overTimeLbl.Text = payroll.OvertimePay.ToString();
+                    leavePayLbl.Text = payroll.LeavePay.ToString();
+
+
 
                 }
             }
         }
 
+        Random rnd = new Random();
+
+        string GenerateGov()
+        {
+            return $"{rnd.Next(100, 999)}-{rnd.Next(100, 999)}-{rnd.Next(100, 999)}-{rnd.Next(100, 999)}";
+        }
         private void returnPaySlipButton_Click(object sender, EventArgs e)
         {
             headPayslipPanel.Size = new System.Drawing.Size(780, 76);
@@ -772,11 +806,19 @@ namespace lighPayrollUI
             overtimeDateBox.Text = e.End.ToString("yyyy-MM-dd");
         }
 
-        private void label17_Click(object sender, EventArgs e)
+        private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
         }
 
-       
+        private void label27_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label28_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -190,6 +190,10 @@ namespace lighPayroll
             customMsg.ShowDialog();
         }
 
+        private void chatButton_Click(object sender, EventArgs e)
+        {
+            CustomMessageBox("Feature coming soon!");
+        }
     }
 
 }

@@ -89,9 +89,24 @@ namespace lighPayrollUI
 
         private void toDoPanel_Click(object sender, EventArgs e)
         {
+            if (user_role == "Employee" || user_role == "Accountant")
+            {
+                adminUI.CustomMessageBox("Feature coming soon!");
+                return;
+            }
             AdDashboard dashboard = new AdDashboard(user_role, user_name, user_id);
             dashboard.Show();
             this.Hide();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void chatButton_Click(object sender, EventArgs e)
+        {
+            adminUI.CustomMessageBox("Feature coming soon!");
         }
     }
 }

@@ -58,6 +58,7 @@ namespace lighPayroll
         {
 
             ApplyRole(user_role);
+            LoadUserPieChart("user");
            
         }
 
@@ -429,8 +430,6 @@ namespace lighPayroll
 
             if (role == "Admin")
             {
-                payrollBtn.Visible = true;
-                payrollBtn.Enabled = true;
                 attendanceB.Visible = true;
                 attendanceB.Enabled = true;
                 usersB.Visible = true;
@@ -439,8 +438,6 @@ namespace lighPayroll
             }
             else if (role == "Manager" || role == "Accountant")
             {
-                payrollBtn.Visible = true;
-                payrollBtn.Enabled = true;
                 attendanceB.Visible = true;
                 attendanceB.Enabled = true;
                 attendanceB.Location = new Point(14, 168);
@@ -456,8 +453,7 @@ namespace lighPayroll
             }
             else if (role == "Employee")
             {
-                payrollBtn.Visible = true;
-                payrollBtn.Enabled = true;
+              
             }
         }
 

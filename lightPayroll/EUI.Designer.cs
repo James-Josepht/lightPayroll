@@ -49,7 +49,9 @@
             headPanel = new Panel();
             exitLabel = new Label();
             panel6 = new Panel();
+            label1 = new Label();
             exitButton = new Button();
+            chatButton = new Button();
             pictureBox2 = new PictureBox();
             panel1.SuspendLayout();
             greetingPanel.SuspendLayout();
@@ -300,11 +302,25 @@
             // 
             // panel6
             // 
+            panel6.Controls.Add(label1);
             panel6.Controls.Add(exitButton);
-            panel6.Location = new Point(840, 20);
+            panel6.Controls.Add(chatButton);
+            panel6.Location = new Point(756, 20);
             panel6.Name = "panel6";
-            panel6.Size = new Size(85, 67);
+            panel6.Size = new Size(169, 67);
             panel6.TabIndex = 10;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Ubuntu Mono", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.FromArgb(33, 44, 66);
+            label1.Location = new Point(28, 40);
+            label1.Name = "label1";
+            label1.Size = new Size(42, 16);
+            label1.TabIndex = 12;
+            label1.Text = "Chats";
+            label1.Click += label1_Click;
             // 
             // exitButton
             // 
@@ -314,12 +330,27 @@
             exitButton.FlatAppearance.BorderColor = Color.White;
             exitButton.FlatAppearance.BorderSize = 0;
             exitButton.FlatStyle = FlatStyle.Flat;
-            exitButton.Location = new Point(26, 14);
+            exitButton.Location = new Point(106, 14);
             exitButton.Name = "exitButton";
             exitButton.Size = new Size(40, 23);
             exitButton.TabIndex = 6;
             exitButton.UseVisualStyleBackColor = true;
             exitButton.Click += exitButton_Click;
+            // 
+            // chatButton
+            // 
+            chatButton.BackgroundImage = Properties.Resources.chatting;
+            chatButton.BackgroundImageLayout = ImageLayout.Zoom;
+            chatButton.Cursor = Cursors.Hand;
+            chatButton.FlatAppearance.BorderColor = Color.White;
+            chatButton.FlatAppearance.BorderSize = 0;
+            chatButton.FlatStyle = FlatStyle.Flat;
+            chatButton.Location = new Point(32, 10);
+            chatButton.Name = "chatButton";
+            chatButton.Size = new Size(31, 30);
+            chatButton.TabIndex = 11;
+            chatButton.UseVisualStyleBackColor = true;
+            chatButton.Click += chatButton_Click;
             // 
             // pictureBox2
             // 
@@ -341,6 +372,8 @@
             Controls.Add(panel1);
             Controls.Add(panel4);
             Controls.Add(headPanel);
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "EUI";
             StartPosition = FormStartPosition.CenterScreen;
             Load += EmployeeUI_Load;
@@ -359,6 +392,7 @@
             headPanel.ResumeLayout(false);
             headPanel.PerformLayout();
             panel6.ResumeLayout(false);
+            panel6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ResumeLayout(false);
         }
@@ -387,5 +421,7 @@
         private Label exitLabel;
         private Panel panel6;
         private Button exitButton;
+        private Button chatButton;
+        private Label label1;
     }
 }
