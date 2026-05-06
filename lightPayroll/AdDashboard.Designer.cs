@@ -31,25 +31,27 @@ namespace lighPayroll
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            LiveChartsCore.SkiaSharpView.SKCharts.SKDefaultLegend skDefaultLegend10 = new LiveChartsCore.SkiaSharpView.SKCharts.SKDefaultLegend();
+            LiveChartsCore.SkiaSharpView.SKCharts.SKDefaultLegend skDefaultLegend4 = new LiveChartsCore.SkiaSharpView.SKCharts.SKDefaultLegend();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdDashboard));
-            LiveChartsCore.Drawing.Padding padding19 = new LiveChartsCore.Drawing.Padding();
-            LiveChartsCore.SkiaSharpView.SKCharts.SKDefaultTooltip skDefaultTooltip10 = new LiveChartsCore.SkiaSharpView.SKCharts.SKDefaultTooltip();
-            LiveChartsCore.Drawing.Padding padding20 = new LiveChartsCore.Drawing.Padding();
-            LiveChartsCore.SkiaSharpView.SKCharts.SKDefaultLegend skDefaultLegend11 = new LiveChartsCore.SkiaSharpView.SKCharts.SKDefaultLegend();
-            LiveChartsCore.Drawing.Padding padding21 = new LiveChartsCore.Drawing.Padding();
-            LiveChartsCore.SkiaSharpView.SKCharts.SKDefaultTooltip skDefaultTooltip11 = new LiveChartsCore.SkiaSharpView.SKCharts.SKDefaultTooltip();
-            LiveChartsCore.Drawing.Padding padding22 = new LiveChartsCore.Drawing.Padding();
-            LiveChartsCore.SkiaSharpView.SKCharts.SKDefaultLegend skDefaultLegend12 = new LiveChartsCore.SkiaSharpView.SKCharts.SKDefaultLegend();
-            LiveChartsCore.Drawing.Padding padding23 = new LiveChartsCore.Drawing.Padding();
-            LiveChartsCore.SkiaSharpView.SKCharts.SKDefaultTooltip skDefaultTooltip12 = new LiveChartsCore.SkiaSharpView.SKCharts.SKDefaultTooltip();
-            LiveChartsCore.Drawing.Padding padding24 = new LiveChartsCore.Drawing.Padding();
+            LiveChartsCore.Drawing.Padding padding7 = new LiveChartsCore.Drawing.Padding();
+            LiveChartsCore.SkiaSharpView.SKCharts.SKDefaultTooltip skDefaultTooltip4 = new LiveChartsCore.SkiaSharpView.SKCharts.SKDefaultTooltip();
+            LiveChartsCore.Drawing.Padding padding8 = new LiveChartsCore.Drawing.Padding();
+            LiveChartsCore.SkiaSharpView.SKCharts.SKDefaultLegend skDefaultLegend5 = new LiveChartsCore.SkiaSharpView.SKCharts.SKDefaultLegend();
+            LiveChartsCore.Drawing.Padding padding9 = new LiveChartsCore.Drawing.Padding();
+            LiveChartsCore.SkiaSharpView.SKCharts.SKDefaultTooltip skDefaultTooltip5 = new LiveChartsCore.SkiaSharpView.SKCharts.SKDefaultTooltip();
+            LiveChartsCore.Drawing.Padding padding10 = new LiveChartsCore.Drawing.Padding();
+            LiveChartsCore.SkiaSharpView.SKCharts.SKDefaultLegend skDefaultLegend6 = new LiveChartsCore.SkiaSharpView.SKCharts.SKDefaultLegend();
+            LiveChartsCore.Drawing.Padding padding11 = new LiveChartsCore.Drawing.Padding();
+            LiveChartsCore.SkiaSharpView.SKCharts.SKDefaultTooltip skDefaultTooltip6 = new LiveChartsCore.SkiaSharpView.SKCharts.SKDefaultTooltip();
+            LiveChartsCore.Drawing.Padding padding12 = new LiveChartsCore.Drawing.Padding();
             delORmod = new ContextMenuStrip(components);
             panel4 = new Panel();
             headPanel = new Panel();
             homeButton = new PictureBox();
             bodyPanel = new Panel();
             panel3 = new Panel();
+            leaveLbl = new Label();
+            leaveB = new Button();
             attendanceDashboard = new Label();
             usersDashboard = new Label();
             Dashboard = new Label();
@@ -58,7 +60,7 @@ namespace lighPayroll
             panel1 = new Panel();
             panel2 = new Panel();
             yearRangePanel = new Panel();
-            dataLbl = new Label();
+            yearRangeLbl = new Label();
             modifyYearPanel = new Panel();
             yearLbl = new Label();
             nextButton = new Button();
@@ -71,9 +73,9 @@ namespace lighPayroll
             labelTaskCount = new Label();
             profileChart = new LiveChartsCore.SkiaSharpView.WinForms.PieChart();
             countPanel = new Panel();
-            pendingUsersLbl = new Label();
-            approvedCountLbl = new Label();
-            totalUsersLbl = new Label();
+            thirdCountLbl = new Label();
+            secondCountLbl = new Label();
+            firstCountLbl = new Label();
             headPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)homeButton).BeginInit();
             bodyPanel.SuspendLayout();
@@ -136,6 +138,8 @@ namespace lighPayroll
             // panel3
             // 
             panel3.BackColor = Color.FromArgb(25, 35, 55);
+            panel3.Controls.Add(leaveLbl);
+            panel3.Controls.Add(leaveB);
             panel3.Controls.Add(attendanceDashboard);
             panel3.Controls.Add(usersDashboard);
             panel3.Controls.Add(Dashboard);
@@ -146,6 +150,33 @@ namespace lighPayroll
             panel3.Name = "panel3";
             panel3.Size = new Size(200, 426);
             panel3.TabIndex = 0;
+            // 
+            // leaveLbl
+            // 
+            leaveLbl.AutoSize = true;
+            leaveLbl.Font = new Font("Ubuntu Mono Medium", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            leaveLbl.ForeColor = Color.Beige;
+            leaveLbl.Location = new Point(19, 322);
+            leaveLbl.Name = "leaveLbl";
+            leaveLbl.Size = new Size(63, 16);
+            leaveLbl.TabIndex = 11;
+            leaveLbl.Text = "Requests";
+            // 
+            // leaveB
+            // 
+            leaveB.BackColor = Color.FromArgb(25, 35, 55);
+            leaveB.BackgroundImage = Resources.approval;
+            leaveB.BackgroundImageLayout = ImageLayout.Zoom;
+            leaveB.Cursor = Cursors.Hand;
+            leaveB.FlatAppearance.BorderColor = Color.Beige;
+            leaveB.FlatAppearance.MouseDownBackColor = Color.Beige;
+            leaveB.FlatStyle = FlatStyle.Flat;
+            leaveB.Location = new Point(16, 259);
+            leaveB.Name = "leaveB";
+            leaveB.Size = new Size(172, 57);
+            leaveB.TabIndex = 10;
+            leaveB.UseVisualStyleBackColor = false;
+            leaveB.Click += leaveB_Click;
             // 
             // attendanceDashboard
             // 
@@ -185,6 +216,7 @@ namespace lighPayroll
             attendanceB.BackColor = Color.FromArgb(25, 35, 55);
             attendanceB.BackgroundImage = Resources.attendance;
             attendanceB.BackgroundImageLayout = ImageLayout.Zoom;
+            attendanceB.Cursor = Cursors.Hand;
             attendanceB.FlatAppearance.BorderColor = Color.Beige;
             attendanceB.FlatAppearance.MouseDownBackColor = Color.Beige;
             attendanceB.FlatStyle = FlatStyle.Flat;
@@ -201,6 +233,7 @@ namespace lighPayroll
             usersB.BackColor = Color.FromArgb(25, 35, 55);
             usersB.BackgroundImage = Resources.users1;
             usersB.BackgroundImageLayout = ImageLayout.Zoom;
+            usersB.Cursor = Cursors.Hand;
             usersB.FlatAppearance.BorderColor = Color.Beige;
             usersB.FlatAppearance.MouseDownBackColor = Color.Beige;
             usersB.FlatStyle = FlatStyle.Flat;
@@ -242,25 +275,25 @@ namespace lighPayroll
             // yearRangePanel
             // 
             yearRangePanel.BorderStyle = BorderStyle.FixedSingle;
-            yearRangePanel.Controls.Add(dataLbl);
+            yearRangePanel.Controls.Add(yearRangeLbl);
             yearRangePanel.Location = new Point(425, 21);
             yearRangePanel.Name = "yearRangePanel";
             yearRangePanel.Size = new Size(290, 26);
             yearRangePanel.TabIndex = 7;
             yearRangePanel.Visible = false;
             // 
-            // dataLbl
+            // yearRangeLbl
             // 
-            dataLbl.AutoSize = true;
-            dataLbl.Font = new Font("Ubuntu Mono", 11.2499981F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataLbl.ForeColor = Color.Beige;
-            dataLbl.Location = new Point(97, 3);
-            dataLbl.Name = "dataLbl";
-            dataLbl.Size = new Size(96, 18);
-            dataLbl.TabIndex = 9;
-            dataLbl.Text = "2000 - 2000";
-            dataLbl.Visible = false;
-            dataLbl.Click += label1_Click;
+            yearRangeLbl.AutoSize = true;
+            yearRangeLbl.Font = new Font("Ubuntu Mono", 11.2499981F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            yearRangeLbl.ForeColor = Color.Beige;
+            yearRangeLbl.Location = new Point(97, 3);
+            yearRangeLbl.Name = "yearRangeLbl";
+            yearRangeLbl.Size = new Size(96, 18);
+            yearRangeLbl.TabIndex = 9;
+            yearRangeLbl.Text = "2000 - 2000";
+            yearRangeLbl.Visible = false;
+            yearRangeLbl.Click += label1_Click;
             // 
             // modifyYearPanel
             // 
@@ -271,7 +304,6 @@ namespace lighPayroll
             modifyYearPanel.Name = "modifyYearPanel";
             modifyYearPanel.Size = new Size(394, 74);
             modifyYearPanel.TabIndex = 11;
-            modifyYearPanel.Visible = false;
             // 
             // yearLbl
             // 
@@ -332,43 +364,42 @@ namespace lighPayroll
             leftCartesianChart.AutoUpdateEnabled = true;
             leftCartesianChart.ChartTheme = null;
             leftCartesianChart.Dock = DockStyle.Fill;
-            skDefaultLegend10.AnimationsSpeed = TimeSpan.Parse("00:00:00.1500000");
-            skDefaultLegend10.Content = null;
-            skDefaultLegend10.IsValid = false;
-            skDefaultLegend10.Opacity = 1F;
-            padding19.Bottom = 0F;
-            padding19.Left = 0F;
-            padding19.Right = 0F;
-            padding19.Top = 0F;
-            skDefaultLegend10.Padding = padding19;
-            skDefaultLegend10.RemoveOnCompleted = false;
-            skDefaultLegend10.RotateTransform = 0F;
-            skDefaultLegend10.X = 0F;
-            skDefaultLegend10.Y = 0F;
-            leftCartesianChart.Legend = skDefaultLegend10;
+            skDefaultLegend4.AnimationsSpeed = TimeSpan.Parse("00:00:00.1500000");
+            skDefaultLegend4.Content = null;
+            skDefaultLegend4.IsValid = false;
+            skDefaultLegend4.Opacity = 1F;
+            padding7.Bottom = 0F;
+            padding7.Left = 0F;
+            padding7.Right = 0F;
+            padding7.Top = 0F;
+            skDefaultLegend4.Padding = padding7;
+            skDefaultLegend4.RemoveOnCompleted = false;
+            skDefaultLegend4.RotateTransform = 0F;
+            skDefaultLegend4.X = 0F;
+            skDefaultLegend4.Y = 0F;
+            leftCartesianChart.Legend = skDefaultLegend4;
             leftCartesianChart.Location = new Point(0, 0);
             leftCartesianChart.MatchAxesScreenDataRatio = false;
             leftCartesianChart.Name = "leftCartesianChart";
             leftCartesianChart.Size = new Size(377, 273);
             leftCartesianChart.TabIndex = 8;
-            skDefaultTooltip10.AnimationsSpeed = TimeSpan.Parse("00:00:00.1500000");
-            skDefaultTooltip10.Content = null;
-            skDefaultTooltip10.IsValid = false;
-            skDefaultTooltip10.Opacity = 1F;
-            padding20.Bottom = 0F;
-            padding20.Left = 0F;
-            padding20.Right = 0F;
-            padding20.Top = 0F;
-            skDefaultTooltip10.Padding = padding20;
-            skDefaultTooltip10.RemoveOnCompleted = false;
-            skDefaultTooltip10.RotateTransform = 0F;
-            skDefaultTooltip10.Wedge = 10;
-            skDefaultTooltip10.X = 0F;
-            skDefaultTooltip10.Y = 0F;
-            leftCartesianChart.Tooltip = skDefaultTooltip10;
+            skDefaultTooltip4.AnimationsSpeed = TimeSpan.Parse("00:00:00.1500000");
+            skDefaultTooltip4.Content = null;
+            skDefaultTooltip4.IsValid = false;
+            skDefaultTooltip4.Opacity = 1F;
+            padding8.Bottom = 0F;
+            padding8.Left = 0F;
+            padding8.Right = 0F;
+            padding8.Top = 0F;
+            skDefaultTooltip4.Padding = padding8;
+            skDefaultTooltip4.RemoveOnCompleted = false;
+            skDefaultTooltip4.RotateTransform = 0F;
+            skDefaultTooltip4.Wedge = 10;
+            skDefaultTooltip4.X = 0F;
+            skDefaultTooltip4.Y = 0F;
+            leftCartesianChart.Tooltip = skDefaultTooltip4;
             leftCartesianChart.TooltipFindingStrategy = LiveChartsCore.Measure.TooltipFindingStrategy.Automatic;
             leftCartesianChart.UpdaterThrottler = TimeSpan.Parse("00:00:00.0500000");
-            leftCartesianChart.Visible = false;
             // 
             // panel5
             // 
@@ -399,41 +430,40 @@ namespace lighPayroll
             rightPieChart.BorderStyle = BorderStyle.FixedSingle;
             rightPieChart.ChartTheme = null;
             rightPieChart.Dock = DockStyle.Fill;
-            skDefaultLegend11.AnimationsSpeed = TimeSpan.Parse("00:00:00.1500000");
-            skDefaultLegend11.Content = null;
-            skDefaultLegend11.IsValid = false;
-            skDefaultLegend11.Opacity = 1F;
-            padding21.Bottom = 0F;
-            padding21.Left = 0F;
-            padding21.Right = 0F;
-            padding21.Top = 0F;
-            skDefaultLegend11.Padding = padding21;
-            skDefaultLegend11.RemoveOnCompleted = false;
-            skDefaultLegend11.RotateTransform = 0F;
-            skDefaultLegend11.X = 0F;
-            skDefaultLegend11.Y = 0F;
-            rightPieChart.Legend = skDefaultLegend11;
+            skDefaultLegend5.AnimationsSpeed = TimeSpan.Parse("00:00:00.1500000");
+            skDefaultLegend5.Content = null;
+            skDefaultLegend5.IsValid = false;
+            skDefaultLegend5.Opacity = 1F;
+            padding9.Bottom = 0F;
+            padding9.Left = 0F;
+            padding9.Right = 0F;
+            padding9.Top = 0F;
+            skDefaultLegend5.Padding = padding9;
+            skDefaultLegend5.RemoveOnCompleted = false;
+            skDefaultLegend5.RotateTransform = 0F;
+            skDefaultLegend5.X = 0F;
+            skDefaultLegend5.Y = 0F;
+            rightPieChart.Legend = skDefaultLegend5;
             rightPieChart.Location = new Point(0, 0);
             rightPieChart.Name = "rightPieChart";
             rightPieChart.Size = new Size(290, 243);
             rightPieChart.TabIndex = 1;
-            skDefaultTooltip11.AnimationsSpeed = TimeSpan.Parse("00:00:00.1500000");
-            skDefaultTooltip11.Content = null;
-            skDefaultTooltip11.IsValid = false;
-            skDefaultTooltip11.Opacity = 1F;
-            padding22.Bottom = 0F;
-            padding22.Left = 0F;
-            padding22.Right = 0F;
-            padding22.Top = 0F;
-            skDefaultTooltip11.Padding = padding22;
-            skDefaultTooltip11.RemoveOnCompleted = false;
-            skDefaultTooltip11.RotateTransform = 0F;
-            skDefaultTooltip11.Wedge = 10;
-            skDefaultTooltip11.X = 0F;
-            skDefaultTooltip11.Y = 0F;
-            rightPieChart.Tooltip = skDefaultTooltip11;
+            skDefaultTooltip5.AnimationsSpeed = TimeSpan.Parse("00:00:00.1500000");
+            skDefaultTooltip5.Content = null;
+            skDefaultTooltip5.IsValid = false;
+            skDefaultTooltip5.Opacity = 1F;
+            padding10.Bottom = 0F;
+            padding10.Left = 0F;
+            padding10.Right = 0F;
+            padding10.Top = 0F;
+            skDefaultTooltip5.Padding = padding10;
+            skDefaultTooltip5.RemoveOnCompleted = false;
+            skDefaultTooltip5.RotateTransform = 0F;
+            skDefaultTooltip5.Wedge = 10;
+            skDefaultTooltip5.X = 0F;
+            skDefaultTooltip5.Y = 0F;
+            rightPieChart.Tooltip = skDefaultTooltip5;
             rightPieChart.UpdaterThrottler = TimeSpan.Parse("00:00:00.0500000");
-            rightPieChart.Visible = false;
             // 
             // labelTaskCount
             // 
@@ -454,89 +484,88 @@ namespace lighPayroll
             profileChart.BackColor = Color.FromArgb(255, 255, 192);
             profileChart.ChartTheme = null;
             profileChart.Enabled = false;
-            skDefaultLegend12.AnimationsSpeed = TimeSpan.Parse("00:00:00.1500000");
-            skDefaultLegend12.Content = null;
-            skDefaultLegend12.IsValid = false;
-            skDefaultLegend12.Opacity = 1F;
-            padding23.Bottom = 0F;
-            padding23.Left = 0F;
-            padding23.Right = 0F;
-            padding23.Top = 0F;
-            skDefaultLegend12.Padding = padding23;
-            skDefaultLegend12.RemoveOnCompleted = false;
-            skDefaultLegend12.RotateTransform = 0F;
-            skDefaultLegend12.X = 0F;
-            skDefaultLegend12.Y = 0F;
-            profileChart.Legend = skDefaultLegend12;
+            skDefaultLegend6.AnimationsSpeed = TimeSpan.Parse("00:00:00.1500000");
+            skDefaultLegend6.Content = null;
+            skDefaultLegend6.IsValid = false;
+            skDefaultLegend6.Opacity = 1F;
+            padding11.Bottom = 0F;
+            padding11.Left = 0F;
+            padding11.Right = 0F;
+            padding11.Top = 0F;
+            skDefaultLegend6.Padding = padding11;
+            skDefaultLegend6.RemoveOnCompleted = false;
+            skDefaultLegend6.RotateTransform = 0F;
+            skDefaultLegend6.X = 0F;
+            skDefaultLegend6.Y = 0F;
+            profileChart.Legend = skDefaultLegend6;
             profileChart.Location = new Point(22, 31);
             profileChart.Name = "profileChart";
             profileChart.Size = new Size(150, 150);
             profileChart.TabIndex = 0;
-            skDefaultTooltip12.AnimationsSpeed = TimeSpan.Parse("00:00:00.1500000");
-            skDefaultTooltip12.Content = null;
-            skDefaultTooltip12.IsValid = false;
-            skDefaultTooltip12.Opacity = 1F;
-            padding24.Bottom = 0F;
-            padding24.Left = 0F;
-            padding24.Right = 0F;
-            padding24.Top = 0F;
-            skDefaultTooltip12.Padding = padding24;
-            skDefaultTooltip12.RemoveOnCompleted = false;
-            skDefaultTooltip12.RotateTransform = 0F;
-            skDefaultTooltip12.Wedge = 10;
-            skDefaultTooltip12.X = 0F;
-            skDefaultTooltip12.Y = 0F;
-            profileChart.Tooltip = skDefaultTooltip12;
+            skDefaultTooltip6.AnimationsSpeed = TimeSpan.Parse("00:00:00.1500000");
+            skDefaultTooltip6.Content = null;
+            skDefaultTooltip6.IsValid = false;
+            skDefaultTooltip6.Opacity = 1F;
+            padding12.Bottom = 0F;
+            padding12.Left = 0F;
+            padding12.Right = 0F;
+            padding12.Top = 0F;
+            skDefaultTooltip6.Padding = padding12;
+            skDefaultTooltip6.RemoveOnCompleted = false;
+            skDefaultTooltip6.RotateTransform = 0F;
+            skDefaultTooltip6.Wedge = 10;
+            skDefaultTooltip6.X = 0F;
+            skDefaultTooltip6.Y = 0F;
+            profileChart.Tooltip = skDefaultTooltip6;
             profileChart.UpdaterThrottler = TimeSpan.Parse("00:00:00.0500000");
             profileChart.Visible = false;
             // 
             // countPanel
             // 
             countPanel.BorderStyle = BorderStyle.FixedSingle;
-            countPanel.Controls.Add(pendingUsersLbl);
-            countPanel.Controls.Add(approvedCountLbl);
-            countPanel.Controls.Add(totalUsersLbl);
+            countPanel.Controls.Add(thirdCountLbl);
+            countPanel.Controls.Add(secondCountLbl);
+            countPanel.Controls.Add(firstCountLbl);
             countPanel.Location = new Point(425, 308);
             countPanel.Name = "countPanel";
             countPanel.Size = new Size(290, 78);
             countPanel.TabIndex = 6;
-            countPanel.Visible = false;
             // 
-            // pendingUsersLbl
+            // thirdCountLbl
             // 
-            pendingUsersLbl.AutoSize = true;
-            pendingUsersLbl.Font = new Font("Ubuntu Mono", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            pendingUsersLbl.ForeColor = Color.Beige;
-            pendingUsersLbl.Location = new Point(3, 54);
-            pendingUsersLbl.Name = "pendingUsersLbl";
-            pendingUsersLbl.Size = new Size(105, 16);
-            pendingUsersLbl.TabIndex = 5;
-            pendingUsersLbl.Text = "Pending Count:";
-            pendingUsersLbl.Visible = false;
+            thirdCountLbl.AutoSize = true;
+            thirdCountLbl.Font = new Font("Ubuntu Mono", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            thirdCountLbl.ForeColor = Color.Beige;
+            thirdCountLbl.Location = new Point(3, 54);
+            thirdCountLbl.Name = "thirdCountLbl";
+            thirdCountLbl.Size = new Size(105, 16);
+            thirdCountLbl.TabIndex = 5;
+            thirdCountLbl.Text = "Pending Count:";
+            thirdCountLbl.Visible = false;
             // 
-            // approvedCountLbl
+            // secondCountLbl
             // 
-            approvedCountLbl.AutoSize = true;
-            approvedCountLbl.Font = new Font("Ubuntu Mono", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            approvedCountLbl.ForeColor = Color.Beige;
-            approvedCountLbl.Location = new Point(3, 27);
-            approvedCountLbl.Name = "approvedCountLbl";
-            approvedCountLbl.Size = new Size(112, 16);
-            approvedCountLbl.TabIndex = 4;
-            approvedCountLbl.Text = "Approved Count:";
-            approvedCountLbl.Visible = false;
+            secondCountLbl.AutoSize = true;
+            secondCountLbl.Font = new Font("Ubuntu Mono", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            secondCountLbl.ForeColor = Color.Beige;
+            secondCountLbl.Location = new Point(3, 27);
+            secondCountLbl.Name = "secondCountLbl";
+            secondCountLbl.Size = new Size(112, 16);
+            secondCountLbl.TabIndex = 4;
+            secondCountLbl.Text = "Approved Count:";
+            secondCountLbl.Visible = false;
             // 
-            // totalUsersLbl
+            // firstCountLbl
             // 
-            totalUsersLbl.AutoSize = true;
-            totalUsersLbl.Font = new Font("Ubuntu Mono", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            totalUsersLbl.ForeColor = Color.Beige;
-            totalUsersLbl.Location = new Point(3, 3);
-            totalUsersLbl.Name = "totalUsersLbl";
-            totalUsersLbl.Size = new Size(91, 16);
-            totalUsersLbl.TabIndex = 3;
-            totalUsersLbl.Text = "Total Count:";
-            totalUsersLbl.Visible = false;
+            firstCountLbl.AutoSize = true;
+            firstCountLbl.Font = new Font("Ubuntu Mono", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            firstCountLbl.ForeColor = Color.Beige;
+            firstCountLbl.Location = new Point(3, 3);
+            firstCountLbl.Name = "firstCountLbl";
+            firstCountLbl.Size = new Size(91, 16);
+            firstCountLbl.TabIndex = 3;
+            firstCountLbl.Text = "Total Count:";
+            firstCountLbl.Visible = false;
             // 
             // AdDashboard
             // 
@@ -586,7 +615,7 @@ namespace lighPayroll
         private Button addUserButton;
         private Button modifyRowButton;
         private Button deleteRowButton;
-        private Label pendingUsersLbl;
+        private Label thirdCountLbl;
         private Button loadButton;
         private Label nameLabel;
         private TextBox nameTxtBox;
@@ -596,7 +625,7 @@ namespace lighPayroll
         private Label Dashboard;
         private LiveChartsCore.SkiaSharpView.WinForms.PieChart profileChart;
         private LiveChartsCore.SkiaSharpView.WinForms.PieChart rightPieChart;
-        private Label totalUsersLbl;
+        private Label firstCountLbl;
         private Panel countPanel;
         private Label attendanceDashboard;
         private Label usersDashboard;
@@ -605,12 +634,14 @@ namespace lighPayroll
         private Label noDataLabel;
         private Panel cartesianPlane;
         private LiveChartsCore.SkiaSharpView.WinForms.CartesianChart leftCartesianChart;
-        private Label approvedCountLbl;
+        private Label secondCountLbl;
         private Panel modifyYearPanel;
         private Button nextButton;
         private Button backButton;
         private Label yearLbl;
-        private Label dataLbl;
+        private Label yearRangeLbl;
         private Panel yearRangePanel;
+        private Label leaveLbl;
+        private Button leaveB;
     }
 }

@@ -25,7 +25,7 @@ namespace lighPayrollUI
     public partial class EFeatures : Form
     {
         AdUI adminUI = new AdUI(); //used for getting panel design and greeting service
-        SQLiteDataAccess dataAccess = new SQLiteDataAccess();
+        GeneralDataService dataAccess = new GeneralDataService();
         AttendanceService attendanceDataAccess = new AttendanceService();
         PayrollService payrollService = new PayrollService();
 
@@ -756,7 +756,7 @@ namespace lighPayrollUI
                     return;
                 }
 
-                SQLiteDataAccess db = new SQLiteDataAccess();
+                GeneralDataService db = new GeneralDataService();
 
                 int employeeId = db.GetEmployeeIdByUserId(user_id);
 
@@ -788,7 +788,7 @@ namespace lighPayrollUI
                     return;
                 }
 
-                SQLiteDataAccess db = new SQLiteDataAccess();
+                GeneralDataService db = new GeneralDataService();
 
                 int employeeId = db.GetEmployeeIdByUserId(user_id);
 

@@ -13,7 +13,7 @@ namespace lightPayrollServices
 {
     public class AuthService
     {
-        SQLiteDataAccess dataAccess = new SQLiteDataAccess();
+        GeneralDataService dataAccess = new GeneralDataService();
 
         private List<string> reservedUsernames = new List<string>
         {

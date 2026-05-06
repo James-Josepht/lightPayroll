@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace lightPayrollServices
 {
-    public class AttendanceService:SQLiteDataAccess
+    public class AttendanceService:GeneralDataService
     {
         /// 
         /// LOADING
@@ -206,33 +206,98 @@ namespace lightPayrollServices
         // GETTING / SEARCHING
         //
 
-      
+        public IEnumerable<(int Month, int Present, int Late, int Leave)> GetMonthlyAttendanceBreakdown(int year)
+        {
+            var result = new List<(int, int, int, int)>();
 
-        public int GetAttendanceCountToday()
+            for (int month = 1; month <= 12; month++)
+            {
+                int present = GetAttendanceCountByMonthAndStatus(year, month, "Present");
+                int late = GetAttendanceCountByMonthAndStatus(year, month, "Late");
+                int leave = GetAttendanceCountByMonthAndStatus(year, month, "Leave");
+
+                result.Add((month, present, late, leave));
+            }
+
+            return result;
+        }
+        public int GetAttendanceCountByMonthAndStatus(int year, int month, string status)
         {
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
             {
-                string sql =
-                @"SELECT COUNT(*) FROM AttendanceTable
-                WHERE date(Date) = date('now','localtime')";
-                
-                return conn.ExecuteScalar<int>(sql);
+                conn.Open();
+
+                string query = @"
+                    SELECT COUNT(*)
+                    FROM AttendanceTable
+                    WHERE strftime('%Y', Date) = ?
+                    AND strftime('%m', Date) = ?
+                    AND Status = ?
+                ";
+
+                using (var cmd = new SQLiteCommand(query, (SQLiteConnection)conn))
+                {
+                    cmd.Parameters.AddWithValue("@year", year.ToString());
+                    cmd.Parameters.AddWithValue("@month", month.ToString("00"));
+                    cmd.Parameters.AddWithValue("@status", status);
+
+                    return Convert.ToInt32(cmd.ExecuteScalar());
+                }
             }
         }
 
-        public int GetAttendanceCountByStatus(string status)
+        
+
+        public (int MinYear, int MaxYear) GetAttendanceYearRange()
         {
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
             {
                 string sql = @"
-                SELECT COUNT(*) 
-                FROM AttendanceTable 
-                WHERE Status = @Status 
-                AND date(Date) = date('now','localtime')";
+                SELECT 
+                    MIN(strftime('%Y', Date)) AS MinYear,
+                    MAX(strftime('%Y', Date)) AS MaxYear
+                FROM AttendanceTable";
 
-                return conn.ExecuteScalar<int>(sql, new { Status = status });
+                var result = conn.QueryFirstOrDefault<(string MinYear, string MaxYear)>(sql);
+
+                return (int.Parse(result.MinYear), int.Parse(result.MaxYear));
             }
         }
+
+
+        public (int present, int late, int leave) GetAttendanceCountToday()
+        {
+            using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
+            {
+                conn.Open();
+
+                string sql = @"
+            SELECT
+                SUM(CASE WHEN Status = 'Present' THEN 1 ELSE 0 END) AS Present,
+                SUM(CASE WHEN Status = 'Late' THEN 1 ELSE 0 END) AS Late,
+                SUM(CASE WHEN Status = 'Leave' THEN 1 ELSE 0 END) AS Leave
+            FROM AttendanceTable
+            WHERE date(Date) = date('now','localtime');
+              ";
+
+                using (var cmd = new SQLiteCommand(sql, (SQLiteConnection)conn))
+                using (var reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        int present = reader["Present"] == DBNull.Value ? 0 : Convert.ToInt32(reader["Present"]);
+                        int late = reader["Late"] == DBNull.Value ? 0 : Convert.ToInt32(reader["Late"]);
+                        int leave = reader["Leave"] == DBNull.Value ? 0 : Convert.ToInt32(reader["Leave"]);
+
+                        return (present, late, leave);
+                    }
+                }
+
+                return (0, 0, 0);
+            }
+        }
+
+
         public int GetActiveAttendanceId(int employeeID)
         {
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))

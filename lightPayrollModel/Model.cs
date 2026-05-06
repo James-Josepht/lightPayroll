@@ -126,8 +126,14 @@ namespace lightPayrollModel
         }
     }
 
-  
 
+    public class MonthlyPayrollStats
+    {
+        public int Month { get; set; }
+        public double WorkedHours { get; set; }
+        public double LeaveHours { get; set; }
+        public double DeductedHours { get; set; }
+    }
 
     public class Payroll
     {

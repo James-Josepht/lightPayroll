@@ -15,7 +15,7 @@ using iText.IO.Image;
 
 namespace lightPayrollServices
 {
-    public class PayrollService : SQLiteDataAccess
+    public class PayrollService : GeneralDataService
     {
 
         private decimal ComputePagIbig(decimal monthlySalary)

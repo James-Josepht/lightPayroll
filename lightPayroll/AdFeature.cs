@@ -17,7 +17,7 @@ namespace lighPayrollUI
     public partial class AdFeature : Form
     {
         PLogIn greetingsAndMessageBoxDesign = new PLogIn();
-        SQLiteDataAccess dataAccess = new SQLiteDataAccess();
+        GeneralDataService dataAccess = new GeneralDataService();
         AttendanceService attendanceDataAccess = new AttendanceService();
         HBorderRadius borderRadius = new HBorderRadius();
         AdminUser users = new AdminUser();
@@ -35,8 +35,11 @@ namespace lighPayrollUI
 
         private void UsersUI_Load(object sender, EventArgs e)
         {
-
-            panelDesign();
+            //trying to make the border of panel and buttonslike with curves
+            borderRadius.SetRoundedRegion(loadPanel, 33);
+            borderRadius.SetRoundedRegion(statusPanel, 33);
+            borderRadius.SetRoundedRegion(overtimeLoadPnl, 33);
+            borderRadius.SetRoundedRegion(leaveLoadPnl, 33);
 
             if (feature_button == "Attendance")
             {
@@ -65,7 +68,7 @@ namespace lighPayrollUI
 
 
             ApplyFeaturePermissions();
-            
+
 
         }
 
@@ -84,7 +87,6 @@ namespace lighPayrollUI
                 var data = attendanceDataAccess.LoadAttendanceAdmin();
                 var displayData = data.Select(a => new
                 {
-                    AttendanceID = a.AttendanceID,
                     EmployeeID = a.EmployeeID,
                     Date = a.Date?.ToString("yyyy-MM-dd"),
                     TimeIn = a.TimeInDisplay,
@@ -95,7 +97,7 @@ namespace lighPayrollUI
 
                 dataGrid.DataSource = displayData;
             }
-            
+
         }
 
         private void loadButton_Click(object sender, EventArgs e)
@@ -123,7 +125,7 @@ namespace lighPayrollUI
                     //show the attendance tools after scroll
                     dataGrid.Visible = true;
                     upperBodyPanel.Visible = true;
-                    
+
                 };
 
                 t.Start();
@@ -134,7 +136,7 @@ namespace lighPayrollUI
                 upperBodyPanel.Visible = true;
             }
 
-            
+
         }
 
 
@@ -194,7 +196,7 @@ namespace lighPayrollUI
             }
             else
             {
-               users = dataAccess.GetUserByIdOrUsername(userId.ToString());
+                users = dataAccess.GetUserByIdOrUsername(userId.ToString());
             }
 
             string usernamePart = users.Username.Split('@')[0]; // "first.last"
@@ -204,7 +206,7 @@ namespace lighPayrollUI
             parts[0] = char.ToUpper(parts[0][0]) + parts[0].Substring(1);
             parts[1] = char.ToUpper(parts[1][0]) + parts[1].Substring(1);
 
- 
+
             string status = statusComboBox.Text;
             string role = roleComboBox.Text;
 
@@ -236,11 +238,11 @@ namespace lighPayrollUI
             else
             {
                 dataAccess.UpdateEmployeeStatus(role, userId);
-                
+
             }
 
 
-            
+
 
 
             greetingsAndMessageBoxDesign.CustomMessageBox("User updated successfully!");
@@ -273,7 +275,7 @@ namespace lighPayrollUI
             this.Hide();
         }
 
- 
+
 
         private void ApplyFeaturePermissions()
         {
@@ -282,7 +284,7 @@ namespace lighPayrollUI
                 case "Attendance":
 
                     titleLabel.Text = "Attendance";
-                   
+
                     //btnApprove.Enabled = true;
                     //btnPayroll.Enabled = true;
                     break;
@@ -297,20 +299,32 @@ namespace lighPayrollUI
                     break;
             }
         }
-
-        private void panelDesign()
+        //different colors for selected and unselected tabs
+        private void otherFeatures_DrawItem(object sender, DrawItemEventArgs e)
         {
-            int radius = 17;
+            if (DesignMode) return; // I need to add this check to prevent design-time errors when drawing tabs in the designer
 
-            GraphicsPath path = new GraphicsPath();
 
-            path.AddArc(0, 0, radius, radius, 180, 90);
-            path.AddArc(loadButton.Width - radius, 0, radius, radius, 270, 90);
-            path.AddArc(loadButton.Width - radius, loadButton.Height - radius, radius, radius, 0, 90);
-            path.AddArc(0, loadButton.Height - radius, radius, radius, 90, 90);
-            path.CloseAllFigures();
+            TabPage tabPage = requestsTabPage.TabPages[e.Index];
+            Rectangle tabBounds = requestsTabPage.GetTabRect(e.Index);
 
-            loadButton.Region = new Region(path);
+            // Choose color per tab (example)
+            Color textColor;
+
+            if (e.Index == requestsTabPage.SelectedIndex)
+                textColor = Color.FromArgb(33, 44, 66);   // selected tab
+            else
+                textColor = Color.Gray;   // unselected tabs
+
+            TextRenderer.DrawText(
+                e.Graphics,
+                tabPage.Text,
+                e.Font,
+                tabBounds,
+                textColor,
+                TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter
+            );
+
         }
     }
 }

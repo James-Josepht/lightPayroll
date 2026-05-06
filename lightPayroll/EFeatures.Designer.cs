@@ -338,7 +338,6 @@
             clockInButton.Name = "clockInButton";
             clockInButton.Size = new Size(110, 66);
             clockInButton.TabIndex = 1;
-            clockInButton.Text = "n";
             clockInButton.UseVisualStyleBackColor = true;
             clockInButton.Click += clockInButton_Click;
             // 

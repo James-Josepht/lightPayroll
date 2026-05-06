@@ -20,7 +20,7 @@ namespace lighPayroll
 
     public partial class PLogIn : Form
     {
-        SQLiteDataAccess dataAccess = new SQLiteDataAccess();
+        GeneralDataService dataAccess = new GeneralDataService();
         AttendanceService attendanceDataAccess = new AttendanceService();
         public PLogIn()
         {

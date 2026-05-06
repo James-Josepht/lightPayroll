@@ -16,7 +16,7 @@ using static System.Net.Mime.MediaTypeNames;
 namespace lightPayrollServices
 {
     //this is where the most common sql queries happened
-    public class SQLiteDataAccess
+    public class GeneralDataService
     {
 
         // all these changes in the database can be seen in lightPayroll\bin\Debug\net8.0-windows\lightPayrollDB.db
@@ -333,6 +333,7 @@ namespace lightPayrollServices
             }
         }
 
+       
 
         public int GetUserCount() 
         {

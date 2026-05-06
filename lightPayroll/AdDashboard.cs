@@ -35,12 +35,16 @@ namespace lighPayroll
         AdUI customMessages = new AdUI();
         List<Users> attendance = new List<Users>();
         AttendanceService attendanceService = new AttendanceService();
-        SQLiteDataAccess dataAccess = new SQLiteDataAccess();
+        GeneralDataService dataAccess = new GeneralDataService();
+        RequestsService requestsService = new RequestsService();
         HBorderRadius borderRadius = new HBorderRadius();
 
-        private string user_role, user_name;
-        private int user_id;
-        private int currentYear, minYear, maxYear;
+        private const string FEATURE_USER = "user";
+        private const string FEATURE_ATTENDANCE = "attendance";
+        private const string FEATURE_REQUESTS = "requests";
+
+        private string user_role, user_name, button_features;
+        private int user_id, currentYear, minYear, maxYear;
 
 
         public AdDashboard(string role, string username, int id)
@@ -58,7 +62,8 @@ namespace lighPayroll
         {
 
             ApplyRole(user_role);
-            LoadUserPieChart("user");
+            LoadUserPieChart(FEATURE_USER);
+            LoadUserFeature();
            
         }
 
@@ -74,119 +79,93 @@ namespace lighPayroll
 
             int pendingCount = count - approvedCount;
 
-            totalUsersLbl.Text = $"Total Count: {count.ToString()}";
-            approvedCountLbl.Text = $"Approved Count: {approvedCount.ToString()}";
-            pendingUsersLbl.Text = $"Pending Count: {pendingCount.ToString()}";
+            firstCountLbl.Text = $"Total Count: {count.ToString()}";
+            secondCountLbl.Text = $"Approved Count: {approvedCount.ToString()}";
+            thirdCountLbl.Text = $"Pending Count: {pendingCount.ToString()}";
 
-            approvedCountLbl.Visible = true;
+            secondCountLbl.Visible = true;
 
-            pendingUsersLbl.Visible = true;
+            thirdCountLbl.Visible = true;
 
             return count;
         }
 
-        private void LoadRegisteredCount() //line chart
+        private void LoadRegisteredChartCount() //line chart
         {
 
-            var data = attendanceService.GetRegistrationsPerMonth(currentYear);
+            var data = dataAccess.GetRegistrationsPerMonth(currentYear);
             yearLbl.Text = currentYear.ToString();
-            //Your method returns:
 
-            // IEnumerable<(int Month, int Total)>
 
+            // data returns: IEnumerable<(int Month, int Total)>
             //  So I need:
-
             //X axis → months
             //Y axis → totals
 
-            double[] values = new double[12];
+            XYAxis("Registered Users", data);
+        }
 
-            foreach (var item in data)
+        private void LoadRequestsChartCount() //line chart
+        {
+
+            var data = requestsService.GetRequestsPerMonth(currentYear);
+            yearLbl.Text = currentYear.ToString();
+
+            if (!data.Any())
             {
-                values[item.Month - 1] = item.Total;
+                leftCartesianChart.Series = Array.Empty<ISeries>();
+                noDataLabel.Text = "No data found.";
+                noDataLabel.Visible = true;
+                return;
             }
+            noDataLabel.Visible = false;
+            XYAxis("Requests", data);
+        }
 
+        private int LoadRequestsCount()
+        {
+            int pending = requestsService.GetRequestCountByStatus("Pending");
+            int approved = requestsService.GetRequestCountByStatus("Approved");
+            int rejected = requestsService.GetRequestCountByStatus("Rejected");
 
-            leftCartesianChart.Series = new ISeries[]
-            {
-                new LineSeries<double>
-                {
-                    Values = values
-                }
-            };
+            yearLbl.Text = currentYear.ToString();
 
-            leftCartesianChart.YAxes = new[]
-           {
-                new Axis
-                {
-                    Name = "Registered Users",
+            yearRangeLbl.Text = DateTime.Now.ToString("MMMM dd, yyyy");
+            firstCountLbl.Text = $"Pending: {pending.ToString()}";
+            secondCountLbl.Text = $"Approved: {approved.ToString()}";
+            thirdCountLbl.Text = $"Rejected: {rejected.ToString()}";
 
-                     LabelsPaint = new SolidColorPaint(SKColors.Beige),
-
-                    NamePaint = new SolidColorPaint(SKColors.DarkGray)
-                }
-
-            };
-
-            leftCartesianChart.XAxes = new[]
-            {
-                new Axis
-                {
-                    Labels = new[]
-                    {
-                        "Jan","Feb","Mar","Apr","May","Jun",
-                        "Jul","Aug","Sep","Oct","Nov","Dec"
-                    },
-
-                    LabelsPaint = new SolidColorPaint(SKColors.Beige),
-                    TextSize = 10,
-                    NamePaint = new SolidColorPaint(SKColors.DarkGray)
-                }
-            };
+            int count = pending + approved + rejected;
+            return count;
         }
 
         private int LoadAttendanceCount()
         {
-            int count = attendanceService.GetAttendanceCountToday();
-            dataLbl.Text = DateTime.Now.ToString("MMMM dd, yyyy");
-            totalUsersLbl.Text = $"Attendance Count: {count.ToString()}";
+            var (present, late, leave) = attendanceService.GetAttendanceCountToday();
+            yearLbl.Text = currentYear.ToString();
 
+            yearRangeLbl.Text = DateTime.Now.ToString("MMMM dd, yyyy");
+            firstCountLbl.Text = $"Present: {present.ToString()}";
+            secondCountLbl.Text = $"Late: {late.ToString()}";
+            thirdCountLbl.Text = $"Leave: {leave.ToString()}";
+
+            var data = attendanceService.GetMonthlyAttendanceBreakdown(currentYear);
+            LoadAttendanceTrendChart(data);
+
+            int count = present + late + leave;
             return count;
         }
 
+       
 
 
-        /// 
-        /// STARTING IN HERE IT SHOWS WHEN A USER CLICKS ON LEFT BUTTONS
-        /// 
-        ///  IT WILL SHOW DIFFERENT CHART
-        /// 
 
-        private void taskB_Click(object sender, EventArgs e)
+        private void LoadRequestsFeature()
         {
-            //right focus
-            LoadUserPieChart("task");
-            rightPieChart.Visible = false;
-            yearRangePanel.Visible = false;
-            totalUsersLbl.Visible = false;
-            countPanel.Visible = false;
-            noDataLabel.Visible = false;
-            dataLbl.Visible = false;
-            yearLbl.Visible = false;
-
-
-            //left focus
-            leftCartesianChart.Visible = false;
-            cartesianPlane.Visible = false;
-            modifyYearPanel.Visible = false;
-
-        }
-
-        private void usersB_Click(object sender, EventArgs e)
-        {
+            button_features = FEATURE_REQUESTS;
             //right chart focus
             rightPieChart.Visible = true;
-            totalUsersLbl.Visible = true;
+            firstCountLbl.Visible = true;
             countPanel.Visible = true;
             yearLbl.Visible = true;
 
@@ -194,15 +173,60 @@ namespace lighPayroll
             leftCartesianChart.Visible = true;
             cartesianPlane.Visible = true;
             modifyYearPanel.Visible = true;
-          
+
+
+            var range = requestsService.GetRequestYearRange();
+            minYear = range.MinYear;
+            maxYear = range.MaxYear;
+
+            //after getting year range
+            yearRangeLbl.Text = $"{minYear} - {maxYear}";
+            yearRangeLbl.Visible = true;
+            yearRangePanel.Visible = true;
+
+
+
+            currentYear = maxYear; // start at latest year
+
+            int count = LoadRequestsCount();
+
+            if (count == 0)
+            {
+                LoadUserPieChart("empty");
+                noDataLabel.Visible = true;
+                return;
+            }
+            else
+            {
+                LoadUserPieChart(FEATURE_REQUESTS);
+                LoadRequestsChartCount();
+                noDataLabel.Visible = false;
+            }
+
+        }
+
+        private void LoadUserFeature()
+        {
+            button_features = FEATURE_USER;
+            //right chart focus
+            rightPieChart.Visible = true;
+            firstCountLbl.Visible = true;
+            countPanel.Visible = true;
+            yearLbl.Visible = true;
+
+            //left chart focus
+            leftCartesianChart.Visible = true;
+            cartesianPlane.Visible = true;
+            modifyYearPanel.Visible = true;
+
 
             var range = dataAccess.GetRegistrationYearRange();
             minYear = range.MinYear;
             maxYear = range.MaxYear;
 
             //after getting year range
-            dataLbl.Text = $"{minYear} - {maxYear}";
-            dataLbl.Visible = true;
+            yearRangeLbl.Text = $"{minYear} - {maxYear}";
+            yearRangeLbl.Visible = true;
             yearRangePanel.Visible = true;
 
 
@@ -219,21 +243,23 @@ namespace lighPayroll
             }
             else
             {
-                LoadUserPieChart("user");
-                LoadRegisteredCount();
+                LoadUserPieChart(FEATURE_USER);
+                LoadRegisteredChartCount();
                 noDataLabel.Visible = false;
             }
 
-
         }
-
-        private void attendanceB_Click(object sender, EventArgs e)
+        private void LoadAttendanceFeature()
         {
+            button_features = FEATURE_ATTENDANCE;
+
             //focus on right chart
             rightPieChart.Visible = true;
             yearRangePanel.Visible = true;
-            totalUsersLbl.Visible = true;
-            totalUsersLbl.Text = "Attendance Count: ";
+            firstCountLbl.Visible = true;
+            firstCountLbl.Text = "Present Count: ";
+            secondCountLbl.Text = "Leave Count: ";
+            thirdCountLbl.Text = "Late Count: ";
             countPanel.Visible = true;
 
             //focus on left chart
@@ -242,7 +268,13 @@ namespace lighPayroll
             modifyYearPanel.Visible = true;
 
 
+            var range = attendanceService.GetAttendanceYearRange();
+            minYear = range.MinYear;
+            maxYear = range.MaxYear;
 
+            currentYear = maxYear; // start at latest year
+
+            yearLbl.Text = currentYear.ToString();
 
             int count = LoadAttendanceCount();
             //only load and modify the count text after clicking the button
@@ -256,10 +288,36 @@ namespace lighPayroll
             }
             else
             {
-                LoadUserPieChart("attendance");
+                LoadUserPieChart(FEATURE_ATTENDANCE);
                 noDataLabel.Visible = false;
                 noDataLabel.Enabled = false;
             }
+
+        }
+
+
+
+        /// 
+        /// STARTING IN HERE IT SHOWS WHEN A USER CLICKS ON LEFT BUTTONS
+        /// 
+        ///  IT WILL SHOW DIFFERENT CHART
+        /// 
+
+        private void leaveB_Click(object sender, EventArgs e)
+        {
+            LoadRequestsFeature();
+
+        }
+
+        private void usersB_Click(object sender, EventArgs e)
+        {
+
+            LoadUserFeature();
+        }
+
+        private void attendanceB_Click(object sender, EventArgs e)
+        {
+            LoadAttendanceFeature();   
         }
 
         private void backButton_Click(object sender, EventArgs e)
@@ -267,7 +325,7 @@ namespace lighPayroll
             if (currentYear > minYear)
             {
                 currentYear--;
-                LoadRegisteredCount();
+                ApplyYearChange();
             }
             else
             {
@@ -280,7 +338,9 @@ namespace lighPayroll
             if (currentYear < maxYear)
             {
                 currentYear++;
-                LoadRegisteredCount();
+
+                ApplyYearChange();
+
             }
             else
             {
@@ -309,7 +369,7 @@ namespace lighPayroll
         //this is the pie that would appear on the right side of the dashboard
         private void LoadUserPieChart(string button)
         {
-            if (button == "user")
+            if (button == FEATURE_USER)
             {
                 int adminCount = dataAccess.GetUserCountByRole("Admin");
                 int managerCount = dataAccess.GetUserCountByRole("Manager");
@@ -320,14 +380,6 @@ namespace lighPayroll
                 {
                     new PieSeries<int>
                     {
-                        //this is without text inside
-                        //Values = new[] { adminCount },
-                        //Name = "Admin",
-                        //DataLabelsSize = 14,
-                        //DataLabelsPosition = LiveChartsCore.Measure.PolarLabelsPosition.Middle,
-                        //DataLabelsFormatter = point => $"{point.Coordinate.PrimaryValue} ({point.StackedValue.Share:P})"
-
-
                         Values = new[] { adminCount },
                         Name = "Admin",
                         DataLabelsSize = 11,
@@ -344,9 +396,6 @@ namespace lighPayroll
                         DataLabelsPosition = LiveChartsCore.Measure.PolarLabelsPosition.Middle,
                         DataLabelsPaint = new SolidColorPaint(SKColors.Beige), // label color
                         DataLabelsFormatter = point => $"Accountant \n{point.Coordinate.PrimaryValue} ({point.StackedValue.Share:P0})"
-
-
-
                     },
                     new PieSeries<int>
                     {
@@ -368,16 +417,27 @@ namespace lighPayroll
                         DataLabelsFormatter = point => $"Employee \n{point.Coordinate.PrimaryValue} ({point.StackedValue.Share:P0})"
                     }
                 };
+
+                rightPieChart.Update();
             }
-            else if (button == "leave")
+            else if (button == FEATURE_REQUESTS)
             {
 
+                int pending = requestsService.GetRequestCountByStatus("Pending");
+                int approved = requestsService.GetRequestCountByStatus("Approved");
+                int rejected = requestsService.GetRequestCountByStatus("Rejected");
+
+                rightPieChart.Series = new ISeries[]
+                {
+                    new PieSeries<int> { Values = new[] { pending }, Name = "Pending" },
+                    new PieSeries<int> { Values = new[] { approved }, Name = "Approved" },
+                    new PieSeries<int> { Values = new[] { rejected }, Name = "Rejected" }
+                };
+
             }
-            else if (button == "attendance")
+            else if (button == FEATURE_ATTENDANCE)
             {
-                int present = attendanceService.GetAttendanceCountByStatus("Present");
-                int late = attendanceService.GetAttendanceCountByStatus("Late");
-                int onLeave = attendanceService.GetAttendanceCountByStatus("Leave");
+                var (present, late, leave) = attendanceService.GetAttendanceCountToday();
 
                 rightPieChart.Series = new ISeries[]
                 {
@@ -393,12 +453,14 @@ namespace lighPayroll
                         DataLabelsPosition = LiveChartsCore.Measure.PolarLabelsPosition.Middle,
                         DataLabelsFormatter = p => $"Late ({p.Model})" },
 
-                    new PieSeries<int> { Values = new[] { onLeave }, Name = "Leave",
+                    new PieSeries<int> { Values = new[] { leave }, Name = "Leave",
                         Fill = new SolidColorPaint(SKColors.IndianRed), // pie color
                          DataLabelsSize = 11, // slightly bigger
                         DataLabelsPosition = LiveChartsCore.Measure.PolarLabelsPosition.Middle,
                         DataLabelsFormatter = p => $"Leave ({p.Model})" }
                 };
+
+                rightPieChart.Update();
             }
             else //if there is no count
             {
@@ -414,6 +476,8 @@ namespace lighPayroll
                         IsHoverable = false
                     }
                 };
+
+                rightPieChart.Update();
 
             }
 
@@ -456,6 +520,141 @@ namespace lighPayroll
               
             }
         }
+
+        private void ApplyYearChange()
+        {
+            yearLbl.Text = currentYear.ToString();
+
+            if (button_features == FEATURE_USER)
+            {
+                LoadUserCount();    
+                LoadUserPieChart(FEATURE_USER);
+                LoadRegisteredChartCount();
+            }
+            else if (button_features == FEATURE_ATTENDANCE)
+            {
+                LoadAttendanceCount();
+            }
+            else if (button_features == FEATURE_REQUESTS)
+            {
+                LoadRequestsCount();
+                LoadUserPieChart(FEATURE_REQUESTS);
+                LoadRequestsChartCount();
+                
+            }
+        }
+
+
+        private void XYAxis(string buttonFeature, IEnumerable<(int Month, int Total)> data)
+        {
+            double[] values = new double[12];
+
+            foreach (var item in data)
+            {
+                values[item.Month - 1] = item.Total;
+            }
+
+
+            leftCartesianChart.Series = new ISeries[]
+            {
+                new LineSeries<double>
+                {
+                    Values = values
+                }
+            };
+
+            leftCartesianChart.YAxes = new[]
+           {
+                new Axis
+                {
+                    Name = buttonFeature,
+
+                     LabelsPaint = new SolidColorPaint(SKColors.Beige),
+
+                    NamePaint = new SolidColorPaint(SKColors.DarkGray)
+                }
+
+            };
+
+            leftCartesianChart.XAxes = new[]
+            {
+                new Axis
+                {
+                    Labels = new[]
+                    {
+                        "Jan","Feb","Mar","Apr","May","Jun",
+                        "Jul","Aug","Sep","Oct","Nov","Dec"
+                    },
+
+                    LabelsPaint = new SolidColorPaint(SKColors.Beige),
+                    TextSize = 10,
+                    NamePaint = new SolidColorPaint(SKColors.DarkGray)
+                }
+            };
+        }
+
+        private void LoadAttendanceTrendChart(IEnumerable<(int Month, int Present, int Late, int Leave)> data)
+        {
+                double[] present = new double[12];
+                double[] late = new double[12];
+                double[] leave = new double[12];
+
+                foreach (var item in data)
+                {
+                    int index = item.Month - 1;
+
+                    present[index] = item.Present;
+                    late[index] = item.Late;
+                    leave[index] = item.Leave;
+                }
+
+                leftCartesianChart.Series = new ISeries[]
+                {
+                    new LineSeries<double>
+                    {
+                        Name = "Present",
+                        Values = present
+                    },
+                    new LineSeries<double>
+                    {
+                        Name = "Late",
+                        Values = late
+                    },
+                    new LineSeries<double>
+                    {
+                        Name = "Leave",
+                        Values = leave
+                    }
+                };
+
+                leftCartesianChart.XAxes = new[]
+                {
+                    new Axis
+                    {
+                        Labels = new[]
+                        {
+                            "Jan","Feb","Mar","Apr","May","Jun",
+                            "Jul","Aug","Sep","Oct","Nov","Dec"
+                        },
+
+                        LabelsPaint = new SolidColorPaint(SKColors.Beige),
+                        TextSize = 10,
+                        NamePaint = new SolidColorPaint(SKColors.DarkGray)
+                    }
+                 };
+
+            leftCartesianChart.YAxes = new[]
+            {
+                new Axis
+                {
+                    Name = "Attendance Count",
+                    LabelsPaint = new SolidColorPaint(SKColors.Beige),
+
+                    NamePaint = new SolidColorPaint(SKColors.DarkGray)
+                }
+            };
+        }
+
 
         private void label1_Click(object sender, EventArgs e)
         {
