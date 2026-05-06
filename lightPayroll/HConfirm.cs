@@ -126,7 +126,10 @@ namespace lighPayrollUI
                     this.Close();
                 };
             }
-        
+
+
+
+
 
     }
 }

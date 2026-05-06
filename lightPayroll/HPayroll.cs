@@ -11,8 +11,10 @@ namespace lighPayrollUI
 {
     internal class HPayroll
     {
+        private int user_id;
         public Payroll ShowPayrollForm(int employeeID, int accountantID)
         {
+            user_id = accountantID;
             PayrollService service = new PayrollService();
 
             Form form = new Form()
@@ -118,7 +120,7 @@ namespace lighPayrollUI
             // OK CLICK
             ok.Click += (s, e) =>
             {
-                AdUI message = new AdUI();
+                AdUI message = new AdUI(user_id);
 
                 if (periodEnd.Value < periodStart.Value)
                 {

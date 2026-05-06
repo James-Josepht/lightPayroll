@@ -32,8 +32,7 @@ namespace lighPayroll
 {
     public partial class AdDashboard : Form
     {
-        AdUI customMessages = new AdUI();
-        List<Users> attendance = new List<Users>();
+        AdUI customMessages;
         AttendanceService attendanceService = new AttendanceService();
         GeneralDataService dataAccess = new GeneralDataService();
         RequestsService requestsService = new RequestsService();
@@ -357,7 +356,7 @@ namespace lighPayroll
             }
             else
             {
-                AdUI home = new AdUI();
+                AdUI home = new AdUI(user_id);
                 home.Show();
 
             }

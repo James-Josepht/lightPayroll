@@ -17,12 +17,13 @@ namespace lighPayroll
 {
     public partial class AdUI : Form
     {
-
+        private int user_id;
         PLogIn loginDesigns = new PLogIn();
-        public AdUI()
+        public AdUI(int userID )
         {
             InitializeComponent();
             searchMenuStrip.Renderer = new MyRendererBackground(); //for search button design
+            user_id = userID;
         }
 
         private void AdminUI_Load(object sender, EventArgs e)
@@ -53,14 +54,14 @@ namespace lighPayroll
 
         private void attendanceToolClick(object sender, EventArgs e)
         {
-            AdFeature home = new AdFeature("Attendance");
+            AdFeature home = new AdFeature("Attendance", user_id);
             home.Show();
             this.Hide();
         }
 
         private void userControlPanel_Click(object sender, EventArgs e)
         {
-            AdFeature userModification = new AdFeature("UserControl");
+            AdFeature userModification = new AdFeature("UserControl", user_id);
             userModification.Show();
             this.Hide();
         }
@@ -78,7 +79,7 @@ namespace lighPayroll
         private void requestsPanel_Click(object sender, EventArgs e)
         {
 
-            AdFeature home = new AdFeature("Requests");
+            AdFeature home = new AdFeature("Requests", user_id);
             home.Show();
             this.Hide();
 
@@ -107,7 +108,7 @@ namespace lighPayroll
             if (e.KeyCode == Keys.Enter && storedFeatures.Any(feature => searchBox.Text.ToLower().Contains(feature)))
             {
                 e.SuppressKeyPress = true;
-                AdFeature attRecords = new AdFeature("Attendance");
+                AdFeature attRecords = new AdFeature("Attendance", user_id);
                 attRecords.Show();
                 this.Hide();
             }

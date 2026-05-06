@@ -24,7 +24,7 @@ namespace lighPayrollUI
 {
     public partial class EFeatures : Form
     {
-        AdUI adminUI = new AdUI(); //used for getting panel design and greeting service
+        AdUI adminUI; //used for getting panel design and greeting service
         GeneralDataService dataAccess = new GeneralDataService();
         AttendanceService attendanceDataAccess = new AttendanceService();
         PayrollService payrollService = new PayrollService();

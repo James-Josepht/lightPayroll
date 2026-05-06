@@ -18,7 +18,7 @@ namespace lighPayrollUI
     {
         private string user_role, user_name;
         private int user_id;
-        AdUI adminUI = new AdUI(); //used for getting panel design and greeting service
+        AdUI adminUI; //used for getting panel design and greeting service
         GreetingService greetings = new GreetingService(); //used for getting greetings
         PLogIn logIn = new PLogIn(); //used for applying greetings
 

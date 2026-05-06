@@ -46,7 +46,7 @@ namespace lighPayroll
         }
         private void searchBox_Click(object sender, KeyEventArgs e)
         {
-            AdUI customMessage = new AdUI();
+            AdUI customMessage = new AdUI(0);
             if (e.KeyCode == Keys.Enter)
             {
                 e.SuppressKeyPress = true; // prevents beep sound

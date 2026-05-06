@@ -52,8 +52,7 @@ namespace lighPayroll
             string email = userLogBox.Text.Trim();
             string password = passLogBox.Text.Trim();
             string formattedName = "";
-            AdUI admin = new AdUI();
-            
+           
             
             AuthService validator = new AuthService();
 
@@ -87,6 +86,8 @@ namespace lighPayroll
 
             if (status == "Active")
             {
+                AdUI admin = new AdUI(userID);
+
                 EUI employee = new EUI(role, formattedName, userID);
                 if (email.ToLower() == "admin" && password == "admin" || role == "Admin")
                 {

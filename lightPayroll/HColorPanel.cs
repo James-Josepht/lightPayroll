@@ -81,4 +81,5 @@ public static class HColorPanel //basically  this is commonly used for hovering 
         return ctrl.ClientRectangle.Contains(ctrl.PointToClient(Cursor.Position));
     }
 
+
 }
