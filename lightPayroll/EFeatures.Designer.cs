@@ -129,12 +129,16 @@
             requestFormPanel = new Panel();
             requestsTabPage = new TabControl();
             leaveTabPage = new TabPage();
+            leaveReasons = new TextBox();
+            label24 = new Label();
+            endLeave = new TextBox();
+            label23 = new Label();
             label4 = new Label();
             leaveButton = new Button();
-            leaveDateBox = new TextBox();
+            startLeave = new TextBox();
             label3 = new Label();
             leaveReasonsLbl = new Label();
-            leaveReasonBox = new ComboBox();
+            leaveTypeBox = new ComboBox();
             overtimeTabPage = new TabPage();
             overtimeButton = new Button();
             label5 = new Label();
@@ -1313,22 +1317,28 @@
             requestsTabPage.Controls.Add(leaveTabPage);
             requestsTabPage.Controls.Add(overtimeTabPage);
             requestsTabPage.Dock = DockStyle.Fill;
+            requestsTabPage.DrawMode = TabDrawMode.OwnerDrawFixed;
             requestsTabPage.Font = new Font("Segoe UI Historic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             requestsTabPage.Location = new Point(0, 0);
             requestsTabPage.Name = "requestsTabPage";
             requestsTabPage.SelectedIndex = 0;
             requestsTabPage.Size = new Size(504, 224);
             requestsTabPage.TabIndex = 3;
+            requestsTabPage.DrawItem += tabControl1_DrawItem;
             // 
             // leaveTabPage
             // 
             leaveTabPage.BackColor = Color.FromArgb(60, 80, 100);
+            leaveTabPage.Controls.Add(leaveReasons);
+            leaveTabPage.Controls.Add(label24);
+            leaveTabPage.Controls.Add(endLeave);
+            leaveTabPage.Controls.Add(label23);
             leaveTabPage.Controls.Add(label4);
             leaveTabPage.Controls.Add(leaveButton);
-            leaveTabPage.Controls.Add(leaveDateBox);
+            leaveTabPage.Controls.Add(startLeave);
             leaveTabPage.Controls.Add(label3);
             leaveTabPage.Controls.Add(leaveReasonsLbl);
-            leaveTabPage.Controls.Add(leaveReasonBox);
+            leaveTabPage.Controls.Add(leaveTypeBox);
             leaveTabPage.Location = new Point(4, 26);
             leaveTabPage.Name = "leaveTabPage";
             leaveTabPage.Padding = new Padding(3);
@@ -1336,15 +1346,50 @@
             leaveTabPage.TabIndex = 0;
             leaveTabPage.Text = "Leave";
             // 
+            // leaveReasons
+            // 
+            leaveReasons.Location = new Point(134, 129);
+            leaveReasons.Name = "leaveReasons";
+            leaveReasons.Size = new Size(149, 25);
+            leaveReasons.TabIndex = 36;
+            // 
+            // label24
+            // 
+            label24.AutoSize = true;
+            label24.ForeColor = Color.Beige;
+            label24.Location = new Point(51, 129);
+            label24.Name = "label24";
+            label24.Size = new Size(60, 17);
+            label24.TabIndex = 35;
+            label24.Text = "Reasons:";
+            // 
+            // endLeave
+            // 
+            endLeave.Location = new Point(134, 91);
+            endLeave.Name = "endLeave";
+            endLeave.Size = new Size(149, 25);
+            endLeave.TabIndex = 34;
+            // 
+            // label23
+            // 
+            label23.AutoSize = true;
+            label23.ForeColor = Color.Beige;
+            label23.Location = new Point(51, 91);
+            label23.Name = "label23";
+            label23.Size = new Size(64, 17);
+            label23.TabIndex = 33;
+            label23.Text = "End Date:";
+            // 
             // label4
             // 
             label4.AutoSize = true;
             label4.ForeColor = Color.Beige;
-            label4.Location = new Point(51, 166);
+            label4.Location = new Point(51, 172);
             label4.Name = "label4";
             label4.Size = new Size(250, 17);
             label4.TabIndex = 30;
             label4.Text = "NOTE: SELECT A DATE IN THE CALENDAR";
+            label4.Click += label4_Click;
             // 
             // leaveButton
             // 
@@ -1363,43 +1408,43 @@
             leaveButton.UseVisualStyleBackColor = false;
             leaveButton.Click += leaveButton_Click;
             // 
-            // leaveDateBox
+            // startLeave
             // 
-            leaveDateBox.Location = new Point(120, 69);
-            leaveDateBox.Name = "leaveDateBox";
-            leaveDateBox.Size = new Size(149, 25);
-            leaveDateBox.TabIndex = 32;
+            startLeave.Location = new Point(134, 51);
+            startLeave.Name = "startLeave";
+            startLeave.Size = new Size(149, 25);
+            startLeave.TabIndex = 32;
             // 
             // label3
             // 
             label3.AutoSize = true;
             label3.ForeColor = Color.Beige;
-            label3.Location = new Point(51, 69);
+            label3.Location = new Point(51, 51);
             label3.Name = "label3";
-            label3.Size = new Size(38, 17);
+            label3.Size = new Size(69, 17);
             label3.TabIndex = 31;
-            label3.Text = "Date:";
+            label3.Text = "Start Date:";
             // 
             // leaveReasonsLbl
             // 
             leaveReasonsLbl.AutoSize = true;
             leaveReasonsLbl.ForeColor = Color.Beige;
-            leaveReasonsLbl.Location = new Point(51, 26);
+            leaveReasonsLbl.Location = new Point(51, 17);
             leaveReasonsLbl.Name = "leaveReasonsLbl";
-            leaveReasonsLbl.Size = new Size(60, 17);
+            leaveReasonsLbl.Size = new Size(39, 17);
             leaveReasonsLbl.TabIndex = 30;
-            leaveReasonsLbl.Text = "Reasons:";
+            leaveReasonsLbl.Text = "Type:";
             // 
-            // leaveReasonBox
+            // leaveTypeBox
             // 
-            leaveReasonBox.Font = new Font("Segoe UI Historic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            leaveReasonBox.ForeColor = Color.FromArgb(68, 68, 68);
-            leaveReasonBox.FormattingEnabled = true;
-            leaveReasonBox.Items.AddRange(new object[] { "Sick", "Maternity / Paternity", "Vacation", "Emergency" });
-            leaveReasonBox.Location = new Point(120, 23);
-            leaveReasonBox.Name = "leaveReasonBox";
-            leaveReasonBox.Size = new Size(149, 25);
-            leaveReasonBox.TabIndex = 1;
+            leaveTypeBox.Font = new Font("Segoe UI Historic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            leaveTypeBox.ForeColor = Color.FromArgb(68, 68, 68);
+            leaveTypeBox.FormattingEnabled = true;
+            leaveTypeBox.Items.AddRange(new object[] { "Sick", "Maternity / Paternity", "Vacation", "Emergency" });
+            leaveTypeBox.Location = new Point(134, 14);
+            leaveTypeBox.Name = "leaveTypeBox";
+            leaveTypeBox.Size = new Size(149, 25);
+            leaveTypeBox.TabIndex = 1;
             // 
             // overtimeTabPage
             // 
@@ -1745,7 +1790,6 @@
             Controls.Add(panel1);
             Controls.Add(tableLayoutPanel1);
             MaximizeBox = false;
-            MinimizeBox = false;
             Name = "EFeatures";
             StartPosition = FormStartPosition.CenterScreen;
             Load += EmployeeFeature_Load;
@@ -1879,13 +1923,13 @@
         private Button leaveButton;
         private Panel requestCalendarPanel;
         private Panel requestFormPanel;
-        private ComboBox leaveReasonBox;
+        private ComboBox leaveTypeBox;
         private TabControl requestsTabPage;
         private TabPage leaveTabPage;
         private TabPage overtimeTabPage;
         private Label leaveReasonsLbl;
         private Label label3;
-        private TextBox leaveDateBox;
+        private TextBox startLeave;
         private Label label4;
         private Label label5;
         private TextBox overtimeDateBox;
@@ -1935,5 +1979,9 @@
         private Label label21;
         private Label netPayLbl;
         private Label label22;
+        private TextBox leaveReasons;
+        private Label label24;
+        private TextBox endLeave;
+        private Label label23;
     }
 }

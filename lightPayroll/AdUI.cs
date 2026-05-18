@@ -70,7 +70,7 @@ namespace lighPayroll
 
         private void toDoPanel_Click(object sender, EventArgs e)
         {
-            AdDashboard dashboard = new AdDashboard("Admin", "null", 0);
+            AdDashboard dashboard = new AdDashboard("Admin", "null", user_id);
             dashboard.Show();
             this.Hide();
 
@@ -95,26 +95,64 @@ namespace lighPayroll
             this.Hide();
         }
 
-        private void searchBox_Click(object sender, KeyEventArgs e) //incase user want to search for a feature
+        private void searchBox_Click(object sender, KeyEventArgs e)
         {
-            List<string> storedFeatures = new List<string>
+            if (e.KeyCode != Keys.Enter)
+                return;
+
+            e.SuppressKeyPress = true;
+
+            string search = searchBox.Text.ToLower().Trim();
+
+            Dictionary<string, Action> features = new Dictionary<string, Action>()
             {
-                "attendance",
-                "employee removal",
-                "payroll",
-                "reports"
+                {
+                    "attendance",
+                    () =>
+                    {
+                        AdFeature attRecords = new AdFeature("Attendance", user_id);
+                        attRecords.Show();
+                        this.Hide();
+                    }
+            },
+
+
+            {
+                "user modification",
+                () =>
+                {
+                    AdFeature remove = new AdFeature("UserControl", user_id);
+                    remove.Show();
+                    this.Hide();
+                }
+            },
+
+            {
+                "overtime",
+                () =>
+                {
+                    AdFeature payroll = new AdFeature("Requests", user_id);
+                    payroll.Show();
+                    this.Hide();
+                }
+            },
+
             };
 
-            if (e.KeyCode == Keys.Enter && storedFeatures.Any(feature => searchBox.Text.ToLower().Contains(feature)))
+            // Find matching feature
+            var matchedFeature = features
+                .FirstOrDefault(f => search.Contains(f.Key));
+
+            if (!matchedFeature.Equals(default(KeyValuePair<string, Action>)))
             {
-                e.SuppressKeyPress = true;
-                AdFeature attRecords = new AdFeature("Attendance", user_id);
-                attRecords.Show();
-                this.Hide();
+                matchedFeature.Value.Invoke();
             }
-            else if (e.KeyCode == Keys.Enter && !storedFeatures.Any(feature => searchBox.Text.ToLower().Contains(feature)))
+            else
             {
-                CustomMessageBox("No results found\r\n\r\nYou may want to try different keywords or check for any possible typos.");
+                CustomMessageBox(
+                    "No results found\r\n\r\n" +
+                    "You may want to try different keywords or check for any possible typos."
+                );
             }
         }
 
@@ -193,7 +231,9 @@ namespace lighPayroll
 
         private void chatButton_Click(object sender, EventArgs e)
         {
-            CustomMessageBox("Feature coming soon!");
+            Chat chatModule = new Chat("Admin", "AdminUser", user_id);
+            chatModule.Show();
+            this.Hide();
         }
     }
 

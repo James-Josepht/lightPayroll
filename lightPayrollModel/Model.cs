@@ -127,13 +127,6 @@ namespace lightPayrollModel
     }
 
 
-    public class MonthlyPayrollStats
-    {
-        public int Month { get; set; }
-        public double WorkedHours { get; set; }
-        public double LeaveHours { get; set; }
-        public double DeductedHours { get; set; }
-    }
 
     public class Payroll
     {
@@ -172,8 +165,27 @@ namespace lightPayrollModel
         }
     }
 
-    public class LeaveRequest : BaseEntity
+
+    // =========================
+    // TAG OBJECT
+    // =========================
+    public class ChatUserTag
     {
+        public int Id { get; set; }
+        public string Name { get; set; }
+    }
+    public class ChatMessage
+    {
+        public int MessageID { get; set; }
+        public int SenderID { get; set; }
+        public int ReceiverID { get; set; }
+        public string Message { get; set; }
+        public string SentAt { get; set; }
+    }
+
+    public class LeaveRequest
+    {
+        public int LeaveID { get; set; }
         public int EmployeeID { get; set; }
         public string? LeaveType { get; set; }
         public DateTime? StartDate { get; set; }
@@ -182,39 +194,20 @@ namespace lightPayrollModel
         public string? Status { get; set; }
         public int ApprovedBy { get; set; }
 
-        public override void Validate()
-        {
-            if (EmployeeID <= 0)
-                throw new Exception("Invalid Employee ID");
-        }
     }
 
-    public class OvertimeRequest : BaseEntity
+    public class OvertimeRequest
     {
+        public int OvertimeID { get; set; }
         public int EmployeeID { get; set; }
         public DateTime? Date { get; set; }
         public float? HoursRendered { get; set; }
         public string? Status { get; set; }
         public int ApprovedBy { get; set; }
 
-        public override void Validate()
-        {
-            if (EmployeeID <= 0)
-                throw new Exception("Invalid Employee ID");
-        }
     }
 
-    public class Report : BaseEntity
-    {
-        public string? ReportType { get; set; }
-        public int GeneratedBy { get; set; }
 
-        public override void Validate()
-        {
-            if (string.IsNullOrWhiteSpace(ReportType))
-                throw new Exception("Report type is required");
-        }
-    }
 
     public class AttendanceAdmin
     {

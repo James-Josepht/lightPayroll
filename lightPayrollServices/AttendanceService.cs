@@ -121,12 +121,35 @@ namespace lightPayrollServices
                 return attendances;
             }
         }
-        
+
 
         /// 
         /// INSERTING PART 
         /// 
 
+        public void InsertAttendance(AttendanceAdmin user)
+        {
+            using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
+            {
+                var fullName = GetFullNameByEmployeeId(user.EmployeeID);
+
+                conn.Execute(
+                    @"INSERT INTO AttendanceTable
+              (EmployeeID, FullName, Date, TimeIn, TimeOut, Status, Remarks)
+              VALUES
+              (@EmployeeID, @FullName, @Date, @TimeIn, @TimeOut, @Status, @Remarks);",
+                    new
+                    {
+                        user.EmployeeID,
+                        FullName = fullName,
+                        user.Date,
+                        user.TimeIn,
+                        user.TimeOut,
+                        user.Status,
+                        user.Remarks
+                    });
+            }
+        }
 
         public int InsertClock(AttendanceUser user, int employeeID, string fullName)
         {
@@ -165,7 +188,52 @@ namespace lightPayrollServices
         /// UPDATING
         /// PART
         /// 
-        
+   
+      
+  
+        public void ApplyLeave(int employeeId, DateTime startDate, DateTime endDate)
+        {
+            using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
+            {
+                conn.Open();
+
+                for (DateTime date = startDate.Date; date <= endDate.Date; date = date.AddDays(1))
+                {
+                    // check if attendance exists
+                    var existingId = conn.ExecuteScalar<int?>(
+                        @"SELECT AttendanceID
+                  FROM AttendanceTable
+                  WHERE EmployeeID = @EmployeeID
+                  AND DATE(Date) = DATE(@Date)
+                  LIMIT 1;",
+                        new { EmployeeID = employeeId, Date = date });
+
+                    if (existingId.HasValue)
+                    {
+                        // UPDATE existing
+                        conn.Execute(
+                            @"UPDATE AttendanceTable
+                      SET Status = 'Leave',
+                          Remarks = 'Pending'
+                      WHERE AttendanceID = @Id;",
+                            new { Id = existingId.Value });
+                    }
+                    else
+                    {
+                        // INSERT new
+                        InsertAttendance(new AttendanceAdmin
+                        {
+                            EmployeeID = employeeId,
+                            Date = date,
+                            TimeIn = null,
+                            TimeOut = null,
+                            Status = "Leave",
+                            Remarks = "Pending"
+                        });
+                    }
+                }
+            }
+        }
         public void UpdateClockOut(int attendanceId, DateTime timeOut)
         {
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
@@ -205,6 +273,18 @@ namespace lightPayrollServices
         //
         // GETTING / SEARCHING
         //
+
+        public List<LeaveRequest> GetApprovedLeaves()
+        {
+            using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
+            {
+                return conn.Query<LeaveRequest>(
+                    @"SELECT *
+              FROM LeaveRequestsTable
+              WHERE Status = 'Approved'",
+                    new DynamicParameters()).ToList();
+            }
+        }
 
         public IEnumerable<(int Month, int Present, int Late, int Leave)> GetMonthlyAttendanceBreakdown(int year)
         {

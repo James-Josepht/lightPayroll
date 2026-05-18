@@ -89,7 +89,7 @@ namespace lighPayroll
                 AdUI admin = new AdUI(userID);
 
                 EUI employee = new EUI(role, formattedName, userID);
-                if (email.ToLower() == "admin" && password == "admin" || role == "Admin")
+                if ((email.ToLower() == "admin" && password == "admin") || role == "Admin" || role == "Manager")
                 {
 
                     //string pass = PasswordHash.HashPassword("testpass");
@@ -167,7 +167,7 @@ namespace lighPayroll
                 if (i < text.Length)
                 {
                     lbl.Text += text[i];
-                    i++;
+                        i++;
                 }
                 else
                 {

@@ -24,7 +24,7 @@ namespace lighPayrollUI
 {
     public partial class EFeatures : Form
     {
-        AdUI adminUI; //used for getting panel design and greeting service
+        AdUI adminUI = new AdUI(0); //used for getting panel design and greeting service
         GeneralDataService dataAccess = new GeneralDataService();
         AttendanceService attendanceDataAccess = new AttendanceService();
         PayrollService payrollService = new PayrollService();
@@ -290,14 +290,19 @@ namespace lighPayrollUI
         {
             if (DesignMode) return; // I need to add this check to prevent design-time errors when drawing tabs in the designer
 
+            TabControl tabControl = (TabControl)sender;
 
-            TabPage tabPage = employeeFeatures.TabPages[e.Index];
-            Rectangle tabBounds = employeeFeatures.GetTabRect(e.Index);
+            // Safety check
+            if (e.Index < 0 || e.Index >= tabControl.TabPages.Count)
+                return;
+
+            TabPage tabPage = tabControl.TabPages[e.Index];
+            Rectangle tabBounds = tabControl.GetTabRect(e.Index);
 
             // Choose color per tab (example)
             Color textColor;
 
-            if (e.Index == employeeFeatures.SelectedIndex)
+            if (e.Index == tabControl.SelectedIndex)
                 textColor = Color.FromArgb(33, 44, 66);   // selected tab
             else
                 textColor = Color.Gray;   // unselected tabs
@@ -650,7 +655,7 @@ namespace lighPayrollUI
                     sssDeducLbl.Text = payroll.SSS.ToString();
                     philHealthDLabel.Text = payroll.PhilHealth.ToString();
                     taxDLbl.Text = payroll.WithholdingTax.ToString();
-                    
+
                     pagIbigDLabl.Text = payroll.PagIBIG.ToString();
                     othersDLbl.Text = payroll.Deductions.ToString();
 
@@ -739,28 +744,33 @@ namespace lighPayrollUI
 
         private void leaveButton_Click(object sender, EventArgs e)
         {
-            string date = leaveDateBox.Text;
-            string type = leaveReasonBox.Text;
+            string startDate = startLeave.Text, endDate = endLeave.Text;
+            string type = leaveTypeBox.Text, reason = leaveReasons.Text;
+
+            int accountantID = user_id;
+
+            if (string.IsNullOrEmpty(startDate) || string.IsNullOrEmpty(type) || string.IsNullOrEmpty(endDate) || string.IsNullOrEmpty(reason))
+            {
+                adminUI.CustomMessageBox("Incomplete input. Try again");
+                return;
+            }
 
             ConfirmForm confirm = new ConfirmForm(
-               $"Confirm to submit this leave request?\n\n", $"\t\tDate: {date}\n\t\tReason: {type}");
+               $"Confirm to submit this leave request?\n\n", $"\t\tDate: {startDate} to {endDate}\n\t\tType: {type}");
             confirm.ShowDialog();
 
 
 
             if (confirm.Result)
             {
-                if (string.IsNullOrEmpty(date) || string.IsNullOrEmpty(type))
-                {
-                    adminUI.CustomMessageBox("Empty input. Try again");
-                    return;
-                }
 
                 GeneralDataService db = new GeneralDataService();
 
                 int employeeId = db.GetEmployeeIdByUserId(user_id);
 
-                db.InsertLeave(employeeId, date, type);
+                db.InsertLeave(employeeId, type, startDate, endDate, reason, null);
+
+                adminUI.CustomMessageBox("Sent successfully.");
             }
 
         }
@@ -769,16 +779,17 @@ namespace lighPayrollUI
             string date = overtimeDateBox.Text;
             string type = overtimeBox.Text;
 
-
-            ConfirmForm confirm = new ConfirmForm(
-               $"Confirm to submit this overtime request?\n\n", $"\t\tDate: {date}\n\t\tType: {type}");
-            confirm.ShowDialog();
-
             if (string.IsNullOrEmpty(date) || string.IsNullOrEmpty(type))
             {
                 adminUI.CustomMessageBox("Empty input. Try again");
                 return;
             }
+
+            ConfirmForm confirm = new ConfirmForm(
+               $"Confirm to submit this overtime request?\n\n", $"\t\tDate: {date}\n\t\tType: {type}");
+            confirm.ShowDialog();
+
+            
 
             if (confirm.Result)
             {
@@ -800,10 +811,23 @@ namespace lighPayrollUI
 
         }
 
+        private bool selectingStartDate = true;
         private void requestsCalendar_DateSelected(object sender, DateRangeEventArgs e)
         {
-            leaveDateBox.Text = e.Start.ToString("yyyy-MM-dd");
-            overtimeDateBox.Text = e.End.ToString("yyyy-MM-dd");
+            string selectedDate = e.Start.ToString("yyyy-MM-dd");
+
+            if (selectingStartDate)
+            {
+                startLeave.Text = selectedDate;
+                overtimeDateBox.Text = selectedDate;
+            }
+            else
+            {
+                endLeave.Text = selectedDate;
+            }
+
+            // switch target for next click
+            selectingStartDate = !selectingStartDate;
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
@@ -817,6 +841,11 @@ namespace lighPayrollUI
         }
 
         private void label28_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
         {
 
         }

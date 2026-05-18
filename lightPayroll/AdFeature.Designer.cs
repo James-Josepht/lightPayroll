@@ -61,35 +61,27 @@
             label2 = new Label();
             label3 = new Label();
             label4 = new Label();
-            comboBox1 = new ComboBox();
             label5 = new Label();
             comboBox2 = new ComboBox();
-            label6 = new Label();
             textBox1 = new TextBox();
             panel4 = new Panel();
-            button2 = new Button();
-            button3 = new Button();
-            button4 = new Button();
-            button5 = new Button();
-            dataGridView1 = new DataGridView();
+            modifyOvertime = new Button();
+            searchOvertime = new Button();
+            overtimeGrid = new DataGridView();
             tabPage1 = new TabPage();
-            dataGridView2 = new DataGridView();
+            leaveGrid = new DataGridView();
             panel5 = new Panel();
             leaveLoadPnl = new Panel();
             leaveLoadBtn = new Button();
             label7 = new Label();
             label8 = new Label();
             label9 = new Label();
-            comboBox3 = new ComboBox();
             label10 = new Label();
-            comboBox4 = new ComboBox();
-            label11 = new Label();
-            textBox2 = new TextBox();
+            inputLeaveStatus = new ComboBox();
+            searchEmployeeID = new TextBox();
             panel7 = new Panel();
-            button7 = new Button();
-            button8 = new Button();
-            button9 = new Button();
-            button10 = new Button();
+            modifyLeave = new Button();
+            searchLeave = new Button();
             dataGrid = new DataGridView();
             noteLabel = new Label();
             upperBodyPanel = new Panel();
@@ -122,9 +114,9 @@
             panel1.SuspendLayout();
             overtimeLoadPnl.SuspendLayout();
             panel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)overtimeGrid).BeginInit();
             tabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)leaveGrid).BeginInit();
             panel5.SuspendLayout();
             leaveLoadPnl.SuspendLayout();
             panel7.SuspendLayout();
@@ -327,7 +319,7 @@
             // 
             overtimeTabPage.BackColor = Color.FromArgb(33, 44, 66);
             overtimeTabPage.Controls.Add(panel1);
-            overtimeTabPage.Controls.Add(dataGridView1);
+            overtimeTabPage.Controls.Add(overtimeGrid);
             overtimeTabPage.Location = new Point(4, 26);
             overtimeTabPage.Name = "overtimeTabPage";
             overtimeTabPage.Padding = new Padding(3);
@@ -341,10 +333,8 @@
             panel1.Controls.Add(label2);
             panel1.Controls.Add(label3);
             panel1.Controls.Add(label4);
-            panel1.Controls.Add(comboBox1);
             panel1.Controls.Add(label5);
             panel1.Controls.Add(comboBox2);
-            panel1.Controls.Add(label6);
             panel1.Controls.Add(textBox1);
             panel1.Controls.Add(panel4);
             panel1.Dock = DockStyle.Top;
@@ -386,9 +376,9 @@
             label2.ForeColor = Color.Beige;
             label2.Location = new Point(36, 41);
             label2.Name = "label2";
-            label2.Size = new Size(208, 17);
+            label2.Size = new Size(168, 17);
             label2.TabIndex = 22;
-            label2.Text = "Trust, but always verify!";
+            label2.Text = "Check some requests!";
             // 
             // label3
             // 
@@ -409,21 +399,11 @@
             label4.Cursor = Cursors.Hand;
             label4.Font = new Font("Ubuntu Mono", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.Beige;
-            label4.Location = new Point(605, 22);
+            label4.Location = new Point(605, 41);
             label4.Name = "label4";
             label4.Size = new Size(128, 17);
             label4.TabIndex = 30;
             label4.Text = "Username or ID:";
-            // 
-            // comboBox1
-            // 
-            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "Accountant", "Employee", "Manager", "Admin" });
-            comboBox1.Location = new Point(744, 73);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(100, 25);
-            comboBox1.TabIndex = 34;
             // 
             // label5
             // 
@@ -432,7 +412,7 @@
             label5.Cursor = Cursors.Hand;
             label5.Font = new Font("Ubuntu Mono", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.Beige;
-            label5.Location = new Point(669, 49);
+            label5.Location = new Point(669, 68);
             label5.Name = "label5";
             label5.Size = new Size(64, 17);
             label5.TabIndex = 29;
@@ -442,104 +422,61 @@
             // 
             comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox2.FormattingEnabled = true;
-            comboBox2.Items.AddRange(new object[] { "Active", "Pending", "Rejected" });
-            comboBox2.Location = new Point(744, 45);
+            comboBox2.Items.AddRange(new object[] { "Approved", "Pending", "Rejected" });
+            comboBox2.Location = new Point(744, 64);
             comboBox2.Name = "comboBox2";
             comboBox2.Size = new Size(100, 25);
             comboBox2.TabIndex = 33;
             // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.BackColor = Color.FromArgb(33, 44, 66);
-            label6.Cursor = Cursors.Hand;
-            label6.Font = new Font("Ubuntu Mono", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label6.ForeColor = Color.Beige;
-            label6.Location = new Point(685, 76);
-            label6.Name = "label6";
-            label6.Size = new Size(48, 17);
-            label6.TabIndex = 32;
-            label6.Text = "Role:";
-            // 
             // textBox1
             // 
-            textBox1.Location = new Point(744, 16);
+            textBox1.Location = new Point(744, 35);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(100, 25);
             textBox1.TabIndex = 27;
             // 
             // panel4
             // 
-            panel4.Controls.Add(button2);
-            panel4.Controls.Add(button3);
-            panel4.Controls.Add(button4);
-            panel4.Controls.Add(button5);
+            panel4.Controls.Add(modifyOvertime);
+            panel4.Controls.Add(searchOvertime);
             panel4.Location = new Point(562, 104);
             panel4.Name = "panel4";
             panel4.Size = new Size(320, 34);
             panel4.TabIndex = 24;
             // 
-            // button2
+            // modifyOvertime
             // 
-            button2.BackColor = Color.FromArgb(33, 44, 66);
-            button2.BackgroundImage = Properties.Resources.modify;
-            button2.BackgroundImageLayout = ImageLayout.Stretch;
-            button2.Cursor = Cursors.Hand;
-            button2.FlatStyle = FlatStyle.Flat;
-            button2.ForeColor = Color.FromArgb(33, 44, 66);
-            button2.Location = new Point(248, 7);
-            button2.Name = "button2";
-            button2.Size = new Size(43, 25);
-            button2.TabIndex = 2;
-            button2.UseVisualStyleBackColor = false;
+            modifyOvertime.BackColor = Color.FromArgb(33, 44, 66);
+            modifyOvertime.BackgroundImage = Properties.Resources.modify;
+            modifyOvertime.BackgroundImageLayout = ImageLayout.Stretch;
+            modifyOvertime.Cursor = Cursors.Hand;
+            modifyOvertime.FlatStyle = FlatStyle.Flat;
+            modifyOvertime.ForeColor = Color.FromArgb(33, 44, 66);
+            modifyOvertime.Location = new Point(248, 7);
+            modifyOvertime.Name = "modifyOvertime";
+            modifyOvertime.Size = new Size(43, 25);
+            modifyOvertime.TabIndex = 2;
+            modifyOvertime.UseVisualStyleBackColor = false;
             // 
-            // button3
+            // searchOvertime
             // 
-            button3.BackColor = Color.FromArgb(33, 44, 66);
-            button3.BackgroundImage = Properties.Resources.minus;
-            button3.BackgroundImageLayout = ImageLayout.Stretch;
-            button3.Cursor = Cursors.Hand;
-            button3.FlatStyle = FlatStyle.Flat;
-            button3.ForeColor = Color.FromArgb(33, 44, 66);
-            button3.Location = new Point(187, 7);
-            button3.Name = "button3";
-            button3.Size = new Size(43, 25);
-            button3.TabIndex = 1;
-            button3.UseVisualStyleBackColor = false;
+            searchOvertime.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            searchOvertime.BackColor = Color.FromArgb(33, 44, 66);
+            searchOvertime.BackgroundImage = Properties.Resources.search;
+            searchOvertime.BackgroundImageLayout = ImageLayout.Stretch;
+            searchOvertime.Cursor = Cursors.Hand;
+            searchOvertime.FlatStyle = FlatStyle.Flat;
+            searchOvertime.ForeColor = Color.FromArgb(33, 44, 66);
+            searchOvertime.Location = new Point(187, 7);
+            searchOvertime.Name = "searchOvertime";
+            searchOvertime.Size = new Size(43, 25);
+            searchOvertime.TabIndex = 3;
+            searchOvertime.UseVisualStyleBackColor = false;
             // 
-            // button4
+            // overtimeGrid
             // 
-            button4.BackColor = Color.FromArgb(33, 44, 66);
-            button4.BackgroundImage = Properties.Resources.plus;
-            button4.BackgroundImageLayout = ImageLayout.Stretch;
-            button4.Cursor = Cursors.Hand;
-            button4.FlatStyle = FlatStyle.Flat;
-            button4.ForeColor = Color.FromArgb(33, 44, 66);
-            button4.Location = new Point(128, 7);
-            button4.Name = "button4";
-            button4.Size = new Size(43, 25);
-            button4.TabIndex = 0;
-            button4.UseVisualStyleBackColor = false;
-            // 
-            // button5
-            // 
-            button5.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            button5.BackColor = Color.FromArgb(33, 44, 66);
-            button5.BackgroundImage = Properties.Resources.search;
-            button5.BackgroundImageLayout = ImageLayout.Stretch;
-            button5.Cursor = Cursors.Hand;
-            button5.FlatStyle = FlatStyle.Flat;
-            button5.ForeColor = Color.FromArgb(33, 44, 66);
-            button5.Location = new Point(66, 7);
-            button5.Name = "button5";
-            button5.Size = new Size(43, 25);
-            button5.TabIndex = 3;
-            button5.UseVisualStyleBackColor = false;
-            // 
-            // dataGridView1
-            // 
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            overtimeGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            overtimeGrid.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = Color.FromArgb(60, 80, 100);
             dataGridViewCellStyle2.Font = new Font("Ubuntu Mono Medium", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -547,8 +484,8 @@
             dataGridViewCellStyle2.SelectionBackColor = SystemColors.ControlDark;
             dataGridViewCellStyle2.SelectionForeColor = SystemColors.ControlText;
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            overtimeGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            overtimeGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = SystemColors.Window;
             dataGridViewCellStyle3.Font = new Font("Segoe UI Historic", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -556,10 +493,10 @@
             dataGridViewCellStyle3.SelectionBackColor = SystemColors.ScrollBar;
             dataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(40, 40, 40);
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
-            dataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
-            dataGridView1.Location = new Point(89, 154);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.ReadOnly = true;
+            overtimeGrid.DefaultCellStyle = dataGridViewCellStyle3;
+            overtimeGrid.Location = new Point(89, 154);
+            overtimeGrid.Name = "overtimeGrid";
+            overtimeGrid.ReadOnly = true;
             dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle4.BackColor = Color.FromArgb(60, 80, 100);
             dataGridViewCellStyle4.Font = new Font("Segoe UI", 9.75F);
@@ -567,16 +504,16 @@
             dataGridViewCellStyle4.SelectionBackColor = SystemColors.ControlDark;
             dataGridViewCellStyle4.SelectionForeColor = SystemColors.ControlText;
             dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-            dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.RowTemplate.Height = 40;
-            dataGridView1.Size = new Size(758, 224);
-            dataGridView1.TabIndex = 24;
+            overtimeGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            overtimeGrid.RowHeadersWidth = 51;
+            overtimeGrid.RowTemplate.Height = 40;
+            overtimeGrid.Size = new Size(758, 224);
+            overtimeGrid.TabIndex = 24;
             // 
             // tabPage1
             // 
             tabPage1.BackColor = Color.FromArgb(33, 44, 66);
-            tabPage1.Controls.Add(dataGridView2);
+            tabPage1.Controls.Add(leaveGrid);
             tabPage1.Controls.Add(panel5);
             tabPage1.Location = new Point(4, 26);
             tabPage1.Name = "tabPage1";
@@ -585,10 +522,10 @@
             tabPage1.TabIndex = 2;
             tabPage1.Text = "Leave";
             // 
-            // dataGridView2
+            // leaveGrid
             // 
-            dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridView2.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            leaveGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            leaveGrid.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = Color.FromArgb(60, 80, 100);
             dataGridViewCellStyle5.Font = new Font("Ubuntu Mono Medium", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -596,8 +533,8 @@
             dataGridViewCellStyle5.SelectionBackColor = SystemColors.ControlDark;
             dataGridViewCellStyle5.SelectionForeColor = SystemColors.ControlText;
             dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
-            dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
-            dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            leaveGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            leaveGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle6.BackColor = SystemColors.Window;
             dataGridViewCellStyle6.Font = new Font("Segoe UI Historic", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -605,10 +542,10 @@
             dataGridViewCellStyle6.SelectionBackColor = SystemColors.ScrollBar;
             dataGridViewCellStyle6.SelectionForeColor = Color.FromArgb(40, 40, 40);
             dataGridViewCellStyle6.WrapMode = DataGridViewTriState.False;
-            dataGridView2.DefaultCellStyle = dataGridViewCellStyle6;
-            dataGridView2.Location = new Point(89, 154);
-            dataGridView2.Name = "dataGridView2";
-            dataGridView2.ReadOnly = true;
+            leaveGrid.DefaultCellStyle = dataGridViewCellStyle6;
+            leaveGrid.Location = new Point(89, 154);
+            leaveGrid.Name = "leaveGrid";
+            leaveGrid.ReadOnly = true;
             dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle7.BackColor = Color.FromArgb(60, 80, 100);
             dataGridViewCellStyle7.Font = new Font("Segoe UI", 9.75F);
@@ -616,11 +553,12 @@
             dataGridViewCellStyle7.SelectionBackColor = SystemColors.ControlDark;
             dataGridViewCellStyle7.SelectionForeColor = SystemColors.ControlText;
             dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
-            dataGridView2.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
-            dataGridView2.RowHeadersWidth = 51;
-            dataGridView2.RowTemplate.Height = 40;
-            dataGridView2.Size = new Size(758, 224);
-            dataGridView2.TabIndex = 41;
+            leaveGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            leaveGrid.RowHeadersWidth = 51;
+            leaveGrid.RowTemplate.Height = 40;
+            leaveGrid.Size = new Size(758, 224);
+            leaveGrid.TabIndex = 41;
+            leaveGrid.CellClick += leaveGrid_CellClick;
             // 
             // panel5
             // 
@@ -628,17 +566,16 @@
             panel5.Controls.Add(label7);
             panel5.Controls.Add(label8);
             panel5.Controls.Add(label9);
-            panel5.Controls.Add(comboBox3);
             panel5.Controls.Add(label10);
-            panel5.Controls.Add(comboBox4);
-            panel5.Controls.Add(label11);
-            panel5.Controls.Add(textBox2);
+            panel5.Controls.Add(inputLeaveStatus);
+            panel5.Controls.Add(searchEmployeeID);
             panel5.Controls.Add(panel7);
             panel5.Dock = DockStyle.Top;
             panel5.Location = new Point(3, 3);
             panel5.Name = "panel5";
             panel5.Size = new Size(899, 145);
             panel5.TabIndex = 40;
+            panel5.Paint += panel5_Paint;
             // 
             // leaveLoadPnl
             // 
@@ -696,21 +633,11 @@
             label9.Cursor = Cursors.Hand;
             label9.Font = new Font("Ubuntu Mono", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label9.ForeColor = Color.Beige;
-            label9.Location = new Point(605, 22);
+            label9.Location = new Point(605, 41);
             label9.Name = "label9";
             label9.Size = new Size(128, 17);
             label9.TabIndex = 30;
             label9.Text = "Username or ID:";
-            // 
-            // comboBox3
-            // 
-            comboBox3.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBox3.FormattingEnabled = true;
-            comboBox3.Items.AddRange(new object[] { "Accountant", "Employee", "Manager", "Admin" });
-            comboBox3.Location = new Point(744, 73);
-            comboBox3.Name = "comboBox3";
-            comboBox3.Size = new Size(100, 25);
-            comboBox3.TabIndex = 34;
             // 
             // label10
             // 
@@ -719,109 +646,68 @@
             label10.Cursor = Cursors.Hand;
             label10.Font = new Font("Ubuntu Mono", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label10.ForeColor = Color.Beige;
-            label10.Location = new Point(669, 49);
+            label10.Location = new Point(669, 68);
             label10.Name = "label10";
             label10.Size = new Size(64, 17);
             label10.TabIndex = 29;
             label10.Text = "Status:";
             // 
-            // comboBox4
+            // inputLeaveStatus
             // 
-            comboBox4.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBox4.FormattingEnabled = true;
-            comboBox4.Items.AddRange(new object[] { "Active", "Pending", "Rejected" });
-            comboBox4.Location = new Point(744, 45);
-            comboBox4.Name = "comboBox4";
-            comboBox4.Size = new Size(100, 25);
-            comboBox4.TabIndex = 33;
+            inputLeaveStatus.DropDownStyle = ComboBoxStyle.DropDownList;
+            inputLeaveStatus.FormattingEnabled = true;
+            inputLeaveStatus.Items.AddRange(new object[] { "Approved", "Pending", "Rejected" });
+            inputLeaveStatus.Location = new Point(744, 64);
+            inputLeaveStatus.Name = "inputLeaveStatus";
+            inputLeaveStatus.Size = new Size(100, 25);
+            inputLeaveStatus.TabIndex = 33;
             // 
-            // label11
+            // searchEmployeeID
             // 
-            label11.AutoSize = true;
-            label11.BackColor = Color.FromArgb(33, 44, 66);
-            label11.Cursor = Cursors.Hand;
-            label11.Font = new Font("Ubuntu Mono", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label11.ForeColor = Color.Beige;
-            label11.Location = new Point(685, 76);
-            label11.Name = "label11";
-            label11.Size = new Size(48, 17);
-            label11.TabIndex = 32;
-            label11.Text = "Role:";
-            // 
-            // textBox2
-            // 
-            textBox2.Location = new Point(744, 16);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(100, 25);
-            textBox2.TabIndex = 27;
+            searchEmployeeID.Location = new Point(744, 35);
+            searchEmployeeID.Name = "searchEmployeeID";
+            searchEmployeeID.Size = new Size(100, 25);
+            searchEmployeeID.TabIndex = 27;
             // 
             // panel7
             // 
-            panel7.Controls.Add(button7);
-            panel7.Controls.Add(button8);
-            panel7.Controls.Add(button9);
-            panel7.Controls.Add(button10);
+            panel7.Controls.Add(modifyLeave);
+            panel7.Controls.Add(searchLeave);
             panel7.Location = new Point(562, 104);
             panel7.Name = "panel7";
             panel7.Size = new Size(320, 34);
             panel7.TabIndex = 24;
             // 
-            // button7
+            // modifyLeave
             // 
-            button7.BackColor = Color.FromArgb(33, 44, 66);
-            button7.BackgroundImage = Properties.Resources.modify;
-            button7.BackgroundImageLayout = ImageLayout.Stretch;
-            button7.Cursor = Cursors.Hand;
-            button7.FlatStyle = FlatStyle.Flat;
-            button7.ForeColor = Color.FromArgb(33, 44, 66);
-            button7.Location = new Point(248, 7);
-            button7.Name = "button7";
-            button7.Size = new Size(43, 25);
-            button7.TabIndex = 2;
-            button7.UseVisualStyleBackColor = false;
+            modifyLeave.BackColor = Color.FromArgb(33, 44, 66);
+            modifyLeave.BackgroundImage = Properties.Resources.modify;
+            modifyLeave.BackgroundImageLayout = ImageLayout.Stretch;
+            modifyLeave.Cursor = Cursors.Hand;
+            modifyLeave.FlatStyle = FlatStyle.Flat;
+            modifyLeave.ForeColor = Color.FromArgb(33, 44, 66);
+            modifyLeave.Location = new Point(248, 7);
+            modifyLeave.Name = "modifyLeave";
+            modifyLeave.Size = new Size(43, 25);
+            modifyLeave.TabIndex = 2;
+            modifyLeave.UseVisualStyleBackColor = false;
+            modifyLeave.Click += modifyLeave_Click;
             // 
-            // button8
+            // searchLeave
             // 
-            button8.BackColor = Color.FromArgb(33, 44, 66);
-            button8.BackgroundImage = Properties.Resources.minus;
-            button8.BackgroundImageLayout = ImageLayout.Stretch;
-            button8.Cursor = Cursors.Hand;
-            button8.FlatStyle = FlatStyle.Flat;
-            button8.ForeColor = Color.FromArgb(33, 44, 66);
-            button8.Location = new Point(187, 7);
-            button8.Name = "button8";
-            button8.Size = new Size(43, 25);
-            button8.TabIndex = 1;
-            button8.UseVisualStyleBackColor = false;
-            // 
-            // button9
-            // 
-            button9.BackColor = Color.FromArgb(33, 44, 66);
-            button9.BackgroundImage = Properties.Resources.plus;
-            button9.BackgroundImageLayout = ImageLayout.Stretch;
-            button9.Cursor = Cursors.Hand;
-            button9.FlatStyle = FlatStyle.Flat;
-            button9.ForeColor = Color.FromArgb(33, 44, 66);
-            button9.Location = new Point(128, 7);
-            button9.Name = "button9";
-            button9.Size = new Size(43, 25);
-            button9.TabIndex = 0;
-            button9.UseVisualStyleBackColor = false;
-            // 
-            // button10
-            // 
-            button10.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            button10.BackColor = Color.FromArgb(33, 44, 66);
-            button10.BackgroundImage = Properties.Resources.search;
-            button10.BackgroundImageLayout = ImageLayout.Stretch;
-            button10.Cursor = Cursors.Hand;
-            button10.FlatStyle = FlatStyle.Flat;
-            button10.ForeColor = Color.FromArgb(33, 44, 66);
-            button10.Location = new Point(66, 7);
-            button10.Name = "button10";
-            button10.Size = new Size(43, 25);
-            button10.TabIndex = 3;
-            button10.UseVisualStyleBackColor = false;
+            searchLeave.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            searchLeave.BackColor = Color.FromArgb(33, 44, 66);
+            searchLeave.BackgroundImage = Properties.Resources.search;
+            searchLeave.BackgroundImageLayout = ImageLayout.Stretch;
+            searchLeave.Cursor = Cursors.Hand;
+            searchLeave.FlatStyle = FlatStyle.Flat;
+            searchLeave.ForeColor = Color.FromArgb(33, 44, 66);
+            searchLeave.Location = new Point(187, 7);
+            searchLeave.Name = "searchLeave";
+            searchLeave.Size = new Size(43, 25);
+            searchLeave.TabIndex = 3;
+            searchLeave.UseVisualStyleBackColor = false;
+            searchLeave.Click += searchLeave_Click;
             // 
             // dataGrid
             // 
@@ -891,6 +777,7 @@
             upperBodyPanel.Size = new Size(920, 424);
             upperBodyPanel.TabIndex = 38;
             upperBodyPanel.Visible = false;
+            upperBodyPanel.Paint += upperBodyPanel_Paint;
             // 
             // loadPanel
             // 
@@ -1087,7 +974,6 @@
             Controls.Add(bodyPanel);
             Controls.Add(headPanel);
             MaximizeBox = false;
-            MinimizeBox = false;
             Name = "AdFeature";
             StartPosition = FormStartPosition.CenterScreen;
             Load += UsersUI_Load;
@@ -1109,9 +995,9 @@
             panel1.PerformLayout();
             overtimeLoadPnl.ResumeLayout(false);
             panel4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)overtimeGrid).EndInit();
             tabPage1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)leaveGrid).EndInit();
             panel5.ResumeLayout(false);
             panel5.PerformLayout();
             leaveLoadPnl.ResumeLayout(false);
@@ -1168,33 +1054,25 @@
         private Label label2;
         private Label label3;
         private Label label4;
-        private ComboBox comboBox1;
         private Label label5;
         private ComboBox comboBox2;
-        private Label label6;
         private TextBox textBox1;
         private Panel panel4;
-        private Button button2;
-        private Button button3;
-        private Button button4;
-        private Button button5;
-        private DataGridView dataGridView1;
+        private Button modifyOvertime;
+        private Button searchOvertime;
+        private DataGridView overtimeGrid;
         private Panel panel5;
         private Panel leaveLoadPnl;
         private Button leaveLoadBtn;
         private Label label7;
         private Label label8;
         private Label label9;
-        private ComboBox comboBox3;
         private Label label10;
-        private ComboBox comboBox4;
-        private Label label11;
-        private TextBox textBox2;
+        private ComboBox inputLeaveStatus;
+        private TextBox searchEmployeeID;
         private Panel panel7;
-        private Button button7;
-        private Button button8;
-        private Button button9;
-        private Button button10;
-        private DataGridView dataGridView2;
+        private Button modifyLeave;
+        private Button searchLeave;
+        private DataGridView leaveGrid;
     }
 }

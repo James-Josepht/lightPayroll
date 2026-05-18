@@ -214,7 +214,6 @@ namespace lighPayroll
             Controls.Add(panel2);
             Controls.Add(panel1);
             MaximizeBox = false;
-            MinimizeBox = false;
             Name = "PRegister";
             StartPosition = FormStartPosition.CenterScreen;
             Load += Register_Load;

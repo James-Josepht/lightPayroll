@@ -55,6 +55,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Chat.cs" />
     <Compile Update="AdDashboard.cs">
       <SubType>Form</SubType>
     </Compile>

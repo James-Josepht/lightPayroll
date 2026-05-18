@@ -32,7 +32,7 @@ namespace lighPayroll
 {
     public partial class AdDashboard : Form
     {
-        AdUI customMessages;
+        AdUI customMessages = new AdUI(0);
         AttendanceService attendanceService = new AttendanceService();
         GeneralDataService dataAccess = new GeneralDataService();
         RequestsService requestsService = new RequestsService();

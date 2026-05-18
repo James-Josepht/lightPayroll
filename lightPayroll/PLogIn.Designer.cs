@@ -184,7 +184,6 @@ namespace lighPayroll
             Controls.Add(backHomeButton);
             Controls.Add(panel1);
             MaximizeBox = false;
-            MinimizeBox = false;
             Name = "PLogIn";
             StartPosition = FormStartPosition.CenterScreen;
             Load += LogIn_Load;

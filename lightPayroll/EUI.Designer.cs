@@ -373,7 +373,6 @@
             Controls.Add(panel4);
             Controls.Add(headPanel);
             MaximizeBox = false;
-            MinimizeBox = false;
             Name = "EUI";
             StartPosition = FormStartPosition.CenterScreen;
             Load += EmployeeUI_Load;

@@ -8,6 +8,7 @@ using System.Data;
 using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Windows.Forms;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using WinFormsTimer = System.Windows.Forms.Timer;
@@ -23,10 +24,12 @@ namespace lighPayrollUI
         HBorderRadius borderRadius = new HBorderRadius();
         AdminUser users = new AdminUser();
         AdUI messageCustom = new AdUI(0);
-        
+        RequestsService requests = new RequestsService();
 
-        private string feature_button;
-        private int user_id, attendance_id; 
+
+        private string feature_button, searchUsername;
+        private int user_id, attendance_id, selectedEmployeeID, selectedLeaveID, selectedOverID;
+        private DateTime selectedStartDate, selectedEndDate;
         private int employee_id => dataAccess.GetEmployeeIdByUserId(user_id);
 
         public AdFeature(string feature, int userId)
@@ -58,6 +61,8 @@ namespace lighPayrollUI
             {
                 greetingsAndMessageBoxDesign.TypeMessage(titleMessage, "Trust But Always Verify!");
                 requestsPanel.Visible = false;
+
+                upperBodyPanel.Visible = true;
 
                 addUserButton.Visible = true;
                 deleteUserButton.Visible = true;
@@ -124,6 +129,70 @@ namespace lighPayrollUI
             }
 
         }
+        private void LoadLeaveSearchList()
+        {
+            int employeeID = int.Parse(searchEmployeeID.Text);
+            if (employeeID == 0)
+            {
+                messageCustom.CustomMessageBox("Please select an employee first.");
+                return;
+            }
+
+            var searchData = requests.SearchLeaveRequests(employeeID);
+
+            leaveGrid.DataSource = searchData;
+        }
+        private void LoadUserSearchList()
+        {
+            string username = nameOrIDTxtBox.Text;
+
+            if (string.IsNullOrEmpty(username))
+            {
+                greetingsAndMessageBoxDesign.CustomMessageBox("Enter valid name.");
+                return;
+            }
+
+            // Check if input is an integer (ID)
+            if (!int.TryParse(username, out _))
+            {
+                // Not a number → treat as username
+                searchUsername = username;
+
+            }
+
+
+            if (dataAccess.SearchUsersByUsername(searchUsername) == null)
+                greetingsAndMessageBoxDesign.CustomMessageBox("User not found.");
+            else
+                dataGrid.DataSource = dataAccess.SearchUsersByUsername(searchUsername);
+
+            dataGrid.Columns["UsersID"].DisplayIndex = 0;
+        }
+
+        private void LoadOvertimeList()
+        {
+            RequestsService requests = new RequestsService();
+            overtimeGrid.DataSource = null;
+            overtimeGrid.Columns.Clear();
+            var data = requests.LoadOvertimeRequests();
+
+
+            overtimeGrid.DataSource = data;
+        }
+
+        private void LoadLeaveList()
+        {
+            RequestsService requests = new RequestsService();
+
+            leaveGrid.DataSource = null;
+            leaveGrid.Columns.Clear();
+            var data = requests.LoadLeaveRequests();
+            leaveGrid.DataSource = data;
+
+            leaveGrid.Columns["LeaveID"].Visible = false;
+            leaveGrid.Columns["ApprovedBy"].Visible = false;
+
+        }
 
         private void LoadAttendanceList()
         {
@@ -155,7 +224,7 @@ namespace lighPayrollUI
 
         }
 
-     
+
 
         private void deleteUserButton_Click(object sender, EventArgs e)
         {
@@ -259,31 +328,17 @@ namespace lighPayrollUI
             }
 
 
-
-
-
             greetingsAndMessageBoxDesign.CustomMessageBox("User updated successfully!");
 
             // Refresh grid
-            LoadList();
+            LoadUserSearchList();
         }
         private void searchUserButton_Click(object sender, EventArgs e)
         {
-            string username = nameOrIDTxtBox.Text;
-
-            if (string.IsNullOrEmpty(username))
-            {
-                greetingsAndMessageBoxDesign.CustomMessageBox("Enter valid name.");
-                return;
-            }
-
-
-            if (dataAccess.SearchUsersByUsername(username) == null)
-                greetingsAndMessageBoxDesign.CustomMessageBox("User not found.");
-            else
-                dataGrid.DataSource = dataAccess.SearchUsersByUsername(username);
+            LoadUserSearchList();
 
         }
+
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
@@ -342,14 +397,14 @@ namespace lighPayrollUI
 
         private void overtimeLoadBtn_Click(object sender, EventArgs e)
         {
-
+            LoadOvertimeList();
         }
 
         private void leaveLoadBtn_Click(object sender, EventArgs e)
         {
+            LoadLeaveList();
+        }
 
-        } 
-        
 
 
 
@@ -403,9 +458,102 @@ namespace lighPayrollUI
                 TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter
             );
 
+
+            if (tabPage.Name == "overtimeTabPage")
+            {
+                LoadOvertimeList();
+            }
+            else if (tabPage.Name == "leaveTabPage")
+            {
+                LoadLeaveList();
+            }
+
         }
 
+        private void panel5_Paint(object sender, PaintEventArgs e)
+        {
 
-     
+        }
+
+        private void modifyLeave_Click(object sender, EventArgs e)
+        {
+            if (selectedEmployeeID == 0)
+            {
+                messageCustom.CustomMessageBox("Please select an employee first.");
+                return;
+            }
+            
+            string decision = inputLeaveStatus.Text;
+
+            if (decision == "Approved")
+            {
+                DateTime startDate = selectedStartDate;
+                DateTime endDate = selectedEndDate;
+
+                attendanceDataAccess.ApplyLeave(selectedEmployeeID, startDate, endDate);
+                requests.UpdateLeaveStatus(selectedLeaveID, "Approved");
+
+            }
+            else if (decision == "Rejected")
+            {
+                requests.UpdateLeaveStatus(selectedLeaveID, "Rejected");
+            }
+            else
+            {
+                requests.UpdateLeaveStatus(selectedLeaveID, "Pending");
+            }
+
+            messageCustom.CustomMessageBox("Successfully updated.");
+            LoadLeaveSearchList();
+        }
+
+        private void searchLeave_Click(object sender, EventArgs e)
+        {
+            LoadLeaveSearchList();
+        }
+
+        private void leaveGrid_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+
+            selectedLeaveID = Convert.ToInt32(
+                leaveGrid.Rows[e.RowIndex].Cells["LeaveID"].Value
+            );
+
+
+            selectedEmployeeID = Convert.ToInt32(
+                leaveGrid.Rows[e.RowIndex].Cells["EmployeeID"].Value
+            );
+
+            selectedStartDate = Convert.ToDateTime(
+                leaveGrid.Rows[e.RowIndex].Cells["StartDate"].Value
+            );
+            selectedEndDate = Convert.ToDateTime(
+                leaveGrid.Rows[e.RowIndex].Cells["EndDate"].Value
+            );
+
+
+
+            ConfirmForm confirm = new ConfirmForm(
+               $"Confirm to choose this request?\n\n", $"\t\tEmployeeID: {selectedEmployeeID}\n\t\tDate: {selectedStartDate:yyyy-MM-dd} to {selectedEndDate:yyyy-MM-dd}");
+            confirm.ShowDialog();
+
+
+
+            if (!confirm.Result)
+            {
+                selectedEmployeeID = 0;
+            }
+            else
+            {
+                searchEmployeeID.Text = selectedEmployeeID.ToString();
+            }
+
+        }
+
+        private void upperBodyPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

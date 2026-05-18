@@ -122,18 +122,21 @@ namespace lightPayrollServices
 
 
 
-        public void InsertLeave(int employeeId, string date, string reason)
+        public void InsertLeave(int employeeId, string leaveType, string startDate, string endDate, string reason, int? id = null)
         {
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
             {
-                string sql = @"INSERT INTO LeaveRequestsTable (EmployeeID, Date, Reason)
-                       VALUES (@EmployeeID, @Date, @Reason)";
+                string sql = @"INSERT INTO LeaveRequestsTable (EmployeeID, LeaveType, StartDate, EndDate, Reason, ApprovedBy)
+                       VALUES (@EmployeeID, @LeaveType, @StartDate, @EndDate, @Reason, @ApprovedBy)";
 
                 conn.Execute(sql, new
                 {
                     EmployeeID = employeeId,
-                    Date = date,
-                    Reason = reason
+                    StartDate = startDate,
+                    EndDate = endDate,
+                    LeaveType = leaveType,
+                    Reason = reason,
+                    ApprovedBy = id
                 });
             }
         }
@@ -142,14 +145,14 @@ namespace lightPayrollServices
         {
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
             {
-                string sql = @"INSERT INTO OvertimeRequestsTable (EmployeeID, Date, Type)
-                       VALUES (@EmployeeID, @Date, @Type)";
+                string sql = @"INSERT INTO OvertimeRequestsTable (EmployeeID, Date, Reason)
+                       VALUES (@EmployeeID, @Date, @Reason)";
 
                 conn.Execute(sql, new
                 {
                     EmployeeID = employeeId,
                     Date = date,
-                    Type = type
+                    Reason = type
                 });
             }
         }
@@ -159,6 +162,19 @@ namespace lightPayrollServices
         /// SEARCHING PART
         /// 
         /// 
+
+        public string GetFullNameByEmployeeId(int employeeId)
+        {
+            using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
+            {
+                return conn.QueryFirstOrDefault<string>(
+                    @"SELECT FirstName || ' ' || LastName
+              FROM EmployeesTable
+              WHERE EmployeeID = @EmployeeID",
+                    new { EmployeeID = employeeId }
+                );
+            }
+        }
 
         public int GetEmployeeIdByUserId(int usersID) //used to get id not employee itself
         {
@@ -427,7 +443,7 @@ namespace lightPayrollServices
         /// INITIALIZATION OF DATABASE (AYAW INTAWN HILABTI!)
         ///
  
-        protected static string LoadConnectionString(string id = "DefaultConnection")// goes to App.config to get the connection string with the name "Default"
+        public static string LoadConnectionString(string id = "DefaultConnection")// goes to App.config to get the connection string with the name "Default"
         {
             var connStrings = ConfigurationManager.ConnectionStrings[id].ConnectionString;
 

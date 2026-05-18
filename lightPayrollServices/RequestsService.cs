@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Dapper;
+using lightPayrollModel;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SQLite;
@@ -8,8 +10,9 @@ using System.Threading.Tasks;
 
 namespace lightPayrollServices
 {
-    public class RequestsService: GeneralDataService
+    public class RequestsService: GeneralDataService //updating and inserting attendance after approve request is in general
     {
+       
         // ----------------------------
         // DAILY / TOTAL COUNTS
         // ----------------------------
@@ -48,10 +51,10 @@ namespace lightPayrollServices
 
                 string sql = @"
                     SELECT
-                        CAST(strftime('%m', Date) AS INTEGER) AS Month,
+                        CAST(strftime('%m', StartDate) AS INTEGER) AS Month,
                         COUNT(*) AS Total
                     FROM LeaveRequestsTable
-                    WHERE strftime('%Y', Date) = @year
+                    WHERE strftime('%Y', StartDate) = @year
                     GROUP BY Month
                 ";
 
@@ -87,8 +90,8 @@ namespace lightPayrollServices
 
                 string sql = @"
                     SELECT 
-                        MIN(strftime('%Y', Date)) AS MinYear,
-                        MAX(strftime('%Y', Date)) AS MaxYear
+                        MIN(strftime('%Y', StartDate)) AS MinYear,
+                        MAX(strftime('%Y', StartDate)) AS MaxYear
                     FROM LeaveRequestsTable
                 ";
 
@@ -113,5 +116,93 @@ namespace lightPayrollServices
 
             return (DateTime.Now.Year, DateTime.Now.Year);
         }
-}
+
+        // ----------------------------
+        // LOAD PART
+        // ----------------------------
+
+        public List<OvertimeRequest> LoadOvertimeRequests()
+        {
+            using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
+            {
+                var output = conn.Query<OvertimeRequest>(
+                 @"SELECT *
+                  FROM OvertimeRequestsTable
+                  ORDER BY Date DESC",
+                 new DynamicParameters());
+
+                var attendances = output.ToList();
+
+
+                return attendances;
+            }
+        }
+
+        public List<LeaveRequest> LoadLeaveRequests()
+        {
+            using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
+            {
+                var output = conn.Query<LeaveRequest>(
+                 @"SELECT LeaveID, LeaveType, EmployeeID, StartDate, EndDate, Reason, Status
+                   FROM LeaveRequestsTable
+                   ORDER BY 
+                       CASE 
+                           WHEN Status = 'Pending' THEN 0
+                           ELSE 1
+                       END,
+                       StartDate ASC",
+                 new DynamicParameters());
+
+                return output.ToList();
+            }
+        }
+
+        // ----------------------------
+        // GETTING PART
+        // ----------------------------
+       
+
+
+        public List<LeaveRequest> SearchLeaveRequests(int id) 
+        {
+            using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
+            {
+                var output = conn.Query<LeaveRequest>(
+                 @"SELECT *
+                   FROM LeaveRequestsTable
+                   WHERE EmployeeID = @EmployeeID
+                    ORDER BY 
+                       CASE 
+                           WHEN Status = 'Pending' THEN 0
+                           ELSE 1
+                       END,
+                       StartDate ASC",
+                 new { EmployeeID = id });
+
+                return output.ToList();
+            }
+        }
+
+
+        // ----------------------------
+        // UPDATING PART
+        // ----------------------------
+
+        //update based on leave request ID
+        public void UpdateLeaveStatus(int leaveRequestId, string status)
+        {
+            using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
+            {
+                conn.Execute(
+                    @"UPDATE LeaveRequestsTable
+              SET Status = @Status
+              WHERE LeaveID = @Id",
+                    new
+                    {
+                        Id = leaveRequestId,
+                        Status = status
+                    });
+            }
+        }
+    }
 }
