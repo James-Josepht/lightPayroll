@@ -89,12 +89,8 @@ namespace lighPayroll
                 AdUI admin = new AdUI(userID);
 
                 EUI employee = new EUI(role, formattedName, userID);
-                if ((email.ToLower() == "admin" && password == "admin") || role == "Admin" || role == "Manager")
+                if ( role == "Admin" || role == "Manager")
                 {
-
-                    //string pass = PasswordHash.HashPassword("testpass");
-                    //Clipboard.SetText(pass);
-                    //MessageBox.Show(pass);
                     CustomMessageBox("Login successful!");
                     admin.Show();
                     this.Hide();
@@ -179,11 +175,5 @@ namespace lighPayroll
             t.Start();
         }
 
-
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

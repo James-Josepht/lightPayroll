@@ -11,3 +11,16 @@ C:\Users\James\source\repos\lightPayrollModel\obj\Debug\net8.0\lightPayrollModel
 C:\Users\James\source\repos\lightPayrollModel\obj\Debug\net8.0\refint\lightPayrollModel.dll
 C:\Users\James\source\repos\lightPayrollModel\obj\Debug\net8.0\lightPayrollModel.pdb
 C:\Users\James\source\repos\lightPayrollModel\obj\Debug\net8.0\ref\lightPayrollModel.dll
+C:\Users\Gemma Rose Cabilan\source\Self Learn\C#\payrollTRial\lightPayrollModel\bin\Debug\net8.0\lightPayrollModel.deps.json
+C:\Users\Gemma Rose Cabilan\source\Self Learn\C#\payrollTRial\lightPayrollModel\bin\Debug\net8.0\lightPayrollModel.dll
+C:\Users\Gemma Rose Cabilan\source\Self Learn\C#\payrollTRial\lightPayrollModel\bin\Debug\net8.0\lightPayrollModel.pdb
+C:\Users\Gemma Rose Cabilan\source\Self Learn\C#\payrollTRial\lightPayrollModel\obj\Debug\net8.0\lightPayrollModel.csproj.AssemblyReference.cache
+C:\Users\Gemma Rose Cabilan\source\Self Learn\C#\payrollTRial\lightPayrollModel\obj\Debug\net8.0\lightPayrollModel.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Gemma Rose Cabilan\source\Self Learn\C#\payrollTRial\lightPayrollModel\obj\Debug\net8.0\lightPayrollModel.AssemblyInfoInputs.cache
+C:\Users\Gemma Rose Cabilan\source\Self Learn\C#\payrollTRial\lightPayrollModel\obj\Debug\net8.0\lightPayrollModel.AssemblyInfo.cs
+C:\Users\Gemma Rose Cabilan\source\Self Learn\C#\payrollTRial\lightPayrollModel\obj\Debug\net8.0\lightPayrollModel.csproj.CoreCompileInputs.cache
+C:\Users\Gemma Rose Cabilan\source\Self Learn\C#\payrollTRial\lightPayrollModel\obj\Debug\net8.0\lightPayrollModel.sourcelink.json
+C:\Users\Gemma Rose Cabilan\source\Self Learn\C#\payrollTRial\lightPayrollModel\obj\Debug\net8.0\lightPayrollModel.dll
+C:\Users\Gemma Rose Cabilan\source\Self Learn\C#\payrollTRial\lightPayrollModel\obj\Debug\net8.0\refint\lightPayrollModel.dll
+C:\Users\Gemma Rose Cabilan\source\Self Learn\C#\payrollTRial\lightPayrollModel\obj\Debug\net8.0\lightPayrollModel.pdb
+C:\Users\Gemma Rose Cabilan\source\Self Learn\C#\payrollTRial\lightPayrollModel\obj\Debug\net8.0\ref\lightPayrollModel.dll

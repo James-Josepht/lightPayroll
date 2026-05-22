@@ -123,7 +123,7 @@ namespace lighPayroll
             logckInLabel.Size = new Size(255, 68);
             logckInLabel.TabIndex = 5;
             logckInLabel.Text = "Let's LOG-CK IN!\r\n\r\n";
-            logckInLabel.Click += label3_Click;
+ 
             // 
             // loginButton
             // 

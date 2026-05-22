@@ -16,7 +16,6 @@ namespace lighPayroll
     public partial class PFeauture : Form
     {
         //class below this, used for designing only
-        ClockInDesignPage design = new ClockInDesignPage();
         HBorderRadius curveBorder = new HBorderRadius();
 
         private string page_feature;
